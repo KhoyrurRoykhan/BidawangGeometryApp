@@ -1,0 +1,21 @@
+.category-btn {
+    background-color: #b58ac2;
+    color: white;
+    border-radius: 8px;
+    padding: 20px; /* Increase padding for larger buttons */
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.1rem; /* Increase font size */
+    border: none;
+    height: 80px; /* Set a specific height for the buttons */
+  }
+  
+  .category-btn:hover {
+    background-color: #a079b3;
+    color: white;
+  }
+  
+  .category-btn span {
+    font-size: 1.2rem;
+  }
+  

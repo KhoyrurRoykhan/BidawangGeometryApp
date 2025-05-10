@@ -1,0 +1,116 @@
+/* Styling untuk sidebar */
+.sidenav {
+  height: 100vh;
+  width: 260px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #222;
+  overflow-x: hidden;
+  padding-top: 20px;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidenav-link, .dropdown-btn {
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #bbb;
+  display: block;
+  background: none;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidenav-link:hover, .dropdown-btn:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+.active {
+  background-color: green;
+  color: white;
+}
+
+.dropdown-container {
+  display: none;
+  background-color: #333;
+  padding-left: 16px;
+}
+
+.icon-caret {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Styling untuk konten utama */
+.main-content {
+  margin-left: 260px;
+  padding: 30px;
+  font-size: 18px;
+  text-align: justify;
+  line-height: 1.6;
+  color: #444;
+}
+
+.content{
+
+  /* padding: 30px; */
+  font-size: 18px;
+  text-align: justify;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Styling untuk heading */
+.heading {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.heading-icon::before {
+  content: '\1F4D6'; /* Ikon buku */
+  font-size: 1.2em;
+}
+
+/* Styling untuk card dan form */
+.card-custom {
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #fff;
+}
+
+.button-custom {
+  font-size: 18px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.button-custom:hover {
+  background-color: #155ca7;
+  color: white;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .sidenav {
+    width: 100px;
+  }
+
+  .main-content {
+    margin-left: 100px;
+    padding: 20px;
+  }
+}

@@ -1,0 +1,30 @@
+/* tutor.css */
+
+.sidenavigasi {
+  padding-top: 20px;
+  position: fixed;
+
+}
+
+/* Struktur utama sidebar dan konten */
+.sidenavigasi {
+  /* display: flex; */
+  height: 100vh; /* Sidebar dan konten akan memanfaatkan tinggi layar penuh */
+  overflow: hidden; /* Mencegah scroll pada container utama */
+}
+
+/* Sidebar */
+.sidenavigasi .bg-light {
+  position: sticky; /* Sidebar tetap berada di tempat */
+  top: 0; /* Menempel di bagian atas layar */
+  height: 100vh; /* Tinggi penuh layar */
+  overflow-y: auto; /* Sidebar akan memiliki scroll sendiri jika kontennya panjang */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Tambahkan shadow agar terlihat lebih menarik */
+}
+
+/* Konten utama */
+.sidenavigasi .p-4 {
+  overflow-y: auto; /* Scroll konten jika terlalu panjang */
+  height: calc(100vh - 50px); /* Sesuaikan dengan tinggi header atau margin */
+  padding: 20px; /* Tambahkan padding agar konten lebih rapi */
+}

@@ -1,0 +1,187 @@
+.button-3d {
+    position:relative;
+    width: auto;
+    display:inline-block;
+    color:#ecf0f1;
+    text-decoration:none;
+    border-radius:5px;
+    border:solid 1px #f39c12;
+    background:#e67e22;
+    text-align:center;
+    padding:16px 18px 14px;
+    margin: 12px;
+    
+    -webkit-transition: all 0.1s;
+      -moz-transition: all 0.1s;
+      transition: all 0.1s;
+      
+    -webkit-box-shadow: 0px 6px 0px #d35400;
+    -moz-box-shadow: 0px 6px 0px #d35400;
+    box-shadow: 0px 6px 0px #d35400;
+  }
+  
+  .button-3d:active{
+      -webkit-box-shadow: 0px 2px 0px #d35400;
+      -moz-box-shadow: 0px 2px 0px #d35400;
+      box-shadow: 0px 2px 0px #d35400;
+      position:relative;
+      top:4px;
+  }
+
+  .button-3d-eksplore {
+    position: relative;
+    width: auto;
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: solid 1px #27ae60;
+    background: #2ecc71;
+    text-align: center;
+    padding: 10px 18px 10px;
+    margin: 12px;
+    
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    
+    -webkit-box-shadow: 0px 6px 0px #1e8449;
+    -moz-box-shadow: 0px 6px 0px #1e8449;
+    box-shadow: 0px 6px 0px #1e8449;
+}
+
+.button-3d-eksplore:active {
+    -webkit-box-shadow: 0px 2px 0px #1e8449;
+    -moz-box-shadow: 0px 2px 0px #1e8449;
+    box-shadow: 0px 2px 0px #1e8449;
+    position: relative;
+    top: 4px;
+}
+
+/* run */
+.button-3d-run {
+  font-size: 1rem;
+  position: relative;
+  width: auto;
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px #27ae60;
+  background: #2ecc71;
+  text-align: center;
+  padding: 5px 9px 5px;
+  margin: 0px;
+  
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+  
+  -webkit-box-shadow: 0px 4px 0px #1e8449;
+  -moz-box-shadow: 0px 4px 0px #1e8449;
+  box-shadow: 0px 4px 0px #1e8449;
+}
+
+.button-3d-run:active {
+  -webkit-box-shadow: 0px 1px 0px #1e8449;
+  -moz-box-shadow: 0px 1px 0px #1e8449;
+  box-shadow: 0px 1px 0px #1e8449;
+  position: relative;
+  top: 2px;
+}
+
+/* reset */
+.button-3d-reset {
+  font-size: 1rem;
+  position: relative;
+  width: auto;
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px #f39c12;
+  background: #f1c40f;
+  text-align: center;
+  padding: 5px 9px 5px;
+  margin: 0px;
+
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
+  -webkit-box-shadow: 0px 4px 0px #d68910;
+  -moz-box-shadow: 0px 4px 0px #d68910;
+  box-shadow: 0px 4px 0px #d68910;
+}
+
+.button-3d-reset:active {
+  -webkit-box-shadow: 0px 2px 0px #d68910;
+  -moz-box-shadow: 0px 2px 0px #d68910;
+  box-shadow: 0px 2px 0px #d68910;
+  position: relative;
+  top: 2px;
+}
+
+/* open save - versi primary */
+.button-3d-open {
+  font-size: 1rem;
+  position: relative;
+  width: auto;
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px #2980b9;
+  background: #3498db;
+  text-align: center;
+  padding: 5px 9px 5px;
+  margin: 0px;
+
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
+  -webkit-box-shadow: 0px 4px 0px #1f618d;
+  -moz-box-shadow: 0px 4px 0px #1f618d;
+  box-shadow: 0px 4px 0px #1f618d;
+}
+
+.button-3d-open:active {
+  -webkit-box-shadow: 0px 2px 0px #1f618d;
+  -moz-box-shadow: 0px 2px 0px #1f618d;
+  box-shadow: 0px 2px 0px #1f618d;
+  position: relative;
+  top: 2px;
+}
+
+/* open save - versi grey */
+.button-3d-grey {
+  font-size: 1rem;
+  position: relative;
+  width: auto;
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px #7f8c8d;
+  background: #95a5a6;
+  text-align: center;
+  padding: 5px 9px 5px;
+  margin: 0px;
+
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
+  -webkit-box-shadow: 0px 4px 0px #7f8c8d;
+  -moz-box-shadow: 0px 4px 0px #7f8c8d;
+  box-shadow: 0px 4px 0px #7f8c8d;
+}
+
+.button-3d-grey:active {
+  -webkit-box-shadow: 0px 2px 0px #7f8c8d;
+  -moz-box-shadow: 0px 2px 0px #7f8c8d;
+  box-shadow: 0px 2px 0px #7f8c8d;
+  position: relative;
+  top: 2px;
+}
