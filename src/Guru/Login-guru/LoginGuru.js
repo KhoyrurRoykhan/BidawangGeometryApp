@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import kurakura from '../assets/kuralanding.png'; // gunakan ilustrasi yang sama
@@ -8,7 +8,18 @@ const LoginGuru = () => {
   const [password, setPassword] = useState('');
   const [msg, setMsg] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize(); // set awal
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const AuthGuru = async (e) => {
     e.preventDefault();
@@ -31,21 +42,31 @@ const LoginGuru = () => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      background: '#ffffff'
+      background: '#ffffff',
+      padding: '20px'
     }}>
       <div style={{
         display: 'flex',
         maxWidth: '1000px',
         width: '100%',
-        padding: '40px',
+        padding: '20px',
         borderRadius: '10px',
-        background: '#fff'
+        background: '#fff',
+        flexDirection: isMobile ? 'column' : 'row'
       }}>
 
         {/* Gambar */}
-        <div style={{ flex: 1, paddingRight: '40px', display: 'flex', alignItems: 'center' }}>
-          <img src={kurakura} alt="Login Illustration" style={{ width: '80%' }} />
-        </div>
+        {!isMobile && (
+          <div style={{
+            flex: 1,
+            paddingRight: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <img src={kurakura} alt="Login Illustration" style={{ width: '80%' }} />
+          </div>
+        )}
 
         {/* Form Login Guru */}
         <div style={{ flex: 2 }}>

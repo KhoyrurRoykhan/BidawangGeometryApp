@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import kurakura from '../assets/kuralanding.png';
@@ -11,7 +11,18 @@ const RegisterGuru = () => {
   const [instansi, setInstansi] = useState('');
   const [msg, setMsg] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -33,25 +44,30 @@ const RegisterGuru = () => {
 
   return (
     <div style={{
-      height: '100vh',
+      minHeight: '100vh',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       background: '#ffffff',
-      paddingTop: '100px'
+      padding: '40px 20px'
     }}>
       <div style={{
         display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
         maxWidth: '1000px',
         width: '100%',
         padding: '40px',
         borderRadius: '10px',
         background: '#fff'
       }}>
-        <div style={{ flex: 1, paddingRight: '50px', display: 'flex', alignItems: 'center' }}>
-          <img src={kurakura} alt="Register Illustration" style={{ width: '80%' }} />
-        </div>
+        {/* Gambar */}
+        {!isMobile && (
+          <div style={{ flex: 1, paddingRight: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src={kurakura} alt="Register Illustration" style={{ width: '80%' }} />
+          </div>
+        )}
 
+        {/* Form Register Guru */}
         <div style={{ flex: 2 }}>
           <h2 style={{ color: '#198754', fontSize: '2rem', fontWeight: 'bold', marginBottom: '20px' }}>DAFTAR GURU</h2>
           <form onSubmit={handleRegister}>
@@ -93,7 +109,13 @@ const RegisterGuru = () => {
               />
             </div>
 
-            <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+            <div style={{
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              gap: '20px',
+              marginBottom: '20px'
+            }}>
+              {/* Password */}
               <div style={{ flex: 1 }}>
                 <label style={{ fontWeight: 'bold' }}>Password</label>
                 <input
@@ -106,6 +128,7 @@ const RegisterGuru = () => {
                 />
               </div>
 
+              {/* Konfirmasi Password */}
               <div style={{ flex: 1 }}>
                 <label style={{ fontWeight: 'bold' }}>Konfirmasi Password</label>
                 <div style={{ position: 'relative' }}>
@@ -152,8 +175,9 @@ const RegisterGuru = () => {
                 DAFTAR
               </button>
             </div>
+
             <p style={{ fontSize: '14px' }}>
-              Sudah punya akun? <a href="/login" style={{ color: '#198754' }}>Masuk</a>
+              Sudah punya akun guru? <a href="/login-guru" style={{ color: '#198754' }}>Masuk</a>
             </p>
             <p style={{ fontSize: '14px' }}>
               Daftar akun siswa? <a href="/register" style={{ color: '#198754' }}>Daftar</a>

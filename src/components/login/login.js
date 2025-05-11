@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// Tambahkan ini di bagian atas file
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import kurakura from '../Landing-page/assets/kuralanding.png';
@@ -8,7 +9,18 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [msg, setMsg] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize(); // set awal
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const Auth = async (e) => {
     e.preventDefault();
@@ -25,32 +37,37 @@ const Login = () => {
     }
   };
 
-  const resetForm = () => {
-    setNim('');
-    setPassword('');
-  };
-
   return (
     <div style={{
       height: '100vh',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      background: '#ffffff'
+      background: '#ffffff',
+      padding: '20px'
     }}>
       <div style={{
         display: 'flex',
         maxWidth: '1000px',
         width: '100%',
-        padding: '40px',
+        padding: '20px',
         borderRadius: '10px',
-        background: '#fff'
+        background: '#fff',
+        flexDirection: isMobile ? 'column' : 'row'
       }}>
-        
+
         {/* Gambar */}
-        <div style={{ flex: 1, paddingRight: '40px', display: 'flex', alignItems: 'center' }}>
-          <img src={kurakura} alt="Login Illustration" style={{ width: '80%' }} />
-        </div>
+        {!isMobile && (
+          <div style={{
+            flex: 1,
+            paddingRight: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <img src={kurakura} alt="Login Illustration" style={{ width: '80%' }} />
+          </div>
+        )}
 
         {/* Form Login */}
         <div style={{ flex: 2 }}>
@@ -119,7 +136,6 @@ const Login = () => {
             <p style={{ fontSize: '14px' }}>
               Masuk sebagai guru? <a href="/login-guru" style={{ color: '#198754'}}>Klik disini!</a>
             </p>
-
           </form>
         </div>
       </div>
