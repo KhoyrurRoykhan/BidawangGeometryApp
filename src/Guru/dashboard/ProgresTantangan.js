@@ -104,7 +104,7 @@ const ProgresTantangan = () => {
               <th>No</th>
               <th>NISN</th>
               <th>Nama</th>
-              <th>Progres Belajar</th>
+              <th>Progres Tantangan</th>
             </tr>
           </thead>
           <tbody>

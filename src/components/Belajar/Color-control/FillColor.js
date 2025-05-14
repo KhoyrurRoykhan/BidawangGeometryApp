@@ -8,6 +8,7 @@ import { BsArrowClockwise, BsCheckCircle } from 'react-icons/bs'; // Import ikon
 import left120 from './assets/1left120.gif';
 import right90 from './assets/1right90.gif';
 import gabunganleftright from './assets/1gabunganleftright.gif';
+import { FaBars } from "react-icons/fa";
 
 // Challange
 import swal from 'sweetalert'; // Import SweetAlert
@@ -529,13 +530,43 @@ for i in range(100):
     runitchallanges('', true, true); // skip validasi di load awal
     }, []);
 
+    const [collapsed, setCollapsed] = useState(false);
+
+    const toggleSidebar = () => {
+      setCollapsed(!collapsed);
+    };
+
   return (
-    <Container fluid className="sidenavigasi mt-5" style={{fontFamily: 'Verdana, sans-serif' }}>
-      <Row>
-      <Col xs={2} className="bg-light border-end vh-100 p-0"
-        style={{ overflowY: "hidden" }} // atau "auto", atau "scroll"
-        >
-        <Accordion defaultActiveKey={activeAccordionKey}>
+    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+      display: "flex",
+      height: "100vh",
+      flexDirection: "row",
+      overflow: "hidden", // agar tidak scroll di container utama
+      position: "fixed",
+      width:'100%'
+    }}>
+
+<div
+        style={{
+          width: collapsed ? "60px" : "250px",
+          transition: "width 0.3s",
+          backgroundColor: "#f0f0f0",
+          height: "100vh",
+          position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
+          top: 0,
+          zIndex: 10,
+          flexShrink: 0, // penting agar tidak ikut menyusut
+          overflow: 'auto',
+          paddingBottom:60
+        }}
+      >
+      <div className="p-2">
+          <Button variant="light" onClick={toggleSidebar}>
+            <FaBars />
+          </Button>
+        </div>
+        {!collapsed && (
+        <Accordion defaultActiveKey={activeAccordionKey} className='p-2'>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Pengenalan</Accordion.Header>
               <Accordion.Body>
@@ -831,11 +862,16 @@ for i in range(100):
             </Accordion.Item>
 
           </Accordion>
-        </Col>
+        )}
+        </div>
 
-        <Col xs={10} className="p-4">
-        <div className='content' style={{paddingLeft:50, paddingRight:50}}>
-      <div>
+        <div className='p-4 content' style={{
+              flexGrow: 1,
+              overflowY: "auto",
+              height: "100vh"
+
+            }}>
+          <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
         <h2 style={{
             textAlign: 'center',
             backgroundColor: '#198754',
@@ -1284,9 +1320,8 @@ home() `}
       
       </div>
     </div>
-        </Col>
-      </Row>
-    </Container>
+
+    </div>
     
   )
 }

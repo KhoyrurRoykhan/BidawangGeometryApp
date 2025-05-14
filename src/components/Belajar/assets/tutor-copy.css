@@ -25,7 +25,7 @@
 /* Konten utama */
 .sidenavigasi .p-4 {
   overflow-y: auto; /* Scroll konten jika terlalu panjang */
-  height: calc(100vh - 50px); /* Sesuaikan dengan tinggi header atau margin */
+  height: calc(100vh - 50px);
   padding: 20px; /* Tambahkan padding agar konten lebih rapi */
 }
 

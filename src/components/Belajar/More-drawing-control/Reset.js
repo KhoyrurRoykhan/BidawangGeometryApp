@@ -9,6 +9,7 @@ import left120 from './assets/1left120.gif';
 import right90 from './assets/1right90.gif';
 import gabunganleftright from './assets/1gabunganleftright.gif';
 import Swal from "sweetalert2";
+import { FaBars } from "react-icons/fa";
 
 // Challange
 import swal from 'sweetalert'; // Import SweetAlert
@@ -379,13 +380,44 @@ for i in range(100):
       // runitchallanges(); // Jalankan kode saat halaman dimuat
     }, []);
 
+    const [collapsed, setCollapsed] = useState(false);
+
+    const toggleSidebar = () => {
+      setCollapsed(!collapsed);
+    };
+
   return (
-    <Container fluid className="sidenavigasi mt-5" style={{fontFamily: 'Verdana, sans-serif' }}>
-      <Row>
-      <Col xs={2} className="bg-light border-end vh-100 p-0"
-        style={{ overflowY: "hidden" }} // atau "auto", atau "scroll"
-        >
-        <Accordion defaultActiveKey={activeAccordionKey}>
+    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+      display: "flex",
+      height: "100vh",
+      flexDirection: "row",
+      overflow: "hidden", // agar tidak scroll di container utama
+      position: "fixed",
+      width:'100%'
+    }}>
+
+      <div
+        style={{
+          width: collapsed ? "60px" : "250px",
+          transition: "width 0.3s",
+          backgroundColor: "#f0f0f0",
+          height: "100vh",
+          position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
+          top: 0,
+          zIndex: 10,
+          flexShrink: 0, // penting agar tidak ikut menyusut
+          overflow: 'auto',
+          paddingBottom:60
+        }}
+      >
+        <div className="p-2">
+          <Button variant="light" onClick={toggleSidebar}>
+            <FaBars />
+          </Button>
+        </div>
+        {!collapsed && (
+
+        <Accordion defaultActiveKey={activeAccordionKey} className='p-2'>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Pengenalan</Accordion.Header>
               <Accordion.Body>
@@ -681,10 +713,16 @@ for i in range(100):
             </Accordion.Item>
 
           </Accordion>
-        </Col>
+        )}
+        </div>
 
-        <Col xs={10} className="p-4">
-        <div className='content' style={{paddingLeft:50, paddingRight:50}}>
+        <div className='p-4 content' style={{
+          flexGrow: 1,
+          overflowY: "auto",
+          height: "100vh"
+
+        }}>
+          <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
           <div>
             <h2 style={{
                 textAlign: 'center',
@@ -1022,61 +1060,10 @@ pensize(10)`}
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
-
-          {/* <Accordion className="mb-4" style={{ outline: '3px solid lightblue' }}> */}
-            {/* Tantangan Accordion */}
-            {/* <Accordion.Item eventKey="1">
-              <Accordion.Header><h4>Tantangan</h4></Accordion.Header>
-              <Accordion.Body>
-                <p>
-                  Coba gunakan perintah <code>left()</code> dan <code>right()</code> untuk mengubah arah objek. Klik tombol di bawah ini untuk mengerjakan tantangan berikut.
-                </p>
-
-                <div className="skulpt-container" style={{border: "2px solid #ccc"}}>
-                  <div className="editor-section">
-                    <CodeMirror
-                      value={pythonCodeChallanges}
-                      placeholder={'//Ketikan kode disini!'}
-                      height="290px"
-                      theme="light"
-                      extensions={[python()]}
-                      onChange={(value) => setPythonCodeChallanges(value)}
-                    />
-                    <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                      <Button variant="success" onClick={() => { runitchallanges(); checkCode(); }}>Run Code</Button>
-                      <Button variant="secondary" onClick={resetCodeChallanges}>
-                        <BsArrowClockwise /> Reset
-                      </Button>
-                      </div>
-                    <pre id='outputChallanges' className="output" style={{height:60}}>{outputChallanges}</pre>
-                  </div>
-                  <div className="canvas-section" style={{ position: "relative", width: 400, height: 400,  }}>
-                    <div id="mycanvas-challanges" style={{ 
-                      width: 400, 
-                      height: 400, 
-                      position: "relative", 
-                    }}></div>
-                    <img
-                          src={broccoli}
-                          alt="Target Broccoli"
-                          style={{
-                            position: "absolute",
-                            left: "275px",
-                            top: "75px",
-                            width: "50px", // Sesuaikan ukuran jika perlu
-                            height: "50px",
-                          }}
-                      />
-                  </div>
-                </div>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion> */}
           </div>
         </div>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+    </div>
     
   )
 }

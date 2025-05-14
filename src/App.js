@@ -87,6 +87,7 @@ import KuisPenColorControlJawab from "./components/Belajar/Pen-control/KuisPenCo
 import KuisMoreDrawingControlJawab from "./components/Belajar/More-drawing-control/KuisMoreDrawingControlJawab";
 import EvaluasiJawab from "./components/Belajar/Evaluasi/EvaluasiJawab";
 import RegisterGuru from "./Guru/Register-guru/RegisterGuru";
+import CobaSidebar from "./components/Belajar/Evaluasi/CobaSidebar";
 
 function App() {
   return (
@@ -190,6 +191,9 @@ function App() {
       <Route path="/guru/progres-belajar" element={<><NavbarGuru/><ProgresBelajar/></>}/>
       <Route path="/guru/progres-tantangan" element={<><NavbarGuru/><ProgresTantangan/></>}/>
       <Route path="/guru/data-nilai" element={<><NavbarGuru/><DataNilai/></>}/>
+
+
+      <Route path="/sidebarpro" element={<><CobaSidebar/></>}/>
 
 
 
