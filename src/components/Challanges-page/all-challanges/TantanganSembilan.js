@@ -96,33 +96,151 @@ const TantanganSembilan = () => {
       }
       return window.Sk.builtinFiles['files'][x];
     };
+
+    const parseSimpleCommands = (code) => {
+      const lines = code.split('\n');
+      const parsedLines = [];
+      let i = 0;
+  
+      while (i < lines.length) {
+          const line = lines[i];
+          const trimmed = line.trim();
+          const leadingSpaces = line.match(/^\s*/)?.[0] || '';
+  
+          if (trimmed === '' || trimmed.startsWith('#')) {
+              parsedLines.push(line);
+              i++;
+              continue;
+          }
+  
+          const forMatch = trimmed.match(/^for\s+(\d+)$/);
+          if (forMatch) {
+              const loopCount = parseInt(forMatch[1]);
+              parsedLines.push(`${leadingSpaces}for i in range(${loopCount}):`);
+              i++;
+  
+              while (i < lines.length) {
+                  const nextLine = lines[i];
+                  const nextTrimmed = nextLine.trim();
+                  const nextIndent = nextLine.match(/^\s*/)?.[0].length || 0;
+  
+                  if (nextTrimmed === '' || nextTrimmed.startsWith('#')) {
+                      parsedLines.push(nextLine);
+                      i++;
+                      continue;
+                  }
+  
+                  if (nextIndent <= leadingSpaces.length) break;
+  
+                  const parts = nextTrimmed.split(/\s+/);
+                  const cmd = parts[0];
+                  const args = parts.slice(1);
+                  const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+                  const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+  
+                  if (nextTrimmed.includes('(') && nextTrimmed.includes(')')) {
+                      parsedLines.push(nextLine);
+                  } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+                      parsedLines.push(`${nextLine.match(/^\s*/)?.[0] || ''}${cmd}(${args.join(', ')})`);
+                  } else {
+                      parsedLines.push(nextLine);
+                  }
+                  i++;
+              }
+              continue;
+          }
+  
+          const parts = trimmed.split(/\s+/);
+          const cmd = parts[0];
+          const args = parts.slice(1);
+          const noArgCommands = ['clear', 'home', 'reset', 'penup', 'pendown', 'showturtle', 'hideturtle','begin_fill','end_fill'];
+          const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+          const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+  
+          // Konversi print distance, position, xcor, ycor, heading, isdown
+          if (cmd === 'print' && args.length >= 1) {
+              const arg = args[0];
+  
+              if (arg === 'position') {
+                  parsedLines.push(`${leadingSpaces}print(position())`);
+                  i++;
+                  continue;
+              } else if (arg === 'xcor') {
+                  parsedLines.push(`${leadingSpaces}print(xcor())`);
+                  i++;
+                  continue;
+              } else if (arg === 'ycor') {
+                  parsedLines.push(`${leadingSpaces}print(ycor())`);
+                  i++;
+                  continue;
+              } else if (arg === 'heading') {
+                  parsedLines.push(`${leadingSpaces}print(heading())`);
+                  i++;
+                  continue;
+              } else if (arg === 'isdown') {
+                  parsedLines.push(`${leadingSpaces}print(isdown())`);
+                  i++;
+                  continue;
+              } else if (arg === 'distance') {
+                  if (args.length === 3 && !isNaN(args[1]) && !isNaN(args[2])) {
+                      parsedLines.push(`${leadingSpaces}print(distance(${args[1]}, ${args[2]}))`);
+                      i++;
+                      continue;
+                  }
+              }
+          }
+  
+          if (trimmed.includes('(') && trimmed.includes(')')) {
+              parsedLines.push(line);
+          } else if (noArgCommands.includes(cmd) && args.length === 0) {
+              parsedLines.push(`${leadingSpaces}${cmd}()`);
+          } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+              parsedLines.push(`${leadingSpaces}${cmd}(${args.join(', ')})`);
+          } else {
+              parsedLines.push(line);
+          }
+  
+          i++;
+      }
+  
+      return parsedLines.join('\n');
+  };
   
   
-    const runitchallanges = (code, forceReset = false) => {
-      setOutputChallanges('');
-      setHasRun(false);
-      const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(0)\npenup()\nsetposition(-150,-150)\npendown()\nspeed(2)\n";
-      const prog = forceReset ? imports : imports + pythonCodeChallanges;
-    
-      window.Sk.pre = "outputChallanges";
-      window.Sk.configure({ output: outfchallanges, read: builtinReadChallanges });
-      (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas-challanges';
-    
-      window.Sk.misceval.asyncToPromise(() =>
-        window.Sk.importMainWithBody('<stdin>', false, prog, true)
-      ).then(() => {
-        console.log('success');
-        setHasRun(true);
-        if (!forceReset) {
-          checkCodeChallanges();
-        }
-      }, (err) => setOutputChallanges((prev) => prev + err.toString()));
-    };
+  const runitchallanges = (code, forceReset = false) => {
+    setOutputChallanges('');
+    setHasRun(false);
+  
+    const parsedCode = parseSimpleCommands(pythonCodeChallanges); // ← PARSE DI SINI
+  
+    const imports =
+      "from turtle import *\nreset()\nshape('turtle')\nspeed(0)\npenup()\nsetposition(-150,-150)\npendown()\nspeed(2)\n";
+  
+    const prog = forceReset ? imports : imports + parsedCode;
+  
+    window.Sk.pre = "outputChallanges";
+    window.Sk.configure({ output: outfchallanges, read: builtinReadChallanges });
+    (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas-challanges';
+  
+    window.Sk.misceval.asyncToPromise(() =>
+      window.Sk.importMainWithBody('<stdin>', false, prog, true)
+    ).then(() => {
+      console.log('success');
+      setHasRun(true);
+      if (!forceReset) {
+        checkCodeChallanges();
+      }
+    }, (err) => setOutputChallanges((prev) => prev + err.toString()));
+  };
+  
   
     const [hasRun, setHasRun] = useState(false);
   
     const checkCodeChallanges = async () => {
       if (!hasRun) return;
+    
+      const parsedUserCode = parseSimpleCommands(pythonCodeChallanges); // ← PARSE DI SINI
+      const userCodeLines = parsedUserCode.trim().split("\n").map(line => line.trim());
     
       const validCodes = [
         ["left(45)", "print(distance(150,150))", "forward(424)"],
@@ -146,8 +264,6 @@ const TantanganSembilan = () => {
         });
       };
     
-      const userCodeLines = pythonCodeChallanges.trim().split("\n").map(line => line.trim());
-    
       const isExactMatch = validCodes.some(valid =>
         valid.length === userCodeLines.length &&
         valid.every((code, index) => code.replace(/\s+/g, '') === (userCodeLines[index] || "").replace(/\s+/g, ''))
@@ -155,15 +271,12 @@ const TantanganSembilan = () => {
     
       if (isExactMatch) {
         await swal("Jawaban Benar!", "Kamu berhasil!", "success");
-    
         try {
           if (progresTantangan === 8) {
             await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
               progres_tantangan: progresTantangan + 1
             }, {
-              headers: {
-                Authorization: `Bearer ${token}`
-              }
+              headers: { Authorization: `Bearer ${token}` }
             });
             setProgresTantangan(prev => prev + 1);
           }
@@ -176,7 +289,6 @@ const TantanganSembilan = () => {
             confirmButtonColor: '#d33'
           });
         }
-    
         return;
       }
     
@@ -184,38 +296,28 @@ const TantanganSembilan = () => {
     
       for (const valid of validCodes) {
         let matchSoFar = true;
-    
         for (let i = 0; i < userCodeLines.length; i++) {
           const expected = valid[i];
           const actual = userCodeLines[i];
-    
           if (!expected || !actual) {
             matchSoFar = false;
             break;
           }
-    
-          const normExpected = expected.replace(/\s+/g, '');
-          const normActual = actual.replace(/\s+/g, '');
-    
-          if (normExpected !== normActual) {
+          if (expected.replace(/\s+/g, '') !== actual.replace(/\s+/g, '')) {
             matchSoFar = false;
             break;
           }
         }
-    
         if (matchSoFar) {
           partialMatchFound = true;
           break;
         }
       }
     
-      if (partialMatchFound) {
-        return;
-      }
+      if (partialMatchFound) return;
     
       for (const valid of validCodes) {
         const stepsToCheck = Math.min(userCodeLines.length, valid.length);
-    
         for (let i = 0; i < stepsToCheck; i++) {
           const expected = valid[i];
           const actual = userCodeLines[i];
@@ -236,7 +338,6 @@ const TantanganSembilan = () => {
             if (normExpected.startsWith("print(") && !normActual.startsWith("print(")) {
               return showError(i, expected, actual, "Kamu perlu mencetak jarak dengan `print(distance(...))`.");
             }
-    
             return showError(i, expected, actual);
           }
         }
@@ -244,6 +345,7 @@ const TantanganSembilan = () => {
     
       swal("Jawaban Salah", "Urutan atau isi kode tidak sesuai. Coba lagi!", "error");
     };
+    
     
     const resetCodeChallanges = () => {
       setPythonCodeChallanges('');

@@ -95,144 +95,227 @@ const TantanganDua = () => {
     return window.Sk.builtinFiles['files'][x];
   };
 
-  const runitchallanges = (code = '', forceReset = false) => {
-    setOutput('');
-    const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(0)\npenup()\nsetposition(-100,-100)\npendown()\nspeed(2)\n";
-    const prog = forceReset ? imports : imports + code;
-  
-    window.Sk.pre = "output4";
-    window.Sk.configure({ output: outf, read: builtinRead });
-    (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas-challanges';
-  
-    window.Sk.misceval.asyncToPromise(() =>
-      window.Sk.importMainWithBody('<stdin>', false, prog, true)
-    ).then(
-      () => {
-        if (!forceReset && code.trim().length > 0) {
-          setHasRun(true);
-          checkCodeChallanges(code); // Panggil dengan kode aktual
+  const parseSimpleCommands = (code) => {
+    const lines = code.split('\n');
+    const parsedLines = [];
+    let i = 0;
+
+    while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        const leadingSpaces = line.match(/^\s*/)?.[0] || '';
+
+        if (trimmed === '' || trimmed.startsWith('#')) {
+            parsedLines.push(line);
+            i++;
+            continue;
         }
-      },
-      (err) => setOutput((prev) => prev + err.toString())
-    );
-  };
+
+        const forMatch = trimmed.match(/^for\s+(\d+)$/);
+        if (forMatch) {
+            const loopCount = parseInt(forMatch[1]);
+            parsedLines.push(`${leadingSpaces}for i in range(${loopCount}):`);
+            i++;
+
+            while (i < lines.length) {
+                const nextLine = lines[i];
+                const nextTrimmed = nextLine.trim();
+                const nextIndent = nextLine.match(/^\s*/)?.[0].length || 0;
+
+                if (nextTrimmed === '' || nextTrimmed.startsWith('#')) {
+                    parsedLines.push(nextLine);
+                    i++;
+                    continue;
+                }
+
+                if (nextIndent <= leadingSpaces.length) break;
+
+                const parts = nextTrimmed.split(/\s+/);
+                const cmd = parts[0];
+                const args = parts.slice(1);
+                const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+                const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+                if (nextTrimmed.includes('(') && nextTrimmed.includes(')')) {
+                    parsedLines.push(nextLine);
+                } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+                    parsedLines.push(`${nextLine.match(/^\s*/)?.[0] || ''}${cmd}(${args.join(', ')})`);
+                } else {
+                    parsedLines.push(nextLine);
+                }
+                i++;
+            }
+            continue;
+        }
+
+        const parts = trimmed.split(/\s+/);
+        const cmd = parts[0];
+        const args = parts.slice(1);
+        const noArgCommands = ['clear', 'home', 'reset', 'penup', 'pendown', 'showturtle', 'hideturtle','begin_fill','end_fill'];
+        const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+        const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+        // Konversi print distance, position, xcor, ycor, heading, isdown
+        if (cmd === 'print' && args.length >= 1) {
+            const arg = args[0];
+
+            if (arg === 'position') {
+                parsedLines.push(`${leadingSpaces}print(position())`);
+                i++;
+                continue;
+            } else if (arg === 'xcor') {
+                parsedLines.push(`${leadingSpaces}print(xcor())`);
+                i++;
+                continue;
+            } else if (arg === 'ycor') {
+                parsedLines.push(`${leadingSpaces}print(ycor())`);
+                i++;
+                continue;
+            } else if (arg === 'heading') {
+                parsedLines.push(`${leadingSpaces}print(heading())`);
+                i++;
+                continue;
+            } else if (arg === 'isdown') {
+                parsedLines.push(`${leadingSpaces}print(isdown())`);
+                i++;
+                continue;
+            } else if (arg === 'distance') {
+                if (args.length === 3 && !isNaN(args[1]) && !isNaN(args[2])) {
+                    parsedLines.push(`${leadingSpaces}print(distance(${args[1]}, ${args[2]}))`);
+                    i++;
+                    continue;
+                }
+            }
+        }
+
+        if (trimmed.includes('(') && trimmed.includes(')')) {
+            parsedLines.push(line);
+        } else if (noArgCommands.includes(cmd) && args.length === 0) {
+            parsedLines.push(`${leadingSpaces}${cmd}()`);
+        } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+            parsedLines.push(`${leadingSpaces}${cmd}(${args.join(', ')})`);
+        } else {
+            parsedLines.push(line);
+        }
+
+        i++;
+    }
+
+    return parsedLines.join('\n');
+};
+
+const runitchallanges = (code = '', forceReset = false) => {
+  setOutput('');
+  const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(0)\npenup()\nsetposition(-100,-100)\npendown()\nspeed(2)\n";
+
+  const parsedCode = parseSimpleCommands(code); // Parse sebelum dijalankan
+  const prog = forceReset ? imports : imports + parsedCode;
+
+  window.Sk.pre = "output4";
+  window.Sk.configure({ output: outf, read: builtinRead });
+  (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas-challanges';
+
+  window.Sk.misceval.asyncToPromise(() =>
+    window.Sk.importMainWithBody('<stdin>', false, prog, true)
+  ).then(
+    () => {
+      if (!forceReset && code.trim().length > 0) {
+        setHasRun(true);
+        checkCodeChallanges(parsedCode); // Validasi dengan kode hasil parsing
+      }
+    },
+    (err) => setOutput((prev) => prev + err.toString())
+  );
+};
+
 
   const [hasRun, setHasRun] = useState(false);
 
   const validCode = ["forward(200)", "left(90)", "forward(200)", "left(90)", "forward(200)"];
 
-const checkCodeChallanges = (userCode) => {
-  const trimmedCode = userCode.trim();
-  if (!trimmedCode) return;
-
-  const userCodeLines = trimmedCode
-    .split("\n")
-    .map(line => line.trim())
-    .filter(line => line !== ""); // <--- Skip baris kosong
-
-  const linesToCheck = userCodeLines.slice(currentStep);
-
-  const forwardRegex = /^forward\((\d+)\)$/;
-  const leftRegex = /^left\((\d+)\)$/;
-
-  let step = currentStep;
-
-  for (let i = 0; i < linesToCheck.length; i++) {
-    const currentLine = linesToCheck[i];
-
-    if (step >= validCode.length) break;
-
-    // STEP 0, 2, 4 → forward(200)
-    if ([0, 2, 4].includes(step)) {
-      const match = currentLine.match(forwardRegex);
-      if (match) {
-        const value = parseInt(match[1]);
-        if (value < 200) {
-          return swal("Salah", "Pergerakan bidawang kurang jauh", "error").then(() => {
-            initializeTurtle();
-            setCurrentStep(0);
-            setPythonCodeChallanges('');
-            setHasRun(false);
-          });
-        } else if (value > 200) {
-          return swal("Salah", "Bidawang keluar jalur", "error").then(() => {
-            initializeTurtle();
-            setCurrentStep(0);
-            setPythonCodeChallanges('');
-            setHasRun(false);
-          });
+  const checkCodeChallanges = (userCode) => {
+    const parsedCode = parseSimpleCommands(userCode); // Optional redundansi parsing
+    const trimmedCode = parsedCode.trim();
+    if (!trimmedCode) return;
+  
+    const userCodeLines = trimmedCode
+      .split("\n")
+      .map(line => line.trim())
+      .filter(line => line !== "");
+  
+    const linesToCheck = userCodeLines.slice(currentStep);
+  
+    const forwardRegex = /^forward\((\d+)\)$/;
+    const leftRegex = /^left\((\d+)\)$/;
+  
+    let step = currentStep;
+  
+    for (let i = 0; i < linesToCheck.length; i++) {
+      const currentLine = linesToCheck[i];
+  
+      if (step >= validCode.length) break;
+  
+      // STEP 0, 2, 4 → forward(200)
+      if ([0, 2, 4].includes(step)) {
+        const match = currentLine.match(forwardRegex);
+        if (match) {
+          const value = parseInt(match[1]);
+          if (value < 200) {
+            return swal("Salah", "Pergerakan bidawang kurang jauh", "error").then(resetCodeChallanges);
+          } else if (value > 200) {
+            return swal("Salah", "Bidawang keluar jalur", "error").then(resetCodeChallanges);
+          }
+        } else {
+          return swal("Salah", "Perintah yang anda masukkan salah", "error").then(resetCodeChallanges);
         }
-      } else {
-        return swal("Salah", "Perintah yang anda masukkan salah", "error").then(() => {
-          initializeTurtle();
-          setCurrentStep(0);
-          setPythonCodeChallanges('');
-          setHasRun(false);
-        });
       }
+  
+      // STEP 1, 3 → left(90)
+      else if ([1, 3].includes(step)) {
+        const match = currentLine.match(leftRegex);
+        if (match) {
+          const value = parseInt(match[1]);
+          if (value < 90) {
+            return swal("Salah", "Sudut kurang besar", "error").then(resetCodeChallanges);
+          } else if (value > 90) {
+            return swal("Salah", "Sudut terlalu besar", "error").then(resetCodeChallanges);
+          }
+        } else {
+          return swal("Salah", "Perintah yang anda masukkan salah", "error").then(resetCodeChallanges);
+        }
+      }
+  
+      step++;
     }
-
-    // STEP 1, 3 → left(90)
-    else if ([1, 3].includes(step)) {
-      const match = currentLine.match(leftRegex);
-      if (match) {
-        const value = parseInt(match[1]);
-        if (value < 90) {
-          return swal("Salah", "Sudut kurang besar", "error").then(() => {
-            initializeTurtle();
-            setCurrentStep(0);
-            setPythonCodeChallanges('');
-            setHasRun(false);
-          });
-        } else if (value > 90) {
-          return swal("Salah", "Sudut terlalu besar", "error").then(() => {
-            initializeTurtle();
-            setCurrentStep(0);
-            setPythonCodeChallanges('');
-            setHasRun(false);
+  
+    setCurrentStep(step);
+    console.log("Step setelah cek:", step);
+  
+    if (step >= validCode.length) {
+      swal("Benar!", "Kamu berhasil menyelesaikan tantangan!", "success").then(async () => {
+        try {
+          if (progresTantangan === 1) {
+            await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
+              progres_tantangan: progresTantangan + 1
+            }, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+            setProgresTantangan(prev => prev + 1);
+          }
+        } catch (error) {
+          console.error("Gagal update progres tantangan halaman 2:", error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Gagal Update Progres Tantangan',
+            text: 'Terjadi kesalahan saat memperbarui progres tantangan halaman kedua.',
+            confirmButtonColor: '#d33'
           });
         }
-      } else {
-        return swal("Salah", "Perintah yang anda masukkan salah", "error").then(() => {
-          initializeTurtle();
-          setCurrentStep(0);
-          setPythonCodeChallanges('');
-          setHasRun(false);
-        });
-      }
+      });
     }
-
-    step++;
-  }
-
-  setCurrentStep(step);
-  console.log("Step setelah cek:", step);
-
-  if (step >= validCode.length) {
-    swal("Benar!", "Kamu berhasil menyelesaikan tantangan!", "success").then(async () => {
-      try {
-        if (progresTantangan === 1) {
-          await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
-            progres_tantangan: progresTantangan + 1
-          }, {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          });
-          setProgresTantangan(prev => prev + 1);
-        }
-      } catch (error) {
-        console.error("Gagal update progres tantangan halaman 2:", error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Gagal Update Progres Tantangan',
-          text: 'Terjadi kesalahan saat memperbarui progres tantangan halaman kedua.',
-          confirmButtonColor: '#d33'
-        });
-      }
-    });
-  }
-};
+  };
 
 
   const initializeTurtle = () => {

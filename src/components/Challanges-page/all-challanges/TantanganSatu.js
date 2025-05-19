@@ -267,34 +267,34 @@ const TantanganSatu = () => {
     const validAngles = [0, 15, 30, 45, 60, 75, 90];
     const correctAngle = positions[currentIndex].angle;
   
-    // Determine the expected command based on the angle
+    // Gunakan kode yang sudah diparse
+    const parsedCode = parseSimpleCommands(pythonCodeChallanges);
+  
+    // Periksa apakah perintah sudah sesuai dengan arah yang benar
     let isCorrect = false;
   
     if (correctAngle === 0) {
-      // For 0 degrees, check for both left(0) and right(0)
-      isCorrect = pythonCodeChallanges.includes(`left(0)`) || pythonCodeChallanges.includes(`right(0)`);
+      isCorrect = parsedCode.includes(`left(0)`) || parsedCode.includes(`right(0)`);
     } else if (correctAngle > 0) {
-      // For positive angles, check for left()
-      isCorrect = pythonCodeChallanges.includes(`left(${correctAngle})`);
+      isCorrect = parsedCode.includes(`left(${correctAngle})`);
     } else {
-      // For negative angles, check for right()
-      isCorrect = pythonCodeChallanges.includes(`right(${Math.abs(correctAngle)})`);
+      isCorrect = parsedCode.includes(`right(${Math.abs(correctAngle)})`);
     }
   
-    // Check if the angle is valid
     if (validAngles.includes(Math.abs(correctAngle)) && isCorrect) {
       swal("Benar!", "Cacing berpindah ke posisi lain.", "success").then(() => {
-        resetTurtlePosition(); // Reset turtle position after the alert is confirmed
+        resetTurtlePosition();
         moveBroccoli();
         setPythonCodeChallanges('');
       });
     } else {
       swal("Salah", "Coba lagi!", "error").then(() => {
-        resetTurtlePosition(); // Reset turtle position after the alert is confirmed
+        resetTurtlePosition();
         setPythonCodeChallanges('');
       });
     }
   };
+  
 
   const moveBroccoli = async () => {
     let availableIndexes = positions.map((_, i) => i).filter(i => !usedIndexes.includes(i));

@@ -94,28 +94,139 @@ const TantanganDuabelas = () => {
     return window.Sk.builtinFiles['files'][x];
   };
 
-  const runitchallanges = (code, forceReset = false, isInitial = false) => {
-    setOutput('');
-    const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(0)\npenup()\nsetposition(-150,150)\npendown()\nspeed(2)\n";
-    const prog = forceReset ? imports : imports + pythonCodeChallanges;
-  
-    window.Sk.pre = "output4";
-    window.Sk.configure({ output: outf, read: builtinRead });
-    (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas-challanges';
-  
-    window.Sk.misceval.asyncToPromise(() =>
-      window.Sk.importMainWithBody('<stdin>', false, prog, true)
-    ).then(
-      () => {
-        console.log('success');
-        setHasRun(true);
-        if (!isInitial) {
-          checkCodeChallanges();
+  const parseSimpleCommands = (code) => {
+    const lines = code.split('\n');
+    const parsedLines = [];
+    let i = 0;
+
+    while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        const leadingSpaces = line.match(/^\s*/)?.[0] || '';
+
+        if (trimmed === '' || trimmed.startsWith('#')) {
+            parsedLines.push(line);
+            i++;
+            continue;
         }
-      },
-      (err) => setOutput((prev) => prev + err.toString())
-    );
-  };
+
+        const forMatch = trimmed.match(/^for\s+(\d+)$/);
+        if (forMatch) {
+            const loopCount = parseInt(forMatch[1]);
+            parsedLines.push(`${leadingSpaces}for i in range(${loopCount}):`);
+            i++;
+
+            while (i < lines.length) {
+                const nextLine = lines[i];
+                const nextTrimmed = nextLine.trim();
+                const nextIndent = nextLine.match(/^\s*/)?.[0].length || 0;
+
+                if (nextTrimmed === '' || nextTrimmed.startsWith('#')) {
+                    parsedLines.push(nextLine);
+                    i++;
+                    continue;
+                }
+
+                if (nextIndent <= leadingSpaces.length) break;
+
+                const parts = nextTrimmed.split(/\s+/);
+                const cmd = parts[0];
+                const args = parts.slice(1);
+                const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+                const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+                if (nextTrimmed.includes('(') && nextTrimmed.includes(')')) {
+                    parsedLines.push(nextLine);
+                } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+                    parsedLines.push(`${nextLine.match(/^\s*/)?.[0] || ''}${cmd}(${args.join(', ')})`);
+                } else {
+                    parsedLines.push(nextLine);
+                }
+                i++;
+            }
+            continue;
+        }
+
+        const parts = trimmed.split(/\s+/);
+        const cmd = parts[0];
+        const args = parts.slice(1);
+        const noArgCommands = ['clear', 'home', 'reset', 'penup', 'pendown', 'showturtle', 'hideturtle','begin_fill','end_fill'];
+        const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+        const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+        // Konversi print distance, position, xcor, ycor, heading, isdown
+        if (cmd === 'print' && args.length >= 1) {
+            const arg = args[0];
+
+            if (arg === 'position') {
+                parsedLines.push(`${leadingSpaces}print(position())`);
+                i++;
+                continue;
+            } else if (arg === 'xcor') {
+                parsedLines.push(`${leadingSpaces}print(xcor())`);
+                i++;
+                continue;
+            } else if (arg === 'ycor') {
+                parsedLines.push(`${leadingSpaces}print(ycor())`);
+                i++;
+                continue;
+            } else if (arg === 'heading') {
+                parsedLines.push(`${leadingSpaces}print(heading())`);
+                i++;
+                continue;
+            } else if (arg === 'isdown') {
+                parsedLines.push(`${leadingSpaces}print(isdown())`);
+                i++;
+                continue;
+            } else if (arg === 'distance') {
+                if (args.length === 3 && !isNaN(args[1]) && !isNaN(args[2])) {
+                    parsedLines.push(`${leadingSpaces}print(distance(${args[1]}, ${args[2]}))`);
+                    i++;
+                    continue;
+                }
+            }
+        }
+
+        if (trimmed.includes('(') && trimmed.includes(')')) {
+            parsedLines.push(line);
+        } else if (noArgCommands.includes(cmd) && args.length === 0) {
+            parsedLines.push(`${leadingSpaces}${cmd}()`);
+        } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+            parsedLines.push(`${leadingSpaces}${cmd}(${args.join(', ')})`);
+        } else {
+            parsedLines.push(line);
+        }
+
+        i++;
+    }
+
+    return parsedLines.join('\n');
+};
+
+const runitchallanges = (code, forceReset = false, isInitial = false) => {
+  setOutput('');
+  const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(0)\npenup()\nsetposition(-150,150)\npendown()\nspeed(2)\n";
+  const parsedCode = parseSimpleCommands(pythonCodeChallanges);
+  const prog = forceReset ? imports : imports + parsedCode;
+
+  window.Sk.pre = "output4";
+  window.Sk.configure({ output: outf, read: builtinRead });
+  (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas-challanges';
+
+  window.Sk.misceval.asyncToPromise(() =>
+    window.Sk.importMainWithBody('<stdin>', false, prog, true)
+  ).then(
+    () => {
+      console.log('success');
+      setHasRun(true);
+      if (!isInitial) {
+        checkCodeChallanges();
+      }
+    },
+    (err) => setOutput((prev) => prev + err.toString())
+  );
+};
+
 
   const [hasRun, setHasRun] = useState(false);
 
@@ -128,8 +239,8 @@ const TantanganDuabelas = () => {
   const checkCodeChallanges = () => {
     if (!hasRun) return;
   
-    const userCode = pythonCodeChallanges.trim();
-    const userLines = userCode.split('\n').map(line => line.trim());
+    const parsedCode = parseSimpleCommands(pythonCodeChallanges);
+    const userLines = parsedCode.trim().split('\n').map(line => line.trim());
   
     // Pastikan seluruh kode ditulis sekaligus (5 baris)
     if (userLines.length !== 5) {
@@ -138,7 +249,7 @@ const TantanganDuabelas = () => {
       return;
     }
   
-    // Cek baris pertama: for x in range(3):
+    // Cek baris pertama: for i in range(3):
     const forRegex = /^for\s+\w+\s+in\s+range\((\d+)\):$/;
     const forMatch = userLines[0].match(forRegex);
     if (!forMatch) {
@@ -158,7 +269,6 @@ const TantanganDuabelas = () => {
       return;
     }
   
-    // Cek baris 2–5
     const expectedLines = [
       { keyword: 'forward', value: 100, index: 1 },
       { keyword: 'right', value: 90, index: 2 },
@@ -212,9 +322,8 @@ const TantanganDuabelas = () => {
         });
       }
     });
-
-    
   };
+  
   
 
   const resetCodeChallanges = () => {
