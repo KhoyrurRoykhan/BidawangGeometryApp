@@ -32,16 +32,17 @@ const DataNilai = () => {
 
   const getUsers = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token-guru`);
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token-guru`);
       const decoded = jwtDecode(response.data.accessToken);
       const tokenKelas = decoded.token;
       setTokenKelas(tokenKelas);
   
-      const siswaRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/by-token?token_kelas=${tokenKelas}`);
+      const siswaRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/users-by-token?token_kelas=${tokenKelas}`);
       setDataSiswa(siswaRes.data);
   
-      const nilaiRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/nilai/by-token?token_kelas=${tokenKelas}`);
+      const nilaiRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/nilai-by-token?token_kelas=${tokenKelas}`);
       setDataNilai(nilaiRes.data);
+      console.log(nilaiRes);
 
     } catch (error) {
       console.log(error);
@@ -145,7 +146,7 @@ const DataNilai = () => {
               </tr>
             ) : (
               filteredSiswa.map((siswa, index) => {
-                const nilaiSiswa = dataNilai.find((nilai_siswa) => nilai_siswa.id === siswa.id) || {};
+                const nilaiSiswa = dataNilai.find((nilai_siswa) => nilai_siswa.user.id === siswa.id) || {};
                 return (
                   <tr key={index}>
                     <td>{index + 1}</td>

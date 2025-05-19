@@ -29,7 +29,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/users`, {
+      await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/users`, {
         nama,
         nisn,
         email,

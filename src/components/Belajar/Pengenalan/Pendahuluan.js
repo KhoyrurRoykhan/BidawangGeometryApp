@@ -36,7 +36,7 @@ const Pendahuluan = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
       setToken(response.data.accessToken);
       const decoded = jwtDecode(response.data.accessToken);
       setExpire(decoded.exp);
@@ -57,10 +57,10 @@ const Pendahuluan = () => {
   useEffect(() => {
     const checkAkses = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
         const decoded = jwtDecode(response.data.accessToken);
 
-        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-belajar`, {
+        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`, {
           headers: {
             Authorization: `Bearer ${response.data.accessToken}`
           }
@@ -150,18 +150,18 @@ const Pendahuluan = () => {
       question1: isCorrect ? 'Benar!' : 'Salah!',
     });
   
-    if (isCorrect && progresBelajar === 0) {
+    if (isCorrect && Number(progresBelajar) === 0){
       try {
         await axios.put(
-          `${process.env.REACT_APP_API_ENDPOINT}/user/progres-belajar`,
-          { progres_belajar: progresBelajar + 1 },
+          `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
+          { progres_belajar: Number(progresBelajar) + 1 },
           {
             headers: {
               Authorization: `Bearer ${token}`
             }
           }
         );
-        setProgresBelajar(prev => prev + 1); // Update state lokal juga
+        setProgresBelajar(prev => Number(prev) + 1); // Update state lokal juga
         Swal.fire({
           icon: 'success',
           title: 'Jawaban Benar!',

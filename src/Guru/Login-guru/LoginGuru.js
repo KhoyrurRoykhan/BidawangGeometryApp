@@ -24,7 +24,7 @@ const LoginGuru = () => {
   const AuthGuru = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/login-guru`, {
+      await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/login-guru`, {
         email,
         password
       });

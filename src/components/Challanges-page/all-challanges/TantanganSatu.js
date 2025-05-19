@@ -60,11 +60,11 @@ const TantanganSatu = () => {
   useEffect(() => {
     const checkAksesTantangan = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
         setToken(response.data.accessToken);
         const decoded = jwtDecode(response.data.accessToken);
 
-        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-tantangan`, {
+        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
           headers: {
             Authorization: `Bearer ${response.data.accessToken}`
           }
@@ -72,7 +72,7 @@ const TantanganSatu = () => {
 
         const progresTantangan = progres.data.progres_tantangan;
         console.log(progresTantangan);
-        setProgresTantangan(progresTantangan);
+        setProgresTantangan(Number(progresTantangan));
 
         // Misal: hanya bisa akses jika progres_tantangan >= 3
         if (progresTantangan < 0) {
@@ -109,6 +109,115 @@ const TantanganSatu = () => {
     return window.Sk.builtinFiles['files'][x];
   };
 
+  const parseSimpleCommands = (code) => {
+    const lines = code.split('\n');
+    const parsedLines = [];
+    let i = 0;
+
+    while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        const leadingSpaces = line.match(/^\s*/)?.[0] || '';
+
+        if (trimmed === '' || trimmed.startsWith('#')) {
+            parsedLines.push(line);
+            i++;
+            continue;
+        }
+
+        const forMatch = trimmed.match(/^for\s+(\d+)$/);
+        if (forMatch) {
+            const loopCount = parseInt(forMatch[1]);
+            parsedLines.push(`${leadingSpaces}for i in range(${loopCount}):`);
+            i++;
+
+            while (i < lines.length) {
+                const nextLine = lines[i];
+                const nextTrimmed = nextLine.trim();
+                const nextIndent = nextLine.match(/^\s*/)?.[0].length || 0;
+
+                if (nextTrimmed === '' || nextTrimmed.startsWith('#')) {
+                    parsedLines.push(nextLine);
+                    i++;
+                    continue;
+                }
+
+                if (nextIndent <= leadingSpaces.length) break;
+
+                const parts = nextTrimmed.split(/\s+/);
+                const cmd = parts[0];
+                const args = parts.slice(1);
+                const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+                const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+                if (nextTrimmed.includes('(') && nextTrimmed.includes(')')) {
+                    parsedLines.push(nextLine);
+                } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+                    parsedLines.push(`${nextLine.match(/^\s*/)?.[0] || ''}${cmd}(${args.join(', ')})`);
+                } else {
+                    parsedLines.push(nextLine);
+                }
+                i++;
+            }
+            continue;
+        }
+
+        const parts = trimmed.split(/\s+/);
+        const cmd = parts[0];
+        const args = parts.slice(1);
+        const noArgCommands = ['clear', 'home', 'reset', 'penup', 'pendown', 'showturtle', 'hideturtle','begin_fill','end_fill'];
+        const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+        const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+        // Konversi print distance, position, xcor, ycor, heading, isdown
+        if (cmd === 'print' && args.length >= 1) {
+            const arg = args[0];
+
+            if (arg === 'position') {
+                parsedLines.push(`${leadingSpaces}print(position())`);
+                i++;
+                continue;
+            } else if (arg === 'xcor') {
+                parsedLines.push(`${leadingSpaces}print(xcor())`);
+                i++;
+                continue;
+            } else if (arg === 'ycor') {
+                parsedLines.push(`${leadingSpaces}print(ycor())`);
+                i++;
+                continue;
+            } else if (arg === 'heading') {
+                parsedLines.push(`${leadingSpaces}print(heading())`);
+                i++;
+                continue;
+            } else if (arg === 'isdown') {
+                parsedLines.push(`${leadingSpaces}print(isdown())`);
+                i++;
+                continue;
+            } else if (arg === 'distance') {
+                if (args.length === 3 && !isNaN(args[1]) && !isNaN(args[2])) {
+                    parsedLines.push(`${leadingSpaces}print(distance(${args[1]}, ${args[2]}))`);
+                    i++;
+                    continue;
+                }
+            }
+        }
+
+        if (trimmed.includes('(') && trimmed.includes(')')) {
+            parsedLines.push(line);
+        } else if (noArgCommands.includes(cmd) && args.length === 0) {
+            parsedLines.push(`${leadingSpaces}${cmd}()`);
+        } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+            parsedLines.push(`${leadingSpaces}${cmd}(${args.join(', ')})`);
+        } else {
+            parsedLines.push(line);
+        }
+
+        i++;
+    }
+
+    return parsedLines.join('\n');
+};
+
   const initializeTurtle = () => {
     const imports = "from turtle import *\nshape('turtle')\nspeed(2)\n";
     const initialPosition = "penup()\nsetpos(0, 0)\ndown()\n"; // Set initial position
@@ -139,7 +248,8 @@ const TantanganSatu = () => {
   const runitchallanges = () => {
     setOutput('');
     const imports = "from turtle import *\nshape('turtle')\nspeed(2)\n";
-    const prog = imports + pythonCodeChallanges;
+    const parsedCode = parseSimpleCommands(pythonCodeChallanges);
+    const prog = imports + parsedCode;
 
     window.Sk.pre = "output4";
     window.Sk.configure({ output: outf, read: builtinRead });
@@ -194,7 +304,7 @@ const TantanganSatu = () => {
       swal("Tantangan Selesai!", "Kamu telah menyelesaikan semua posisi!", "success").then(async () => {
         try {
           if (progresTantangan === 0) {
-            await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-tantangan`, {
+            await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
               progres_tantangan: progresTantangan + 1
             }, {
               headers: {
@@ -202,6 +312,7 @@ const TantanganSatu = () => {
               }
             });
             setProgresTantangan(prev => prev + 1);
+            
           }
         } catch (error) {
           console.error("Gagal update progres tantangan:", error);

@@ -53,11 +53,11 @@ const TantanganTujuh = () => {
   useEffect(() => {
     const checkAksesTantangan = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
         setToken(response.data.accessToken);
         const decoded = jwtDecode(response.data.accessToken);
 
-        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-tantangan`, {
+        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
           headers: {
             Authorization: `Bearer ${response.data.accessToken}`
           }
@@ -96,7 +96,7 @@ const TantanganTujuh = () => {
   
       try {
         if (progresTantangan === 6) {
-          await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-tantangan`, {
+          await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
             progres_tantangan: progresTantangan + 1
           }, {
             headers: {

@@ -38,10 +38,10 @@ const Challenges = () => {
   useEffect(() => {
     const checkAksesTantangan = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
         const decoded = jwtDecode(response.data.accessToken);
 
-        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-tantangan`, {
+        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
           headers: {
             Authorization: `Bearer ${response.data.accessToken}`
           }

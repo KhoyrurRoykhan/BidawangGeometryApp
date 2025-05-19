@@ -23,7 +23,7 @@ const NavbarGuru = () => {
 
   const refreshTokenGuru = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token-guru`);
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token-guru`);
       const decoded = jwtDecode(response.data.accessToken);
       setName(decoded.nama);
     } catch (error) {
@@ -35,7 +35,7 @@ const NavbarGuru = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/logout-guru`);
+      await axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/logout-guru`);
       navigate('/login-guru');
     } catch (error) {
       console.error(error);

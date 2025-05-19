@@ -25,7 +25,7 @@ const Login = () => {
   const Auth = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/login`, {
+      await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/login`, {
         email: nim,
         password: password
       });

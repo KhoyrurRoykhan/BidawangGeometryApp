@@ -25,7 +25,7 @@ const Navigasibar = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
       const decoded = jwtDecode(response.data.accessToken);
       setName(decoded.nama);
       setIsLoggedIn(true);
@@ -36,7 +36,7 @@ const Navigasibar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/logout`);
+      await axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/logout`);
       setIsLoggedIn(false);
       setName('');
       navigate('/');

@@ -41,7 +41,7 @@ const DataSiswa = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/users/${id}`);
+        await axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/users/${id}`);
         Swal.fire('Dihapus!', 'Data siswa telah dihapus.', 'success');
         getUsers();
       } catch (error) {
@@ -56,12 +56,12 @@ const DataSiswa = () => {
 
   const getUsers = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token-guru`);
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token-guru`);
       const decoded = jwtDecode(response.data.accessToken);
       const tokenKelas = decoded.token;
       setTokenKelas(tokenKelas);
 
-      const siswaRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/by-token?token_kelas=${tokenKelas}`);
+      const siswaRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/users-by-token?token_kelas=${tokenKelas}`);
       setDataSiswa(siswaRes.data);
     } catch (error) {
       console.log(error);
@@ -89,7 +89,7 @@ const DataSiswa = () => {
 
   const handleSaveChanges = async () => {
     try {
-      await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/users/${selectedSiswa.id}`, {
+      await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/users/${selectedSiswa.id}`, {
         nama: selectedSiswa.nama,
         nisn: selectedSiswa.nisn
       });
@@ -180,7 +180,7 @@ const DataSiswa = () => {
                     Edit
                   </Button>
 
-                  <Button variant="danger" size="sm" onClick={() => handleDelete(index)}>
+                  <Button variant="danger" size="sm" onClick={() => handleDelete(siswa.id)}>
                     <BsTrash className="me-1" />
                     Hapus
                   </Button>

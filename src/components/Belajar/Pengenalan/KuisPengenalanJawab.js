@@ -172,10 +172,10 @@ const KuisPengenalanJawab = () => {
 useEffect(() => {
   const getTokenAndProgres = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
       setToken(response.data.accessToken);
 
-      const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-belajar`, {
+      const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`, {
         headers: {
           Authorization: `Bearer ${response.data.accessToken}`
         }
@@ -206,7 +206,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchKKM = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/kkm/kuis`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/kkm/kuis`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -226,6 +226,7 @@ useEffect(() => {
     hasFinishedRef.current = true;
 
     clearInterval(timerRef.current);
+    console.log("kkm :", kkm)
 
     let sc = 0;
     const wrong = [];
@@ -251,7 +252,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 1) {
   try {
     // 1. Update progres belajar
     await axios.put(
-      `${process.env.REACT_APP_API_ENDPOINT}/user/progres-belajar`,
+      `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
       { progres_belajar: progresBelajar + 1 },
       {
         headers: {
@@ -263,7 +264,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 1) {
 
     // 2. Update nilai kuis_1
     await axios.put(
-      `${process.env.REACT_APP_API_ENDPOINT}/nilai/kuis-1`,
+      `${process.env.REACT_APP_API_ENDPOINT}/api/nilai/kuis-1`,
       { nilai: Math.round(nilaiAkhir) }, // Jika kamu ingin integer
       {
         headers: {

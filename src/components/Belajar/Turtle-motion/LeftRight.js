@@ -53,7 +53,7 @@ const LeftRight = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
       setToken(response.data.accessToken);
       const decoded = jwtDecode(response.data.accessToken);
       setExpire(decoded.exp);
@@ -71,10 +71,10 @@ const LeftRight = () => {
   useEffect(() => {
     const checkAkses = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
         const decoded = jwtDecode(response.data.accessToken);
 
-        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-belajar`, {
+        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`, {
           headers: {
             Authorization: `Bearer ${response.data.accessToken}`
           }
@@ -115,12 +115,13 @@ const LeftRight = () => {
   useEffect(() => {
     const fetchProgresTantangan = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-tantangan`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
-        setProgresTantangan(response.data.progres_tantangan);
+        setProgresTantangan(Number(response.data.progres_tantangan));
+
       } catch (error) {
         console.error("Gagal mengambil progres tantangan:", error);
       }
@@ -238,7 +239,7 @@ const LeftRight = () => {
     if (allCorrect && progresBelajar === 2) {
       try {
         await axios.put(
-          `${process.env.REACT_APP_API_ENDPOINT}/user/progres-belajar`,
+          `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
           { progres_belajar: progresBelajar + 1 },
           {
             headers: {
@@ -449,18 +450,21 @@ for i in range(100):
     let availableIndexes = positions.map((_, i) => i).filter(i => !usedIndexes.includes(i));
   
     if (availableIndexes.length === 0) {
+      console.log(progresTantangan);
       // Semua tantangan selesai
       swal("Tantangan Selesai!", "Kamu telah menyelesaikan semua posisi!", "success").then(async () => {
         try {
           if (progresTantangan === 0) {
-            await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-tantangan`, {
+            await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
               progres_tantangan: progresTantangan + 1
+              
             }, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
             });
             setProgresTantangan(prev => prev + 1);
+            
           }
         } catch (error) {
           console.error("Gagal update progres tantangan:", error);

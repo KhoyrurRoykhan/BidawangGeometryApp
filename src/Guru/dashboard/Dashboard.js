@@ -43,16 +43,17 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resToken = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token-guru`);
+        const resToken = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token-guru`);
         const decoded = jwtDecode(resToken.data.accessToken);
         const tokenKelas = decoded.token;
         setTokenKelas(tokenKelas);
 
-        const total = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/count-users?token_kelas=${tokenKelas}`);
-        const selesai = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/count-selesai-belajar?token_kelas=${tokenKelas}`);
-        const tantangan = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/count-selesai-tantangan?token_kelas=${tokenKelas}`);
-        const nilaiRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/nilai/by-token?token_kelas=${tokenKelas}`);
-        const kkmRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/kkm?token_kelas=${tokenKelas}`);
+        const total = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/count-users?token_kelas=${tokenKelas}`);
+        const selesai = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/count-selesai-belajar?token_kelas=${tokenKelas}`);
+        const tantangan = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/count-selesai-tantangan?token_kelas=${tokenKelas}`);
+        const nilaiRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/nilai-by-token?token_kelas=${tokenKelas}`);
+        console.log(nilaiRes);
+        const kkmRes = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/kkm?token_kelas=${tokenKelas}`);
 
         setJumlahSiswa(total.data.count);
         setJumlahSelesaiBelajar(selesai.data.count);
@@ -92,17 +93,18 @@ const Dashboard = () => {
     return (totalNilai / jumlahNilai).toFixed(2);
   };
 
+
   const handleUpdateKkm = async (e) => {
     e.preventDefault();
   
     try {
       // Ambil token terbaru dari endpoint backend
-      const resToken = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token-guru`);
+      const resToken = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token-guru`);
       const accessToken = resToken.data.accessToken;
   
       // Kirim permintaan update dengan token yang valid
       await axios.put(
-        `${process.env.REACT_APP_API_ENDPOINT}/guru/kkm`,
+        `${process.env.REACT_APP_API_ENDPOINT}/api/guru/kkm`,
         { kkm: editKkm },
         {
           headers: {

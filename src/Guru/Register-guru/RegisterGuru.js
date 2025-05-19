@@ -27,7 +27,7 @@ const RegisterGuru = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/guru`, {
+      await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/guru`, {
         nama,
         email,
         password,

@@ -27,7 +27,7 @@ const KuisMoreDrawingControl = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
       setToken(response.data.accessToken);
       const decoded = jwtDecode(response.data.accessToken);
       setExpire(decoded.exp);
@@ -44,10 +44,10 @@ const KuisMoreDrawingControl = () => {
   useEffect(() => {
     const checkAkses = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
         const decoded = jwtDecode(response.data.accessToken);
 
-        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-belajar`, {
+        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`, {
           headers: {
             Authorization: `Bearer ${response.data.accessToken}`
           }
@@ -90,7 +90,7 @@ const KuisMoreDrawingControl = () => {
   useEffect(() => {
     const fetchKKM = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/kkm/kuis`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/kkm/kuis`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -107,7 +107,7 @@ const KuisMoreDrawingControl = () => {
   useEffect(() => {
     const fetchRiwayatNilai = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/nilai/by-user`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/nilai/by-user`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -494,7 +494,7 @@ const KuisMoreDrawingControl = () => {
             {/* Button Start - Aligned to Right */}
             <div style={{ marginTop: 20, textAlign: 'right' }}>
             <button
-              onClick={() => navigate('/belajar/pendahuluan/kuis1')}
+              onClick={() => navigate('/belajar/moredrawingcontrol/kuis5')}
               style={{
                 backgroundColor: '#2d3748',
                 color: 'white',
@@ -522,17 +522,17 @@ const KuisMoreDrawingControl = () => {
                   {riwayatNilai.length > 0 ? (
                     riwayatNilai.map((item, index) => (
                       <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
-                        <td style={{ padding: 10, textAlign: 'center' }}>{item.kuis_1 || 0}%</td>
+                        <td style={{ padding: 10, textAlign: 'center' }}>{item.kuis_5 || 0}%</td>
                         <td style={{ padding: 10, textAlign: 'center' }}>
                           <span style={{
                             padding: '2px 8px',
-                            backgroundColor: item.kuis_1 >= kkm ? '#d1fae5' : '#fee2e2',
-                            color: item.kuis_1 >= kkm ? '#065f46' : '#991b1b',
-                            border: `1px solid ${item.kuis_1 >= kkm ? '#34d399' : '#f87171'}`,
+                            backgroundColor: item.kuis_5 >= kkm ? '#d1fae5' : '#fee2e2',
+                            color: item.kuis_5 >= kkm ? '#065f46' : '#991b1b',
+                            border: `1px solid ${item.kuis_5 >= kkm ? '#34d399' : '#f87171'}`,
                             borderRadius: 5,
                             fontSize: '12px'
                           }}>
-                            {item.kuis_1 >= kkm ? 'Lulus' : 'Tidak Lulus'}
+                            {item.kuis_5 >= kkm ? 'Lulus' : 'Tidak Lulus'}
                           </span>
                         </td>
                       </tr>

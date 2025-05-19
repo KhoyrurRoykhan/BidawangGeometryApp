@@ -29,7 +29,7 @@ const KuisPengenalan = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
       setToken(response.data.accessToken);
       const decoded = jwtDecode(response.data.accessToken);
       setExpire(decoded.exp);
@@ -46,10 +46,10 @@ const KuisPengenalan = () => {
   useEffect(() => {
     const checkAkses = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/token`);
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
         const decoded = jwtDecode(response.data.accessToken);
 
-        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/progres-belajar`, {
+        const progres = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`, {
           headers: {
             Authorization: `Bearer ${response.data.accessToken}`
           }
@@ -92,7 +92,7 @@ const KuisPengenalan = () => {
   useEffect(() => {
     const fetchKKM = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/kkm/kuis`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/kkm/kuis`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -109,13 +109,14 @@ const KuisPengenalan = () => {
   useEffect(() => {
     const fetchRiwayatNilai = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/nilai/by-user`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/nilai/by-user`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
   
         setRiwayatNilai(res.data); // Sesuaikan ini dengan struktur data dari API
+        console.log(riwayatNilai);
       } catch (error) {
         console.error("Gagal mengambil riwayat nilai:", error);
       }
