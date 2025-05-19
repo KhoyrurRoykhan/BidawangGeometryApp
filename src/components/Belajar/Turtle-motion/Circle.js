@@ -168,7 +168,8 @@ const Circle = () => {
   };
   
   const checkCode = () => {
-    const cleanedCode = pythonCode
+    const parsedCode = parseSimpleCommands(pythonCode); // 🔧 Gunakan hasil parser
+    const cleanedCode = parsedCode
       .split('\n')
       .map(line => normalizeLine(line))
       .filter(line => line.length > 0);
@@ -201,6 +202,11 @@ const Circle = () => {
       setActiveKey(Object.keys(correctCommands)[newCompletedSteps.length]);
     } else {
       setActiveKey(null);
+      Swal.fire({
+        icon: 'success',
+        title: 'Selamat!',
+        text: 'Anda telah menyelesaikan seluruh aktivitas ini!',
+      });
     }
   };
 
@@ -311,10 +317,120 @@ for i in range(100):
     return window.Sk.builtinFiles['files'][x];
   };
 
+  const parseSimpleCommands = (code) => {
+    const lines = code.split('\n');
+    const parsedLines = [];
+    let i = 0;
+
+    while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        const leadingSpaces = line.match(/^\s*/)?.[0] || '';
+
+        if (trimmed === '' || trimmed.startsWith('#')) {
+            parsedLines.push(line);
+            i++;
+            continue;
+        }
+
+        const forMatch = trimmed.match(/^for\s+(\d+)$/);
+        if (forMatch) {
+            const loopCount = parseInt(forMatch[1]);
+            parsedLines.push(`${leadingSpaces}for i in range(${loopCount}):`);
+            i++;
+
+            while (i < lines.length) {
+                const nextLine = lines[i];
+                const nextTrimmed = nextLine.trim();
+                const nextIndent = nextLine.match(/^\s*/)?.[0].length || 0;
+
+                if (nextTrimmed === '' || nextTrimmed.startsWith('#')) {
+                    parsedLines.push(nextLine);
+                    i++;
+                    continue;
+                }
+
+                if (nextIndent <= leadingSpaces.length) break;
+
+                const parts = nextTrimmed.split(/\s+/);
+                const cmd = parts[0];
+                const args = parts.slice(1);
+                const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+                const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+                if (nextTrimmed.includes('(') && nextTrimmed.includes(')')) {
+                    parsedLines.push(nextLine);
+                } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+                    parsedLines.push(`${nextLine.match(/^\s*/)?.[0] || ''}${cmd}(${args.join(', ')})`);
+                } else {
+                    parsedLines.push(nextLine);
+                }
+                i++;
+            }
+            continue;
+        }
+
+        const parts = trimmed.split(/\s+/);
+        const cmd = parts[0];
+        const args = parts.slice(1);
+        const noArgCommands = ['clear', 'home', 'reset', 'penup', 'pendown', 'showturtle', 'hideturtle','begin_fill','end_fill'];
+        const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+        const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+        // Konversi print distance, position, xcor, ycor, heading, isdown
+        if (cmd === 'print' && args.length >= 1) {
+            const arg = args[0];
+
+            if (arg === 'position') {
+                parsedLines.push(`${leadingSpaces}print(position())`);
+                i++;
+                continue;
+            } else if (arg === 'xcor') {
+                parsedLines.push(`${leadingSpaces}print(xcor())`);
+                i++;
+                continue;
+            } else if (arg === 'ycor') {
+                parsedLines.push(`${leadingSpaces}print(ycor())`);
+                i++;
+                continue;
+            } else if (arg === 'heading') {
+                parsedLines.push(`${leadingSpaces}print(heading())`);
+                i++;
+                continue;
+            } else if (arg === 'isdown') {
+                parsedLines.push(`${leadingSpaces}print(isdown())`);
+                i++;
+                continue;
+            } else if (arg === 'distance') {
+                if (args.length === 3 && !isNaN(args[1]) && !isNaN(args[2])) {
+                    parsedLines.push(`${leadingSpaces}print(distance(${args[1]}, ${args[2]}))`);
+                    i++;
+                    continue;
+                }
+            }
+        }
+
+        if (trimmed.includes('(') && trimmed.includes(')')) {
+            parsedLines.push(line);
+        } else if (noArgCommands.includes(cmd) && args.length === 0) {
+            parsedLines.push(`${leadingSpaces}${cmd}()`);
+        } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+            parsedLines.push(`${leadingSpaces}${cmd}(${args.join(', ')})`);
+        } else {
+            parsedLines.push(line);
+        }
+
+        i++;
+    }
+
+    return parsedLines.join('\n');
+};
+
   const runit = (code, forceReset = false) => {
     setOutput('');
+    const parsedCode = parseSimpleCommands(code || pythonCode); // Gunakan kode hasil parse
     const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(1)\n";
-    const prog = forceReset ? imports : imports + pythonCode;
+    const prog = forceReset ? imports : imports + parsedCode;
 
     window.Sk.pre = "output";
     window.Sk.configure({ output: outf, read: builtinRead });
@@ -330,8 +446,9 @@ for i in range(100):
 
   const runit1 = (code, forceReset = false) => {
     setOutput('');
+    const parsedCode = parseSimpleCommands(code || pythonCode1); // Gunakan kode hasil parse
     const imports = "from turtle import *\nreset()\nshape('turtle')\n";
-    const prog = forceReset ? imports : imports + pythonCode1;
+    const prog = forceReset ? imports : imports + parsedCode;
   
     window.Sk.pre = "output1";
     window.Sk.configure({ output: outf, read: builtinRead });
@@ -347,8 +464,9 @@ for i in range(100):
 
   const runit2 = (code, forceReset = false) => {
     setOutput('');
+    const parsedCode = parseSimpleCommands(code || pythonCode2); // Gunakan kode hasil parse
     const imports = "from turtle import *\nreset()\nshape('turtle')\n";
-    const prog = forceReset ? imports : imports + pythonCode2;
+    const prog = forceReset ? imports : imports + parsedCode;
   
     window.Sk.pre = "output2";
     window.Sk.configure({ output: outf, read: builtinRead });
@@ -366,7 +484,8 @@ for i in range(100):
   const runitchallanges = (code, forceReset = false, isInitial = false) => {
     setOutput('');
     const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(0)\npenup()\nsetposition(0,-100)\npendown()\nspeed(2)\n";
-    const prog = forceReset ? imports : imports + pythonCodeChallanges;
+    const parsedCode = parseSimpleCommands(pythonCodeChallanges);
+    const prog = forceReset ? imports : imports + parsedCode;
   
     window.Sk.pre = "output4";
     window.Sk.configure({ output: outf, read: builtinRead });
@@ -397,11 +516,12 @@ for i in range(100):
   const checkCodeChallanges = () => {
     if (!hasRun) return;
   
-    const userCode = pythonCodeChallanges.trim();
-    const userLines = userCode.split("\n");
+    const rawUserCode = pythonCodeChallanges.trim();
+    const parsedUserCode = parseSimpleCommands(rawUserCode); // Gunakan parser di sini
+    const parsedLines = parsedUserCode.split("\n");
   
     let usedCircle = false;
-    for (let line of userLines) {
+    for (let line of parsedLines) {
       if (line.includes("circle")) {
         usedCircle = true;
         const radius = extractCircleValue(line);
@@ -421,29 +541,29 @@ for i in range(100):
           return;
         } else if (radius === 100) {
           swal("Mantap!", "Kamu berhasil membuat bidawang mengitari sungai dengan sempurna!", "success")
-          .then(async () => {
-            try {
-              if (progresTantangan === 5) {
-                await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
-                  progres_tantangan: progresTantangan + 1
-                }, {
-                  headers: {
-                    Authorization: `Bearer ${token}`
-                  }
+            .then(async () => {
+              try {
+                if (progresTantangan === 5) {
+                  await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
+                    progres_tantangan: progresTantangan + 1
+                  }, {
+                    headers: {
+                      Authorization: `Bearer ${token}`
+                    }
+                  });
+                  setProgresTantangan(prev => prev + 1);
+                }
+              } catch (error) {
+                console.error("Gagal update progres tantangan halaman 6:", error);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Gagal Update Progres Tantangan',
+                  text: 'Terjadi kesalahan saat memperbarui progres tantangan halaman keenam.',
+                  confirmButtonColor: '#d33'
                 });
-                setProgresTantangan(prev => prev + 1);
               }
-            } catch (error) {
-              console.error("Gagal update progres tantangan halaman 6:", error);
-              Swal.fire({
-                icon: 'error',
-                title: 'Gagal Update Progres Tantangan',
-                text: 'Terjadi kesalahan saat memperbarui progres tantangan halaman keenam.',
-                confirmButtonColor: '#d33'
-              });
-            }
-            resetCodeChallanges();
-          });
+              resetCodeChallanges();
+            });
           return;
         }
       }

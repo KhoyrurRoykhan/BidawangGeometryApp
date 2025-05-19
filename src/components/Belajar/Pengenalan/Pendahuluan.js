@@ -105,10 +105,11 @@ const Pendahuluan = () => {
   const [activeKey, setActiveKey] = useState('1a');
 
   const checkCode = () => {
-    const lines = pythonCode.split('\n').map(line => line.trim());
+    const parsed = parseSimpleCommands(pythonCode); // 🔄 Gunakan hasil parse
+    const lines = parsed.split('\n').map(line => line.trim());
     let newCompletedSteps = [];
     let keys = Object.keys(correctCommands);
-    
+  
     for (let i = 0; i < keys.length; i++) {
       if (lines[i] === correctCommands[keys[i]]) {
         newCompletedSteps.push(keys[i]);
@@ -123,8 +124,6 @@ const Pendahuluan = () => {
       setActiveKey(keys[newCompletedSteps.length]);
     } else {
       setActiveKey(null);
-  
-      // ✅ Alert setelah semua selesai
       Swal.fire({
         icon: 'success',
         title: 'Selamat!',
@@ -132,6 +131,7 @@ const Pendahuluan = () => {
       });
     }
   };
+  
 
   //Kuis
   
@@ -258,39 +258,152 @@ for i in range(100):
     return window.Sk.builtinFiles['files'][x];
   };
 
-  const runit = (code, forceReset = false) => {
-    setOutput('');
-    const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(1)\n";
-    const prog = forceReset ? imports : imports + pythonCode;
+  const parseSimpleCommands = (code) => {
+    const lines = code.split('\n');
+    const parsedLines = [];
+    let i = 0;
 
-    window.Sk.pre = "output";
-    window.Sk.configure({ output: outf, read: builtinRead });
-    (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas';
+    while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        const leadingSpaces = line.match(/^\s*/)?.[0] || '';
 
-    window.Sk.misceval.asyncToPromise(() => 
-        window.Sk.importMainWithBody('<stdin>', false, prog, true)
-    ).then(
-        () => console.log('success'),
-        (err) => setOutput((prev) => prev + err.toString())
-    );
+        if (trimmed === '' || trimmed.startsWith('#')) {
+            parsedLines.push(line);
+            i++;
+            continue;
+        }
+
+        const forMatch = trimmed.match(/^for\s+(\d+)$/);
+        if (forMatch) {
+            const loopCount = parseInt(forMatch[1]);
+            parsedLines.push(`${leadingSpaces}for i in range(${loopCount}):`);
+            i++;
+
+            while (i < lines.length) {
+                const nextLine = lines[i];
+                const nextTrimmed = nextLine.trim();
+                const nextIndent = nextLine.match(/^\s*/)?.[0].length || 0;
+
+                if (nextTrimmed === '' || nextTrimmed.startsWith('#')) {
+                    parsedLines.push(nextLine);
+                    i++;
+                    continue;
+                }
+
+                if (nextIndent <= leadingSpaces.length) break;
+
+                const parts = nextTrimmed.split(/\s+/);
+                const cmd = parts[0];
+                const args = parts.slice(1);
+                const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+                const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+                if (nextTrimmed.includes('(') && nextTrimmed.includes(')')) {
+                    parsedLines.push(nextLine);
+                } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+                    parsedLines.push(`${nextLine.match(/^\s*/)?.[0] || ''}${cmd}(${args.join(', ')})`);
+                } else {
+                    parsedLines.push(nextLine);
+                }
+                i++;
+            }
+            continue;
+        }
+
+        const parts = trimmed.split(/\s+/);
+        const cmd = parts[0];
+        const args = parts.slice(1);
+        const noArgCommands = ['clear', 'home', 'reset', 'penup', 'pendown', 'showturtle', 'hideturtle','begin_fill','end_fill'];
+        const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+        const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+
+        // Konversi print distance, position, xcor, ycor, heading, isdown
+        if (cmd === 'print' && args.length >= 1) {
+            const arg = args[0];
+
+            if (arg === 'position') {
+                parsedLines.push(`${leadingSpaces}print(position())`);
+                i++;
+                continue;
+            } else if (arg === 'xcor') {
+                parsedLines.push(`${leadingSpaces}print(xcor())`);
+                i++;
+                continue;
+            } else if (arg === 'ycor') {
+                parsedLines.push(`${leadingSpaces}print(ycor())`);
+                i++;
+                continue;
+            } else if (arg === 'heading') {
+                parsedLines.push(`${leadingSpaces}print(heading())`);
+                i++;
+                continue;
+            } else if (arg === 'isdown') {
+                parsedLines.push(`${leadingSpaces}print(isdown())`);
+                i++;
+                continue;
+            } else if (arg === 'distance') {
+                if (args.length === 3 && !isNaN(args[1]) && !isNaN(args[2])) {
+                    parsedLines.push(`${leadingSpaces}print(distance(${args[1]}, ${args[2]}))`);
+                    i++;
+                    continue;
+                }
+            }
+        }
+
+        if (trimmed.includes('(') && trimmed.includes(')')) {
+            parsedLines.push(line);
+        } else if (noArgCommands.includes(cmd) && args.length === 0) {
+            parsedLines.push(`${leadingSpaces}${cmd}()`);
+        } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
+            parsedLines.push(`${leadingSpaces}${cmd}(${args.join(', ')})`);
+        } else {
+            parsedLines.push(line);
+        }
+
+        i++;
+    }
+
+    return parsedLines.join('\n');
 };
+
+const runit = (code, forceReset = false) => {
+  setOutput('');
+  const parsedCode = parseSimpleCommands(code || pythonCode); // Gunakan kode dari argumen atau state
+  const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(1)\n";
+  const prog = forceReset ? imports : imports + parsedCode;
+
+  window.Sk.pre = "output";
+  window.Sk.configure({ output: outf, read: builtinRead });
+  (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas';
+
+  window.Sk.misceval.asyncToPromise(() =>
+    window.Sk.importMainWithBody('<stdin>', false, prog, true)
+  ).then(
+    () => console.log('success'),
+    (err) => setOutput((prev) => prev + err.toString())
+  );
+};
+
 
 const runit2 = (code, forceReset = false) => {
   setOutput('');
+  const parsedCode = parseSimpleCommands(code || pythonCode2); // Gunakan kode dari argumen atau state
   const imports = "from turtle import *\nreset()\nshape('turtle')\n";
-  const prog = forceReset ? imports : imports + pythonCode2;
+  const prog = forceReset ? imports : imports + parsedCode;
 
   window.Sk.pre = "output2";
   window.Sk.configure({ output: outf, read: builtinRead });
   (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas-contoh';
 
-  window.Sk.misceval.asyncToPromise(() => 
-      window.Sk.importMainWithBody('<stdin>', false, prog, true)
+  window.Sk.misceval.asyncToPromise(() =>
+    window.Sk.importMainWithBody('<stdin>', false, prog, true)
   ).then(
-      () => console.log('success'),
-      (err) => setOutput((prev) => prev + err.toString())
+    () => console.log('success'),
+    (err) => setOutput((prev) => prev + err.toString())
   );
 };
+
 
 
   const resetCode = () => {
