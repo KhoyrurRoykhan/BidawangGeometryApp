@@ -902,14 +902,14 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              memahami fungsi write() untuk menampilkan teks pad canvas.
+              memahami fungsi write untuk menampilkan teks pad canvas.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Perintah <code>write()</code> digunakan untuk menulis teks pada canvas di lokasi bidawang berada. write(teks, move=False, align="left", font=("Arial", 8, "normal")):</p>
+            Perintah <code>write</code> digunakan untuk menulis teks pada canvas di lokasi bidawang berada. write(teks, move=False, align="left", font=("Arial", 8, "normal")):</p>
 
             <ul>
                 <li>Parameter teks: Teks yang akan ditulis.</li>
@@ -928,7 +928,7 @@ for i in range(100):
                   value={`write("Hello, World!", align="center", font=("Arial", 16, "bold")) 
 
 # Bidawang tetap dapat menggambar setelah menulis 
-forward(100)  `}
+forward 100  `}
                   height="340px"
                   theme="light"
                   extensions={[python()]}
@@ -967,10 +967,10 @@ forward(100)  `}
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                  Latihan Menggunakan write() 🐢
+                  Latihan Menggunakan write 🐢
                 </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>write()</code>, ikuti instruksi dibawah ini:
+            Untuk lebih mudah memahami cara kerja perintah <code>write</code>, ikuti instruksi dibawah ini:
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -992,7 +992,7 @@ forward(100)  `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk mengangkat atau menonaktifkan pena:</p>
-                      <pre><code>penup()</code></pre>
+                      <pre><code>penup</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -1004,8 +1004,8 @@ forward(100)  `}
                     <p>Lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk memindahkan posisi bidawang kebawah sejauh 50 langkah:</p>
                       <pre>
                         <code>
-{`right(90)
-forward(50)`}
+{`right 90
+forward 50`}
                         </code>
                       </pre>
                     </AccordionBody>
@@ -1080,7 +1080,7 @@ forward(50)`}
                   Kesimpulan
                 </h4>
             <p>
-                Perintah <code>write()</code> memungkinkan turtle untuk menampilkan teks di layar, sehingga dapat digunakan untuk memberikan informasi tambahan pada gambar.
+                Perintah <code>write</code> memungkinkan turtle untuk menampilkan teks di layar, sehingga dapat digunakan untuk memberikan informasi tambahan pada gambar.
             </p>
             </div>
             

@@ -148,8 +148,8 @@ const Position = () => {
           innerHTML: `
             <p>Bidawang saat ini berada di tengah layar (titik <b>(0, 0)</b>).</p>
             <p>Tugas kamu adalah <b>menebak posisi Objek A (Bayam)</b> dan <b>Objek B (Papuyu)</b>.</p>
-            <p>Gerakkan Bidawang menuju masing-masing objek, lalu gunakan perintah <b>print(position())</b> untuk mengetahui titik koordinatnya.</p>
-            <p>Gunakan kombinasi perintah <b>left()</b>, <b>right()</b>, dan <b>forward()</b> untuk berpindah dari satu titik ke titik lainnya.</p>
+            <p>Gerakkan Bidawang menuju masing-masing objek, lalu gunakan perintah <b>print position</b> untuk mengetahui titik koordinatnya.</p>
+            <p>Gunakan kombinasi perintah <b>left</b>, <b>right</b>, dan <b>forward</b> untuk berpindah dari satu titik ke titik lainnya.</p>
           `
         }
       },
@@ -1100,14 +1100,14 @@ for i in range(1):
             }}
           >
             <li style={{ marginBottom: '8px' }}>
-              Memahami fungsi dan penggunaan <code>position()</code>.
+              Memahami fungsi dan penggunaan <code>position</code>.
             </li>
           </ol>
 
           <hr/>
 
           <p>
-          Fungsi <code>position()</code> digunakan untuk mendapatkan posisi saat ini dari bidawang di dalam canvas. Posisi ini dinyatakan dalam bentuk pasangan koordinat (x, y). Untuk menampilkan koordinatnya kita bisa menggunakan fungsi <code>print()</code>.
+          Fungsi <code>position</code> digunakan untuk mendapatkan posisi saat ini dari bidawang di dalam canvas. Posisi ini dinyatakan dalam bentuk pasangan koordinat (x, y). Untuk menampilkan koordinatnya kita bisa menggunakan fungsi <code>print</code>.
           </p>
 
           <br></br>
@@ -1118,7 +1118,7 @@ for i in range(1):
             <Col md={6}>
               <CodeMirror
                 value={`#  Menampilkan posisi saat ini dari bidawang
-print(position())`}
+print position`}
                 height="340px"
                 theme="light"
                 extensions={[python()]}
@@ -1134,7 +1134,7 @@ print(position())`}
             </Col>
           </Row>
           <br></br>
-          <p><b>Hasil:</b> Fungsi <code>position()</code> digunakan untuk mencari tahu posisi bidawang saat ini, kemudian <code>position()</code> akan membuat posisi tersebut di tampilkan pada bagian output log.</p>
+          <p><b>Hasil:</b> Fungsi <code>position</code> digunakan untuk mencari tahu posisi bidawang saat ini, kemudian <code>position</code> akan membuat posisi tersebut di tampilkan pada bagian output log.</p>
           
           <br></br>
 
@@ -1144,11 +1144,11 @@ print(position())`}
             <Col md={6}>
               <CodeMirror
                 value={`# Posisi awal 
-print("Posisi awal:", position()) 
+print "Posisi awal:" position
 # Gerakkan Bidawang ke depan sejauh 100 langkah
-forward(100) 
+forward 100 
 # Cek posisi baru 
-print("Posisi setelah bergerak:", position())`}
+print "Posisi setelah bergerak:", position`}
                 height="300px"
                 theme="light"
                 extensions={[python()]}
@@ -1164,7 +1164,7 @@ print("Posisi setelah bergerak:", position())`}
             </Col>
           </Row>
           <br></br>
-          <p><b>Hasil:</b> Sebelum di gerakan posisi awal Bidawang adalah <i>(0,0)</i>, kemudian setelah diigerakan dengan <code>forward(100)</code> posisinya menjadi <i>(100, 0)</i></p>
+          <p><b>Hasil:</b> Sebelum di gerakan posisi awal Bidawang adalah <i>(0,0)</i>, kemudian setelah digerakan dengan <code>forward 100</code> posisinya menjadi <i>(100, 0)</i></p>
           
           <br></br>
 
@@ -1188,10 +1188,10 @@ print("Posisi setelah bergerak:", position())`}
                 paddingLeft: '10px',
                 marginBottom: '15px',
               }}>
-                Latihan Menggunakan setposition() 🐢  
+                Latihan Menggunakan setposition 🐢  
               </h4>
           <p>
-          Untuk lebih mudah memahami cara kerja perintah <code>setposition()</code>, ikuti instruksi dibawah ini
+          Untuk lebih mudah memahami cara kerja perintah <code>setposition</code>, ikuti instruksi dibawah ini
           </p>
           <Row>
             <Col xs={3} style={{ fontSize: 15 }}>
@@ -1203,7 +1203,7 @@ print("Posisi setelah bergerak:", position())`}
                   </AccordionHeader>
                   <AccordionBody>
                     <p>Lakukan posisi bidawang terlebih dahulu menggunakan perintah di bawah ini:</p>
-                    <pre><code>print(position())</code></pre>
+                    <pre><code>print position</code></pre>
                   </AccordionBody>
                 </AccordionItem>
                 <AccordionItem eventKey="1b">
@@ -1213,7 +1213,7 @@ print("Posisi setelah bergerak:", position())`}
                   </AccordionHeader>
                   <AccordionBody>
                     <p>Kemudian lanjutkan pada baris baru untuk membuat bidawang maju sejauh 150 langkah dengan perintah dibawah ini:</p>
-                    <pre><code>forward(150)</code></pre>
+                    <pre><code>forward 150</code></pre>
                   </AccordionBody>
                 </AccordionItem>
                 <AccordionItem eventKey="1c">
@@ -1223,7 +1223,7 @@ print("Posisi setelah bergerak:", position())`}
                   </AccordionHeader>
                   <AccordionBody>
                     <p>Lalu periksa lagi posisi bidawang tersebut:</p>
-                    <pre><code>print(position())</code></pre>
+                    <pre><code>print position</code></pre>
                   </AccordionBody>
                 </AccordionItem>
                 <AccordionItem eventKey="1d">
@@ -1233,7 +1233,7 @@ print("Posisi setelah bergerak:", position())`}
                   </AccordionHeader>
                   <AccordionBody>
                     <p>Selanjutnya pindahkan lagi bidawang ke posisi x=75 dan y=75 dengan perintah di bawah ini:</p>
-                    <pre><code>setposition(75,75)</code></pre>
+                    <pre><code>setposition 75 75</code></pre>
                   </AccordionBody>
                 </AccordionItem>
                 <AccordionItem eventKey="1e">
@@ -1243,7 +1243,7 @@ print("Posisi setelah bergerak:", position())`}
                   </AccordionHeader>
                   <AccordionBody>
                     <p>Lanjutkan dengan memeriksa posisi bidawang lagi:</p>
-                    <pre><code>print(position())</code></pre>
+                    <pre><code>print position</code></pre>
                   </AccordionBody>
                 </AccordionItem>
                 <AccordionItem eventKey="1f">
@@ -1253,7 +1253,7 @@ print("Posisi setelah bergerak:", position())`}
                   </AccordionHeader>
                   <AccordionBody>
                     <p>Gunakan perintah home untuk membuat bidawang kembali ke titik awal (0,0):</p>
-                    <pre><code>home()</code></pre>
+                    <pre><code>home</code></pre>
                   </AccordionBody>
                 </AccordionItem>
               </Accordion>
@@ -1317,7 +1317,7 @@ print("Posisi setelah bergerak:", position())`}
                 Kesimpulan
               </h4>
           <p>
-            Perintah <code>position()</code> untuk mengetahui posisi saat ini dari Bidawang. Fungsi ini berguna untuk memantau pergerakan dan membantu dalam menggambar pola atau bentuk yang presisi.
+            Perintah <code>position</code> untuk mengetahui posisi saat ini dari Bidawang. Fungsi ini berguna untuk memantau pergerakan dan membantu dalam menggambar pola atau bentuk yang presisi.
           </p>
           </div>
           

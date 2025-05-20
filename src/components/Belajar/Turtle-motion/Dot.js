@@ -911,16 +911,16 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami cara menggambar titik menggunakan <code>dot()</code>.
+              Memahami cara menggambar titik menggunakan <code>dot</code>.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Fungsi <code>dot()</code> digunakan untuk menggambar titik pada posisi Bidawang berada. Titik ini dapat diatur ukuran dan warnanya. Fungsi ini sangat berguna untuk menandai posisi tertentu dalam gambar atau untuk menggambar pola dengan titik.
+            Fungsi <code>dot</code> digunakan untuk menggambar titik pada posisi Bidawang berada. Titik ini dapat diatur ukuran dan warnanya. Fungsi ini sangat berguna untuk menandai posisi tertentu dalam gambar atau untuk menggambar pola dengan titik.
             </p>
-            <p><code>dot(ukuran, warna)</code>: Menggambar titik dengan ukuran dan warna yang ditentukan. Parameter <code>warna</code> opsional dan dapat diisi dengan nama warna atau kode heksadesimal.</p>
+            <p><code>dot <i>ukuran warna</i></code>: Menggambar titik dengan ukuran dan warna yang ditentukan. Parameter <code>warna</code> opsional dan dapat diisi dengan nama warna atau kode heksadesimal.</p>
             <ul>
               <li><strong>ukuran</strong>: Ukuran titik yang ingin digambar. Nilai default adalah 5.</li>
               <li><strong>warna</strong>: Warna titik yang ingin digambar. Jika tidak ditentukan, warna default adalah warna pena saat ini.</li>
@@ -934,8 +934,8 @@ for i in range(100):
               <Col md={6}>
                 <CodeMirror
                   value={`# Menggambar titik dengan ukuran 10 dan warna default
-dot(10)
-forward(200)`}
+dot 10
+forward 200`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -960,15 +960,15 @@ forward(200)`}
               <Col md={6}>
                 <CodeMirror
                   value={`# Menggambar titik dengan ukuran 20 dan warna merah
-dot(20, "red")
+dot 20 "red"
                   
 # Pindahkan turtle untuk menggambar titik berikutnya
-setposition(50, 50)
+setposition 50 50
                 
 # Menggambar titik dengan ukuran 15 dan warna biru
-dot(15, "blue")
+dot 15 "blue"
 
-setposition(200, 200)`}
+setposition 200 200`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -983,7 +983,7 @@ setposition(200, 200)`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>dot(20,"red")</code> akan membuat Bidawang menggambar titik dengan ukuran 20 dan warna merah, sedangkan <code>dot(15,"blue")</code> akan menggambar titik dengan ukuran 15 dan warna biru.</p>
+            <p><b>Hasil:</b> Fungsi <code>dot 20 "red"</code> akan membuat Bidawang menggambar titik dengan ukuran 20 dan warna merah, sedangkan <code>dot 15 "blue"</code> akan menggambar titik dengan ukuran 15 dan warna biru.</p>
             
             <br></br>
 
@@ -1006,7 +1006,7 @@ setposition(200, 200)`}
                 marginBottom: '15px',
               }}
               >
-                Latihan Menggunakan dot() 🐢
+                Latihan Menggunakan dot 🐢
               </h4>
             <p>
             Untuk lebih mudah memahami cara kerja perintah <code>dot()</code>, ikuti instruksi dibawah ini
@@ -1021,7 +1021,7 @@ setposition(200, 200)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar titik dengan ukuran 20 pada posisi saat ini:</p>
-                      <pre><code>dot(20)</code></pre>
+                      <pre><code>dot 20</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1b">
@@ -1031,7 +1031,7 @@ setposition(200, 200)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk menggerakan bidawang ke depan sejauh 50 langkah:</p>
-                      <pre><code>forward(50)</code></pre>
+                      <pre><code>forward 50</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -1041,7 +1041,7 @@ setposition(200, 200)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar lagi titik dengan ukuran 50 dan berwarna merah:</p>
-                      <pre><code>dot(50,"red")</code></pre>
+                      <pre><code>dot 50 "red"</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1d">
@@ -1051,7 +1051,7 @@ setposition(200, 200)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gerakkan lagi bidawang maju sejauh 100 langkah:</p>
-                      <pre><code>forward(100)</code></pre>
+                      <pre><code>forward 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1e">
@@ -1061,7 +1061,7 @@ setposition(200, 200)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar lagi titik dengan ukuran 100 dan berwarna kuning:</p>
-                      <pre><code>dot(100,"yellow")</code></pre>
+                      <pre><code>dot 100 "yellow"</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1126,7 +1126,7 @@ setposition(200, 200)`}
                 Kesimpulan
               </h4>
             <p>
-            Perintah <code>dot()</code> berfungsi untuk menggambar titik dengan ukuran dan warna yang dapat disesuaikan. Fungsi ini berguna untuk menandai posisi, membuat pola, atau menambah detail pada gambar yang dibuat.
+            Perintah <code>dot</code> berfungsi untuk menggambar titik dengan ukuran dan warna yang dapat disesuaikan. Fungsi ini berguna untuk menandai posisi, membuat pola, atau menambah detail pada gambar yang dibuat.
             </p>
             </div>
 

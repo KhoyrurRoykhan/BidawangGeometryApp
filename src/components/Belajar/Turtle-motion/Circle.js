@@ -142,7 +142,7 @@ const Circle = () => {
         attributes: {
           innerHTML: `
             <p>Bidawang saat ini berada di tengah layar (titik <b>(0, 0)</b>).</p>
-            <p>Tantangan kali ini adalah <b>mengitari sungai yang berbentuk lingkaran</b> menggunakan perintah <b>circle()</b>.</p>
+            <p>Tantangan kali ini adalah <b>mengitari sungai yang berbentuk lingkaran</b> menggunakan perintah <b>circle</b>.</p>
             <p>Untuk membantu kamu mengetahui jari-jari atau diameter sungai, perhatikan <b>grid</b> pada canvas.</p>
           `
         }
@@ -980,14 +980,14 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami cara menggambar lingkaran menggunakan <code>circle()</code>.
+              Memahami cara menggambar lingkaran menggunakan <code>circle</code>.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Fungsi <b>circle()</b> digunakan untuk menggambar lingkaran atau bagian dari lingkaran (busur) dengan jari-jari tertentu. Fungsi ini sangat berguna untuk menggambar bentuk bulat dan pola yang melibatkan lingkaran.
+            Fungsi <b>circle</b> digunakan untuk menggambar lingkaran atau bagian dari lingkaran (busur) dengan jari-jari tertentu. Fungsi ini sangat berguna untuk menggambar bentuk bulat dan pola yang melibatkan lingkaran.
             </p>
             <p><code>circle(jari_jari, extent=None)</code>: Menggambar lingkaran dengan jari-jari yang ditentukan. Parameter <code>extent</code> opsional dan digunakan untuk menggambar busur lingkaran. Jika <code>extent</code> tidak diberikan, maka lingkaran penuh akan digambar.</p>
             <ul>
@@ -1003,7 +1003,7 @@ for i in range(100):
               <Col md={6}>
                 <CodeMirror
                   value={`# Menggambar lingkaran dengan jari-jari 50
-circle(50)`}
+circle 50`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1018,7 +1018,7 @@ circle(50)`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>circle(50)</code> akan membuat Bidawang menggambar lingkaran dengan jari jari 50.</p>
+            <p><b>Hasil:</b> Fungsi <code>circle 50</code> akan membuat Bidawang menggambar lingkaran dengan jari jari 50.</p>
             
             <br></br>
 
@@ -1028,7 +1028,7 @@ circle(50)`}
               <Col md={6}>
                 <CodeMirror
                   value={`# Menggambar busur dengan jari 50 dan 180 derajat
-circle(50, 180)`}
+circle 50 180`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1043,7 +1043,7 @@ circle(50, 180)`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>circle(50,180)</code> akan membuat Bidawang menggambar lingkaran dengan jari jari 50, dengan besar busur 180 derajat.</p>
+            <p><b>Hasil:</b> Fungsi <code>circle 50 180</code> akan membuat Bidawang menggambar lingkaran dengan jari jari 50, dengan besar busur 180 derajat.</p>
             
             <br></br>
 
@@ -1065,10 +1065,10 @@ circle(50, 180)`}
                 paddingLeft: '10px',
                 marginBottom: '15px',
               }}>
-                Latihan Menggunakan circle() 🐢
+                Latihan Menggunakan circle 🐢
               </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>circle()</code>, ikuti instruksi dibawah ini
+            Untuk lebih mudah memahami cara kerja perintah <code>circle</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -1080,7 +1080,7 @@ circle(50, 180)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar lingkaran dengan panjang jari-jari 50 dengan perintah di bawah ini:</p>
-                      <pre><code>circle(50)</code></pre>
+                      <pre><code>circle 50</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1b">
@@ -1106,7 +1106,7 @@ left(90)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar lingkaran lagi dengan panjang jari-jari 100:</p>
-                      <pre><code>circle(100)</code></pre>
+                      <pre><code>circle 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1d">
@@ -1116,7 +1116,7 @@ left(90)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Putar Bidawang agar menghadap ke arah yang berlawanan dari posisi awal:</p>
-                      <pre><code>right(180)</code></pre>
+                      <pre><code>right 180</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1e">
@@ -1126,7 +1126,7 @@ left(90)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar Busur dengan jari-jari 50 dan putaran 180 derajat:</p>
-                      <pre><code>circle(50,180)</code></pre>
+                      <pre><code>circle 50 180</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1190,7 +1190,7 @@ left(90)`}
                 Kesimpulan
               </h4>
               <p>
-            Perintah <b>circle()</b> digunakan untuk menggambar lingkaran atau busur dengan mudah. Dengan mengatur jari-jari dan opsi `extent`, kita dapat menggambar berbagai bentuk bulat yang berbeda untuk memperkaya gambar atau pola yang dibuat.
+            Perintah <b>circle</b> digunakan untuk menggambar lingkaran atau busur dengan mudah. Dengan mengatur jari-jari dan opsi `extent`, kita dapat menggambar berbagai bentuk bulat yang berbeda untuk memperkaya gambar atau pola yang dibuat.
             </p>
             </div>
             

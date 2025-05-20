@@ -882,14 +882,14 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami fungsi reset().
+              Memahami fungsi reset.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Perintah <code>reset()</code> Digunakan untuk menghapus semua gambar pada canvas dan mengatur ulang posisi serta atribut seperti warna dan ukuran pena, ke nilai default.</p>
+            Perintah <code>reset</code> Digunakan untuk menghapus semua gambar pada canvas dan mengatur ulang posisi serta atribut seperti warna dan ukuran pena, ke nilai default.</p>
 
 
 
@@ -900,14 +900,14 @@ for i in range(100):
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`pencolor("red") 
-forward(100) 
-left(90) 
-forward(100) 
+                  value={`pencolor "red"
+forward 100
+left 90
+forward 100
 
 # Reset layar dan posisi turtle 
-reset() 
-forward(50)  # Memulai gambar baru `}
+reset
+forward 50  # Memulai gambar baru `}
                   height="340px"
                   theme="light"
                   extensions={[python()]}
@@ -923,7 +923,7 @@ forward(50)  # Memulai gambar baru `}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Bidawang akan menggambar dengan garis merah, kemudian setelah perintah <code>reset()</code> semua gambar akan hilang dan posisi serta atribut bidawang akan kembali ke nilai default.</p>
+            <p><b>Hasil:</b> Bidawang akan menggambar dengan garis merah, kemudian setelah perintah <code>reset</code> semua gambar akan hilang dan posisi serta atribut bidawang akan kembali ke nilai default.</p>
             
             <br></br>
             <hr />
@@ -946,10 +946,10 @@ forward(50)  # Memulai gambar baru `}
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                  Latihan Menggunakan reset() 🐢
+                  Latihan Menggunakan reset 🐢
                 </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>reset()</code>, ikuti instruksi dibawah ini:
+            Untuk lebih mudah memahami cara kerja perintah <code>reset</code>, ikuti instruksi dibawah ini:
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -963,8 +963,8 @@ forward(50)  # Memulai gambar baru `}
                       <p>Atur warna pena menjadi red dan ketebalannya menjadi 10 dengan perintah dibawah ini:</p>
                       <pre>
                         <code>
-{`pencolor("red")
-pensize(10)`}
+{`pencolor "red"
+pensize 10`}
                         </code>
                       </pre>
                     </AccordionBody>
@@ -976,7 +976,7 @@ pensize(10)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk menggerakan bidawang maju 100 langkah:</p>
-                      <pre><code>forward(100)</code></pre>
+                      <pre><code>forward 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -986,7 +986,7 @@ pensize(10)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Selanjutnya jalankan perinah reset:</p>
-                      <pre><code>reset()</code></pre>
+                      <pre><code>reset</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1d">
@@ -996,7 +996,7 @@ pensize(10)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar lingkaran dengan jari-jari 100 menggunakan perintah dibawah ini:</p>
-                      <pre><code>circle(100)</code></pre>
+                      <pre><code>circle 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1059,7 +1059,7 @@ pensize(10)`}
                   Kesimpulan
                 </h4>
             <p>
-                Perintah <code>reset()</code> berguna untuk memulai ulang proses menggambar tanpa harus menghapus semua kode yang sudah ditulis. 
+                Perintah <code>reset</code> berguna untuk memulai ulang proses menggambar tanpa harus menghapus semua kode yang sudah ditulis. 
             </p>
             </div>
             

@@ -914,14 +914,14 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Mengetahui cara memeriksa arah pergerakan dari bidawang menggunakan heading().
+              Mengetahui cara memeriksa arah pergerakan dari bidawang menggunakan heading.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Fungsi <code>heading()</code> digunakan untuk menampilkan arah pergerakan bidawang dalam satuan derajat. Sama seperti perintah sebelumnya (<i>Position()</i>) Untuk menampilkan hasilnya kita bisa menggunakan fungsi <code>print()</code>.
+            Fungsi <code>heading</code> digunakan untuk menampilkan arah pergerakan bidawang dalam satuan derajat. Sama seperti perintah sebelumnya (<i>Position()</i>) Untuk menampilkan hasilnya kita bisa menggunakan fungsi <code>print()</code>.
             </p>
 
             <ul>
@@ -939,13 +939,13 @@ for i in range(100):
               <Col md={6}>
                 <CodeMirror
                   value={`# Periksa arah awal 
-print("Arah awal:", heading()) 
+print "Arah awal:" heading 
 
 # Putar turtle ke kiri sebesar 90 derajat 
-left(90) 
+left 90
 
 # Periksa arah setelah putaran 
-print("Arah setelah putaran:", heading()) `}
+print "Arah setelah putaran:" heading`}
                   height="280px"
                   theme="light"
                   extensions={[python()]}
@@ -961,7 +961,7 @@ print("Arah setelah putaran:", heading()) `}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>heading()</code> digunakan untuk mendapatkan arah pergerakan dari bidawang, kemudian untuk menampilkan nilainya kita bisa menggunakan fungsi <code>print()</code>.</p>
+            <p><b>Hasil:</b> Fungsi <code>heading</code> digunakan untuk mendapatkan arah pergerakan dari bidawang, kemudian untuk menampilkan nilainya kita bisa menggunakan fungsi <code>print</code>.</p>
             
             <br></br>
             <hr />
@@ -984,10 +984,10 @@ print("Arah setelah putaran:", heading()) `}
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                  Latihan Menggunakan heading() 🐢
+                  Latihan Menggunakan heading 🐢
                 </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>xcor()</code> dan <code>ycor()</code>, ikuti instruksi dibawah ini
+            Untuk lebih mudah memahami cara kerja perintah <code>xcor</code> dan <code>ycor</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -999,7 +999,7 @@ print("Arah setelah putaran:", heading()) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Periksa arah bidawang dengan menggunakan perintah dibawah ini:</p>
-                      <pre><code>print(heading())</code></pre>
+                      <pre><code>print heading</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1b">
@@ -1009,7 +1009,7 @@ print("Arah setelah putaran:", heading()) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk memutar Bidawang ke kiri sebesar 90 derajat:</p>
-                      <pre><code>left(90)</code></pre>
+                      <pre><code>left 90</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -1019,7 +1019,7 @@ print("Arah setelah putaran:", heading()) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Periksa lagi arah bidawang dengan perintah dibawah ini:</p>
-                      <pre><code>print(heading())</code></pre>
+                      <pre><code>print heading</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1d">
@@ -1029,7 +1029,7 @@ print("Arah setelah putaran:", heading()) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Putar Bidawang ke kanan sebesar 180 derajat agar menghadap kebawah layar:</p>
-                      <pre><code>right(180)</code></pre>
+                      <pre><code>right 180</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1e">
@@ -1039,7 +1039,7 @@ print("Arah setelah putaran:", heading()) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Periksa lagi arah bidawang:</p>
-                      <pre><code>print(heading())</code></pre>
+                      <pre><code>print heading</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1103,7 +1103,7 @@ print("Arah setelah putaran:", heading()) `}
                   Kesimpulan
                 </h4>
             <p>
-            Perintah <code>heading()</code> berguna untuk memantau arah gerakan bidawang dengan lebih tepat. Pemahaman tentang sistem derajat akan membantu siswa menggambar bentuk dan pola secara lebih akurat. 
+            Perintah <code>heading</code> berguna untuk memantau arah gerakan bidawang dengan lebih tepat. Pemahaman tentang sistem derajat akan membantu siswa menggambar bentuk dan pola secara lebih akurat. 
             </p>
             </div>
             

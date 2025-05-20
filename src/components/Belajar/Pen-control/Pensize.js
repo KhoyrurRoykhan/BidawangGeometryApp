@@ -877,17 +877,17 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami cara mengubah ketebalan garis menggunakan perintah pensize().
+              Memahami cara mengubah ketebalan garis menggunakan perintah pensize.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Fungsi <code>pensize(width)</code> digunakan untuk mengatur ketebalan pena saat menggambar garis. Parameter width menunjukkan ukuran ketebalan dalam piksel. Dengan memodifikasi ketebalan garis, pengguna dapat menciptakan variasi visual, seperti membuat garis tebal untuk bingkai atau garis tipis untuk detail halus.</p>
+            Fungsi <code>pensize</code> digunakan untuk mengatur ketebalan pena saat menggambar garis. Parameter width menunjukkan ukuran ketebalan dalam piksel. Dengan memodifikasi ketebalan garis, pengguna dapat menciptakan variasi visual, seperti membuat garis tebal untuk bingkai atau garis tipis untuk detail halus.</p>
             <ul>
                 <li>
-                <b>pensize(width):</b> Mengatur ketebalan garis menjadi width (piksel).
+                <b>pensize <i>width</i>:</b> Mengatur ketebalan garis menjadi width (piksel).
                 </li>
             </ul>
 
@@ -918,7 +918,7 @@ circle(50)`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>pensize(5)</code> akan membuat ketebalan garis menjadi 5 pixel saat bidawang menggambar lingkaran dengan fungsi <code>circle()</code>.</p>
+            <p><b>Hasil:</b> Fungsi <code>pensize 5</code> akan membuat ketebalan garis menjadi 5 pixel saat bidawang menggambar lingkaran dengan fungsi <code>circle</code>.</p>
             
             <br></br>
             <hr />
@@ -941,10 +941,10 @@ circle(50)`}
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                  Latihan Menggunakan pensize() 🐢
+                  Latihan Menggunakan pensize 🐢
                 </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>pensize()</code>, ikuti instruksi dibawah ini:
+            Untuk lebih mudah memahami cara kerja perintah <code>pensize</code>, ikuti instruksi dibawah ini:
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -958,11 +958,11 @@ circle(50)`}
                       <p>Gambar segitiga menggunakan menggunakan perintah dibawah ini:</p>
                       <pre>
                         <code>
-{`forward(100)
-left(120)
-forward(100)
-left(120)
-forward(100)`}
+{`forward 100
+left 120
+forward 100
+left 120
+forward 100`}
                         </code>
                       </pre>
                     </AccordionBody>
@@ -974,7 +974,7 @@ forward(100)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk mengubah ketebalan pena menjadi 10:</p>
-                      <pre><code>pensize(10)</code></pre>
+                      <pre><code>pensize 10</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -986,12 +986,12 @@ forward(100)`}
                       <p>Gerakkan lagi Bidawang untuk menggambar segitiga dengan perintah dibawah ini:</p>
                       <pre>
                         <code>
-{`right(60)
-forward(100)
-right(120)
-forward(100)
-right(120)
-forward(100)`}
+{`right 60
+forward 100
+right 120
+forward 100
+right 120
+forward 100`}
                         </code>
                       </pre>
                     </AccordionBody>
@@ -1057,7 +1057,7 @@ forward(100)`}
                   Kesimpulan
                 </h4>
             <p>
-                Dengan perintah <code>pensize()</code>, ketebalan garis dapat disesuaikan untuk meningkatkan estetika atau menciptakan variasi visual dalam gambar. 
+                Dengan perintah <code>pensize</code>, ketebalan garis dapat disesuaikan untuk meningkatkan estetika atau menciptakan variasi visual dalam gambar. 
             </p>
             </div>
 

@@ -150,8 +150,8 @@ const Xykoordinat = () => {
             innerHTML: `
               <p>Bidawang saat ini berada di tengah layar (titik <b>(0, 0)</b>).</p>
               <p>Tugas kamu adalah <b>menebak posisi X dan Y</b> Udang.</p>
-              <p>Gerakkan Bidawang menuju posisi objek, lalu gunakan perintah <b>print(xcor())</b> dan <b>print(ycor())</b> untuk mengetahui titik koordinatnya.</p>
-              <p>Gunakan kombinasi perintah <b>left()</b>, <b>right()</b>, dan <b>forward()</b> untuk berpindah dari satu titik ke titik lainnya.</p>
+              <p>Gerakkan Bidawang menuju posisi objek, lalu gunakan perintah <b>print xcor</b> dan <b>print ycor</b> untuk mengetahui titik koordinatnya.</p>
+              <p>Gunakan kombinasi perintah <b>left</b>, <b>right</b>, dan <b>forward</b> untuk berpindah dari satu titik ke titik lainnya.</p>
             `
           }
         },
@@ -1041,11 +1041,11 @@ for i in range(100):
             <hr/>
 
             <p>
-            Fungsi <code>xcor()</code> dan <code>ycor()</code> digunakan untuk mendapatkan koordinat posisi spesifik di sepanjang sumbu horizontal (x) dan vertikal (y). Metode-metode ini ideal untuk memantau posisi terkini, membantu menentukan apakah bidawang telah mencapai batas tertentu, atau digunakan dalam penghitungan pola geometris yang memerlukan pengawasan koordinat. Sama seperti perintah sebelumnya (<i>Position()</i>) Untuk menampilkan hasilnya kita bisa menggunakan fungsi <code>print()</code>.
+            Fungsi <code>xcor</code> dan <code>ycor</code> digunakan untuk mendapatkan koordinat posisi spesifik di sepanjang sumbu horizontal (x) dan vertikal (y). Metode-metode ini ideal untuk memantau posisi terkini, membantu menentukan apakah bidawang telah mencapai batas tertentu, atau digunakan dalam penghitungan pola geometris yang memerlukan pengawasan koordinat. Sama seperti perintah sebelumnya (<i>Position</i>) Untuk menampilkan hasilnya kita bisa menggunakan fungsi <code>print</code>.
             </p>
             <ul>
-                <li>xcor(): Mengembalikan posisi horizontal (sumbu x) bidawang. </li>
-                <li>ycor(): Mengembalikan posisi vertikal (sumbu y) bidawang. </li>
+                <li>xcor: Mengembalikan posisi horizontal (sumbu x) bidawang. </li>
+                <li>ycor: Mengembalikan posisi vertikal (sumbu y) bidawang. </li>
             </ul>
 
             <br></br>
@@ -1056,16 +1056,16 @@ for i in range(100):
               <Col md={6}>
                 <CodeMirror
                   value={`# Menampilkan posisi awal bidawang
-print("Posisi x awal:", xcor()) 
-print("Posisi y awal:", ycor()) 
+print "Posisi x awal:" xcor 
+print "Posisi y awal:" ycor
 
 # Memindahkan bidawang ke posisi lain
-left(45)
-forward(150)
+left 45
+forward 150
 
 # Menampilkan posisi akhir bidawang
-print("Posisi x akhir:", xcor()) 
-print("Posisi y akhir:", ycor()) `}
+print "Posisi x akhir:" xcor 
+print "Posisi y akhir:" ycor `}
                   height="280px"
                   theme="light"
                   extensions={[python()]}
@@ -1081,7 +1081,7 @@ print("Posisi y akhir:", ycor()) `}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>xcor()</code> akan menampilkan posisi horizontal (sumbu x) dari bidawang, kemudian <code>ycor()</code> akan menampilkan posisi vertikal (sumbu y) dari bidawang.</p>
+            <p><b>Hasil:</b> Fungsi <code>xcor</code> akan menampilkan posisi horizontal (sumbu x) dari bidawang, kemudian <code>ycor</code> akan menampilkan posisi vertikal (sumbu y) dari bidawang.</p>
             
             <br></br>
             <hr />
@@ -1104,10 +1104,10 @@ print("Posisi y akhir:", ycor()) `}
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                  Latihan Menggunakan xcor() dan ycor() 🐢
+                  Latihan Menggunakan xcor dan ycor 🐢
                 </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>xcor()</code> dan <code>ycor()</code>, ikuti instruksi dibawah ini
+            Untuk lebih mudah memahami cara kerja perintah <code>xcor</code> dan <code>ycor</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -1121,8 +1121,8 @@ print("Posisi y akhir:", ycor()) `}
                       <p>Lakukan pemeriksaan posisi x dan y menggunakan perintah di bawah ini:</p>
                       <pre>
                         <code>
-{`print("x :", xcor())
-print("y :", ycor())`}
+{`print "x :" xcor
+print "y :" ycor`}
                         </code>
                       </pre>
                     </AccordionBody>

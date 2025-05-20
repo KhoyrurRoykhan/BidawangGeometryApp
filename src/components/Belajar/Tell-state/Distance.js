@@ -140,7 +140,7 @@ const Distance = () => {
           element: "div",
           attributes: {
             innerHTML: `
-              <p>Tugas kamu adalah <b>bergerak menuju harta karun</b> yang berada di posisi (150,150) menggunakan perintah <b>forward()</b>.</p>
+              <p>Tugas kamu adalah <b>bergerak menuju harta karun</b> yang berada di posisi (150,150) menggunakan perintah <b>forward</b>.</p>
               <p>Sebelum itu, kamu harus mengetahui terlebih dahulu <b>berapa jarak</b> antara posisi Bidawang dan harta karun.</p>
               <p>Gunakan perintah <b>distance</b> untuk menghitung jaraknya secara akurat.</p>
             `
@@ -1019,14 +1019,14 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami cara kerja fungsi distance().
+              Memahami cara kerja fungsi distance.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Fungsi <code>distance()</code> digunakan untuk menghitung jarak Euclidean antara posisi turtle saat ini dan titik tertentu dengan koordinat yang diberikan. Sama seperti perintah sebelumnya (<i>Position()</i>) Untuk menampilkan hasilnya kita bisa menggunakan fungsi <code>print()</code>.
+            Fungsi <code>distance</code> digunakan untuk menghitung jarak Euclidean antara posisi turtle saat ini dan titik tertentu dengan koordinat yang diberikan. Sama seperti perintah sebelumnya (<i>Position</i>) Untuk menampilkan hasilnya kita bisa menggunakan fungsi <code>print</code>.
             </p>
 
             <br></br>
@@ -1061,7 +1061,7 @@ print(distance(100, 100))`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>distance()</code> akan mendapatkan jarak posisi bidawang ke koordinat tujuan, kemudian untuk menampilkan nilainya kita bisa menggunakan fungsi <code>print()</code>.</p>
+            <p><b>Hasil:</b> Fungsi <code>distance</code> akan mendapatkan jarak posisi bidawang ke koordinat tujuan, kemudian untuk menampilkan nilainya kita bisa menggunakan fungsi <code>print</code>.</p>
             
             <br></br>
             <hr />
@@ -1084,10 +1084,10 @@ print(distance(100, 100))`}
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                  Latihan Menggunakan distance() 🐢
+                  Latihan Menggunakan distance 🐢
                 </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>distance()</code>, ikuti instruksi dibawah ini
+            Untuk lebih mudah memahami cara kerja perintah <code>distance</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -1099,7 +1099,7 @@ print(distance(100, 100))`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Periksa jarak bidawang ke posisi (100,0):</p>
-                      <pre><code>print(distance(100,0))</code></pre>
+                      <pre><code>print distance 100,0</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1b">
@@ -1109,7 +1109,7 @@ print(distance(100, 100))`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk menggerakan bidawang maju 100 langkah:</p>
-                      <pre><code>forward(100)</code></pre>
+                      <pre><code>forward 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -1119,7 +1119,7 @@ print(distance(100, 100))`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Periksa lagi jarak bidawang ke posisi (100,0):</p>
-                      <pre><code>print(distance(100,0))</code></pre>
+                      <pre><code>print distance 100 0</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1182,7 +1182,7 @@ print(distance(100, 100))`}
                   Kesimpulan
                 </h4>
             <p>
-            Perintah <code>heading()</code> berguna untuk memantau arah gerakan bidawang dengan lebih tepat. Pemahaman tentang sistem derajat akan membantu siswa menggambar bentuk dan pola secara lebih akurat. 
+            Perintah <code>heading</code> berguna untuk memantau arah gerakan bidawang dengan lebih tepat. Pemahaman tentang sistem derajat akan membantu siswa menggambar bentuk dan pola secara lebih akurat. 
             </p>
             </div>
 

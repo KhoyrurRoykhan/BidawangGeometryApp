@@ -878,14 +878,14 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami fungsi reset().
+              Memahami fungsi reset.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Perintah <code>clear()</code> digunakan untuk menghapus semua gambar pada canvas tanpa mengatur ulang posisi atau atribut bidawang.</p>
+            Perintah <code>clear</code> digunakan untuk menghapus semua gambar pada canvas tanpa mengatur ulang posisi atau atribut bidawang.</p>
 
             <br></br>
 
@@ -894,13 +894,13 @@ for i in range(100):
             <div className="d-flex flex-column flex-md-row align-items-center justify-content-center">
               <div className="mb-4 mb-md-0 me-md-4" style={{ flex: 1, minWidth: 0 }}>
                 <CodeMirror
-                  value={`pencolor("blue") 
-            forward(100)
-            circle(50) 
-            # Menghapus gambar tetapi posisi dan atribut tetap sama 
-            clear() 
+                  value={`pencolor "blue" 
+forward 100
+circle 50
+# Menghapus gambar tetapi posisi dan atribut tetap sama 
+clear
 
-            forward(100) # Memulai gambar baru dari posisi terakhir `}
+forward 100 # Memulai gambar baru dari posisi terakhir `}
                   height="340px"
                   theme="light"
                   extensions={[python()]}
@@ -919,7 +919,7 @@ for i in range(100):
             </div>
 
             <br></br>
-            <p><b>Hasil:</b> Bidawang akan menggambar lingkaran dengan garis biru, Setelah di clear() atribut pencolor “blue” akan tetap aktif.</p>
+            <p><b>Hasil:</b> Bidawang akan menggambar lingkaran dengan garis biru, Setelah di clear atribut pencolor “blue” akan tetap aktif.</p>
             
             <br></br>
             <hr />
@@ -942,10 +942,10 @@ for i in range(100):
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                Latihan Menggunakan clear() 🐢
+                Latihan Menggunakan clear 🐢
               </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>clear()</code>, ikuti instruksi dibawah ini:
+            Untuk lebih mudah memahami cara kerja perintah <code>clear</code>, ikuti instruksi dibawah ini:
             </p>
             <Row>
             <Col xs={3} style={{ fontSize: 15 }}>
@@ -959,8 +959,8 @@ for i in range(100):
                       <p>Atur warna pena menjadi red dan ketebalannya menjadi 10 dengan perintah dibawah ini:</p>
                       <pre>
                         <code>
-{`pencolor("red")
-pensize(10)`}
+{`pencolor "red"
+pensize 10`}
                         </code>
                       </pre>
                     </AccordionBody>
@@ -972,7 +972,7 @@ pensize(10)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk menggerakan bidawang maju 100 langkah:</p>
-                      <pre><code>forward(100)</code></pre>
+                      <pre><code>forward 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -982,7 +982,7 @@ pensize(10)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Selanjutnya jalankan perinah clear:</p>
-                      <pre><code>clear()</code></pre>
+                      <pre><code>clear</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1d">
@@ -992,7 +992,7 @@ pensize(10)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar lingkaran dengan jari-jari 100 menggunakan perintah dibawah ini:</p>
-                      <pre><code>circle(100)</code></pre>
+                      <pre><code>circle 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1055,7 +1055,7 @@ pensize(10)`}
                   Kesimpulan
                 </h4>
             <p>
-                Perintah <code>clear()</code> berguna untuk menghapus gambar tanpa mengubah pengaturan posisi atau atribut bidawang.
+                Perintah <code>clear</code> berguna untuk menghapus gambar tanpa mengubah pengaturan posisi atau atribut bidawang.
             </p>
             </div>
             

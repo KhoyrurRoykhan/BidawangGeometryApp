@@ -140,7 +140,7 @@ const SetXY = () => {
         attributes: {
           innerHTML: `
             <p>Bidawang saat ini berada di tengah layar (titik <b>(0, 0)</b>), sedangkan cacing berada di titik <b>(100, 100)</b>.</p>
-            <p>Tugas kamu adalah <b>memindahkan Bidawang</b> menuju ke posisi cacing dengan menggunakan <b>setx()</b> dan <b>sety()</b>.</p>
+            <p>Tugas kamu adalah <b>memindahkan Bidawang</b> menuju ke posisi cacing dengan menggunakan <b>setx</b> dan <b>sety</b>.</p>
           `
         }
       },
@@ -987,24 +987,24 @@ const resetCodeChallanges = () => {
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami cara mengatur posisi bidawang pada sumbu x dan y secara terpisah menggunakan `setx()` dan `sety()`.
+              Memahami cara mengatur posisi bidawang pada sumbu x dan y secara terpisah menggunakan `setx` dan `sety`.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Fungsi <b>setx()</b> dan <b>sety()</b> digunakan untuk memindahkan Bidawang ke posisi tertentu hanya pada sumbu x (<b>setx()</b>) atau sumbu y (<b>sety()</b>), tanpa mengubah koordinat lainnya. Perintah ini berguna untuk memindahkan turtle secara horizontal atau vertikal.
+            Fungsi <b>setx</b> dan <b>sety</b> digunakan untuk memindahkan Bidawang ke posisi tertentu hanya pada sumbu x (<b>setx</b>) atau sumbu y (<b>sety</b>), tanpa mengubah koordinat lainnya. Perintah ini berguna untuk memindahkan turtle secara horizontal atau vertikal.
             </p>
 
-            <h5>1. setx(<i>koordinat x</i>)</h5>
+            <h5>1. setx</h5>
             <p>Memindahkan Bidawang ke posisi x yang ditentukan, tanpa mengubah posisi pada sumbu y.</p>
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
                   value={`# Pindahkan turtle ke posisi x = 100, 
 # tanpa mengubah posisi y
-setx(100)`}
+setx 100`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1023,7 +1023,7 @@ setx(100)`}
             
             <br></br>
 
-            <h5>2. sety(<i>koordinat y</i>)</h5>
+            <h5>2. sety</h5>
             <p>Memindahkan Bidawang ke posisi y yang ditentukan, tanpa mengubah posisi pada sumbu x.</p>
             <Row className="align-items-center">
               <Col md={6}>
@@ -1068,10 +1068,10 @@ sety(150)`}
                 paddingLeft: '10px',
                 marginBottom: '15px',
               }}>
-                Latihan Menggunakan setx() dan sety() 🐢
+                Latihan Menggunakan setx dan sety 🐢
               </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>setx()</code> dan <code>sety()</code>, ikuti instruksi dibawah ini
+            Untuk lebih mudah memahami cara kerja perintah <code>setx</code> dan <code>sety</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -1083,7 +1083,7 @@ sety(150)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Ubah nilai titik X bidawang yang awaknya berada di titik awal (0,0) ubah titik X nya menjadi 100 dengan perintah dibawah ini: </p>
-                      <pre><code>setx(100)</code></pre>
+                      <pre><code>setx 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1b">
@@ -1093,7 +1093,7 @@ sety(150)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan pada baris baru untuk mengubah nilai titik Y menjadi -50 dengan perintah dibawah ini: </p>
-                      <pre><code>sety(-50)</code></pre>
+                      <pre><code>sety -50</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -1103,7 +1103,7 @@ sety(150)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Lalu ubah lagi nilai titik X menjadi 0 dengan perintah dibawah ini: </p>
-                      <pre><code>setx(0)</code></pre>
+                      <pre><code>setx 0</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1167,7 +1167,7 @@ sety(150)`}
                 Kesimpulan
               </h4>
               <p>
-              Perintah <code>setx()</code> dan <code>sety()</code> digunakan untuk memindahkan Bidawang secara horizontal atau vertikal tanpa mengubah koordinat lainnya. Perintah ini berguna untuk memindahkan Bidawang ke posisi yang diinginkan dengan lebih fleksibel, terutama saat mengatur pola atau jalur yang spesifik.
+              Perintah <code>setx</code> dan <code>sety</code> digunakan untuk memindahkan Bidawang secara horizontal atau vertikal tanpa mengubah koordinat lainnya. Perintah ini berguna untuk memindahkan Bidawang ke posisi yang diinginkan dengan lebih fleksibel, terutama saat mengatur pola atau jalur yang spesifik.
               </p>
             </div>
             

@@ -876,7 +876,7 @@ home()
             <hr/>
 
             <p>
-            Fungsi <code>isdown()</code> digunakan untuk memeriksa status pena. Perintah ini menyimpan nilai True jika pena sedang dalam posisi turun (aktif menggambar) dan False jika pena diangkat. Pemeriksaan status pena berguna untuk menentukan apakah Bidawang akan meninggalkan jejak atau tidak saat bergerak.</p>
+            Fungsi <code>isdown</code> digunakan untuk memeriksa status pena. Perintah ini menyimpan nilai True jika pena sedang dalam posisi turun (aktif menggambar) dan False jika pena diangkat. Pemeriksaan status pena berguna untuk menentukan apakah Bidawang akan meninggalkan jejak atau tidak saat bergerak.</p>
 
 
             <br></br>
@@ -887,14 +887,14 @@ home()
               <Col md={6}>
                 <CodeMirror
                   value={`# Cek status pena 
-print("Status Pena saat ini:") 
-print(isdown())
+print "Status Pena saat ini:"
+print isdown
 
 # Mengangkat pena
-penup()
+penup
 
-print("Pena setelah diangkat:") 
-print(isdown())`}
+print "Pena setelah diangkat:" 
+print isdown`}
                   height="280px"
                   theme="light"
                   extensions={[python()]}
@@ -910,7 +910,7 @@ print(isdown())`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>isdown()</code> akan menampilkan true jika pena sedang aktif, kemudian ketika pena di angkat dengan fungsi <code>penup()</code> maka menampilkan false.</p>
+            <p><b>Hasil:</b> Fungsi <code>isdown</code> akan menampilkan true jika pena sedang aktif, kemudian ketika pena di angkat dengan fungsi <code>penup</code> maka menampilkan false.</p>
             
             <br></br>
             <hr />
@@ -933,10 +933,10 @@ print(isdown())`}
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                  Latihan Menggunakan isdown() 🐢
+                  Latihan Menggunakan isdown 🐢
                 </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>isdown()</code>, ikuti instruksi dibawah ini:
+            Untuk lebih mudah memahami cara kerja perintah <code>isdown</code>, ikuti instruksi dibawah ini:
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -948,7 +948,7 @@ print(isdown())`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Angkat pena atau buat status pena menjadi nonaktif dengan perintah dibawah ini:</p>
-                      <pre><code>penup()</code></pre>
+                      <pre><code>penup</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1b">
@@ -958,7 +958,7 @@ print(isdown())`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk memeriksa status pena:</p>
-                      <pre><code>print(isdown())</code></pre>
+                      <pre><code>print isdown</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -968,7 +968,7 @@ print(isdown())`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Pindahkan posisi bidawang ke (-150,0) dengan perintah dibawah ini:</p>
-                      <pre><code>setposition(-150,0)</code></pre>
+                      <pre><code>setposition -150 0</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1d">
@@ -978,7 +978,7 @@ print(isdown())`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Turunkan pena dengan perintah dibawah ini:</p>
-                      <pre><code>pendown()</code></pre>
+                      <pre><code>pendown</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1e">
@@ -988,7 +988,7 @@ print(isdown())`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gerakkan Bidawang maju sejauh 50 langkah:</p>
-                      <pre><code>forward(50)</code></pre>
+                      <pre><code>forward 50</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1051,7 +1051,7 @@ print(isdown())`}
                   Kesimpulan
                 </h4>
               <p>
-                  Perintah <code>isdown()</code>, berguna untuk mengecek status pena secara dinamis dan membantu mengontrol logika penggambaran. 
+                  Perintah <code>isdown</code>, berguna untuk mengecek status pena secara dinamis dan membantu mengontrol logika penggambaran. 
               </p>
             </div>
             

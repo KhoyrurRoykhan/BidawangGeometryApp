@@ -141,7 +141,7 @@ const ForLoop = () => {
             innerHTML: `
               <p>Tantangan kali ini adalah <b>menggerakkan Bidawang hingga ke ujung sungai</b> dengan mengikuti pola sungai yang berulang-ulang.</p>
               <p>Gunakan perulangan <b>for</b> untuk menghindari penulisan kode yang panjang dan berulang.</p>
-              <p>Di dalam perulangan, gunakan perintah <b>forward()</b> untuk bergerak maju dan <b>left()</b> atau <b>right()</b> untuk berbelok sesuai pola alur sungai.</p>
+              <p>Di dalam perulangan, gunakan perintah <b>forward</b> untuk bergerak maju dan <b>left</b> atau <b>right</b> untuk berbelok sesuai pola alur sungai.</p>
               <p>Perhatikan garis bantu pada canvas untuk membantu menentukan jarak dan sudut belokan yang tepat.</p>
             `
           }
@@ -1022,12 +1022,12 @@ for i in range(100):
             <p>Dua konsep penting yang harus dipahami dalam for loop adalah:</p>
             <br></br>
 
-            <h5>1. range()</h5>
+            <h5>1. range</h5>
 
-            <p>Fungsi range() menentukan berapa kali perulangan akan dilakukan. Misalnya:</p>
+            <p>range digunakan untuk menentukan berapa kali perulangan akan dilakukan.</p>
 
             <CodeMirror
-                  value={`range(4)`}
+                  value={`4`}
                   height="50px"
                   theme="light"
                   extensions={[python()]}
@@ -1039,7 +1039,7 @@ for i in range(100):
             <p>Berarti perulangan akan dilakukan sebanyak 4 kali, dimulai dari 0 hingga 3. Umumnya digunakan seperti ini:</p>
 
             <CodeMirror
-                  value={`for x in range(4):
+                  value={`for 4:
   # perintah yang diulang`}
                   height="70px"
                   theme="light"
@@ -1050,13 +1050,11 @@ for i in range(100):
               
               {/* <br></br> */}
 
-              <p>Variabel x hanya digunakan sebagai penghitung jumlah putaran.</p>
-
               <br></br>
 
             <h5>2. Indentasi (Spasi Masuk ke Dalam)</h5>
 
-            <p>Indentasi digunakan untuk menentukan blok kode yang berada perulangan. Semua perintah yang ingin diulang harus ditulis menjorok ke kanan (biasanya 1 tab).</p>
+            <p>Indentasi digunakan untuk menentukan blok kode yang berada perulangan. Semua perintah yang ingin diulang harus ditulis menjorok ke kanan (biasanya 1 tab/1 spasi).</p>
 
             {/* <br></br> */}
             <hr></hr>
@@ -1066,9 +1064,9 @@ for i in range(100):
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`for x in range(3):
-  forward(100)
-  left(120)`}
+                  value={`for 3
+  forward 100
+  left 120`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1083,7 +1081,7 @@ for i in range(100):
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>for</code> dengan nilai range(3) akan menjalankan perintah forward(100) dan left(120) berulang sebanyak 3 kali, sehingga membentuk segitiga.</p>
+            <p><b>Hasil:</b> Fungsi <code>for 3</code> akan menjalankan perintah forward 100 dan left 120 berulang sebanyak 3 kali, sehingga membentuk segitiga.</p>
             
             <br></br>
 
@@ -1092,9 +1090,9 @@ for i in range(100):
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`for x in range(4):
-  forward(100)
-  left(90)`}
+                  value={`for 4
+  forward 100
+  left 90`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1109,7 +1107,7 @@ for i in range(100):
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>for</code> dengan nilai range(4) akan menjalankan perintah forward(100) dan left(90) berulang sebanyak 4 kali, sehingga membentuk persegi.</p>
+            <p><b>Hasil:</b> Fungsi <code>for 4</code> akan menjalankan perintah forward 100 dan left 90 berulang sebanyak 4 kali, sehingga membentuk persegi.</p>
             
             <br></br>
 
@@ -1148,9 +1146,9 @@ for i in range(100):
                       <p>Membuat hexagon dengan perulangan for dengan kode perintah dibawah ini:</p>
                       <pre>
                         <code>
-{`for x in range(6):
-  forward(100)
-  left(60)`}
+{`for 6
+  forward 100
+  left 60`}
                         </code>
                       </pre>
                     </AccordionBody>
@@ -1164,9 +1162,9 @@ for i in range(100):
                     <p>Hapus semua kode yang sudah di ketik sebelumnya lalu gunakan kode perintah dibawah ini untuk membuat bintang sederhana dengan perulangan for:</p>
                       <pre>
                         <code>
-{`for x in range(5)::
-  forward(100)
-  right(144)`}
+{`for 5
+  forward 100
+  right 144`}
                         </code>
                       </pre>
                     </AccordionBody>

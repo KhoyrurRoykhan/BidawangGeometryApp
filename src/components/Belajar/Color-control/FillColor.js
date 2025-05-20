@@ -145,10 +145,10 @@ const FillColor = () => {
   
             <p><b>Perhatikan petunjuk berikut:</b></p>
             <ul>
-              <li><b>Gambar 1:</b> Titik awal di <b>(-150, 50)</b>. Gunakan <b>forward()</b> dan <b>left() / right()</b> untuk menggambar. Warnai dengan warna <span style="color: green;"><b>green</b></span>.</li>
-              <li><b>Gambar 2:</b> Titik awal di <b>(50, 50)</b>. Gunakan <b>setposition()</b> untuk menggambar. Warnai dengan warna <span style="color: red;"><b>red</b></span>.</li>
-              <li><b>Gambar 3:</b> Titik awal di <b>(-50, -100)</b>. Gunakan <b>setposition()</b> untuk menggambar. Warnai dengan warna <span style="color: gold;"><b>yellow</b></span>.</li>
-              <li><b>Gambar 4:</b> Titik awal di <b>(50, -100)</b>. Gunakan <b>circle()</b> untuk menggambar. Warnai dengan warna <span style="color: blue;"><b>blue</b></span>.</li>
+              <li><b>Gambar 1:</b> Titik awal di <b>(-150, 50)</b>. Gunakan <b>forward</b> dan <b>left / right</b> untuk menggambar. Warnai dengan warna <span style="color: green;"><b>green</b></span>.</li>
+              <li><b>Gambar 2:</b> Titik awal di <b>(50, 50)</b>. Gunakan <b>setposition</b> untuk menggambar. Warnai dengan warna <span style="color: red;"><b>red</b></span>.</li>
+              <li><b>Gambar 3:</b> Titik awal di <b>(-50, -100)</b>. Gunakan <b>setposition</b> untuk menggambar. Warnai dengan warna <span style="color: gold;"><b>yellow</b></span>.</li>
+              <li><b>Gambar 4:</b> Titik awal di <b>(50, -100)</b>. Gunakan <b>circle</b> untuk menggambar. Warnai dengan warna <span style="color: blue;"><b>blue</b></span>.</li>
             </ul>
   
             <p>Saat berpindah dari satu gambar ke gambar berikutnya, <b>jangan meninggalkan jejak</b>.</p>
@@ -1037,10 +1037,10 @@ for i in range(100):
         <hr/>
 
         <p>
-        Perintah <code>fillcolor("<i>warna</i>")</code> Digunakan untuk menentukan warna isian yang akan diterapkan pada bentuk. Parameter warna dapat berupa nama warna atau kode RGB. Untuk mewarnai bentuk, perintah <code>fillcolor("<i>warna</i>")</code> harus di sertai dengan <code>begin_fill()</code> dan end_fill()</p>
+        Perintah <code>fillcolor "<i>warna</i>"</code> Digunakan untuk menentukan warna isian yang akan diterapkan pada bentuk. Parameter warna dapat berupa nama warna atau kode RGB. Untuk mewarnai bentuk, perintah <code>fillcolor "<i>warna</i>"</code> harus di sertai dengan <code>begin_fill</code> dan end_fill</p>
         <ul>
-          <li>begin_fill(): Menandai awal area yang akan diisi warna.</li>
-          <li>end_fill(): Menandai akhir area yang akan diisi warna. Warna isian diterapkan sesuai pengaturan fillcolor.</li>
+          <li>begin_fill: Menandai awal area yang akan diisi warna.</li>
+          <li>end_fill: Menandai akhir area yang akan diisi warna. Warna isian diterapkan sesuai pengaturan fillcolor.</li>
         </ul>
 
 
@@ -1051,11 +1051,11 @@ for i in range(100):
         <Row className="align-items-center">
           <Col md={6}>
             <CodeMirror
-              value={`fillcolor("green")  # Warna isian hijau 
+              value={`fillcolor "green"  # Warna isian hijau 
 
-begin_fill() 
-circle(50)  # Membuat lingkaran 
-end_fill() `}
+begin_fill
+circle 50  # Membuat lingkaran 
+end_fill `}
               height="340px"
               theme="light"
               extensions={[python()]}
@@ -1071,7 +1071,7 @@ end_fill() `}
           </Col>
         </Row>
         <br></br>
-        <p><b>Hasil:</b> Bidawang akan menggambar lingkaran, kemudian fungsi <code>fillcolor("green")</code> akan membuat warna lingkaran tersebut menjadi hijau.</p>
+        <p><b>Hasil:</b> Bidawang akan menggambar lingkaran, kemudian fungsi <code>fillcolor "green"</code> akan membuat warna lingkaran tersebut menjadi hijau.</p>
         
         <br></br>
         <hr />
@@ -1094,10 +1094,10 @@ end_fill() `}
               paddingLeft: '10px',
               marginBottom: '15px',
             }}>
-              Latihan Menggunakan fillcolor() 🐢
+              Latihan Menggunakan fillcolor 🐢
             </h4>
         <p>
-        Untuk lebih mudah memahami cara kerja perintah <code>fillcolor()</code>, ikuti instruksi dibawah ini:
+        Untuk lebih mudah memahami cara kerja perintah <code>fillcolor</code>, ikuti instruksi dibawah ini:
         </p>
         <Row>
           <Col xs={3} style={{ fontSize: 15 }}>
@@ -1109,7 +1109,7 @@ end_fill() `}
                 </AccordionHeader>
                 <AccordionBody>
                   <p>Atur warna isian terlebih dahulu dengan perintah dibawah ini:</p>
-                  <pre><code>fillcolor("green")</code></pre>
+                  <pre><code>fillcolor "green"</code></pre>
                 </AccordionBody>
               </AccordionItem>
               <AccordionItem eventKey="1b">
@@ -1119,7 +1119,7 @@ end_fill() `}
                 </AccordionHeader>
                 <AccordionBody>
                   <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk menandai awal area yang akan diisi warna:</p>
-                  <pre><code>begin_fill()</code></pre>
+                  <pre><code>begin_fill</code></pre>
                 </AccordionBody>
               </AccordionItem>
               <AccordionItem eventKey="1c">
@@ -1131,10 +1131,10 @@ end_fill() `}
                   <p>Gerakkan lagi Bidawang untuk membentuk segitiga dengan perintah dibawah ini:</p>
                   <pre>
                     <code>
-                      {`forward(150)
-right(90
-forward(150)
-home() `}
+                      {`forward 150
+right 90
+forward 150
+home `}
                     </code>
                     </pre>
                 </AccordionBody>
@@ -1146,7 +1146,7 @@ home() `}
                 </AccordionHeader>
                 <AccordionBody>
                   <p>Tandai akhir area yang akan diisi warna dengan perintah dibawah ini:</p>
-                  <pre><code>end_fill()</code></pre>
+                  <pre><code>end_fill</code></pre>
                 </AccordionBody>
               </AccordionItem>
             </Accordion>
@@ -1209,7 +1209,7 @@ home() `}
               Kesimpulan
             </h4>
         <p>
-            Perintah <code>fillcolor()</code> digunakan untuk mengatur warna isian, sedangkan proses pengisian warna dilakukan dengan bantuan <code>begin_fill()</code> dan <code>end_fill()</code>. Untuk hasil optimal, pastikan area yang digambar adalah bentuk tertutup.
+            Perintah <code>fillcolor</code> digunakan untuk mengatur warna isian, sedangkan proses pengisian warna dilakukan dengan bantuan <code>begin_fill</code> dan <code>end_fill</code>. Untuk hasil optimal, pastikan area yang digambar adalah bentuk tertutup.
         </p>
         </div>
 

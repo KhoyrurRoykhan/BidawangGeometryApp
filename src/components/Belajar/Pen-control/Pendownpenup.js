@@ -145,10 +145,10 @@ const Pendownpenup = () => {
   
             <p><b>Perhatikan petunjuk berikut untuk masing-masing gambar:</b></p>
             <ul>
-              <li><b>Gambar 1:</b> Titik awal di <b>(-150, 50)</b>. Gunakan <b>forward()</b> dan <b>left() / right()</b> untuk menggambar.</li>
-              <li><b>Gambar 2:</b> Titik awal di <b>(50, 50)</b>. Gunakan <b>setposition()</b> untuk menggambar.</li>
-              <li><b>Gambar 3:</b> Titik awal di <b>(-50, -100)</b>. Gunakan <b>setposition()</b> untuk menggambar.</li>
-              <li><b>Gambar 4:</b> Titik awal di <b>(50, -100)</b>. Gunakan <b>circle()</b> untuk menggambar lingkaran.</li>
+              <li><b>Gambar 1:</b> Titik awal di <b>(-150, 50)</b>. Gunakan <b>forward</b> dan <b>left / right</b> untuk menggambar.</li>
+              <li><b>Gambar 2:</b> Titik awal di <b>(50, 50)</b>. Gunakan <b>setposition</b> untuk menggambar.</li>
+              <li><b>Gambar 3:</b> Titik awal di <b>(-50, -100)</b>. Gunakan <b>setposition</b> untuk menggambar.</li>
+              <li><b>Gambar 4:</b> Titik awal di <b>(50, -100)</b>. Gunakan <b>circle</b> untuk menggambar lingkaran.</li>
             </ul>
   
             <p>Saat berpindah dari satu gambar ke gambar berikutnya, <b>jangan meninggalkan jejak</b>.</p>
@@ -1026,7 +1026,7 @@ for i in range(100):
             <hr/>
 
             <p>
-            Fungsi <code>pendown()</code> digunakan untuk menurunkan pena, sehingga bidawang akan menggambar garis saat bergerak. Sebaliknya, fungsi <code>penup()</code> untuk mengangkat pena, mencegah bidawang menggambar saat bergerak. </p>
+            Fungsi <code>pendown</code> digunakan untuk menurunkan pena, sehingga bidawang akan menggambar garis saat bergerak. Sebaliknya, fungsi <code>penup</code> untuk mengangkat pena, mencegah bidawang menggambar saat bergerak. </p>
 
             <br></br>
 
@@ -1058,7 +1058,7 @@ circle(30) `}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>penup()</code> akan menonaktifkan mode menggambar, jadi meskipun bidawang bergerak tidak akan menggambar garis. Fungsi <code>pendown()</code> akan mengaktifkan mode menggambar.</p>
+            <p><b>Hasil:</b> Fungsi <code>penup</code> akan menonaktifkan mode menggambar, jadi meskipun bidawang bergerak tidak akan menggambar garis. Fungsi <code>pendown</code> akan mengaktifkan mode menggambar.</p>
             
             <br></br>
             <hr />
@@ -1081,10 +1081,10 @@ circle(30) `}
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                  Latihan Menggunakan penup() dan pendown() 🐢
+                  Latihan Menggunakan penup dan pendown 🐢
                 </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>penup()</code> dan <code>pendown()</code>, ikuti instruksi dibawah ini
+            Untuk lebih mudah memahami cara kerja perintah <code>penup</code> dan <code>pendown</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -1096,7 +1096,7 @@ circle(30) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar lingkaran dengan jari jari 50 menggunakan perintah dibawah ini:</p>
-                      <pre><code>circle(50)</code></pre>
+                      <pre><code>circle 50</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1b">
@@ -1106,7 +1106,7 @@ circle(30) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk mengangkat pena agar saat bidawang bergerak tidak meninggalkan jejak:</p>
-                      <pre><code>penup()</code></pre>
+                      <pre><code>penup</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -1116,7 +1116,7 @@ circle(30) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gerakkan lagi Bidawang maju sejauh 100 langkah</p>
-                      <pre><code>forward(100)</code></pre>
+                      <pre><code>forward 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1d">
@@ -1126,7 +1126,7 @@ circle(30) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Turunkan pena dengan perintah dibawah ini:</p>
-                      <pre><code>pendown()</code></pre>
+                      <pre><code>pendown</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1e">
@@ -1136,7 +1136,7 @@ circle(30) `}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Gambar lingkaran lagi dengan jari-jari 50:</p>
-                      <pre><code>circle(50)</code></pre>
+                      <pre><code>circle 50</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1199,7 +1199,7 @@ circle(30) `}
                   Kesimpulan
                 </h4>
             <p>
-            Perintah <code>pendown()</code> dan <code>penup()</code> sangat penting untuk mengontrol kapan turtle menggambar atau hanya bergerak tanpa meninggalkan jejak. Penggunaan yang tepat membantu dalam pembuatan bentuk yang terpisah. 
+            Perintah <code>pendown</code> dan <code>penup</code> sangat penting untuk mengontrol kapan turtle menggambar atau hanya bergerak tanpa meninggalkan jejak. Penggunaan yang tepat membantu dalam pembuatan bentuk yang terpisah. 
             </p>
             </div>
             

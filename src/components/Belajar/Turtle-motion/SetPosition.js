@@ -144,7 +144,7 @@ const SetPosition = () => {
           innerHTML: `
             <p>Bidawang saat ini berada di tengah layar (titik <b>(0, 0)</b>).</p>
             <p>Tugas kamu adalah memindahkan Bidawang ke titik-titik yang sudah <b>ditandai</b> di sepanjang sungai pada canvas.</p>
-            <p>Pindahkan Bidawang secara <b>berurutan</b> mengikuti alur sungai dengan menggunakan perintah <b>setposition(x, y)</b> untuk setiap titik.</p>
+            <p>Pindahkan Bidawang secara <b>berurutan</b> mengikuti alur sungai dengan menggunakan perintah <b>setposition</b> untuk setiap titik.</p>
           `
         }
       },
@@ -972,14 +972,14 @@ const resetCodeChallanges = () => {
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-                Memahami cara mengatur posisi Bidawang secara langsung menggunakan `setposition()`.
+                Memahami cara mengatur posisi Bidawang secara langsung menggunakan `setposition`.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Perintah `setposition()` (bisa juga disingkat `setpos()`) digunakan untuk memindahkan Bidawang ke titik tertentu dalam ruang canvas, berdasarkan koordinat yang ditentukan. Saat perintah ini digunakan, Bidawang akan menggambar jalur dari posisi sebelumnya ke posisi baru.
+            Perintah `setposition` (bisa juga disingkat `setpos`) digunakan untuk memindahkan Bidawang ke titik tertentu dalam ruang canvas, berdasarkan koordinat yang ditentukan. Saat perintah ini digunakan, Bidawang akan menggambar jalur dari posisi sebelumnya ke posisi baru.
             </p>
 
             <h5>Contoh:</h5>
@@ -988,7 +988,7 @@ const resetCodeChallanges = () => {
               <Col md={6}>
                 <CodeMirror
                   value={`# Pindahkan Bidawang ke koordinat (100, 100)
-setposition(100, 100)`}
+setposition 100 100`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1028,10 +1028,10 @@ setposition(100, 100)`}
                   marginBottom: '15px',
                 }}
               >
-                Latihan Menggunakan setposition() 🐢
+                Latihan Menggunakan setposition 🐢
               </h4>
               <p>
-              Untuk lebih mudah memahami cara kerja perintah <code>setposition()</code>, ikuti instruksi dibawah ini
+              Untuk lebih mudah memahami cara kerja perintah <code>setposition</code>, ikuti instruksi dibawah ini
               </p>
               <Row>
                 <Col xs={3} style={{ fontSize: 15 }}>
@@ -1043,7 +1043,7 @@ setposition(100, 100)`}
                       </AccordionHeader>
                       <AccordionBody>
                         <p>Ubah posisi bidawang yang berada di titik awal menjadi ke titik (100,100) dengan perintah dibawah ini: </p>
-                        <pre><code>setposition(100,100)</code></pre>
+                        <pre><code>setposition 100 100</code></pre>
                       </AccordionBody>
                     </AccordionItem>
                     <AccordionItem eventKey="1b">
@@ -1053,7 +1053,7 @@ setposition(100, 100)`}
                       </AccordionHeader>
                       <AccordionBody>
                         <p>Lanjutkan pada baris baru untuk mengubah posisi bidawang lagi ke titik (0,100) dengan perintah dibawah ini: </p>
-                        <pre><code>setposition(0,100)</code></pre>
+                        <pre><code>setposition 0 100</code></pre>
                       </AccordionBody>
                     </AccordionItem>
                   </Accordion>
@@ -1119,7 +1119,7 @@ setposition(100, 100)`}
               </h4>
 
               <p>
-              Perintah `setposition()` atau `setpos()` digunakan untuk memindahkan Bidawang ke koordinat tertentu dalam ruang canvas. Perintah ini sangat berguna untuk mengatur posisi awal Bidawang atau membuat jalur menggambar yang kompleks dengan mengombinasikan pergerakan dan kontrol pena.
+              Perintah `setposition` atau `setpos` digunakan untuk memindahkan Bidawang ke koordinat tertentu dalam ruang canvas. Perintah ini sangat berguna untuk mengatur posisi awal Bidawang atau membuat jalur menggambar yang kompleks dengan mengombinasikan pergerakan dan kontrol pena.
               </p>
             </div>
             
@@ -1196,61 +1196,7 @@ setposition(100, 100)`}
                       height: 400, 
                       position: "relative", 
                     }}></div>
-                    {/* <img
-                          src={targetA}
-                          alt="Target Broccoli"
-                          style={{
-                            position: "absolute",
-                            left: "275px",
-                            top: "75px",
-                            width: "50px", // Sesuaikan ukuran jika perlu
-                            height: "50px",
-                          }}
-                      />
-                      <img
-                          src={targetB}
-                          alt="Target Broccoli"
-                          style={{
-                            position: "absolute",
-                            left: "175px",
-                            top: "75px",
-                            width: "50px", // Sesuaikan ukuran jika perlu
-                            height: "50px",
-                          }}
-                      />
-                      <img
-                          src={targetC}
-                          alt="Target Broccoli"
-                          style={{
-                            position: "absolute",
-                            left: "75px",
-                            top: "75px",
-                            width: "50px", // Sesuaikan ukuran jika perlu
-                            height: "50px",
-                          }}
-                      />
-                      <img
-                          src={targetD}
-                          alt="Target Broccoli"
-                          style={{
-                            position: "absolute",
-                            left: "75px",
-                            top: "275px",
-                            width: "50px", // Sesuaikan ukuran jika perlu
-                            height: "50px",
-                          }}
-                      /> */}
-                      {/* <img
-                          src={map}
-                          alt="Map"
-                          style={{
-                            position: "absolute",
-                            left: "0px",
-                            top: "0px",
-                            width: "400px", // Sesuaikan ukuran jika perlu
-                            height: "400px",
-                          }}
-                      /> */}
+                    
                       <img
                           src={tilemap}
                           alt="Map"
@@ -1262,6 +1208,7 @@ setposition(100, 100)`}
                             height: "400px",
                           }}
                       />
+                      
                       <img
                           src={maptitik}
                           alt="Map"

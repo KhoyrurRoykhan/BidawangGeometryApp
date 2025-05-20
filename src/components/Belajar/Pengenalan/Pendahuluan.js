@@ -6,7 +6,7 @@ import contohhasil from './assets/contoh-hasil.png';
 import { Accordion, Container, Row, Col, Button, Form, Alert, Card, Image, AccordionItem, AccordionHeader, AccordionBody } from 'react-bootstrap';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import canvas from './assets/koordinat-kartesius.jpg';
-import lingkungankerja from './assets/kode-editor.png'
+import lingkungankerja from './assets/lingkungan-kerja.jpg';
 import { BsArrowClockwise, BsCheckCircle } from 'react-icons/bs'; // Import ikon Bootstrap
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,6 +14,18 @@ import { jwtDecode } from "jwt-decode";
 import Swal from "sweetalert2";
 import "../assets/tutor-copy.css";
 import { FaBars } from "react-icons/fa";
+
+import option1a from './assets/1A.png';
+import option1b from './assets/1B.png';
+import option1c from './assets/1C.png';
+import option1d from './assets/1D.png';
+
+import option2a from './assets/2A.png';
+import option2b from './assets/2B.png';
+import option2c from './assets/2C.png';
+import option2d from './assets/2D.png';
+
+import soal3prog from './assets/turtle-forward.gif';
 
 const correctCommands = {
   '1a': 'forward(100)',
@@ -135,38 +147,50 @@ const Pendahuluan = () => {
 
   //Kuis
   
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [feedback, setFeedback] = useState({});
+  const [selectedAnswer, setSelectedAnswer] = useState('');
+  const [selectedAnswer2, setSelectedAnswer2] = useState('');
+  const [selectedAnswer3, setSelectedAnswer3] = useState('');
+  const [feedback, setFeedback] = useState({ question1: '', question2: '', question3: '' });
 
-  const handleAnswerChange = (question, answer) => {
-    setSelectedAnswer(answer);
+  const handleAnswerChange = (questionId, answer) => {
+    if (questionId === "question1") {
+      setSelectedAnswer(answer);
+    } else if (questionId === "question2") {
+      setSelectedAnswer2(answer);
+    } else if (questionId === "question3") {
+      setSelectedAnswer3(answer);
+    }
   };
+  
 
   const handleSubmit = async () => {
-    const correctAnswer = '(200, -150)';
-    const isCorrect = selectedAnswer === correctAnswer;
+    const isCorrect1 = selectedAnswer === 'option1a';
+    const isCorrect2 = selectedAnswer2 === 'option2b';
+    const isCorrect3 = selectedAnswer3 === 'forward 100';
   
     setFeedback({
-      question1: isCorrect ? 'Benar!' : 'Salah!',
+      question1: isCorrect1 ? 'Benar!' : 'Salah!',
+      question2: isCorrect2 ? 'Benar!' : 'Salah!',
+      question3: isCorrect3 ? 'Benar!' : 'Salah!',
     });
   
-    if (isCorrect && Number(progresBelajar) === 0){
+    const allCorrect = isCorrect1 && isCorrect2 && isCorrect3;
+  
+    if (allCorrect && Number(progresBelajar) === 0) {
       try {
         await axios.put(
           `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
           { progres_belajar: Number(progresBelajar) + 1 },
           {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
-        setProgresBelajar(prev => Number(prev) + 1); // Update state lokal juga
+        setProgresBelajar((prev) => Number(prev) + 1);
         Swal.fire({
           icon: 'success',
-          title: 'Jawaban Benar!',
+          title: 'Semua Jawaban Benar!',
           text: 'Materi selanjutnya sudah terbuka 😊',
-          confirmButtonColor: '#198754'
+          confirmButtonColor: '#198754',
         });
       } catch (error) {
         console.error("Gagal update progres:", error);
@@ -174,18 +198,20 @@ const Pendahuluan = () => {
           icon: 'error',
           title: 'Gagal Update Progres',
           text: 'Terjadi kesalahan saat memperbarui progres kamu.',
-          confirmButtonColor: '#d33'
+          confirmButtonColor: '#d33',
         });
       }
-    } else if (isCorrect) {
+    } else if (allCorrect) {
       Swal.fire({
         icon: 'info',
         title: 'Sudah Diselesaikan',
         text: 'Kamu sudah menyelesaikan materi ini sebelumnya.',
-        confirmButtonColor: '#198754'
+        confirmButtonColor: '#198754',
       });
     }
   };
+  
+  
   
   
 
@@ -866,48 +892,80 @@ const runit2 = (code, forceReset = false) => {
 
             <hr></hr>
 
-            <p>Canvas adalah area tempat Bidawang bergerak menggambar pola geometri secara interaktif. Bidawang tersebut dapat dikontrol untuk bergerak maju (forward), mundur (backward), berbelok ke kiri (left), berbelok ke kanan (right), dan melakukan berbagai aksi lainnya menggunakan perintah-perintah tertentu. Ukuran default canvas adalah 400x400 piksel. Berikut adalah contoh gambaran canvas dan contoh Bidwang bergerak dalam canvas:</p>
+            <p>Canvas adalah area tempat Bidawang bergerak menggambar pola geometri secara interaktif. Bidawang tersebut dapat dikontrol untuk bergerak maju (forward), mundur (backward), berbelok ke kiri (left), berbelok ke kanan (right), dan melakukan berbagai aksi lainnya menggunakan perintah-perintah tertentu. Untuk pembelajaran ini, canvas diatur dengan ukuran 400x400 piksel. Berikut adalah contoh gambaran canvas dan contoh Bidwang bergerak dalam canvas:</p>
             
-            <Row>
-              <Col xs={6} style={{textAlign:'center'}}>
-              <Image
-                src={canvas}
-                alt="Hasil left(120)"
-                width="470px"
-                height="470px"
-              />
-              <p>(Gambaran koordinat canvas)</p>
-              </Col>
+            <div>
+              <Row>
+                {/* Kolom kiri: Canvas dan gambar */}
+                <Col md={6} xs={12}>
+                  <div
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      height: '500px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {/* Gambar canvas sebagai latar */}
+                    <Image
+                      src={canvas}
+                      alt="Canvas"
+                      width="470px"
+                      height="470px"
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        zIndex: 1,
+                        opacity: 0.4,
+                      }}
+                    />
 
-              <Col xs={6}>
-              <div className="canvas-section" style={{width:400,height:400, marginTop:40, textAlign:'center'}}>
-                <div style={{textAlign:'center'}} id="mycanvas-contoh"></div>
-                
-              </div>
-              <br></br>
-              <p style={{paddingLeft:20}}>(Contoh pergerakan bidawang dalam canvas)</p>
-              </Col>
-            </Row>
-            
-              <br></br>
-            
-              <h5
-                style={{
-                  fontSize: '20px',
-                  fontWeight: 'bold',
-                  // color: '#198754',
-                  marginBottom: '8px',
-                }}
-              >
-                🔎 Penjelasan:
-              </h5>
-            <ul>
-              <li>Titik awal posisi Bidawang adalah (0, 0), yang berada di tengah canvas.</li>
-              <li>Batas pergerakan ke atas (sumbu Y positif) adalah 200, yang merupakan batas atas canvas.</li>
-              <li>Batas pergerakan ke bawah (sumbu Y negatif) adalah -200, yang merupakan batas bawah canvas.</li>
-              <li>Batas pergerakan ke kanan (sumbu X positif) adalah 200.</li>
-              <li>Batas pergerakan ke kiri (sumbu X negatif) adalah -200.</li>
-            </ul>
+                    {/* Canvas untuk Turtle */}
+                    <div
+                      id="mycanvas-contoh"
+                      style={{
+                        width: '400px',
+                        height: '400px',
+                        position: 'relative',
+                        zIndex: 2,
+                        marginTop: 10,
+                      }}
+                    ></div>
+                  </div>
+
+                  <p style={{ textAlign: 'center', marginTop: 10 }}>
+                    (Bidawang bergerak di atas gambar canvas)
+                  </p>
+                </Col>
+
+                {/* Kolom kanan: Penjelasan */}
+                <Col md={6} xs={12}>
+                  <div style={{ padding: '10px', marginTop:30 }}>
+                    <h5
+                      style={{
+                        fontSize: '20px',
+                        fontWeight: 'bold',
+                        marginBottom: '8px',
+                      }}
+                    >
+                      🔎 Penjelasan:
+                    </h5>
+                    <ul>
+                      <li>Titik awal posisi Bidawang adalah (0, 0), yang berada di tengah canvas.</li>
+                      <li>Batas pergerakan ke atas (sumbu Y positif) adalah 200, yang merupakan batas atas canvas.</li>
+                      <li>Batas pergerakan ke bawah (sumbu Y negatif) adalah -200, yang merupakan batas bawah canvas.</li>
+                      <li>Batas pergerakan ke kanan (sumbu X positif) adalah 200.</li>
+                      <li>Batas pergerakan ke kiri (sumbu X negatif) adalah -200.</li>
+                    </ul>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+
 
             {/* <br></br> */}
             <hr></hr>
@@ -940,7 +998,7 @@ const runit2 = (code, forceReset = false) => {
                 <Image
                   src={lingkungankerja}
                   alt="Tampilan Lingkungan Kerja"
-                  width="100%"
+                  width="75%"
                   style={{
                     borderRadius: '10px',
                     // boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
@@ -975,7 +1033,9 @@ const runit2 = (code, forceReset = false) => {
                   { label: '(C) Bidawang', desc: 'Objek yang digerakkan menggunakan perintah kode.' },
                   { label: '(D) Tombol "Run Code"', desc: 'Digunakan untuk menjalankan kode yang telah ditulis di text editor. Setelah ditekan, Bidawang akan menjalankan perintah dan menggambar sesuai instruksi.' },
                   { label: '(E) Tombol "Reset"', desc: 'Menghapus kode serta hasil gambar di canvas dan mengembalikan Bidawang ke posisi awal.' },
-                  { label: '(F) Output Log', desc: 'Digunakan untuk menampilkan output dari program yang dijalankan atau pesan error.' },
+                  { label: '(F) Tombol "Buka File"', desc: 'Digunakan untuk membuka dan memuat file kode dari perangkat pengguna ke dalam text editor.' },
+                  { label: '(G) Tombol "Simpan File"', desc: 'Digunakan untuk menyimpan kode yang telah ditulis di text editor ke dalam file di perangkat pengguna.' },
+                  { label: '(H) Output Log', desc: 'Digunakan untuk menampilkan output dari program yang dijalankan atau pesan error.' },
                 ].map((item, index) => (
                   <li key={index} style={{ marginBottom: '8px' }}>
                     <b style={{ color: 'black' }}>{item.label}</b>: {item.desc}
@@ -1008,7 +1068,7 @@ const runit2 = (code, forceReset = false) => {
                   marginBottom: '15px',
                 }}
               >
-                🐢 Contoh Menggerakkan Bidawang dalam Canvas
+                🐢 Aktivitas 1: Menggerakkan Bidawang di Dalam Canvas
               </h4>
               <p style={{ color: '#444', lineHeight: '1.6' }}>
                 Kita bisa menggerakkan <b>Bidawang</b> dengan berbagai perintah. Berikut adalah contoh perintah dasar untuk membuat
@@ -1022,11 +1082,11 @@ const runit2 = (code, forceReset = false) => {
                 <Col xs={3} style={{ fontSize: '15px' }}>
                   <Accordion activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
                   {[
-                    { step: '1a', title: 'Maju', code: 'forward(100)', description: 'Gerakkan Bidawang maju sejauh 100 langkah.' },
-                    { step: '1b', title: 'Berbelok ke kanan', code: 'right(90)', description: 'Putar Bidawang ke kanan sebesar 90 derajat.' },
-                    { step: '1c', title: 'Maju', code: 'forward(100)', description: 'Gerakkan Bidawang maju sejauh 100 langkah.' },
-                    { step: '1d', title: 'Berbelok ke kiri', code: 'left(45)', description: 'Putar Bidawang ke kiri sebesar 45 derajat.' },
-                    { step: '1e', title: 'Maju', code: 'forward(50)', description: 'Gerakkan Bidawang maju sejauh 50 langkah.' },
+                    { step: '1a', title: 'Maju', code: 'forward 100', description: 'Gerakkan Bidawang maju sejauh 100 langkah.' },
+                    { step: '1b', title: 'Berbelok ke kanan', code: 'right 90', description: 'Putar Bidawang ke kanan sebesar 90 derajat.' },
+                    { step: '1c', title: 'Maju', code: 'forward 100', description: 'Gerakkan Bidawang maju sejauh 100 langkah.' },
+                    { step: '1d', title: 'Berbelok ke kiri', code: 'left 45', description: 'Putar Bidawang ke kiri sebesar 45 derajat.' },
+                    { step: '1e', title: 'Maju', code: 'forward 50 ', description: 'Gerakkan Bidawang maju sejauh 50 langkah.' },
                   ].map((step, index) => {
                     const isDisabled = index > 0 && !completedSteps.includes(`1${String.fromCharCode(96 + index)}`); // contoh: 1b, 1c
                     const isActive = activeKey === step.step;
@@ -1101,62 +1161,163 @@ const runit2 = (code, forceReset = false) => {
               <hr/> 
 
               <Accordion className="mb-4" style={{ outline: "3px solid #198754", borderRadius: "10px" }}>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>
-              <h4 style={{ color: "#198754", fontWeight: "bold" }}>Pertanyaan</h4>
-            </Accordion.Header>
-            <Accordion.Body>
-              <Form>
-                <Form.Group controlId="question1">
-                  
-                  <Form.Label
-                    className="p-3 mb-3"
-                    style={{
-                      display: "block",
-                      backgroundColor: "#f8f9fa",
-                      // borderLeft: "5px solid #198754",
-                      // borderRight: "5px solid #198754",
-                      fontSize: "18px",
-                      // fontWeight: "bold",
-                      borderRadius: "5px"
-                    }}
-                  >
-                    Jika pergerakan Bidawang ke kanan adalah 200 dan ke bawah adalah -150, bagaimana koordinat tersebut dijelaskan?
-                  </Form.Label>
-                  <div>
-                    {["(200, 150)", "(-200, 150)", "(200, -150)", "(-200, -150)"].map((answer) => (
-                      <div key={answer} className="mb-2">
-                        <Button
-                          variant={selectedAnswer === answer ? "success" : "outline-success"}
-                          onClick={() => handleAnswerChange("question1", answer)}
-                          className="w-100 p-2"
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>
+                    <h4 style={{ color: "#198754", fontWeight: "bold" }}>Pertanyaan</h4>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <Form>
+                      {/* SOAL 1 */}
+                      <Form.Group controlId="question1">
+                        <Form.Label
+                          className="p-3 mb-3"
                           style={{
-                            fontSize: "16px",
-                            backgroundColor: selectedAnswer === answer ? "#198754" : "",
-                            borderColor: "#198754"
+                            display: "block",
+                            backgroundColor: "#f8f9fa",
+                            fontSize: "18px",
+                            borderRadius: "5px",
                           }}
                         >
-                          {answer}
+                          1. Jika posisi Bidawang berada di titik <strong>(0, 0)</strong> pada canvas, bagaimana gambar posisi Bidawang pada canvas?
+                        </Form.Label>
+
+                        <Row>
+                          {[
+                            { key: 'option1a', img: option1a },
+                            { key: 'option1b', img: option1b },
+                            { key: 'option1c', img: option1c },
+                            { key: 'option1d', img: option1d },
+                          ].map(({ key, img }) => (
+                            <Col xs={6} md={3} key={key} className="mb-3 text-center">
+                              <Image
+                                src={img}
+                                alt={key}
+                                onClick={() => handleAnswerChange("question1", key)}
+                                thumbnail
+                                style={{
+                                  cursor: "pointer",
+                                  border: selectedAnswer === key ? "4px solid #198754" : "2px solid #ccc",
+                                  borderRadius: "10px",
+                                }}
+                              />
+                            </Col>
+                          ))}
+                        </Row>
+
+                        {feedback.question1 && (
+                          <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+                            {feedback.question1}
+                          </Alert>
+                        )}
+                      </Form.Group>
+
+                      <br></br>
+
+                      {/* SOAL 2 */}
+                      <Form.Group controlId="question2">
+                        <Form.Label
+                          className="p-3 mb-3 mt-4"
+                          style={{
+                            display: "block",
+                            backgroundColor: "#f8f9fa",
+                            fontSize: "18px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          2. Tombol mana yang digunakan untuk <strong>menghapus kode</strong> serta <strong>hasil gambar</strong> di canvas dan <strong>mengembalikan Bidawang ke posisi awal?</strong>
+                        </Form.Label>
+
+                        <Row>
+                          {[
+                            { key: 'option2a', img: option2a },
+                            { key: 'option2b', img: option2b }, // Jawaban benar
+                            { key: 'option2c', img: option2c },
+                            { key: 'option2d', img: option2d },
+                          ].map(({ key, img }) => (
+                            <Col xs={6} md={3} key={key} className="mb-3 text-center">
+                              <Image
+                                src={img}
+                                alt={key}
+                                onClick={() => handleAnswerChange("question2", key)}
+                                thumbnail
+                                style={{
+                                  cursor: "pointer",
+                                  border: selectedAnswer2 === key ? "4px solid #198754" : "2px solid #ccc",
+                                  borderRadius: "10px",
+                                }}
+                              />
+                            </Col>
+                          ))}
+                        </Row>
+
+                        {feedback.question2 && (
+                          <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+                            {feedback.question2}
+                          </Alert>
+                        )}
+                      </Form.Group>
+
+                      <br></br>
+
+                      {/* SOAL 3 */}
+                      <Form.Group controlId="question3">
+                        <Form.Label
+                          className="p-3 mb-3 mt-4"
+                          style={{
+                            display: "block",
+                            backgroundColor: "#f8f9fa",
+                            fontSize: "18px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          3. Untuk menggerakkan Bidawang seperti di bawah ini, kode apa yang harus dijalankan?
+                        </Form.Label>
+
+                        <div className="text-center mb-4">
+                          <Image
+                            src={soal3prog}
+                            alt="Gerakan Bidawang"
+                            style={{ maxWidth: "400px", height: "auto", borderRadius: "10px" }}
+                          />
+                        </div>
+
+                        {["forward 100", "backward 100", "left 90", "right 90"].map((answer) => (
+                          <div key={answer} className="mb-2">
+                            <Button
+                              variant={selectedAnswer3 === answer ? "success" : "outline-success"}
+                              onClick={() => handleAnswerChange("question3", answer)}
+                              className="w-100 p-2"
+                              style={{
+                                fontSize: "16px",
+                                backgroundColor: selectedAnswer3 === answer ? "#198754" : "",
+                                borderColor: "#198754",
+                              }}
+                            >
+                              {answer}
+                            </Button>
+                          </div>
+                        ))}
+
+                        {feedback.question3 && (
+                          <Alert variant={feedback.question3 === "Benar!" ? "success" : "danger"} className="mt-3">
+                            {feedback.question3}
+                          </Alert>
+                        )}
+                      </Form.Group>
+
+                      {/* TOMBOL SUBMIT */}
+                      <div className="text-center">
+                        <Button variant="primary" onClick={handleSubmit} className="mt-4 p-2" style={{ fontSize: "18px" }}>
+                          Periksa Jawaban
                         </Button>
                       </div>
-                    ))}
-                  </div>
+                    </Form>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
 
-                </Form.Group>
-                {feedback.question1 && (
-                  <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
-                    {feedback.question1}
-                  </Alert>
-                )}
-                <div className="text-center">
-                  <Button variant="primary" onClick={handleSubmit} className="mt-3 p-2" style={{ fontSize: "18px" }}>
-                    Periksa Jawaban
-                  </Button>
-                </div>
-              </Form>
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>     
+
+     
           </div>
         </div>
         

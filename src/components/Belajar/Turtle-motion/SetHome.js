@@ -880,14 +880,14 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami cara mengembalikan posisi Bidawang ke titik awal menggunakan <code>home()</code>.
+              Memahami cara mengembalikan posisi Bidawang ke titik awal menggunakan <code>home</code>.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Perintah `home()` digunakan untuk memindahkan Bidawang kembali ke posisi awalnya, yaitu titik (0, 0). Selain memindahkan Bidawang ke posisi awal, perintah ini juga mengatur arah Bidawang menghadap ke timur (0 derajat). Ini berguna ketika Anda ingin memulai kembali menggambar dari posisi awal. 
+            Perintah `home` digunakan untuk memindahkan Bidawang kembali ke posisi awalnya, yaitu titik (0, 0). Selain memindahkan Bidawang ke posisi awal, perintah ini juga mengatur arah Bidawang menghadap ke timur (0 derajat). Ini berguna ketika Anda ingin memulai kembali menggambar dari posisi awal. 
             </p>
 
             <h5>Contoh:</h5>
@@ -896,12 +896,12 @@ for i in range(100):
               <Col md={6}>
                 <CodeMirror
                   value={`# Pindahkan turtle ke beberapa posisi
-forward(100)
-left(90)
-forward(150)
+forward 100
+left 90
+forward 150
                 
 # Kembali ke posisi awal
-home()`}
+home`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -916,7 +916,7 @@ home()`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>home()</code> akan membuat Bidawang kembali ke posisi awal setelah menjalankan perintah lainnya.</p>
+            <p><b>Hasil:</b> Fungsi <code>home</code> akan membuat Bidawang kembali ke posisi awal setelah menjalankan perintah lainnya.</p>
             
             <br></br>
 
@@ -940,10 +940,10 @@ home()`}
                 paddingLeft: '10px',
                 marginBottom: '15px',
               }}>
-                Latihan Menggunakan home() 🐢
+                Latihan Menggunakan home 🐢
               </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>home()</code>, ikuti instruksi dibawah ini
+            Untuk lebih mudah memahami cara kerja perintah <code>home</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -957,9 +957,9 @@ home()`}
                       <p>Buat bidawang menjadi bergerak ke arah mana saja, sebagai contoh gunakan perintah di bawah ini untuk menggerakan bidawang: </p>
                       <pre>
                         <code>
-{`forward(100)
-right(45)
-forward(200)`}
+{`forward 100
+right 45
+forward 200`}
                         </code>
                       </pre>
 
@@ -973,7 +973,7 @@ forward(200)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Selanjutnya ketikan perintah di bawah ini pada baris baru untuk mengembalikan bidawang ke posisi awal.</p>
-                      <pre><code>home()</code></pre>
+                      <pre><code>home</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1034,7 +1034,7 @@ forward(200)`}
                 Kesimpulan
                 </h4>
               <p>
-              Perintah <b>home()</b> memudahkan untuk kembali ke posisi awal (0, 0) dan mengatur arah Bidawang ke posisi semula. Ini berguna untuk memulai kembali proses menggambar dari titik awal. 
+              Perintah <b>home</b> memudahkan untuk kembali ke posisi awal (0, 0) dan mengatur arah Bidawang ke posisi semula. Ini berguna untuk memulai kembali proses menggambar dari titik awal. 
               </p>
             </div>
             

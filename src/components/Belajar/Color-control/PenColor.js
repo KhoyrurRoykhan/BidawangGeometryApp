@@ -888,7 +888,7 @@ for i in range(100):
             <hr/>
 
             <p>
-            Fungsi <code>pencolor("<i>warna</i>")</code> fungsi yang digunakan untuk mengontrol warna garis pada gambar yang dihasilkan oleh bidawang. Parameter warna bisa berupa nama warna (contoh: "red") atau kode warna RGB (contoh: "FF0000")</p>
+            Fungsi <code>pencolor "<i>warna</i>"</code> fungsi yang digunakan untuk mengontrol warna garis pada gambar yang dihasilkan oleh bidawang. Parameter warna bisa berupa nama warna (contoh: "red") atau kode warna RGB (contoh: "FF0000")</p>
 
 
             <br></br>
@@ -899,17 +899,17 @@ for i in range(100):
               <Col md={6}>
                 <CodeMirror
                   value={`# Mengatur warna garis menjadi biru 
-pencolor("blue")
+pencolor "blue"
 
 # Membuat persegi 
-forward(100) 
-left(90) 
-forward(100) 
-left(90) 
-forward(100) 
-left(90) 
-forward(100)
-left(90)`}
+forward 100
+left 90
+forward 100
+left 90
+forward 100
+left 90
+forward 10
+left 90`}
                   height="340px"
                   theme="light"
                   extensions={[python()]}
@@ -925,7 +925,7 @@ left(90)`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>pencolor("blue")</code> akan membuat warna pen jadi biru, jadi ketika bidawang bergerak menggambar persegi maka warna dari garis-garis yang membentuk persegi akan berwarna biru.</p>
+            <p><b>Hasil:</b> Fungsi <code>pencolor "blue"</code> akan membuat warna pen jadi biru, jadi ketika bidawang bergerak menggambar persegi maka warna dari garis-garis yang membentuk persegi akan berwarna biru.</p>
             
             <br></br>
             <hr />
@@ -948,10 +948,10 @@ left(90)`}
                   paddingLeft: '10px',
                   marginBottom: '15px',
                 }}>
-                  Latihan Menggunakan pencolor() 🐢
+                  Latihan Menggunakan pencolor 🐢
                 </h4>
               <p>
-              Untuk lebih mudah memahami cara kerja perintah <code>pencolor()</code>, ikuti instruksi dibawah ini:
+              Untuk lebih mudah memahami cara kerja perintah <code>pencolor</code>, ikuti instruksi dibawah ini:
               </p>
               <Row>
                 <Col xs={3} style={{ fontSize: 15 }}>
@@ -963,7 +963,7 @@ left(90)`}
                       </AccordionHeader>
                       <AccordionBody>
                         <p>Ubah warna pena menjadi biru dengan perintah dibawah ini:</p>
-                        <pre><code>pencolor("blue")</code></pre>
+                        <pre><code>pencolor "blue"</code></pre>
                       </AccordionBody>
                     </AccordionItem>
                     <AccordionItem eventKey="1b">
@@ -973,7 +973,7 @@ left(90)`}
                       </AccordionHeader>
                       <AccordionBody>
                         <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk menggerakan bidawang maju 100 langkah:</p>
-                        <pre><code>forward(100)</code></pre>
+                        <pre><code>forward 100</code></pre>
                       </AccordionBody>
                     </AccordionItem>
                     <AccordionItem eventKey="1c">
@@ -983,7 +983,7 @@ left(90)`}
                       </AccordionHeader>
                       <AccordionBody>
                         <p>Ubah lagi warna pena menjadi merah:</p>
-                        <pre><code>pencolor("red")</code></pre>
+                        <pre><code>pencolor "red"</code></pre>
                       </AccordionBody>
                     </AccordionItem>
                     <AccordionItem eventKey="1d">
@@ -993,7 +993,7 @@ left(90)`}
                       </AccordionHeader>
                       <AccordionBody>
                         <p>Gerakkan bidawang maju lagi sejauh 100 langkah:</p>
-                        <pre><code>forward(100)</code></pre>
+                        <pre><code>forward 100</code></pre>
                       </AccordionBody>
                     </AccordionItem>
                   </Accordion>
@@ -1056,7 +1056,7 @@ left(90)`}
                   Kesimpulan
                 </h4>
               <p>
-                  Perintah <code>pencolor()</code> digunakan untuk mengatur warna garis lintasan yang dilalui oleh bidawang. 
+                  Perintah <code>pencolor</code> digunakan untuk mengatur warna garis lintasan yang dilalui oleh bidawang. 
               </p>
             </div>
             

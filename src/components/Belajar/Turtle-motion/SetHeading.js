@@ -144,7 +144,7 @@ const SetHeading = () => {
         attributes: {
           innerHTML: `
             <p>Bidawang saat ini berada di tengah layar (titik <b>(0, 0)</b>), sedangkan kepiting berada di suatu arah tertentu.</p>
-            <p>Tugas kamu adalah <b>mengubah arah Bidawang</b> agar menghadap ke arah kepiting menggunakan perintah <b>setheading()</b>.</p>
+            <p>Tugas kamu adalah <b>mengubah arah Bidawang</b> agar menghadap ke arah kepiting menggunakan perintah <b>setheading</b>.</p>
             <p>Jika arah yang kamu masukkan benar, kepiting akan <b>berpindah tempat</b>. Tantangan akan selesai setelah kamu berhasil <b>menebak semua arah kepiting</b> dengan benar.</p>
           `
         }
@@ -951,14 +951,14 @@ const broccoliPositions = [
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami cara mengatur arah Bidawang menggunakan setheading().
+              Memahami cara mengatur arah Bidawang menggunakan setheading.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Perintah <b>setheading()</b> digunakan untuk mengatur arah Bidawang ke sudut tertentu, diukur dalam derajat. Sudut dihitung berlawanan arah jarum jam, dimulai dari arah timur (0 derajat). Dengan menggunakan setheading() dapat mengontrol ke mana bidawang akan menghadap sebelum bergerak.
+            Perintah <b>setheading</b> digunakan untuk mengatur arah Bidawang ke sudut tertentu, diukur dalam derajat. Sudut dihitung berlawanan arah jarum jam, dimulai dari arah timur (0 derajat). Dengan menggunakan setheading dapat mengontrol ke mana bidawang akan menghadap sebelum bergerak.
             </p>
 
             <ul>
@@ -969,17 +969,17 @@ const broccoliPositions = [
             </ul>
 
             <h5>Contoh:</h5>
-            <p>Mengatur arah pergerakan bidawang dengan <code>setheading()</code>.</p>
+            <p>Mengatur arah pergerakan bidawang dengan <code>setheading</code>.</p>
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
                   value={`# Atur arah turtle menghadap utara (90 derajat)
-setheading(90)
-forward(100)  # Bergerak maju ke atas
+setheading 90
+forward 100  # Bergerak maju ke atas
                   
 # Atur arah turtle menghadap barat (180 derajat)
-setheading(180)
-forward(100)  # Bergerak maju ke kiri`}
+setheading 180
+forward 100  # Bergerak maju ke kiri`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -994,7 +994,7 @@ forward(100)  # Bergerak maju ke kiri`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> <code>setheading(90)</code> akan membuat Bidawang menghadap ke utara (atas layar) dan <code>setheading(180)</code> akan membuat bidawang menghadap ke barat (kiri layar).</p>
+            <p><b>Hasil:</b> <code>setheading 90</code> akan membuat Bidawang menghadap ke utara (atas layar) dan <code>setheading 180</code> akan membuat bidawang menghadap ke barat (kiri layar).</p>
             
             <br></br>
 
@@ -1018,10 +1018,10 @@ forward(100)  # Bergerak maju ke kiri`}
                 paddingLeft: '10px',
                 marginBottom: '15px',
               }}>
-                Latihan Menggunakan setheading() 🐢
+                Latihan Menggunakan setheading 🐢
               </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>setheading()</code>, ikuti instruksi dibawah ini
+            Untuk lebih mudah memahami cara kerja perintah <code>setheading</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
               <Col xs={3} style={{ fontSize: 15 }}>
@@ -1033,7 +1033,7 @@ forward(100)  # Bergerak maju ke kiri`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Ubah arah bidawang menjadi menghadap ke arah utara dengan menggunakan perintah dibawah ini: </p>
-                      <pre><code>setheading(90)</code></pre>
+                      <pre><code>setheading 90</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1b">
@@ -1043,7 +1043,7 @@ forward(100)  # Bergerak maju ke kiri`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Lalu lanjutkan pada baris baru untuk membuat bidawang maju sejauh 100 langkah dengan perintah dibawah ini: </p>
-                      <pre><code>forward(100)</code></pre>
+                      <pre><code>forward 100</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1c">
@@ -1053,7 +1053,7 @@ forward(100)  # Bergerak maju ke kiri`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Lanjutkan lagi dengan mengubah arah bidawang menjadi menghadap ke timur dengan perintah dibawah ini: </p>
-                      <pre><code>setheading(0)</code></pre>
+                      <pre><code>setheading 0</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1d">
@@ -1063,7 +1063,7 @@ forward(100)  # Bergerak maju ke kiri`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Buat bidawang maju sejauh 50 langkah lagi. </p>
-                      <pre><code>forward(50)</code></pre>
+                      <pre><code>forward 50</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                 </Accordion>
@@ -1126,7 +1126,7 @@ forward(100)  # Bergerak maju ke kiri`}
                 Kesimpulan
               </h4>
             <p>
-            Perintah <b>setheading()</b> sangat berguna untuk mengontrol arah objek dengan presisi. Dengan mengatur sudut arah secara langsung, Anda dapat membuat pola yang kompleks dan menggambar dengan lebih terstruktur.
+            Perintah <b>setheading</b> sangat berguna untuk mengontrol arah objek dengan presisi. Dengan mengatur sudut arah secara langsung, Anda dapat membuat pola yang kompleks dan menggambar dengan lebih terstruktur.
             </p>
             </div>
 
@@ -1136,7 +1136,7 @@ forward(100)  # Bergerak maju ke kiri`}
           <Accordion.Item eventKey="1">
             <Accordion.Header><h4 style={{fontWeight: "bold" }}>Tantangan</h4></Accordion.Header>
             <Accordion.Body>
-              <p>Selesaikan tantangan dengan mengarahkan bidawang ke arah cacing menggunakan <code>setheading()</code>.</p>
+              <p>Selesaikan tantangan dengan mengarahkan bidawang ke arah cacing menggunakan <code>setheading</code>.</p>
               <Button className='mb-2' variant="info" onClick={showHint} style={{ color: 'white', fontWeight: 'bold' }}>
                         Petunjuk
                     </Button>

@@ -140,7 +140,7 @@ const ForwardBackward = () => {
         attributes: {
           innerHTML: `
             <p>Tugas kamu adalah menggerakkan Bidawang menuju ujung sungai tanpa menabrak dinding sungai.</p>
-            <p>Gunakan perintah <b>forward()</b> untuk maju, dan kombinasikan dengan <b>left()</b> atau <b>right()</b> untuk berbelok mengikuti alur sungai.</p>
+            <p>Gunakan perintah <b>forward</b> untuk maju, dan kombinasikan dengan <b>left</b> atau <b>right</b> untuk berbelok mengikuti alur sungai.</p>
             <p>Untuk membantumu mengetahui panjang sungai dan sudut belokan yang tepat, perhatikan <i>garis bantu</i> yang ada pada canvas.</p>
           `
         }
@@ -1017,23 +1017,23 @@ const resetCodeChallanges = () => {
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-                Memahami cara menggerakkan Bidawang ke depan dan ke belakang menggunakan forward() dan backward().
+                Memahami cara menggerakkan Bidawang ke depan dan ke belakang menggunakan forward dan backward.
               </li>
             </ol>
 
             <hr/>
 
             <p>
-            Perintah `forward()` dan `backward()` digunakan untuk menggerakkan Bidawang ke arah depan (forward) searah arah yang sedang dihadapi Bidawang dan belakang (backward) berlawanan arah dengan yang sedang dihadapi Bidawang, berdasarkan jarak yang ditentukan dalam satuan piksel (pixel).
+            Perintah `forward` dan `backward` digunakan untuk menggerakkan Bidawang ke arah depan (forward) searah arah yang sedang dihadapi Bidawang dan belakang (backward) berlawanan arah dengan yang sedang dihadapi Bidawang, berdasarkan jarak yang ditentukan dalam satuan piksel (pixel).
             </p>
 
-            <h5>1. forward(<i>jarak</i>)</h5>
+            <h5>1. forward</h5>
             <p>Menggerakkan Bidawang ke depan sejauh jarak yang ditentukan (dalam piksel), dalam arah yang sedang dihadapi oleh Bidawang.</p>
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
                   value={`# Gerakkan turtle ke depan sejauh 100 piksel
-forward(100)`}
+forward 100 `}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1052,13 +1052,13 @@ forward(100)`}
             
             <br></br>
 
-            <h5>2. backward(<i>jarak</i>)</h5>
+            <h5>2. backward</h5>
             <p>Menggerakkan Bidawang ke belakang sejauh jarak yang ditentukan (dalam piksel), dalam arah berlawanan dengan arah yang sedang dihadapi oleh bidawang.</p>
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
                   value={`# Gerakkan turtle ke belakang sejauh 150 piksel
-backward(150)`}
+backward 150`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1098,10 +1098,10 @@ backward(150)`}
                   marginBottom: '15px',
                 }}
               >
-                Latihan Menggunakan forward() dan backward() 🐢
+                Latihan Menggunakan forward dan backward 🐢
               </h4>
               <p>
-              Untuk lebih mudah memahami cara kerja perintah <code>forward()</code> dan <code>backward()</code>, ikuti instruksi dibawah ini
+              Untuk lebih mudah memahami cara kerja perintah <code>forward</code> dan <code>backward</code>, ikuti instruksi dibawah ini
               </p>
               <Row>
                 <Col xs={3} style={{ fontSize: 15 }}>
@@ -1113,7 +1113,7 @@ backward(150)`}
                       </AccordionHeader>
                       <AccordionBody>
                         <p>Gerakkan Bidawang maju sejauh 100 langkah dengan perintah dibawah ini:</p>
-                        <pre><code>forward(100)</code></pre>
+                        <pre><code>forward 100</code></pre>
                       </AccordionBody>
                     </AccordionItem>
                     <AccordionItem eventKey="1b">
@@ -1123,7 +1123,7 @@ backward(150)`}
                       </AccordionHeader>
                       <AccordionBody>
                         <p>Kemudian lanjutkan lagi pada baris baru dengan perintah dibawah ini untuk membuat Bidawang mundur 50 langkah: </p>
-                        <pre><code>backward(50)</code></pre>
+                        <pre><code>backward 50</code></pre>
                       </AccordionBody>
                     </AccordionItem>
                     <AccordionItem eventKey="1c">
@@ -1133,7 +1133,7 @@ backward(150)`}
                       </AccordionHeader>
                       <AccordionBody>
                         <p>Gerakkan lagi bidawang mundur sejauh 100 langkah:</p>
-                        <pre><code>backward(100)</code></pre>
+                        <pre><code>backward 100</code></pre>
                       </AccordionBody>
                     </AccordionItem>
                   </Accordion>
@@ -1196,7 +1196,7 @@ backward(150)`}
                 Kesimpulan
               </h4>
               <p>
-                Perintah <code>forward()</code> dan <code>backward()</code> digunakan untuk menggerakkan Bidawang ke depan atau ke belakang sejauh jarak yang ditentukan dalam piksel. Perintah <code>forward()</code> dan <code>backward()</code> sering dikombinasikan dengan perintah rotasi seperti `left()` dan `right()` untuk membuat pola atau gambar yang lebih kompleks.
+                Perintah <code>forward</code> dan <code>backward</code> digunakan untuk menggerakkan Bidawang ke depan atau ke belakang sejauh jarak yang ditentukan dalam piksel. Perintah <code>forward</code> dan <code>backward</code> sering dikombinasikan dengan perintah rotasi seperti `left` dan `right` untuk membuat pola atau gambar yang lebih kompleks.
               </p>
             </div>
 

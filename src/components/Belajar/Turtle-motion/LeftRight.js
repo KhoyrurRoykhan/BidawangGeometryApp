@@ -142,7 +142,7 @@ const LeftRight = () => {
         element: "div",
         attributes: {
           innerHTML: `
-            <p>Tugas kamu adalah menebak arah kepiting dan mengarahkan Bidawang ke arah yang tepat menggunakan <b>satu perintah saja</b>, yaitu <b>left()</b> atau <b>right()</b>.</p>
+            <p>Tugas kamu adalah menebak arah kepiting dan mengarahkan Bidawang ke arah yang tepat menggunakan <b>satu perintah saja</b>, yaitu <b>left</b> atau <b>right</b>.</p>
             <p>Jika jawabanmu benar, kepiting akan <b>berpindah ke posisi lain</b>. Tantangan akan selesai setelah kamu berhasil menebak <b>semua arah kepiting</b> dengan benar.</p>
           `
         }
@@ -1027,7 +1027,7 @@ const resetCodeChallanges = () => {
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-                Memahami cara mengendalikan arah rotasi Bidawang menggunakan left() dan right().
+                Memahami cara mengendalikan arah rotasi Bidawang menggunakan left dan right.
               </li>
             </ol>
 
@@ -1035,17 +1035,17 @@ const resetCodeChallanges = () => {
             <hr />
 
             <p>
-              Perintah left() dan right() digunakan untuk memutar arah gerakan Bidawang berdasarkan sudut derajat yang diberikan, tanpa harus memindahkan posisinya. Ini berguna untuk mengatur arah Bidawang sebelum melanjutkan dengan perintah lainnya seperti bergerak.
+              Perintah left dan right digunakan untuk memutar arah gerakan Bidawang berdasarkan sudut derajat yang diberikan, tanpa harus memindahkan posisinya. Ini berguna untuk mengatur arah Bidawang sebelum melanjutkan dengan perintah lainnya seperti bergerak.
             </p><br />
             
-            <h5>1. left(<i>derajat</i>)</h5>
+            <h5>1. left</h5>
             <p>Memutar arah Bidawang berlawanan arah jarum jam (kiri) sebesar derajat yang ditentukan.</p>
             <p>Contoh:</p>
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
                   value={`# Putar Bidawang ke kiri sejauh 120 derajat 
-left(120)`}
+left 120 `}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1064,14 +1064,14 @@ left(120)`}
 
             <br/>
 
-            <h5>2. right(<i>derajat</i>)</h5>
+            <h5>2. right</h5>
             <p>Memutar arah Bidawang searah jarum jam (kanan) sebesar derajat yang ditentukan.</p>
             <p>Contoh:</p>
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
                   value={`# Putar Bidawang ke kanan sejauh 90 derajat 
-right(90)`}
+right 90`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1113,10 +1113,10 @@ right(90)`}
                 marginBottom: '15px',
               }}
             >
-              Latihan menggunakan left() dan right() 🐢 
+              Latihan menggunakan left dan right 🐢 
             </h4>
             <p style={{ color: '#444', lineHeight: '1.6' }}>
-              Untuk lebih mudah memahami cara kerja perintah <code>left()</code> dan <code>right()</code>, ikuti instruksi di bawah ini.
+              Untuk lebih mudah memahami cara kerja perintah <code>left</code> dan <code>right</code>, ikuti instruksi di bawah ini.
             </p>
 
             <Row>
@@ -1129,7 +1129,7 @@ right(90)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Buat bidawang berputar 90 derajat ke kiri dengan perintah di bawah ini:</p>
-                      <pre><code>left(90)</code></pre>
+                      <pre><code>left 90</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   <AccordionItem eventKey="1b">
@@ -1139,7 +1139,7 @@ right(90)`}
                     </AccordionHeader>
                     <AccordionBody>
                       <p>Kemudian lanjutkan pada baris baru dengan perintah dibawah ini untuk memutar Bidawang ke kanan sebesar 180 derajat:</p>
-                      <pre><code>right(180)</code></pre>
+                      <pre><code>right 180</code></pre>
                     </AccordionBody>
                   </AccordionItem>
                   
@@ -1204,7 +1204,7 @@ right(90)`}
               Kesimpulan
             </h4>
             <p>
-              Perintah `left()` dan `right()` memungkinkan pengaturan arah gerakan bidawang dengan rotasi ke kiri atau ke kanan berdasarkan derajat yang ditentukan. Perintah ini sangat berguna untuk kontrol arah sebelum melakukan perintah lain dalam pembuatan gambar atau pola.
+              Perintah `left` dan `right` memungkinkan pengaturan arah gerakan bidawang dengan rotasi ke kiri atau ke kanan berdasarkan derajat yang ditentukan. Perintah ini sangat berguna untuk kontrol arah sebelum melakukan perintah lain dalam pembuatan gambar atau pola.
             </p>
             </div>
             
@@ -1218,7 +1218,7 @@ right(90)`}
                 <Accordion.Header><h4 style={{ fontWeight: "bold" }}>Tantangan</h4></Accordion.Header>
                 <Accordion.Body>
                   <p style={{ fontSize: "16px", marginBottom: "10px" }}>
-                    Selesaikan tantangan dengan perintah <code>left()</code> dan <code>right()</code>. Klik petunjuk untuk bantuan.
+                    Selesaikan tantangan dengan perintah <code>left</code> dan <code>right</code>. Klik petunjuk untuk bantuan.
                   </p>
                   <Button className='mb-2' variant="info" onClick={showHint} style={{ color: 'white', fontWeight: 'bold' }}>
                         Petunjuk
@@ -1324,7 +1324,7 @@ right(90)`}
                       borderRadius: "5px"
                     }}
                   >
-                    1. Apa perbedaan utama antara perintah left() dan right()?
+                    1. Apa perbedaan utama antara perintah left dan right?
                   </Form.Label>
 
                   <div className="row d-flex">
