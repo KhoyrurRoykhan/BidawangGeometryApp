@@ -914,7 +914,7 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Mengetahui cara memeriksa arah pergerakan dari bidawang menggunakan heading.
+              Memahami cara memeriksa arah pergerakan dari bidawang menggunakan heading.
               </li>
             </ol>
 

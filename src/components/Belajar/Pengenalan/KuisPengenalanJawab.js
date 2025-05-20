@@ -7,54 +7,64 @@ import { useNavigate } from "react-router-dom";
 
 const quizData = [
   {
-    question: 'Jika pergerakan Bidawang ke kanan adalah 200 dan ke bawah adalah -150, bagaimana koordinat tersebut dijelaskan?',
+    question: 'Apa yang dimaksud dengan canvas?',
     options: [
-      '(200, 150)',
-      '(-200, 150)',
-      '(200, -150)',
-      '(-200, -250)'
+      'tempat menulis kode',
+      'tombol menyimpan file',
+      'Area tempat Bidawang bergerak dan menggambar',
+      'Tempat menampilkan output atau pesan error.'
     ],
-    answer: '(200, -150)'
+    answer: 'Area tempat Bidawang bergerak dan menggambar'
   },
   {
-    question: 'Apa fungsi dari perintah left 90 dalam menggerakkan Bidawang?',
+    question: 'Di titik manakah awal posisi bidawang?',
     options: [
-      'Membuat Bidawang bergerak maju 90 langkah',
-      'Memutar Bidawang ke kanan 90 derajat',
-      'Memutar Bidawang ke kiri 90 derajat',
-      'Mengembalikan Bidawang ke posisi awal'
+      '(200, 200)',
+      '(0, 0)',
+      '(-200, -200)',
+      '(100, 100)'
     ],
-    answer: 'Memutar Bidawang ke kiri 90 derajat'
+    answer: '(0, 0)'
   },
   {
-    question: 'Apa arti dari titik koordinat (0, 0) pada canvas?',
+    question: 'Perintah apa yang digunakan untuk menggerakkan Bidawang ke depan?',
     options: [
-      'Pojok kanan atas canvas',
-      'Titik tengah canvas dan posisi awal Bidawang',
-      'Titik akhir pergerakan Bidawang',
-      'Titik acuan sumbu Y'
+      'left',
+      'backward',
+      'run',
+      'forward'
     ],
-    answer: 'Titik tengah canvas dan posisi awal Bidawang'
+    answer: 'forward'
   },
   {
-    question: 'Jika Bidawang diberikan perintah forward 100 lalu right 90 dan forward 50, maka posisi akhirnya adalah:',
+    question: 'Komponen lingkungan kerja manakah yang digunakan untuk menjalankan kode?',
     options: [
-      '(100, 50)',
-      '(50, 100)',
-      '(100, -50)',
-      '(150, 0)'
+      'Text Editor',
+      'Tombol "Run Code"',
+      'Tombol "Reset"',
+      'Output Log'
     ],
-    answer: '(100, -50)'
+    answer: 'Tombol "Run Code"'
   },
   {
-    question: 'Apa fungsi dari tombol “Reset” dalam lingkungan kerja Bidawang?',
+    question: 'Tombol "Reset" digunakan untuk...',
     options: [
-      'Memutar Bidawang ke kiri',
-      'Menjalankan kode dari awal',
-      'Menghapus hasil gambar dan mengembalikan Bidawang ke titik (0, 0)',
-      'Menyimpan hasil gambar'
+      'Menyimpan file ke komputer',
+      'Menghapus perintah forward',
+      'Menghapus hasil gambar dan mengulang dari awal',
+      'Menjalankan kode Bidawang'
     ],
-    answer: 'Menghapus hasil gambar dan mengembalikan Bidawang ke titik (0, 0)'
+    answer: 'Menghapus hasil gambar dan mengulang dari awal'
+  },
+  {
+    question: 'Di lingkungan kerja Bidawang, tempat kita mengetikan perintah disebut ...',
+    options: [
+      'Output Log',
+      'Canvas',
+      'Text Editor',
+      'Kode Button'
+    ],
+    answer: 'Text Editor'
   },
   {
     question: 'Apa yang terjadi jika Bidawang diberi perintah right 180?',
@@ -67,24 +77,14 @@ const quizData = [
     answer: 'Bidawang berbalik arah ke belakang'
   },
   {
-    question: 'Titik (200, -200) berada di bagian mana dari canvas?',
+    question: 'Apa fungsi dari perintah left 90 dalam menggerakkan Bidawang?',
     options: [
-      'Pojok kiri atas',
-      'Pusat canvas',
-      'Pojok kanan bawah',
-      'Pojok kiri bawah'
+      'Membuat Bidawang bergerak maju 90 langkah',
+      'Memutar Bidawang ke kanan 90 derajat',
+      'Memutar Bidawang ke kiri 90 derajat',
+      'Mengembalikan Bidawang ke posisi awal'
     ],
-    answer: 'Pojok kanan bawah'
-  },
-  {
-    question: 'Komponen manakah yang digunakan untuk mengetikkan perintah kode?',
-    options: [
-      'Canvas',
-      'Output Log',
-      'Text Editor',
-      'Tombol Run Code'
-    ],
-    answer: 'Text Editor'
+    answer: 'Memutar Bidawang ke kiri 90 derajat'
   },
   {
     question: 'Apa yang akan terjadi jika pengguna mengetikkan kode yang salah di Text Editor?',
@@ -97,14 +97,14 @@ const quizData = [
     answer: 'Akan muncul pesan eror di Output Log'
   },
   {
-    question: 'Perintah forward(100) diikuti left(90) dan forward(100) akan membentuk sudut:',
+    question: 'Titik (200, -200) berada di bagian mana dari canvas?',
     options: [
-      '45 derajat',
-      '90 derajat ke kanan',
-      '90 derajat ke kiri',
-      '180 derajat'
+      'Pojok kiri atas',
+      'Pusat canvas',
+      'Pojok kanan bawah',
+      'Pojok kiri bawah'
     ],
-    answer: '90 derajat ke kiri'
+    answer: 'Pojok kanan bawah'
   }
 ];
 
@@ -115,7 +115,9 @@ const KuisPengenalanJawab = () => {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState({});
   const [hovered, setHovered] = useState(null);
-  const [timeRemaining, setTimeRemaining] = useState(60);
+  const [timeRemaining, setTimeRemaining] = useState(900);
+  const minutes = Math.floor(timeRemaining / 60);
+  const seconds = String(timeRemaining % 60).padStart(2, '0');
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState([]);
@@ -393,7 +395,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 1) {
                   borderRadius: '4px',
                 }}
               >
-                {timeRemaining > 0 ? `${timeRemaining} detik tersisa` : 'Waktu habis'}
+                {timeRemaining > 0 ? `${minutes} menit : ${seconds} detik tersisa` : 'Waktu habis'}
               </div>
 
               {showResult && (

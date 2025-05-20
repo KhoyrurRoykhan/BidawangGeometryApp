@@ -1100,7 +1100,7 @@ for i in range(1):
             }}
           >
             <li style={{ marginBottom: '8px' }}>
-              Memahami fungsi dan penggunaan <code>position</code>.
+              Memahami cara memeriksa posisi bidawang pada canvas.
             </li>
           </ol>
 

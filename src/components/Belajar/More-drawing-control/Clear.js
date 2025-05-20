@@ -878,7 +878,7 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami fungsi reset.
+              Memahami cara menghapus semua gambar pada canvas tanpa mengatur ulang posisi serta atribut.
               </li>
             </ol>
 

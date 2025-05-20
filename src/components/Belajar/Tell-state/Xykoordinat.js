@@ -1034,7 +1034,7 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Mengetahui cara memeriksa posisi horizontal (sumbu x) dan vertikal (sumbu y) dari bidawang.
+              Memahami cara memeriksa posisi horizontal (sumbu x) dan vertikal (sumbu y) dari bidawang.
               </li>
             </ol>
 

@@ -902,7 +902,7 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              memahami fungsi write untuk menampilkan teks pad canvas.
+              Memahami cara menampilkan teks pada canvas.
               </li>
             </ol>
 

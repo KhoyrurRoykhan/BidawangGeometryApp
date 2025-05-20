@@ -1019,7 +1019,7 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami perbedaan antara mode menggambar dan mode tidak menggambar.
+              Memahami cara mengatur agar Bidawang menggambar atau tidak saat bergerak.
               </li>
             </ol>
 
@@ -1036,13 +1036,13 @@ for i in range(100):
               <Col md={6}>
                 <CodeMirror
                   value={`# Gerakkan tanpa menggambar 
-penup() 
+penup
 
-setposition(100, 100)
+setposition 100 100
     
 # Aktifkan menggambar 
-pendown() 
-circle(30) `}
+pendown
+circle 30 `}
                   height="340px"
                   theme="light"
                   extensions={[python()]}

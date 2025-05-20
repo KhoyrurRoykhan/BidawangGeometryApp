@@ -1019,7 +1019,7 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami cara kerja fungsi distance.
+              Memahami cara mengetahui jarak antara posisi turtle saat ini ke titik tertentu.
               </li>
             </ol>
 
@@ -1037,15 +1037,15 @@ for i in range(100):
               <Col md={6}>
                 <CodeMirror
                   value={`# Hitung jarak dari posisi awal ke titik (100, 100) 
-print("Jarak ke (100, 100):") 
-print(distance(100,100))
+print "Jarak ke (100, 100):"
+print distance 100 100
 
 # Gerakkan turtle ke titik (100, 100) 
-setposition(100, 100) 
+setposition 100 100
 
 # Hitung jarak setelah mencapai (100, 100) 
-print("Jarak setelah mencapai (100,100):") 
-print(distance(100, 100))`}
+print "Jarak setelah mencapai (100,100):" 
+print distance 100 100`}
                   height="280px"
                   theme="light"
                   extensions={[python()]}

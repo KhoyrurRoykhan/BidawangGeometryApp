@@ -146,52 +146,59 @@ const Pendahuluan = () => {
   
 
   //Kuis
-  
-  const [selectedAnswer, setSelectedAnswer] = useState('');
-  const [selectedAnswer2, setSelectedAnswer2] = useState('');
-  const [selectedAnswer3, setSelectedAnswer3] = useState('');
-  const [feedback, setFeedback] = useState({ question1: '', question2: '', question3: '' });
+  // Kuis
+const [selectedAnswer, setSelectedAnswer] = useState('');
+const [selectedAnswer2, setSelectedAnswer2] = useState('');
+const [selectedAnswer3, setSelectedAnswer3] = useState('');
+const [feedback, setFeedback] = useState({ question1: '', question2: '', question3: '' });
+const [currentQuestion, setCurrentQuestion] = useState(1);
 
-  const handleAnswerChange = (questionId, answer) => {
-    if (questionId === "question1") {
-      setSelectedAnswer(answer);
-    } else if (questionId === "question2") {
-      setSelectedAnswer2(answer);
-    } else if (questionId === "question3") {
-      setSelectedAnswer3(answer);
-    }
-  };
-  
+const handleAnswerChange = (questionId, answer) => {
+  if (questionId === "question1") {
+    setSelectedAnswer(answer);
+  } else if (questionId === "question2") {
+    setSelectedAnswer2(answer);
+  } else if (questionId === "question3") {
+    setSelectedAnswer3(answer);
+  }
+};
 
-  const handleSubmit = async () => {
+const handleSubmit = async () => {
+  if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'option1a';
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+
+  } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'option2b';
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+
+  } else if (currentQuestion === 3) {
     const isCorrect3 = selectedAnswer3 === 'forward 100';
-  
-    setFeedback({
-      question1: isCorrect1 ? 'Benar!' : 'Salah!',
-      question2: isCorrect2 ? 'Benar!' : 'Salah!',
-      question3: isCorrect3 ? 'Benar!' : 'Salah!',
-    });
-  
-    const allCorrect = isCorrect1 && isCorrect2 && isCorrect3;
-  
-    if (allCorrect && Number(progresBelajar) === 0) {
+    setFeedback((prev) => ({ ...prev, question3: isCorrect3 ? 'Benar!' : 'Salah!' }));
+
+    if (isCorrect3) {
       try {
-        await axios.put(
-          `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
-          { progres_belajar: Number(progresBelajar) + 1 },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-        setProgresBelajar((prev) => Number(prev) + 1);
-        Swal.fire({
-          icon: 'success',
-          title: 'Semua Jawaban Benar!',
-          text: 'Materi selanjutnya sudah terbuka 😊',
-          confirmButtonColor: '#198754',
-        });
+        if (Number(progresBelajar) === 0) {
+          await axios.put(
+            `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
+            { progres_belajar: Number(progresBelajar) + 1 },
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+          setProgresBelajar((prev) => Number(prev) + 1);
+          Swal.fire({
+            icon: 'success',
+            title: 'Semua Jawaban Benar!',
+            text: 'Materi selanjutnya sudah terbuka 😊',
+            confirmButtonColor: '#198754',
+          });
+        } else {
+          Swal.fire({
+            icon: 'info',
+            title: 'Sudah Diselesaikan',
+            text: 'Kamu sudah menyelesaikan materi ini sebelumnya.',
+            confirmButtonColor: '#198754',
+          });
+        }
       } catch (error) {
         console.error("Gagal update progres:", error);
         Swal.fire({
@@ -201,15 +208,10 @@ const Pendahuluan = () => {
           confirmButtonColor: '#d33',
         });
       }
-    } else if (allCorrect) {
-      Swal.fire({
-        icon: 'info',
-        title: 'Sudah Diselesaikan',
-        text: 'Kamu sudah menyelesaikan materi ini sebelumnya.',
-        confirmButtonColor: '#198754',
-      });
     }
-  };
+  }
+};
+
   
   
   
@@ -1161,160 +1163,168 @@ const runit2 = (code, forceReset = false) => {
               <hr/> 
 
               <Accordion className="mb-4" style={{ outline: "3px solid #198754", borderRadius: "10px" }}>
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header>
-                    <h4 style={{ color: "#198754", fontWeight: "bold" }}>Pertanyaan</h4>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <Form>
-                      {/* SOAL 1 */}
-                      <Form.Group controlId="question1">
-                        <Form.Label
-                          className="p-3 mb-3"
-                          style={{
-                            display: "block",
-                            backgroundColor: "#f8f9fa",
-                            fontSize: "18px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          1. Jika posisi Bidawang berada di titik <strong>(0, 0)</strong> pada canvas, bagaimana gambar posisi Bidawang pada canvas?
-                        </Form.Label>
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>
+          <h4 style={{ color: "#198754", fontWeight: "bold" }}>Pertanyaan</h4>
+        </Accordion.Header>
+        <Accordion.Body>
+        <Form>
+          {/* SOAL 1 */}
+          {currentQuestion === 1 && (
+            <Form.Group controlId="question1">
+              <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%'  }}>
+                <strong>Soal 1 dari 3:</strong>
+                <p>Jika posisi Bidawang berada di titik <strong>(0, 0)</strong> pada canvas, bagaimana gambar posisi Bidawang pada canvas?</p>
+              </Form.Label>
 
-                        <Row>
-                          {[
-                            { key: 'option1a', img: option1a },
-                            { key: 'option1b', img: option1b },
-                            { key: 'option1c', img: option1c },
-                            { key: 'option1d', img: option1d },
-                          ].map(({ key, img }) => (
-                            <Col xs={6} md={3} key={key} className="mb-3 text-center">
-                              <Image
-                                src={img}
-                                alt={key}
-                                onClick={() => handleAnswerChange("question1", key)}
-                                thumbnail
-                                style={{
-                                  cursor: "pointer",
-                                  border: selectedAnswer === key ? "4px solid #198754" : "2px solid #ccc",
-                                  borderRadius: "10px",
-                                }}
-                              />
-                            </Col>
-                          ))}
-                        </Row>
+              <Row>
+                {[
+                  { key: 'option1a', img: option1a },
+                  { key: 'option1b', img: option1b },
+                  { key: 'option1c', img: option1c },
+                  { key: 'option1d', img: option1d },
+                ].map(({ key, img }) => (
+                  <Col xs={6} md={3} key={key} className="mb-3 text-center">
+                    <Image
+                      src={img}
+                      alt={key}
+                      onClick={() => handleAnswerChange("question1", key)}
+                      thumbnail
+                      style={{
+                        cursor: "pointer",
+                        border: selectedAnswer === key ? "4px solid #198754" : "2px solid #ccc",
+                        borderRadius: "10px",
+                      }}
+                    />
+                  </Col>
+                ))}
+              </Row>
 
-                        {feedback.question1 && (
-                          <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
-                            {feedback.question1}
-                          </Alert>
-                        )}
-                      </Form.Group>
+              {feedback.question1 && (
+                <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+                  {feedback.question1}
+                </Alert>
+              )}
+            </Form.Group>
+          )}
 
-                      <br></br>
+          {/* SOAL 2 */}
+          {currentQuestion === 2 && (
+            <Form.Group controlId="question2">
+              <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%'  }}>
+                <strong>Soal 2 dari 3:</strong> 
+               
+                <p>Tombol mana yang digunakan untuk <strong>menghapus kode</strong> serta <strong>hasil gambar</strong> di canvas dan <strong>mengembalikan Bidawang ke posisi awal?</strong></p>
+              </Form.Label>
 
-                      {/* SOAL 2 */}
-                      <Form.Group controlId="question2">
-                        <Form.Label
-                          className="p-3 mb-3 mt-4"
-                          style={{
-                            display: "block",
-                            backgroundColor: "#f8f9fa",
-                            fontSize: "18px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          2. Tombol mana yang digunakan untuk <strong>menghapus kode</strong> serta <strong>hasil gambar</strong> di canvas dan <strong>mengembalikan Bidawang ke posisi awal?</strong>
-                        </Form.Label>
+              <Row>
+                {[
+                  { key: 'option2a', img: option2a },
+                  { key: 'option2b', img: option2b },
+                  { key: 'option2c', img: option2c },
+                  { key: 'option2d', img: option2d },
+                ].map(({ key, img }) => (
+                  <Col xs={6} md={3} key={key} className="mb-3 text-center">
+                    <Image
+                      src={img}
+                      alt={key}
+                      onClick={() => handleAnswerChange("question2", key)}
+                      thumbnail
+                      style={{
+                        cursor: "pointer",
+                        border: selectedAnswer2 === key ? "4px solid #198754" : "2px solid #ccc",
+                        borderRadius: "10px",
+                      }}
+                    />
+                  </Col>
+                ))}
+              </Row>
 
-                        <Row>
-                          {[
-                            { key: 'option2a', img: option2a },
-                            { key: 'option2b', img: option2b }, // Jawaban benar
-                            { key: 'option2c', img: option2c },
-                            { key: 'option2d', img: option2d },
-                          ].map(({ key, img }) => (
-                            <Col xs={6} md={3} key={key} className="mb-3 text-center">
-                              <Image
-                                src={img}
-                                alt={key}
-                                onClick={() => handleAnswerChange("question2", key)}
-                                thumbnail
-                                style={{
-                                  cursor: "pointer",
-                                  border: selectedAnswer2 === key ? "4px solid #198754" : "2px solid #ccc",
-                                  borderRadius: "10px",
-                                }}
-                              />
-                            </Col>
-                          ))}
-                        </Row>
+              {feedback.question2 && (
+                <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+                  {feedback.question2}
+                </Alert>
+              )}
+            </Form.Group>
+          )}
 
-                        {feedback.question2 && (
-                          <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
-                            {feedback.question2}
-                          </Alert>
-                        )}
-                      </Form.Group>
+          {/* SOAL 3 */}
+          {currentQuestion === 3 && (
+            <Form.Group controlId="question3">
+              <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+                <strong>Soal 3 dari 3:</strong> 
+                <p>Untuk menggerakkan Bidawang seperti di bawah ini, kode apa yang harus dijalankan?</p>
+              </Form.Label>
 
-                      <br></br>
+              <div className="text-center mb-4">
+                <Image
+                  src={soal3prog}
+                  alt="Gerakan Bidawang"
+                  style={{ maxWidth: "400px", height: "auto", borderRadius: "10px" }}
+                />
+              </div>
 
-                      {/* SOAL 3 */}
-                      <Form.Group controlId="question3">
-                        <Form.Label
-                          className="p-3 mb-3 mt-4"
-                          style={{
-                            display: "block",
-                            backgroundColor: "#f8f9fa",
-                            fontSize: "18px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          3. Untuk menggerakkan Bidawang seperti di bawah ini, kode apa yang harus dijalankan?
-                        </Form.Label>
+              {["forward 100", "backward 100", "left 90", "right 90"].map((answer) => (
+                <div key={answer} className="mb-2">
+                  <Button
+                    variant={selectedAnswer3 === answer ? "success" : "outline-success"}
+                    onClick={() => handleAnswerChange("question3", answer)}
+                    className="w-100 p-2"
+                    style={{
+                      fontSize: "16px",
+                      backgroundColor: selectedAnswer3 === answer ? "#198754" : "",
+                      borderColor: "#198754",
+                      
+                    }}
+                  >
+                    {answer}
+                  </Button>
+                </div>
+              ))}
 
-                        <div className="text-center mb-4">
-                          <Image
-                            src={soal3prog}
-                            alt="Gerakan Bidawang"
-                            style={{ maxWidth: "400px", height: "auto", borderRadius: "10px" }}
-                          />
-                        </div>
+              {feedback.question3 && (
+                <Alert variant={feedback.question3 === "Benar!" ? "success" : "danger"} className="mt-3">
+                  {feedback.question3}
+                </Alert>
+              )}
+            </Form.Group>
+          )}
 
-                        {["forward 100", "backward 100", "left 90", "right 90"].map((answer) => (
-                          <div key={answer} className="mb-2">
-                            <Button
-                              variant={selectedAnswer3 === answer ? "success" : "outline-success"}
-                              onClick={() => handleAnswerChange("question3", answer)}
-                              className="w-100 p-2"
-                              style={{
-                                fontSize: "16px",
-                                backgroundColor: selectedAnswer3 === answer ? "#198754" : "",
-                                borderColor: "#198754",
-                              }}
-                            >
-                              {answer}
-                            </Button>
-                          </div>
-                        ))}
+          {/* TOMBOL NAVIGASI */}
+          <div className="text-center mt-4 d-flex justify-content-between">
+            <Button
+              variant="secondary"
+              onClick={() => setCurrentQuestion((prev) => Math.max(1, prev - 1))}
+              disabled={currentQuestion === 1}
+            >
+              Sebelumnya
+            </Button>
 
-                        {feedback.question3 && (
-                          <Alert variant={feedback.question3 === "Benar!" ? "success" : "danger"} className="mt-3">
-                            {feedback.question3}
-                          </Alert>
-                        )}
-                      </Form.Group>
+            <Button
+              variant="primary"
+              onClick={handleSubmit}
+            >
+              Periksa Jawaban
+            </Button>
 
-                      {/* TOMBOL SUBMIT */}
-                      <div className="text-center">
-                        <Button variant="primary" onClick={handleSubmit} className="mt-4 p-2" style={{ fontSize: "18px" }}>
-                          Periksa Jawaban
-                        </Button>
-                      </div>
-                    </Form>
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
+            <Button
+              variant="secondary"
+              onClick={() => setCurrentQuestion((prev) => Math.min(3, prev + 1))}
+              disabled={
+                (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+                (currentQuestion === 2 && feedback.question2 !== "Benar!") ||
+                currentQuestion === 3
+              }
+            >
+              Selanjutnya
+            </Button>
+
+          </div>
+        </Form>
+
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
 
 
      

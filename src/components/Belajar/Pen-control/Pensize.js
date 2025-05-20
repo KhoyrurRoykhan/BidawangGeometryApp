@@ -877,7 +877,7 @@ for i in range(100):
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-              Memahami cara mengubah ketebalan garis menggunakan perintah pensize.
+              Memahami cara mengubah ketebalan garis saat menggambar pada canvas.
               </li>
             </ol>
 
@@ -899,10 +899,10 @@ for i in range(100):
               <Col md={6}>
                 <CodeMirror
                   value={`# Ubah ketebalan pena 
-pensize(5)  
+pensize 5
 
 # Gambar lingkaran dengan garis tebal 
-circle(50)`}
+circle 50`}
                   height="340px"
                   theme="light"
                   extensions={[python()]}

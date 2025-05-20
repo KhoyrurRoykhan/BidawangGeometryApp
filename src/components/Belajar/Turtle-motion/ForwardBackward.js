@@ -16,6 +16,11 @@ import broccoli from './assets/cacingtarget.png';
 import map from './assets/2-forward-backward-b.png';
 import tilemap from './assets/2-forward-backward-tilemap.png';
 
+import optionA from './assets/kuis-forwardbackward/2A.png'
+import optionB from './assets/kuis-forwardbackward/2B.png'
+import optionC from './assets/kuis-forwardbackward/2C.png'
+import optionD from './assets/kuis-forwardbackward/2D.png'
+
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
@@ -209,73 +214,63 @@ const ForwardBackward = () => {
   };
 
   //kuis
-  const [selectedAnswers, setSelectedAnswers] = useState({});
-  const [feedback, setFeedback] = useState({});
-
-  const correctAnswers = {
-    question1: "forward(150)",
-    question2: "Ke timur"
+  const [selectedAnswer, setSelectedAnswer] = useState('');
+  const [selectedAnswer2, setSelectedAnswer2] = useState('');
+  const [feedback, setFeedback] = useState({ question1: '', question2: '' });
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+  
+  const handleAnswerChange = (questionId, answer) => {
+    if (questionId === "question1") {
+      setSelectedAnswer(answer);
+    } else if (questionId === "question2") {
+      setSelectedAnswer2(answer);
+    }
   };
-
-  const handleAnswerChange = (question, answer) => {
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [question]: answer
-    }));
-  };
-
+  
   const handleSubmit = async () => {
-    const newFeedback = {};
-    let allCorrect = true;
+    if (currentQuestion === 1) {
+      const isCorrect1 = selectedAnswer === 'B';
+      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    } else if (currentQuestion === 2) {
+      const isCorrect2 = selectedAnswer2 === 'optionA';
+      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
   
-    // Cek semua jawaban
-    for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
-      const selected = selectedAnswers[question];
-      const isCorrect = selected === correctAnswer;
-  
-      newFeedback[question] = isCorrect ? 'Benar!' : 'Salah!';
-      if (!isCorrect) allCorrect = false;
-    }
-  
-    setFeedback(newFeedback);
-  
-    // Jika semua benar dan progres saat ini adalah 3
-    if (allCorrect && progresBelajar === 3) {
-      try {
-        await axios.put(
-          `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
-          { progres_belajar: progresBelajar + 1 },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
+      if (isCorrect2) {
+        try {
+          if (Number(progresBelajar) === 2) {
+            await axios.put(
+              `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
+              { progres_belajar: Number(progresBelajar) + 1 },
+              { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setProgresBelajar((prev) => Number(prev) + 1);
+            Swal.fire({
+              icon: 'success',
+              title: 'Semua Jawaban Benar!',
+              text: 'Materi selanjutnya sudah terbuka 😊',
+              confirmButtonColor: '#198754',
+            });
+          } else {
+            Swal.fire({
+              icon: 'info',
+              title: 'Sudah Diselesaikan',
+              text: 'Kamu sudah menyelesaikan materi ini sebelumnya.',
+              confirmButtonColor: '#198754',
+            });
           }
-        );
-        setProgresBelajar(prev => prev + 1);
-        Swal.fire({
-          icon: 'success',
-          title: 'Jawaban Benar!',
-          text: 'Materi selanjutnya sudah terbuka 😊',
-          confirmButtonColor: '#198754'
-        });
-      } catch (error) {
-        console.error("Gagal update progres:", error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Gagal Update Progres',
-          text: 'Terjadi kesalahan saat memperbarui progres kamu.',
-          confirmButtonColor: '#d33'
-        });
+        } catch (error) {
+          console.error("Gagal update progres:", error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Gagal Update Progres',
+            text: 'Terjadi kesalahan saat memperbarui progres kamu.',
+            confirmButtonColor: '#d33',
+          });
+        }
       }
-    } else if (allCorrect) {
-      Swal.fire({
-        icon: 'info',
-        title: 'Sudah Diselesaikan',
-        text: 'Kamu sudah menyelesaikan materi ini sebelumnya.',
-        confirmButtonColor: '#198754'
-      });
     }
   };
+  
 
   const [pythonCode, setPythonCode] = useState(``);
   const [pythonCode1, setPythonCode1] = useState(`
@@ -1336,111 +1331,117 @@ backward 150`}
                 <h4 style={{ fontWeight: "bold" }}>Pertanyaan</h4>
               </Accordion.Header>
               <Accordion.Body>
-                <Form>
-                  <Form.Group controlId="question1">
-                    <Form.Label
-                      className="p-3 mb-3"
-                      style={{
-                        display: "block",
-                        backgroundColor: "#f8f9fa",
-                        // borderLeft: "5px solid #2DAA9E",
-                        // borderRight: "5px solid #2DAA9E",
-                        fontSize: "18px",
-                        // fontWeight: "bold",
-                        borderRadius: "5px"
-                      }}
-                    >
-                      1. Perintah apa yang digunakan untuk menggerakkan turtle ke depan sejauh 150 piksel?
-                    </Form.Label>
-                    <div className="row d-flex">
-                    {[
-                      "backward(150)",
-                      "forward(150)",
-                      "left(150)",
-                      "right(150)"
-                    ].map((answer) => (
-                      <div key={answer} className="mb-2">
-                        <Button
-                          variant={selectedAnswers.question1 === answer ? "success" : "outline-success"}
-                          onClick={() => handleAnswerChange("question1", answer)}
-                          className="w-100 p-2 flex-grow-1"
-                          style={{
-                            fontSize: "16px",
-                            // fontWeight: "bold",
-                            backgroundColor: selectedAnswers.question1 === answer ? "#2DAA9E" : "",
-                            borderColor: "#2DAA9E",
-                            // minHeight: "60px" // Menjaga tinggi tetap konsisten
-                            textAlign: 'left'
-                          }}
-                        >
-                          {answer}
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
+              <Form>
+  {/* SOAL 1 */}
+  {currentQuestion === 1 && (
+    <Form.Group controlId="question1">
+      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+        <strong>Soal 1 dari 2:</strong>
+        <p>Perhatikan potongan kode berikut:</p>
+        <pre><code>forward 100</code></pre>
+        <p>Apa yang terjadi pada Bidawang?</p>
+      </Form.Label>
 
-                  </Form.Group>
-                  {feedback.question1 && (
-                    <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
-                      {feedback.question1}
-                    </Alert>
-                  )}
+      {[
+        { key: 'A', label: 'Bidawang mundur sejauh 100 langkah' },
+        { key: 'B', label: 'Bidawang maju sejauh 100 langkah' },
+        { key: 'C', label: 'Bidawang berputar ke kanan' },
+        { key: 'D', label: 'Bidawang tidak bergerak' },
+      ].map(({ key, label }) => (
+        <Button
+          key={key}
+          variant={selectedAnswer === key ? "success" : "outline-success"}
+          onClick={() => handleAnswerChange("question1", key)}
+          className="w-100 mb-2 text-start"
+          style={{
+            fontSize: "16px",
+            backgroundColor: selectedAnswer === key ? "#2DAA9E" : "",
+            borderColor: "#2DAA9E"
+          }}
+        >
+          {key}. {label}
+        </Button>
+      ))}
 
-                  <Form.Group controlId="question2">
-                    <Form.Label
-                      className="p-3 mb-3"
-                      style={{
-                        display: "block",
-                        backgroundColor: "#f8f9fa",
-                        // borderLeft: "5px solid #2DAA9E",
-                        // borderRight: "5px solid #2DAA9E",
-                        fontSize: "18px",
-                        // fontWeight: "bold",
-                        borderRadius: "5px"
-                      }}
-                    >
-                      2. Jika turtle menghadap ke barat dan Anda menggunakan perintah backward(100), ke arah mana turtle akan bergerak
-                    </Form.Label>
-                    <div className="row d-flex">
-                      {["Ke barat", 
-                      "Ke timur", 
-                      "Ke utara", 
-                      "Ke Selatan"].map(
-                        (answer) => (
-                          <div key={answer} className="mb-2">
-                            <Button
-                              variant={selectedAnswers.question2 === answer ? "success" : "outline-success"}
-                              onClick={() => handleAnswerChange("question2", answer)}
-                              className="w-100 p-2 flex-grow-1"
-                              style={{
-                                fontSize: "18px",
-                                // fontWeight: "bold",
-                                backgroundColor: selectedAnswers.question2 === answer ? "#2DAA9E" : "",
-                                borderColor: "#2DAA9E",
-                                // minHeight: "60px"
-                                textAlign: 'left'
-                              }}
-                            >
-                              {answer}
-                            </Button>
-                          </div>
-                        )
-                      )}
-                    </div>
-                    
-                  </Form.Group>
-                  {feedback.question2 && (
-                    <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
-                      {feedback.question2}
-                    </Alert>
-                  )}
+      {feedback.question1 && (
+        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+          {feedback.question1}
+        </Alert>
+      )}
+    </Form.Group>
+  )}
 
-                <div className="text-center">
-                  <Button variant="primary" onClick={handleSubmit} className="mt-3 p-2" style={{ fontSize: "18px"}}>
-                    Periksa Jawaban
-                  </Button>
-                </div>
-                </Form>
+  {/* SOAL 2 */}
+  {currentQuestion === 2 && (
+    <Form.Group controlId="question2">
+      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+        <strong>Soal 2 dari 2:</strong>
+        <p>Bidawang sedang menghadap ke kanan. Jika diberi perintah berikut:</p>
+        <pre><code>backward 200</code></pre>
+        <p>Kemana arah Bidawang akan bergerak?</p>
+      </Form.Label>
+
+      <Row>
+        {[
+          { key: 'optionA', img: optionA },
+          { key: 'optionB', img: optionB },
+          { key: 'optionC', img: optionC },
+          { key: 'optionD', img: optionD },
+        ].map(({ key, img }) => (
+          <Col xs={6} md={3} key={key} className="mb-3 text-center">
+            <Image
+              src={img}
+              alt={key}
+              onClick={() => handleAnswerChange("question2", key)}
+              thumbnail
+              style={{
+                cursor: "pointer",
+                border: selectedAnswer2 === key ? "4px solid #198754" : "2px solid #ccc",
+                borderRadius: "10px",
+              }}
+            />
+          </Col>
+        ))}
+      </Row>
+
+      {feedback.question2 && (
+        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+          {feedback.question2}
+        </Alert>
+      )}
+    </Form.Group>
+  )}
+
+  {/* TOMBOL NAVIGASI */}
+  <div className="text-center mt-4 d-flex justify-content-between">
+    <Button
+      variant="secondary"
+      onClick={() => setCurrentQuestion((prev) => Math.max(1, prev - 1))}
+      disabled={currentQuestion === 1}
+    >
+      Sebelumnya
+    </Button>
+
+    <Button
+      variant="primary"
+      onClick={handleSubmit}
+    >
+      Periksa Jawaban
+    </Button>
+
+    <Button
+      variant="secondary"
+      onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
+      disabled={
+        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 2 && feedback.question2 !== "Benar!")
+      }
+    >
+      Selanjutnya
+    </Button>
+  </div>
+</Form>
+
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

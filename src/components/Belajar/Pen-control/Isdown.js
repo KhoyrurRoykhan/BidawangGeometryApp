@@ -869,7 +869,7 @@ home()
               }}
             >
               <li style={{ marginBottom: '8px' }}>
-                Memahami cara mengecek status pena apakah sedang aktif menggambar atau tidak.
+                Memahami cara mengecek status pena apakah sedang dalam mode menggambar atau tidak.
               </li>
             </ol>
 

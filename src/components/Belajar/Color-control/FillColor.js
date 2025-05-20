@@ -1030,7 +1030,7 @@ for i in range(100):
           }}
         >
           <li style={{ marginBottom: '8px' }}>
-            Memahami cara kerja fungsi fillcolor, begin_fill, dan end_fill dalam mengatur warna isian pada bentuk geometris.
+            Memahami cara mewarnai bentuk yang digambar pada canvas.
           </li>
         </ol>
 
