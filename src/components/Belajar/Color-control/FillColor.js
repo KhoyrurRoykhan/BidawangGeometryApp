@@ -219,73 +219,63 @@ const FillColor = () => {
   };
   
     //kuis
-    const [selectedAnswers, setSelectedAnswers] = useState({});
-    const [feedback, setFeedback] = useState({});
+    const [selectedAnswer, setSelectedAnswer] = useState('');
+const [selectedAnswer2, setSelectedAnswer2] = useState('');
+const [feedback, setFeedback] = useState({ question1: '', question2: '' });
+const [currentQuestion, setCurrentQuestion] = useState(1);
 
-    const correctAnswers = {
-      question1: "Sebuah lingkaran dengan warna isian kuning.",
-      question2: 'Menandai akhir area yang akan diisi warna.' 
-    };
+const handleAnswerChange = (questionId, answer) => {
+  if (questionId === "question1") {
+    setSelectedAnswer(answer);
+  } else if (questionId === "question2") {
+    setSelectedAnswer2(answer);
+  }
+};
 
-    const handleAnswerChange = (question, answer) => {
-      setSelectedAnswers((prev) => ({
-        ...prev,
-        [question]: answer
-      }));
-    };
+const handleSubmit = async () => {
+  if (currentQuestion === 1) {
+    const isCorrect1 = selectedAnswer === 'B';
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
 
-    const handleSubmit = async () => {
-      const newFeedback = {};
-      let allCorrect = true;
-    
-      // Cek semua jawaban
-      for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
-        const selected = selectedAnswers[question];
-        const isCorrect = selected === correctAnswer;
-    
-        newFeedback[question] = isCorrect ? 'Benar!' : 'Salah!';
-        if (!isCorrect) allCorrect = false;
-      }
-    
-      setFeedback(newFeedback);
-    
-      // Jika semua benar dan progres saat ini adalah 20
-      if (allCorrect && progresBelajar === 20) {
-        try {
+  } else if (currentQuestion === 2) {
+    const isCorrect2 = selectedAnswer2 === 'B';
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+
+    if (isCorrect2) {
+      try {
+        if (Number(progresBelajar) === 20) {
           await axios.put(
             `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
-            { progres_belajar: progresBelajar + 1 },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`
-              }
-            }
+            { progres_belajar: Number(progresBelajar) + 1 },
+            { headers: { Authorization: `Bearer ${token}` } }
           );
-          setProgresBelajar(prev => prev + 1);
+          setProgresBelajar((prev) => Number(prev) + 1);
           Swal.fire({
             icon: 'success',
-            title: 'Jawaban Benar!',
+            title: 'Semua Jawaban Benar!',
             text: 'Materi selanjutnya sudah terbuka 😊',
-            confirmButtonColor: '#198754'
+            confirmButtonColor: '#198754',
           });
-        } catch (error) {
-          console.error("Gagal update progres:", error);
+        } else {
           Swal.fire({
-            icon: 'error',
-            title: 'Gagal Update Progres',
-            text: 'Terjadi kesalahan saat memperbarui progres kamu.',
-            confirmButtonColor: '#d33'
+            icon: 'info',
+            title: 'Sudah Diselesaikan',
+            text: 'Kamu sudah menyelesaikan materi ini sebelumnya.',
+            confirmButtonColor: '#198754',
           });
         }
-      } else if (allCorrect) {
+      } catch (error) {
+        console.error("Gagal update progres:", error);
         Swal.fire({
-          icon: 'info',
-          title: 'Sudah Diselesaikan',
-          text: 'Kamu sudah menyelesaikan materi ini sebelumnya.',
-          confirmButtonColor: '#198754'
+          icon: 'error',
+          title: 'Gagal Update Progres',
+          text: 'Terjadi kesalahan saat memperbarui progres kamu.',
+          confirmButtonColor: '#d33',
         });
       }
-    };
+    }
+  }
+};
   
     const [pythonCode, setPythonCode] = useState(``);
     const [pythonCode1, setPythonCode1] = useState(` 
@@ -1327,110 +1317,116 @@ home `}
             <h4 style={{fontWeight: "bold" }}>Pertanyaan</h4>
           </Accordion.Header>
           <Accordion.Body>
-            <Form>
-              <Form.Group controlId="question1">
-                <Form.Label className="p-3 mb-3"
-                  style={{
-                    display: "block",
-                    backgroundColor: "#f8f9fa",
-                    // borderLeft: "5px solid #2DAA9E",
-                    // borderRight: "5px solid #2DAA9E",
-                    fontSize: "18px",
-                    // fontWeight: "bold",
-                    borderRadius: "5px"
-                  }}>
-                    1. Perhatikan kode berikut:
-                <pre>forward(100)</pre>
-                <pre>begin_fill()</pre>
-                <pre>circle(50)</pre>
-                <pre>end_fill()</pre> 
-                <p>Apa hasil dari kode tersebut? </p>
-                </Form.Label>
-                <div className="row d-flex">
-                    {[
-                      "Sebuah lingkaran dengan warna garis kuning tanpa isian.",
-                      "Sebuah lingkaran dengan warna isian kuning.",
-                      "Sebuah lingkaran dengan warna garis hitam dan isian kuning.",
-                      "Tidak ada lingkaran yang digambar."
-                    ].map((answer) => (
-                      <div key={answer} className="mb-2">
-                        <Button
-                          variant={selectedAnswers.question1 === answer ? "success" : "outline-success"}
-                          onClick={() => handleAnswerChange("question1", answer)}
-                          className="w-100 p-2"
-                          style={{
-                            fontSize: "16px",
-                            // fontWeight: "bold",
-                            backgroundColor: selectedAnswers.question1 === answer ? "#2DAA9E" : "",
-                            borderColor: "#2DAA9E",
-                            textAlign: 'left'
-                          }}
-                        >
-                          {answer}
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
+          <Form>
+  {/* SOAL 1 */}
+  {currentQuestion === 1 && (
+    <Form.Group controlId="question1">
+      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+        <strong>Soal 1 dari 2:</strong>
+        <p>Perhatikan kode berikut:</p>
+        <pre><code>fillcolor "yellow"</code></pre>
+        <pre><code>forward 100</code></pre>
+        <pre><code>begin_fill</code></pre>
+        <pre><code>circle 50</code></pre>
+        <pre><code>end_fill</code></pre>
+        <p>Apa hasil dari kode tersebut?</p>
+      </Form.Label>
 
-              </Form.Group>
-              {feedback.question1 && (
-                <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
-                  {feedback.question1}
-                </Alert>
-              )}
+      {[
+        { key: 'A', label: 'Sebuah lingkaran dengan warna garis kuning tanpa isian.' },
+        { key: 'B', label: 'Sebuah lingkaran dengan warna isian kuning.' },
+        { key: 'C', label: 'Sebuah lingkaran dengan warna garis hitam dan isian kuning.' },
+        { key: 'D', label: 'Tidak ada lingkaran yang digambar. ' },
+      ].map(({ key, label }) => (
+        <Button
+          key={key}
+          variant={selectedAnswer === key ? "success" : "outline-success"}
+          onClick={() => handleAnswerChange("question1", key)}
+          className="w-100 mb-2 text-start"
+          style={{
+            fontSize: "16px",
+            backgroundColor: selectedAnswer === key ? "#2DAA9E" : "",
+            borderColor: "#2DAA9E"
+          }}
+        >
+          {key}. {label}
+        </Button>
+      ))}
 
-              <Form.Group controlId="question2">
-                <Form.Label className="p-3 mb-3"
-                  style={{
-                    display: "block",
-                    backgroundColor: "#f8f9fa",
-                    // borderLeft: "5px solid #2DAA9E",
-                    // borderRight: "5px solid #2DAA9E",
-                    fontSize: "18px",
-                    // fontWeight: "bold",
-                    borderRadius: "5px"
-                  }}>
-                    2. Apa fungsi dari end_fill() dalam proses pengisian warna?
-                  </Form.Label>
-                  <div className="row d-flex">
-                  {['Mengatur warna isian menjadi transparan.', 
-                  'Menandai akhir area yang akan diisi warna.', 
-                  "Menonaktifkan pengaturan warna pada turtle.", 
-                  'Menghapus warna isian dari bentuk yang digambar.'].map(
-                    (answer) => (
-                      <div key={answer} className="mb-2">
-                        <Button
-                          variant={selectedAnswers.question2 === answer ? "success" : "outline-success"}
-                          onClick={() => handleAnswerChange("question2", answer)}
-                          className="w-100 p-2"
-                          style={{
-                            fontSize: "16px",
-                            // fontWeight: "bold",
-                            backgroundColor: selectedAnswers.question2 === answer ? "#2DAA9E" : "",
-                            borderColor: "#2DAA9E",
-                            textAlign:'left'
-                          }}
-                        >
-                          {answer}
-                        </Button>
-                      </div>
-                    )
-                  )}
-                </div>
+      {feedback.question1 && (
+        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+          {feedback.question1}
+        </Alert>
+      )}
+    </Form.Group>
+  )}
 
-              </Form.Group>
-              {feedback.question2 && (
-                <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
-                  {feedback.question2}
-                </Alert>
-              )}
+  {/* SOAL 2 */}
+  {currentQuestion === 2 && (
+    <Form.Group controlId="question2">
+      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+        <strong>Soal 2 dari 2:</strong>
+        <p>Apa fungsi dari end_fill dalam proses pengisian warna?</p>
+      </Form.Label>
 
-            <div className="text-center">
-              <Button variant="primary" onClick={handleSubmit} className="mt-3 p-2" style={{ fontSize: "18px"}}>
-                Periksa Jawaban
-              </Button>
-            </div>
-            </Form>
+      {[
+        { key: 'A', label: 'Mengatur warna isian menjadi transparan.' },
+        { key: 'B', label: 'Menandai akhir area yang akan diisi warna.' },
+        { key: 'C', label: 'Menonaktifkan pengaturan warna pada turtle.' },
+        { key: 'D', label: 'Menghapus warna isian dari bentuk yang digambar. ' },
+      ].map(({ key, label }) => (
+        <Button
+          key={key}
+          variant={selectedAnswer2 === key ? "success" : "outline-success"}
+          onClick={() => handleAnswerChange("question2", key)}
+          className="w-100 mb-2 text-start"
+          style={{
+            fontSize: "16px",
+            backgroundColor: selectedAnswer2 === key ? "#2DAA9E" : "",
+            borderColor: "#2DAA9E"
+          }}
+        >
+          {key}. {label}
+        </Button>
+      ))}
+
+      {feedback.question2 && (
+        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+          {feedback.question2}
+        </Alert>
+      )}
+    </Form.Group>
+  )}
+
+  {/* TOMBOL NAVIGASI */}
+  <div className="text-center mt-4 d-flex justify-content-between">
+    <Button
+      variant="secondary"
+      onClick={() => setCurrentQuestion((prev) => Math.max(1, prev - 1))}
+      disabled={currentQuestion === 1}
+    >
+      Sebelumnya
+    </Button>
+
+    <Button
+      variant="primary"
+      onClick={handleSubmit}
+    >
+      Periksa Jawaban
+    </Button>
+
+    <Button
+      variant="secondary"
+      onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
+      disabled={
+        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 2 && feedback.question2 !== "Benar()")
+      }
+    >
+      Selanjutnya
+    </Button>
+  </div>
+</Form>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

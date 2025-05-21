@@ -211,73 +211,63 @@ const Circle = () => {
   };
 
   //kuis
-  const [selectedAnswers, setSelectedAnswers] = useState({});
-  const [feedback, setFeedback] = useState({});
+  const [selectedAnswer, setSelectedAnswer] = useState('');
+const [selectedAnswer2, setSelectedAnswer2] = useState('');
+const [feedback, setFeedback] = useState({ question1: '', question2: '' });
+const [currentQuestion, setCurrentQuestion] = useState(1);
 
-  const correctAnswers = {
-    question1: "Menentukan besaran sudut busur yang ingin Digambar.",
-    question2: "Lingkaran dengan jari-jari 50 akan digambar dengan arah berlawanan."
-  };
+const handleAnswerChange = (questionId, answer) => {
+  if (questionId === "question1") {
+    setSelectedAnswer(answer);
+  } else if (questionId === "question2") {
+    setSelectedAnswer2(answer);
+  }
+};
 
-  const handleAnswerChange = (question, answer) => {
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [question]: answer
-    }));
-  };
+const handleSubmit = async () => {
+  if (currentQuestion === 1) {
+    const isCorrect1 = selectedAnswer === 'C';
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
 
-  const handleSubmit = async () => {
-    const newFeedback = {};
-    let allCorrect = true;
-  
-    // Cek semua jawaban
-    for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
-      const selected = selectedAnswers[question];
-      const isCorrect = selected === correctAnswer;
-  
-      newFeedback[question] = isCorrect ? 'Benar!' : 'Salah!';
-      if (!isCorrect) allCorrect = false;
-    }
-  
-    setFeedback(newFeedback);
-  
-    // Jika semua benar dan progres saat ini adalah 8
-    if (allCorrect && progresBelajar === 8) {
+  } else if (currentQuestion === 2) {
+    const isCorrect2 = selectedAnswer2 === 'B';
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+
+    if (isCorrect2) {
       try {
-        await axios.put(
-          `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
-          { progres_belajar: progresBelajar + 1 },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
-        setProgresBelajar(prev => prev + 1);
-        Swal.fire({
-          icon: 'success',
-          title: 'Jawaban Benar!',
-          text: 'Materi selanjutnya sudah terbuka 😊',
-          confirmButtonColor: '#198754'
-        });
+        if (Number(progresBelajar) === 8) {
+          await axios.put(
+            `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
+            { progres_belajar: Number(progresBelajar) + 1 },
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+          setProgresBelajar((prev) => Number(prev) + 1);
+          Swal.fire({
+            icon: 'success',
+            title: 'Semua Jawaban Benar!',
+            text: 'Materi selanjutnya sudah terbuka 😊',
+            confirmButtonColor: '#198754',
+          });
+        } else {
+          Swal.fire({
+            icon: 'info',
+            title: 'Sudah Diselesaikan',
+            text: 'Kamu sudah menyelesaikan materi ini sebelumnya.',
+            confirmButtonColor: '#198754',
+          });
+        }
       } catch (error) {
         console.error("Gagal update progres:", error);
         Swal.fire({
           icon: 'error',
           title: 'Gagal Update Progres',
           text: 'Terjadi kesalahan saat memperbarui progres kamu.',
-          confirmButtonColor: '#d33'
+          confirmButtonColor: '#d33',
         });
       }
-    } else if (allCorrect) {
-      Swal.fire({
-        icon: 'info',
-        title: 'Sudah Diselesaikan',
-        text: 'Kamu sudah menyelesaikan materi ini sebelumnya.',
-        confirmButtonColor: '#198754'
-      });
     }
-  };
+  }
+};
 
   const [pythonCode, setPythonCode] = useState(``);
   const [pythonCode1, setPythonCode1] = useState(`
@@ -1312,105 +1302,111 @@ left(90)`}
                 <h4 style={{ fontWeight: "bold" }}>Pertanyaan</h4>
               </Accordion.Header>
               <Accordion.Body>
-                <Form>
-                  <Form.Group controlId="question1">
-                    <Form.Label className="p-3 mb-3"
-                    style={{
-                      display: "block",
-                      backgroundColor: "#f8f9fa",
-                      // borderLeft: "5px solid #2DAA9E",
-                      // borderRight: "5px solid #2DAA9E",
-                      fontSize: "18px",
-                      // fontWeight: "bold",
-                      borderRadius: "5px"
-                    }}
-                    >
-                      1. Apa fungsi dari parameter extent dalam metode circle()? 
-                    </Form.Label>
-                    <div className="row d-flex">
-                    {[
-                      "Mengatur arah lingkaran.",
-                      "Menentukan ukuran jari-jari lingkaran.",
-                      "Menentukan besaran sudut busur yang ingin Digambar.",
-                      "Mengubah warna lingkaran."
-                    ].map((answer) => (
-                      <div key={answer} className="mb-2">
-                        <Button
-                          variant={selectedAnswers.question1 === answer ? "success" : "outline-success"}
-                          onClick={() => handleAnswerChange("question1", answer)}
-                          className="w-100 p-2"
-                          style={{
-                            fontSize: "16px",
-                            // fontWeight: "bold",
-                            backgroundColor: selectedAnswers.question1 === answer ? "#2DAA9E" : "",
-                            borderColor: "#2DAA9E",
-                            textAlign:'left'
-                          }}
-                        >
-                          {answer}
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                  </Form.Group>
-                  {feedback.question1 && (
-                    <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
-                      {feedback.question1}
-                    </Alert>
-                  )}
+              <Form>
+  {/* SOAL 1 */}
+  {currentQuestion === 1 && (
+    <Form.Group controlId="question1">
+      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+        <strong>Soal 1 dari 2:</strong>
+        <p>Apa fungsi dari parameter <i>extent</i> dalam metode circle?</p>
+      </Form.Label>
 
-                  <Form.Group controlId="question2">
-                    <Form.Label className="p-3 mb-3"
-                    style={{
-                      display: "block",
-                      backgroundColor: "#f8f9fa",
-                      // borderLeft: "5px solid #2DAA9E",
-                      // borderRight: "5px solid #2DAA9E",
-                      fontSize: "18px",
-                      // fontWeight: "bold",
-                      borderRadius: "5px"
-                    }}>
-                      2. Apa yang terjadi jika Anda menjalankan perintah circle(-50)? 
-                    </Form.Label>
-                    <div className="row d-flex">
-                      {["Tidak ada lingkaran yang Digambar.", 
-                      "Lingkaran dengan jari-jari 50 akan digambar dengan arah berlawanan.", 
-                      "Lingkaran dengan jari-jari 50 akan digambar dengan arah normal (berlawanan arah jarum jam)", 
-                      "Lingkaran kecil akan digambar di posisi saat ini."].map(
-                        (answer) => (
-                          <div key={answer} className="mb-2 ">
-                            <Button
-                              variant={selectedAnswers.question2 === answer ? "success" : "outline-success"}
-                              onClick={() => handleAnswerChange("question2", answer)}
-                              className="w-100 p-2"
-                              style={{
-                                fontSize: "16px",
-                                // fontWeight: "bold",
-                                backgroundColor: selectedAnswers.question2 === answer ? "#2DAA9E" : "",
-                                borderColor: "#2DAA9E",
-                                textAlign:'left'
-                              }}
-                            >
-                              {answer}
-                            </Button>
-                          </div>
-                        )
-                      )}
-                    </div>
-                    
-                  </Form.Group>
-                  {feedback.question2 && (
-                    <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
-                      {feedback.question2}
-                    </Alert>
-                  )}
+      {[
+        { key: 'A', label: 'Mengatur arah lingkaran.' },
+        { key: 'B', label: 'Menentukan ukuran jari-jari lingkaran.' },
+        { key: 'C', label: 'Menentukan besaran sudut busur yang ingin Digambar.' },
+        { key: 'D', label: 'Mengubah warna lingkaran.' },
+      ].map(({ key, label }) => (
+        <Button
+          key={key}
+          variant={selectedAnswer === key ? "success" : "outline-success"}
+          onClick={() => handleAnswerChange("question1", key)}
+          className="w-100 mb-2 text-start"
+          style={{
+            fontSize: "16px",
+            backgroundColor: selectedAnswer === key ? "#2DAA9E" : "",
+            borderColor: "#2DAA9E"
+          }}
+        >
+          {key}. {label}
+        </Button>
+      ))}
 
-                <div className="text-center">
-                  <Button variant="primary" onClick={handleSubmit} className="mt-3 p-2" style={{ fontSize: "18px" }}>
-                    Periksa Jawaban
-                  </Button>
-                </div>
-                </Form>
+      {feedback.question1 && (
+        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+          {feedback.question1}
+        </Alert>
+      )}
+    </Form.Group>
+  )}
+
+  {/* SOAL 2 */}
+  {currentQuestion === 2 && (
+    <Form.Group controlId="question2">
+      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+        <strong>Soal 2 dari 2:</strong>
+        <p>Apa yang terjadi jika Anda menjalankan perintah circle 50?</p>
+
+      </Form.Label>
+
+      {[
+        { key: 'A', label: 'Tidak ada lingkaran yang Digambar.' },
+        { key: 'B', label: 'Lingkaran dengan jari-jari 50 akan digambar.' },
+        { key: 'C', label: 'Lingkaran dengan jari-jari 100 akan digambar.' },
+        { key: 'D', label: 'Bidawang akan bergerak maju 50 langakah.' },
+      ].map(({ key, label }) => (
+        <Button
+          key={key}
+          variant={selectedAnswer2 === key ? "success" : "outline-success"}
+          onClick={() => handleAnswerChange("question2", key)}
+          className="w-100 mb-2 text-start"
+          style={{
+            fontSize: "16px",
+            backgroundColor: selectedAnswer2 === key ? "#2DAA9E" : "",
+            borderColor: "#2DAA9E"
+          }}
+        >
+          {key}. {label}
+        </Button>
+      ))}
+
+      {feedback.question2 && (
+        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+          {feedback.question2}
+        </Alert>
+      )}
+    </Form.Group>
+  )}
+
+  {/* TOMBOL NAVIGASI */}
+  <div className="text-center mt-4 d-flex justify-content-between">
+    <Button
+      variant="secondary"
+      onClick={() => setCurrentQuestion((prev) => Math.max(1, prev - 1))}
+      disabled={currentQuestion === 1}
+    >
+      Sebelumnya
+    </Button>
+
+    <Button
+      variant="primary"
+      onClick={handleSubmit}
+    >
+      Periksa Jawaban
+    </Button>
+
+    <Button
+      variant="secondary"
+      onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
+      disabled={
+        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 2 && feedback.question2 !== "Benar()")
+      }
+    >
+      Selanjutnya
+    </Button>
+  </div>
+</Form>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

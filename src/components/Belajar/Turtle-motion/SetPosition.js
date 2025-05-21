@@ -235,7 +235,7 @@ const SetPosition = () => {
   
       if (isCorrect2) {
         try {
-          if (Number(progresBelajar) === 2) {
+          if (Number(progresBelajar) === 4) {
             await axios.put(
               `${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-belajar`,
               { progres_belajar: Number(progresBelajar) + 1 },

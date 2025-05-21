@@ -116,7 +116,9 @@ const KuisMengetahuistatusJawab = () => {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState({});
   const [hovered, setHovered] = useState(null);
-  const [timeRemaining, setTimeRemaining] = useState(60);
+  const [timeRemaining, setTimeRemaining] = useState(900);
+  const minutes = Math.floor(timeRemaining / 60);
+  const seconds = String(timeRemaining % 60).padStart(2, '0');
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState([]);
@@ -391,7 +393,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 15) {
                   borderRadius: '4px',
                 }}
               >
-                {timeRemaining > 0 ? `${timeRemaining} detik tersisa` : 'Waktu habis'}
+                {timeRemaining > 0 ? `${minutes} menit : ${seconds} detik tersisa` : 'Waktu habis'}
               </div>
 
               {showResult && (
