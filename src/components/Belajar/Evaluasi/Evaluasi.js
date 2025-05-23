@@ -487,7 +487,7 @@ const Evaluasi = () => {
             </p>
             <ul>
               <li>Nilai kelulusan minimum: {kkm}</li>
-              <li>Durasi pengerjaan: 15 menit</li>
+              <li>Durasi pengerjaan: 20 menit</li>
             </ul>
             <p>
               Jika Anda belum mencapai nilai kelulusan, Anda harus mengulangi kuis!

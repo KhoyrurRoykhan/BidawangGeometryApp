@@ -24,7 +24,6 @@ import { jwtDecode } from "jwt-decode";
 import "../assets/tutor-copy.css";
 
 const positions = [
-    { left: '294px', top: '174px', angle: 0 },
     { left: '281px', top: '107px', angle: 30 },
     { left: '241px', top: '67px', angle: 60 },
     { left: '175px', top: '50px', angle: 90 },

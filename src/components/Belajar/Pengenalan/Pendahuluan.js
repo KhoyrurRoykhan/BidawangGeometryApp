@@ -14,6 +14,9 @@ import { jwtDecode } from "jwt-decode";
 import Swal from "sweetalert2";
 import "../assets/tutor-copy.css";
 import { FaBars } from "react-icons/fa";
+import { closeBrackets } from '@codemirror/autocomplete';
+
+
 
 import option1a from './assets/1A.png';
 import option1b from './assets/1B.png';
@@ -113,17 +116,39 @@ const Pendahuluan = () => {
 
 
   //accordion task
+
+  const runAndCheck = () => {
+    if (!pythonCode.trim()) return;
+  
+    const newCommand = pythonCode.trim();
+    const newHistory = [...commandHistory, newCommand];
+  
+    setCommandHistory(newHistory);
+    setPythonCode('');
+    runit(newCommand);
+    checkCode(newHistory); // gunakan history yang sudah termasuk perintah baru
+  };
+  
+
+  
   const [completedSteps, setCompletedSteps] = useState([]);
   const [activeKey, setActiveKey] = useState('1a');
 
-  const checkCode = () => {
-    const parsed = parseSimpleCommands(pythonCode); // 🔄 Gunakan hasil parse
+  const checkCode = (customCommands = null) => {
+    const allCommands = customCommands ? [...customCommands] : [...commandHistory];
+    if (pythonCode.trim() && !customCommands) {
+      allCommands.push(pythonCode.trim());
+    }
+  
+    const parsed = parseSimpleCommands(allCommands.join('\n'));
     const lines = parsed.split('\n').map(line => line.trim());
+  
     let newCompletedSteps = [];
     let keys = Object.keys(correctCommands);
   
     for (let i = 0; i < keys.length; i++) {
-      if (lines[i] === correctCommands[keys[i]]) {
+      const expectedParsed = parseSimpleCommands(correctCommands[keys[i]]).trim();
+      if (lines[i] === expectedParsed) {
         newCompletedSteps.push(keys[i]);
       } else {
         break;
@@ -136,13 +161,18 @@ const Pendahuluan = () => {
       setActiveKey(keys[newCompletedSteps.length]);
     } else {
       setActiveKey(null);
-      Swal.fire({
-        icon: 'success',
-        title: 'Selamat!',
-        text: 'Anda telah menyelesaikan seluruh aktivitas ini!',
-      });
+      setTimeout(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Selamat!',
+          text: 'Anda telah menyelesaikan seluruh aktivitas ini!',
+        });
+      }, 1000); // delay 2000 ms = 2 detik
     }
   };
+  
+
+  
   
 
   //Kuis
@@ -395,11 +425,64 @@ for i in range(100):
     return parsedLines.join('\n');
 };
 
+const [commandHistory, setCommandHistory] = useState([]);
+
+const handleKeyDown = (event) => {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+
+    // Ambil kode dari pythonCode tanpa newline
+    const cleaned = pythonCode.replace(/\s*\n\s*/g, '').trim();
+
+    // Optional: pastikan buka-tutup kurung seimbang
+    const openParens = (cleaned.match(/\(/g) || []).length;
+    const closeParens = (cleaned.match(/\)/g) || []).length;
+
+    if (cleaned && openParens === closeParens) {
+      setPythonCode('');
+      runit(cleaned);
+      const updatedHistory = [...commandHistory, cleaned];
+      setCommandHistory(updatedHistory);
+      checkCode(updatedHistory);
+    }
+  }
+};
+
+// Fungsi Undo: hapus perintah terakhir dari history
+const undoLastCommand = () => {
+  if (commandHistory.length === 0) return;
+
+  const newHistory = commandHistory.slice(0, -1);
+  setCommandHistory(newHistory);
+  checkCode(newHistory);
+
+  // Jalankan ulang kode sesuai history terbaru (atau reset canvas jika kosong)
+  if (newHistory.length > 0) {
+    runit(newHistory.join('\n'), true); // true = reset canvas sebelum jalankan ulang
+  } else {
+    runit('', true); // kosong = reset canvas
+  }
+};
+
+
 const runit = (code, forceReset = false) => {
   setOutput('');
-  const parsedCode = parseSimpleCommands(code || pythonCode); // Gunakan kode dari argumen atau state
-  const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(1)\n";
-  const prog = forceReset ? imports : imports + parsedCode;
+
+  const parsedNewCode = parseSimpleCommands(code || pythonCode);
+  const parsedHistory = commandHistory.map(cmd => parseSimpleCommands(cmd)).join('\n');
+
+  const imports = "from turtle import *\nshape('turtle')\n";
+  let prog = "";
+
+  if (forceReset) {
+    // Reset posisi & canvas
+    prog = imports + "reset()\nspeed(1)\n" + parsedNewCode;
+  } else {
+    // Jalankan history dengan speed 0 (tanpa animasi), lalu kode baru dengan speed 1
+    prog = imports +
+           "reset()\nspeed(0)\n" + parsedHistory +
+           "\nspeed(1)\n" + parsedNewCode;
+  }
 
   window.Sk.pre = "output";
   window.Sk.configure({ output: outf, read: builtinRead });
@@ -412,6 +495,7 @@ const runit = (code, forceReset = false) => {
     (err) => setOutput((prev) => prev + err.toString())
   );
 };
+
 
 
 const runit2 = (code, forceReset = false) => {
@@ -1046,11 +1130,10 @@ const runit2 = (code, forceReset = false) => {
               </ul>
             </div>
             
-            <hr></hr>
-            <br></br>
+            
 
             {/* Contoh Menggerakkan Bidawang dalam Canvas */}
-            <div
+            {/* <div
               style={{
                 backgroundColor: '#F9F9F9',
                 padding: '20px',
@@ -1080,7 +1163,7 @@ const runit2 = (code, forceReset = false) => {
               </p>
 
               <Row>
-                {/* Kolom untuk Accordion */}
+                
                 <Col xs={3} style={{ fontSize: '15px' }}>
                   <Accordion activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
                   {[
@@ -1119,17 +1202,21 @@ const runit2 = (code, forceReset = false) => {
                   </Accordion>
                 </Col>
 
-                {/* Kolom untuk Editor dan Canvas */}
+                
                 <Col xs={9}>
                   <div className="skulpt-container" style={{ border: '2px solid #ccc', borderRadius: '8px', padding: '15px' }}>
                     <div className="editor-section">
                       <CodeMirror
                         value={pythonCode}
                         placeholder={'//Ketikan kode disini!'}
-                        height="300px"
+                        height="150px"
                         theme="light"
-                        extensions={[python()]}
+                        extensions={[
+                          // python(),
+                          closeBrackets({ brackets: '' }) // <-- ini matikan auto-close kurung
+                        ]}
                         onChange={(value) => setPythonCode(value)}
+                        onKeyDown={handleKeyDown}
                       />
                       <div
                         style={{
@@ -1140,13 +1227,47 @@ const runit2 = (code, forceReset = false) => {
                           // justifyContent: 'center',
                         }}
                       >
-                        <Button variant="success" onClick={() => { runit(); checkCode(); }}>
+                        <Button
+                          variant="success"
+                          disabled={!pythonCode.trim()}
+                          onClick={runAndCheck}
+                        >
                           Run Code
                         </Button>
+
+                        <Button
+                          variant="warning"
+                          disabled={commandHistory.length === 0}
+                          onClick={undoLastCommand}
+                        >
+                          Undo
+                        </Button>
+
+
+
+
                         <Button variant="secondary" onClick={resetCode}>
                           <BsArrowClockwise /> Reset
                         </Button>
+
+                        
                       </div>
+                      <pre
+                        style={{
+                          height: '150px',
+                          overflowY: 'auto',
+                          backgroundColor: '#f8f9fa',
+                          border: '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '10px',
+                          fontFamily: 'monospace',
+                          fontSize: '14px',
+                          marginTop: '10px'
+                        }}
+                      > <b>History Commands:</b><br/>
+                        {commandHistory.map((cmd, idx) => `> ${cmd}\n`)}
+                      </pre>
+
                       <pre className="output" style={{ height: 60, width: 330, overflow: 'auto' }}>{output}</pre>
                     </div>
                     <div className="canvas-section">
@@ -1155,7 +1276,7 @@ const runit2 = (code, forceReset = false) => {
                   </div>
                 </Col>
               </Row>
-            </div>
+            </div> */}
 
 
             

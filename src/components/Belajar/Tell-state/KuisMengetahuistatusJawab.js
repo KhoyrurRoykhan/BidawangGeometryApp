@@ -18,7 +18,7 @@ const quizData = [
     answer: 'Memberitahu posisi turtle saat ini dalam bentuk koordinat (x, y).'
   },
   {
-    question: 'Apa hasil dari perintah berikut jika turtle berada di posisi (50, 100)?\nprint position',
+    question: 'Apa hasil dari perintah berikut jika turtle berada di posisi (50, 100)?```print position```',
     options: [
       '(50, 100)',
       '0',
@@ -38,7 +38,7 @@ const quizData = [
     answer: 'xcor menampilkan posisi horizontal (sumbu x), sementara ycor() menampilkan posisi vertikal (sumbu y).'
   },
   {
-    question: 'Apa hasil dari perintah berikut jika bidawang berada di koordinat (30, 20)?\nprint xcor',
+    question: 'Apa hasil dari perintah berikut jika bidawang berada di koordinat (30, 20)?```print xcor```',
     options: [
       '-20',
       '30',
@@ -58,7 +58,7 @@ const quizData = [
     answer: 'Timur (kanan).'
   },
   {
-    question: 'Apa hasil dari perintah berikut jika bidawang sudah diputar 90 derajat ke kiri?\nprint heading',
+    question: 'Apa hasil dari perintah berikut jika bidawang sudah diputar 90 derajat ke kiri?```print heading```',
     options: [
       '0',
       '90',
@@ -78,14 +78,14 @@ const quizData = [
     answer: 'Menghitung jarak Euclidean antara posisi saat ini dan koordinat (x, y).'
   },
   {
-    question: 'Jika turtle berada di koordinat (0, 0), apa hasil dari perintah berikut?\nprint distance 3 4',
+    question: 'Jika turtle berada di koordinat (0, 0), apa hasil dari perintah berikut?```print distance 0 100```',
     options: [
-      '3',
-      '4',
-      '7',
-      '5'
+      '50',
+      '75',
+      '100',
+      '125'
     ],
-    answer: '5'
+    answer: '100'
   },
   {
     question: 'Apa yang terjadi jika kita menulis print ycor saat posisi turtle adalah (100, -75)?',
@@ -415,20 +415,44 @@ if (nilaiAkhir >= kkm && progresBelajar === 15) {
           <Card className="h-100" style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '30px' }}>
             <Card.Body className="d-flex flex-column justify-content-between">
               <div>
-                <Card.Title as="h4" className="mb-4">
-                  <div
-                    className="p-3 mb-3"
-                    style={{
-                      display: "block",
-                      backgroundColor: "#d1e7dd",
-                      fontSize: "18px",
-                      borderRadius: "5px",
-                      color: "#0f5132"
-                    }}
-                  >
-                    {quizData[current].question}
-                  </div>
-                </Card.Title>
+              <Card.Title>
+              <div
+                className="p-3 mb-3"
+                style={{
+                  display: "block",
+                  backgroundColor: "#d1e7dd",
+                  fontSize: "18px",
+                  borderRadius: "5px",
+                  color: "#0f5132",
+                  whiteSpace: "pre-wrap"
+                }}
+              >
+                {(() => {
+                  const question = quizData[current].question;
+                  const parts = question.split(/```/); // split jadi teks dan kode
+
+                  return parts.map((part, index) => (
+                    index % 2 === 0 ? (
+                      // bagian teks biasa
+                      <span key={index}>{part}<br /></span>
+                    ) : (
+                      // bagian kode
+                      <pre key={index} style={{
+                        backgroundColor: '#f8f9fa',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        fontFamily: 'monospace',
+                        fontSize: '16px',
+                        whiteSpace: 'pre-wrap',
+                        marginTop: '10px'
+                      }}>
+                        <code>{part}</code>
+                      </pre>
+                    )
+                  ));
+                })()}
+                </div>
+              </Card.Title>
 
                 <div className="d-flex flex-column gap-2">
                   {quizData[current].options.map((option, i) => {

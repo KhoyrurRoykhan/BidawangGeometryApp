@@ -17,7 +17,8 @@ const quizData = [
     answer: 'Semua gambar dihapus, dan bidawang kembali ke posisi awal dengan atribut default.'
   },
   {
-    question: 'Perhatikan kode berikut:\npencolor "green"\nforward 100\nreset\ncircle 50\nApa warna lingkaran yang akan dihasilkan?',
+    // 🔹 Mengandung kode
+    question: 'Perhatikan kode berikut:```pencolor("green")\nforward(100)\nreset()\ncircle(50)```Apa warna lingkaran yang akan dihasilkan?',
     options: [
       'Hijau.',
       'Hitam.',
@@ -37,7 +38,8 @@ const quizData = [
     answer: 'clear menghapus gambar tanpa mengubah posisi atau atribut, sedangkan reset juga mengatur ulang posisi dan atribut bidawang.'
   },
   {
-    question: 'Perhatikan kode berikut:\ncolor "blue"\ncircle 50\nclear\nforward 100\ncircle 30\nApa warna lingkaran kedua?',
+    // 🔹 Mengandung kode
+    question: 'Perhatikan kode berikut:```color("blue")\ncircle(50)\nclear()\nforward(100)\ncircle(30)```Apa warna lingkaran kedua?',
     options: [
       'Tidak Berwarna.',
       'Biru.',
@@ -57,7 +59,8 @@ const quizData = [
     answer: 'Mengatur perataan teks (kiri, tengah, atau kanan).'
   },
   {
-    question: 'Perhatikan kode berikut:\nwrite("Belajar Python!", align="center", font=("Arial", 12, "italic"))\nApa yang akan terjadi?',
+    // 🔹 Mengandung kode
+    question: 'Perhatikan kode berikut:```write("Belajar Python!", align="center", font=("Arial", 12, "italic"))```Apa yang akan terjadi?',
     options: [
       'Teks ditulis di layar dengan font Arial, ukuran 12, dan bergaya italic di posisi kiri bidawang.',
       'Teks ditulis di layar dengan font Arial, ukuran 12, dan bergaya italic di posisi tengah bidawang.',
@@ -87,17 +90,19 @@ const quizData = [
     answer: '5'
   },
   {
-    question: 'Perhatikan kode berikut:\nfor 4\nforward 100\nleft 90\nApa yang akan digambar oleh kode tersebut?',
+    // 🔹 Mengandung kode
+    question: 'Perhatikan kode berikut:```python\nfor 4\nforward(50)```Apa yang akan digambar oleh kode tersebut?',
     options: [
       'Lingkaran kecil',
       'Segitiga',
       'Persegi',
-      'Garis lurus sepanjang 400'
+      'Garis lurus sepanjang 200'
     ],
     answer: 'Persegi'
   },
   {
-    question: 'Perhatikan kode berikut:\nfor 4\nforward 100\nleft 90\nApa yang akan digambar oleh kode tersebut?',
+    // 🔹 Mengandung kode
+    question: 'Perhatikan kode berikut:```python\nfor 4\nforward(100)\nleft(90)```Apa yang akan digambar oleh kode tersebut?',
     options: [
       'Persegi',
       'Lingkaran',
@@ -107,6 +112,7 @@ const quizData = [
     answer: 'Persegi'
   }
 ];
+
 
   
 
@@ -412,20 +418,46 @@ if (nilaiAkhir >= kkm && progresBelajar === 26) {
           <Card className="h-100" style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '30px' }}>
             <Card.Body className="d-flex flex-column justify-content-between">
               <div>
-                <Card.Title as="h4" className="mb-4">
-                  <div
-                    className="p-3 mb-3"
-                    style={{
-                      display: "block",
-                      backgroundColor: "#d1e7dd",
-                      fontSize: "18px",
-                      borderRadius: "5px",
-                      color: "#0f5132"
-                    }}
-                  >
-                    {quizData[current].question}
-                  </div>
-                </Card.Title>
+              <Card.Title>
+              <div
+                className="p-3 mb-3"
+                style={{
+                  display: "block",
+                  backgroundColor: "#d1e7dd",
+                  fontSize: "18px",
+                  borderRadius: "5px",
+                  color: "#0f5132",
+                  whiteSpace: "pre-wrap"
+                }}
+              >
+                {(() => {
+                  const question = quizData[current].question;
+                  const parts = question.split(/```/); // split jadi teks dan kode
+
+                  return parts.map((part, index) => (
+                    index % 2 === 0 ? (
+                      // bagian teks biasa
+                      <span key={index}>{part}<br /></span>
+                    ) : (
+                      // bagian kode
+                      <pre key={index} style={{
+                        backgroundColor: '#f8f9fa',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        fontFamily: 'monospace',
+                        fontSize: '16px',
+                        whiteSpace: 'pre-wrap',
+                        marginTop: '10px'
+                      }}>
+                        <code>{part}</code>
+                      </pre>
+                    )
+                  ));
+                })()}
+                </div>
+              </Card.Title>
+
+
 
                 <div className="d-flex flex-column gap-2">
                   {quizData[current].options.map((option, i) => {

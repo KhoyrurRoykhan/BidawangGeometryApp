@@ -18,7 +18,7 @@ const quizData = [
     answer: 'Bidawang tidak akan menggambar garis saat bergerak.'
   },
   {
-    question: 'Perhatikan kode berikut:\npenup\nsetposition 100 100\npendown\nsetposition 200 200\nApa yang terjadi setelah kode tersebut dijalankan?',
+    question: 'Perhatikan kode berikut:```penup\nsetposition 100 100\npendown\nsetposition 200 200```Apa yang terjadi setelah kode tersebut dijalankan?',
     options: [
       'Bidawang menggambar garis dari titik awal ke (100, 100).',
       'Bidawang menggambar garis dari (100, 100) ke (200, 200).',
@@ -38,7 +38,7 @@ const quizData = [
     answer: 'Mengubah ketebalan garis menjadi 10 piksel.'
   },
   {
-    question: 'Jika kode berikut dijalankan:\npensize 5\ncircle 30\npensize 2\ncircle 50\nApa yang akan terlihat pada hasil akhir?',
+    question: 'Jika kode berikut dijalankan:```pensize 5\ncircle 30\npensize 2\ncircle 50```Apa yang akan terlihat pada hasil akhir?',
     options: [
       'Dua lingkaran dengan ketebalan garis yang sama.',
       'Lingkaran pertama memiliki garis lebih tebal daripada lingkaran kedua.',
@@ -58,7 +58,7 @@ const quizData = [
     answer: 'True'
   },
   {
-    question: 'Perhatikan kode berikut:\npendown\nprint isdown\npenup\nprint isdown\nApa output dari kode tersebut?',
+    question: 'Perhatikan kode berikut:```pendown\nprint isdown\npenup\nprint isdown```Apa output dari kode tersebut?',
     options: [
       'True, False',
       'False, True',
@@ -68,7 +68,7 @@ const quizData = [
     answer: 'True, False'
   },
   {
-    question: 'Apa yang terjadi jika kode berikut dijalankan?\npencolor "red"\nforward 100',
+    question: 'Apa yang terjadi jika kode berikut dijalankan?```pencolor "red"\nforward 100```',
     options: [
       'Bidawang menggambar garis merah sepanjang 100 piksel.',
       'Bidawang menggambar garis hitam sepanjang 100 piksel.',
@@ -88,7 +88,7 @@ const quizData = [
     answer: '"bold_red"'
   },
   {
-    question: 'Perhatikan kode berikut:\nforward 100\nbegin_fill\ncircle 50\nend_fill\nApa hasil dari kode tersebut?',
+    question: 'Perhatikan kode berikut:```forward 100\nbegin_fill\ncircle 50\nend_fill```Apa hasil dari kode tersebut?',
     options: [
       'Sebuah lingkaran dengan warna garis kuning tanpa isian.',
       'Sebuah lingkaran dengan warna isian kuning.',
@@ -413,20 +413,44 @@ if (nilaiAkhir >= kkm && progresBelajar === 21) {
           <Card className="h-100" style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '30px' }}>
             <Card.Body className="d-flex flex-column justify-content-between">
               <div>
-                <Card.Title as="h4" className="mb-4">
-                  <div
-                    className="p-3 mb-3"
-                    style={{
-                      display: "block",
-                      backgroundColor: "#d1e7dd",
-                      fontSize: "18px",
-                      borderRadius: "5px",
-                      color: "#0f5132"
-                    }}
-                  >
-                    {quizData[current].question}
-                  </div>
-                </Card.Title>
+              <Card.Title>
+              <div
+                className="p-3 mb-3"
+                style={{
+                  display: "block",
+                  backgroundColor: "#d1e7dd",
+                  fontSize: "18px",
+                  borderRadius: "5px",
+                  color: "#0f5132",
+                  whiteSpace: "pre-wrap"
+                }}
+              >
+                {(() => {
+                  const question = quizData[current].question;
+                  const parts = question.split(/```/); // split jadi teks dan kode
+
+                  return parts.map((part, index) => (
+                    index % 2 === 0 ? (
+                      // bagian teks biasa
+                      <span key={index}>{part}<br /></span>
+                    ) : (
+                      // bagian kode
+                      <pre key={index} style={{
+                        backgroundColor: '#f8f9fa',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        fontFamily: 'monospace',
+                        fontSize: '16px',
+                        whiteSpace: 'pre-wrap',
+                        marginTop: '10px'
+                      }}>
+                        <code>{part}</code>
+                      </pre>
+                    )
+                  ));
+                })()}
+                </div>
+              </Card.Title>
 
                 <div className="d-flex flex-column gap-2">
                   {quizData[current].options.map((option, i) => {

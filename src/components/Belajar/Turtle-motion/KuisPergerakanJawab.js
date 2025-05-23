@@ -264,7 +264,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 10) {
     // 2. Update nilai kuis_1
     await axios.put(
       `${process.env.REACT_APP_API_ENDPOINT}/api/nilai/kuis-2`,
-      { nilai: Math.round(nilaiAkhir) }, // Jika kamu ingin integer
+      { nilai: Math.round(nilaiAkhir) }, 
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -412,20 +412,44 @@ if (nilaiAkhir >= kkm && progresBelajar === 10) {
           <Card className="h-100" style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '30px' }}>
             <Card.Body className="d-flex flex-column justify-content-between">
               <div>
-                <Card.Title as="h4" className="mb-4">
-                  <div
-                    className="p-3 mb-3"
-                    style={{
-                      display: "block",
-                      backgroundColor: "#d1e7dd",
-                      fontSize: "18px",
-                      borderRadius: "5px",
-                      color: "#0f5132"
-                    }}
-                  >
-                    {quizData[current].question}
-                  </div>
-                </Card.Title>
+              <Card.Title>
+              <div
+                className="p-3 mb-3"
+                style={{
+                  display: "block",
+                  backgroundColor: "#d1e7dd",
+                  fontSize: "18px",
+                  borderRadius: "5px",
+                  color: "#0f5132",
+                  whiteSpace: "pre-wrap"
+                }}
+              >
+                {(() => {
+                  const question = quizData[current].question;
+                  const parts = question.split(/```/); // split jadi teks dan kode
+
+                  return parts.map((part, index) => (
+                    index % 2 === 0 ? (
+                      // bagian teks biasa
+                      <span key={index}>{part}<br /></span>
+                    ) : (
+                      // bagian kode
+                      <pre key={index} style={{
+                        backgroundColor: '#f8f9fa',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        fontFamily: 'monospace',
+                        fontSize: '16px',
+                        whiteSpace: 'pre-wrap',
+                        marginTop: '10px'
+                      }}>
+                        <code>{part}</code>
+                      </pre>
+                    )
+                  ));
+                })()}
+                </div>
+              </Card.Title>
 
                 <div className="d-flex flex-column gap-2">
                   {quizData[current].options.map((option, i) => {

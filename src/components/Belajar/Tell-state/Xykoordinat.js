@@ -9,6 +9,7 @@ import left120 from './assets/1left120.gif';
 import right90 from './assets/1right90.gif';
 import gabunganleftright from './assets/1gabunganleftright.gif';
 import { FaBars } from "react-icons/fa";
+import { closeBrackets } from '@codemirror/autocomplete';
 
 // Challange
 import swal from 'sweetalert'; // Import SweetAlert
@@ -26,9 +27,12 @@ import { jwtDecode } from "jwt-decode";
 import "../assets/tutor-copy.css";
 
 const correctCommands = {
-  '1a': 'print("x :", xcor())\nprint("y :", ycor())',
-  '1b': 'left(90)\nforward(150)',
-  '1c': 'print("x :", xcor())\nprint("y :", ycor())'
+  '1a': 'print(xcor())',
+  '1b': 'print(ycor())',
+  '1c': 'setx(100)',
+  '1d': 'print(xcor())',
+  '1e': 'print(ycor())'
+
 };
 
 const Xykoordinat = () => {
@@ -133,9 +137,8 @@ const Xykoordinat = () => {
     location.pathname === path ? "btn text-start mb-2 btn-success" : "btn text-start mb-2 btn-outline-success";
 
 
-    //accordion task
-    const [completedSteps, setCompletedSteps] = useState([]);
-    const [activeKey, setActiveKey] = useState('1a');
+
+
 
     const [inputA, setInputA] = useState("");
     const [inputB, setInputB] = useState("");
@@ -193,60 +196,71 @@ const Xykoordinat = () => {
     };
     
   
-    const normalizeLine = (line) => {
-      return line
-        .toLowerCase()               // bikin semua huruf kecil biar gak sensi kapital
-        .replace(/['"]/g, '"')       // samain semua kutip jadi "
-        .replace(/\s+/g, ' ')        // spasi berlebih jadi satu spasi
-        .replace(/\s*\(\s*/g, '(')   // hapus spasi sekitar kurung buka
-        .replace(/\s*\)\s*/g, ')')   // hapus spasi sekitar kurung tutup
-        .replace(/\s*,\s*/g, ',')    // hapus spasi sekitar koma
-        .replace(/\s*:\s*/g, ':')    // hapus spasi sekitar titik dua
-        .trim();
-    };
-    
-    const checkCode = () => {
-      const parsedCode = parseSimpleCommands(pythonCode); // 🔧 Gunakan hasil parser
-      const cleanedCode = parsedCode
-        .split('\n')
-        .map(line => normalizeLine(line))
-        .filter(line => line.length > 0);
-    
-      let newCompletedSteps = [];
-    
-      for (const key of Object.keys(correctCommands)) {
-        const expected = correctCommands[key]
-          .split('\n')
-          .map(line => normalizeLine(line));
-    
-        const codeSlice = cleanedCode.slice(0, expected.length);
-    
-        const isMatch = expected.every((expectedLine, idx) => {
-          const userLine = codeSlice[idx] || '';
-          return userLine.includes(expectedLine);
-        });
-    
-        if (isMatch) {
-          newCompletedSteps.push(key);
-          cleanedCode.splice(0, expected.length);
-        } else {
-          break;
-        }
-      }
-    
-      setCompletedSteps(newCompletedSteps);
-    
-      if (newCompletedSteps.length < Object.keys(correctCommands).length) {
-        setActiveKey(Object.keys(correctCommands)[newCompletedSteps.length]);
-      } else {
-        setActiveKey(null);
-        Swal.fire({
-          icon: 'success',
-          title: 'Selamat!',
-          text: 'Anda telah menyelesaikan seluruh aktivitas ini!',
-        });
-      }
-    };
+    //accordion task
+  const runAndCheck = () => {
+    if (!pythonCode.trim()) return;
+  
+    const newCommand = pythonCode.trim();
+    const newHistory = [...commandHistory, newCommand];
+  
+    setCommandHistory(newHistory);
+    setPythonCode('');
+    runit(newCommand);
+    checkCode(newHistory); // gunakan history yang sudah termasuk perintah baru
+  };
+
+  //accordion task
+  const [completedSteps, setCompletedSteps] = useState([]);
+  const [activeKey, setActiveKey] = useState('1a');
+
+  const normalizeLine = (line) => {
+    return line
+      .toLowerCase()               // bikin semua huruf kecil biar gak sensi kapital
+      .replace(/['"]/g, '"')       // samain semua kutip jadi "
+      .replace(/\s+/g, ' ')        // spasi berlebih jadi satu spasi
+      .replace(/\s*\(\s*/g, '(')   // hapus spasi sekitar kurung buka
+      .replace(/\s*\)\s*/g, ')')   // hapus spasi sekitar kurung tutup
+      .replace(/\s*,\s*/g, ',')    // hapus spasi sekitar koma
+      .replace(/\s*:\s*/g, ':')    // hapus spasi sekitar titik dua
+      .trim();
+  };
+  
+  const checkCode = (customCommands = null) => {
+  const allCommands = customCommands ? [...customCommands] : [...commandHistory];
+  if (pythonCode.trim() && !customCommands) {
+    allCommands.push(pythonCode.trim());
+  }
+
+  const parsed = parseSimpleCommands(allCommands.join('\n'));
+  const lines = parsed.split('\n').map(line => normalizeLine(line.trim()));
+
+  let newCompletedSteps = [];
+  let keys = Object.keys(correctCommands);
+
+  for (let i = 0; i < keys.length; i++) {
+    const expectedParsed = normalizeLine(parseSimpleCommands(correctCommands[keys[i]]).trim());
+    if (lines[i] === expectedParsed) {
+      newCompletedSteps.push(keys[i]);
+    } else {
+      break;
+    }
+  }
+
+  setCompletedSteps(newCompletedSteps);
+
+  if (newCompletedSteps.length < keys.length) {
+    setActiveKey(keys[newCompletedSteps.length]);
+  } else {
+    setActiveKey(null);
+    setTimeout(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Selamat!',
+        text: 'Anda telah menyelesaikan seluruh aktivitas ini!',
+      });
+    }, 1000);
+  }
+};
     
     
   
@@ -366,127 +380,188 @@ for i in range(100):
       const lines = code.split('\n');
       const parsedLines = [];
       let i = 0;
-  
+    
       while (i < lines.length) {
-          const line = lines[i];
-          const trimmed = line.trim();
-          const leadingSpaces = line.match(/^\s*/)?.[0] || '';
-  
-          if (trimmed === '' || trimmed.startsWith('#')) {
-              parsedLines.push(line);
-              i++;
-              continue;
-          }
-  
-          const forMatch = trimmed.match(/^for\s+(\d+)$/);
-          if (forMatch) {
-              const loopCount = parseInt(forMatch[1]);
-              parsedLines.push(`${leadingSpaces}for i in range(${loopCount}):`);
-              i++;
-  
-              while (i < lines.length) {
-                  const nextLine = lines[i];
-                  const nextTrimmed = nextLine.trim();
-                  const nextIndent = nextLine.match(/^\s*/)?.[0].length || 0;
-  
-                  if (nextTrimmed === '' || nextTrimmed.startsWith('#')) {
-                      parsedLines.push(nextLine);
-                      i++;
-                      continue;
-                  }
-  
-                  if (nextIndent <= leadingSpaces.length) break;
-  
-                  const parts = nextTrimmed.split(/\s+/);
-                  const cmd = parts[0];
-                  const args = parts.slice(1);
-                  const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
-                  const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
-  
-                  if (nextTrimmed.includes('(') && nextTrimmed.includes(')')) {
-                      parsedLines.push(nextLine);
-                  } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
-                      parsedLines.push(`${nextLine.match(/^\s*/)?.[0] || ''}${cmd}(${args.join(', ')})`);
-                  } else {
-                      parsedLines.push(nextLine);
-                  }
-                  i++;
-              }
-              continue;
-          }
-  
-          const parts = trimmed.split(/\s+/);
-          const cmd = parts[0];
-          const args = parts.slice(1);
-          const noArgCommands = ['clear', 'home', 'reset', 'penup', 'pendown', 'showturtle', 'hideturtle','begin_fill','end_fill'];
-          const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
-          const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
-  
-          // Konversi print distance, position, xcor, ycor, heading, isdown
-          if (cmd === 'print' && args.length >= 1) {
-              const arg = args[0];
-  
-              if (arg === 'position') {
-                  parsedLines.push(`${leadingSpaces}print(position())`);
-                  i++;
-                  continue;
-              } else if (arg === 'xcor') {
-                  parsedLines.push(`${leadingSpaces}print(xcor())`);
-                  i++;
-                  continue;
-              } else if (arg === 'ycor') {
-                  parsedLines.push(`${leadingSpaces}print(ycor())`);
-                  i++;
-                  continue;
-              } else if (arg === 'heading') {
-                  parsedLines.push(`${leadingSpaces}print(heading())`);
-                  i++;
-                  continue;
-              } else if (arg === 'isdown') {
-                  parsedLines.push(`${leadingSpaces}print(isdown())`);
-                  i++;
-                  continue;
-              } else if (arg === 'distance') {
-                  if (args.length === 3 && !isNaN(args[1]) && !isNaN(args[2])) {
-                      parsedLines.push(`${leadingSpaces}print(distance(${args[1]}, ${args[2]}))`);
-                      i++;
-                      continue;
-                  }
-              }
-          }
-  
-          if (trimmed.includes('(') && trimmed.includes(')')) {
-              parsedLines.push(line);
-          } else if (noArgCommands.includes(cmd) && args.length === 0) {
-              parsedLines.push(`${leadingSpaces}${cmd}()`);
-          } else if ((isAllArgsNumeric && args.length > 0) || isStringArg) {
-              parsedLines.push(`${leadingSpaces}${cmd}(${args.join(', ')})`);
-          } else {
-              parsedLines.push(line);
-          }
-  
+        const line = lines[i];
+        const trimmed = line.trim();
+        const leadingSpaces = line.match(/^\s*/)?.[0] || '';
+    
+        if (trimmed === '' || trimmed.startsWith('#')) {
+          parsedLines.push(line);
           i++;
+          continue;
+        }
+    
+        const forMatch = trimmed.match(/^for\s+(\d+)$/);
+        if (forMatch) {
+          const loopCount = parseInt(forMatch[1]);
+          parsedLines.push(`${leadingSpaces}for i in range(${loopCount}):`);
+          i++;
+    
+          while (i < lines.length) {
+            const nextLine = lines[i];
+            const nextTrimmed = nextLine.trim();
+            const nextIndent = nextLine.match(/^\s*/)?.[0].length || 0;
+    
+            if (nextTrimmed === '' || nextTrimmed.startsWith('#')) {
+              parsedLines.push(nextLine);
+              i++;
+              continue;
+            }
+    
+            if (nextIndent <= leadingSpaces.length) break;
+    
+            const parts = nextTrimmed.split(/\s+/);
+            const cmd = parts[0];
+            const args = parts.slice(1);
+            const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+            const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+            const isMixedNumericStringArgs =
+              args.length === 2 &&
+              !isNaN(parseFloat(args[0])) &&
+              /^["'].*["']$/.test(args[1]);
+    
+            if (nextTrimmed.includes('(') && nextTrimmed.includes(')')) {
+              parsedLines.push(nextLine);
+            } else if ((isAllArgsNumeric && args.length > 0) || isStringArg || isMixedNumericStringArgs) {
+              parsedLines.push(`${nextLine.match(/^\s*/)?.[0] || ''}${cmd}(${args.join(',')})`);
+            } else {
+              parsedLines.push(nextLine);
+            }
+            i++;
+          }
+          continue;
+        }
+    
+        const parts = trimmed.split(/\s+/);
+        const cmd = parts[0];
+        const args = parts.slice(1);
+        const noArgCommands = ['clear', 'home', 'reset', 'penup', 'pendown', 'showturtle', 'hideturtle', 'begin_fill', 'end_fill'];
+        const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
+        const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
+        const isMixedNumericStringArgs =
+          args.length === 2 &&
+          !isNaN(parseFloat(args[0])) &&
+          /^["'].*["']$/.test(args[1]);
+    
+        if (cmd === 'print' && args.length >= 1) {
+          const arg = args[0];
+          if (arg === 'position') {
+            parsedLines.push(`${leadingSpaces}print(position())`);
+            i++;
+            continue;
+          } else if (arg === 'xcor') {
+            parsedLines.push(`${leadingSpaces}print(xcor())`);
+            i++;
+            continue;
+          } else if (arg === 'ycor') {
+            parsedLines.push(`${leadingSpaces}print(ycor())`);
+            i++;
+            continue;
+          } else if (arg === 'heading') {
+            parsedLines.push(`${leadingSpaces}print(heading())`);
+            i++;
+            continue;
+          } else if (arg === 'isdown') {
+            parsedLines.push(`${leadingSpaces}print(isdown())`);
+            i++;
+            continue;
+          } else if (arg === 'distance') {
+            if (args.length === 3 && !isNaN(args[1]) && !isNaN(args[2])) {
+              parsedLines.push(`${leadingSpaces}print(distance(${args[1]},${args[2]}))`);
+              i++;
+              continue;
+            }
+          }
+        }
+    
+        if (trimmed.includes('(') && trimmed.includes(')')) {
+          parsedLines.push(line);
+        } else if (noArgCommands.includes(cmd) && args.length === 0) {
+          parsedLines.push(`${leadingSpaces}${cmd}()`);
+        } else if ((isAllArgsNumeric && args.length > 0) || isStringArg || isMixedNumericStringArgs) {
+          parsedLines.push(`${leadingSpaces}${cmd}(${args.join(',')})`);
+        } else {
+          parsedLines.push(line);
+        }
+    
+        i++;
       }
-  
+    
       return parsedLines.join('\n');
+    };
+    
+    
+  
+  const [commandHistory, setCommandHistory] = useState([]);
+  
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+  
+      // Ambil kode dari pythonCode tanpa newline
+      const cleaned = pythonCode.replace(/\s*\n\s*/g, '').trim();
+  
+      // Optional: pastikan buka-tutup kurung seimbang
+      const openParens = (cleaned.match(/\(/g) || []).length;
+      const closeParens = (cleaned.match(/\)/g) || []).length;
+  
+      if (cleaned && openParens === closeParens) {
+        setPythonCode('');
+        runit(cleaned);
+        const updatedHistory = [...commandHistory, cleaned];
+        setCommandHistory(updatedHistory);
+        checkCode(updatedHistory);
+      }
+    }
   };
   
-    const runit = (code, forceReset = false) => {
-      setOutput('');
-      const parsedCode = parseSimpleCommands(code || pythonCode); // Gunakan kode hasil parse
-      const imports = "from turtle import *\nreset()\nshape('turtle')\nspeed(1)\n";
-      const prog = forceReset ? imports : imports + parsedCode;
+  // Fungsi Undo: hapus perintah terakhir dari history
+  const undoLastCommand = () => {
+    if (commandHistory.length === 0) return;
   
-      window.Sk.pre = "output";
-      window.Sk.configure({ output: outf, read: builtinRead });
-      (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas';
+    const newHistory = commandHistory.slice(0, -1);
+    setCommandHistory(newHistory);
+    checkCode(newHistory);
   
-      window.Sk.misceval.asyncToPromise(() => 
-          window.Sk.importMainWithBody('<stdin>', false, prog, true)
-      ).then(
-          () => console.log('success'),
-          (err) => setOutput((prev) => prev + err.toString())
-      );
+    // Jalankan ulang kode sesuai history terbaru (atau reset canvas jika kosong)
+    if (newHistory.length > 0) {
+      runit(newHistory.join('\n'), true); // true = reset canvas sebelum jalankan ulang
+    } else {
+      runit('', true); // kosong = reset canvas
+    }
+  };
+  
+  
+  const runit = (code, forceReset = false) => {
+    setOutput('');
+  
+    const parsedNewCode = parseSimpleCommands(code || pythonCode);
+    const parsedHistory = commandHistory.map(cmd => parseSimpleCommands(cmd)).join('\n');
+  
+    const imports = "from turtle import *\nshape('turtle')\n";
+    let prog = "";
+  
+    if (forceReset) {
+      // Reset posisi & canvas
+      prog = imports + "reset()\nspeed(1)\n" + parsedNewCode;
+    } else {
+      // Jalankan history dengan speed 0 (tanpa animasi), lalu kode baru dengan speed 1
+      prog = imports +
+             "reset()\nspeed(0)\n" + parsedHistory +
+             "\nspeed(1)\n" + parsedNewCode;
+    }
+  
+    window.Sk.pre = "output";
+    window.Sk.configure({ output: outf, read: builtinRead });
+    (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = 'mycanvas';
+  
+    window.Sk.misceval.asyncToPromise(() =>
+      window.Sk.importMainWithBody('<stdin>', false, prog, true)
+    ).then(
+      () => console.log('success'),
+      (err) => setOutput((prev) => prev + err.toString())
+    );
   };
   
     // ✅ Fungsi untuk menjalankan pythonCode1 (Contoh 1) - Perbaikan disini
@@ -1100,84 +1175,119 @@ print "Posisi y akhir:" ycor `}
             Untuk lebih mudah memahami cara kerja perintah <code>xcor</code> dan <code>ycor</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
-              <Col xs={3} style={{ fontSize: 15 }}>
-                <Accordion activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
-                  <AccordionItem eventKey="1a">
-                    <AccordionHeader>
-                      <b>1. Cek posisi x dan y</b>
-                      {completedSteps.includes('1a') && <BsCheckCircle style={{ color: 'green', marginLeft: 10 }} />}
-                    </AccordionHeader>
-                    <AccordionBody>
-                      <p>Lakukan pemeriksaan posisi x dan y menggunakan perintah di bawah ini:</p>
-                      <pre>
-                        <code>
-{`print "x :" xcor
-print "y :" ycor`}
-                        </code>
-                      </pre>
-                    </AccordionBody>
-                  </AccordionItem>
-                  <AccordionItem eventKey="1b">
-                    <AccordionHeader>
-                      <b>2. Pindahkan posisi</b>
-                      {completedSteps.includes('1b') && <BsCheckCircle style={{ color: 'green', marginLeft: 10 }} />}
-                    </AccordionHeader>
-                    <AccordionBody>
-                      <p>Kemudian lanjutkan lagi pada baris baru untuk menggerakan bidawang dengan perintah di bawah ini:</p>
-                      <pre>
-                        <code>
-{`left(90)
-forward(150)`}
-                        </code>
-                      </pre>
-                    </AccordionBody>
-                  </AccordionItem>
-                  <AccordionItem eventKey="1c">
-                    <AccordionHeader>
-                      <b>3. Cek posisi x dan y</b>
-                      {completedSteps.includes('1c') && <BsCheckCircle style={{ color: 'green', marginLeft: 10 }} />}
-                    </AccordionHeader>
-                    <AccordionBody>
-                      <p>Lakukan pemeriksaan lagi untuk posisi x dan y menggunakan perintah di bawah ini:</p>
-                      <pre>
-                        <code>
-{`print("x :", xcor())
-print("y :", ycor())`}
-                        </code>
-                      </pre>
-                    </AccordionBody>
-                  </AccordionItem>
-                </Accordion>
-              </Col>
+                {/* Kolom untuk Accordion */}
+                <Col xs={3} style={{ fontSize: '15px' }}>
+                  <Accordion activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
+                  {[
+                    { step: '1a', title: 'Cek posisi x', code: 'print xcor', description: 'Lakukan pemeriksaan posisi x menggunakan perintah di bawah ini:' },
+                    { step: '1b', title: 'cek posisi y', code: 'print ycor', description: 'Lakukan pemeriksaan posisi y menggunakan perintah di bawah ini:' },
+                    { step: '1c', title: 'Ubah titik x', code: 'setx 100', description: 'Lalu ubah lagi nilai titik X menjadi 100 dengan perintah dibawah ini:' },
+                    { step: '1d', title: 'cek posisi x', code: 'print xcor', description: 'Lakukan pemeriksaan lagi untuk posisi x setelah mengubah titik x menggunakan perintah dibawah ini:' },
+                    { step: '1e', title: 'cek posisi y', code: 'print ycor', description: 'Lakukan pemeriksaan lagi untuk posisi y menggunakan perintah dibawah ini:' },
+                  ].map((step, index) => {
+                    const isDisabled = index > 0 && !completedSteps.includes(`1${String.fromCharCode(96 + index)}`); // contoh: 1b, 1c
+                    const isActive = activeKey === step.step;
+
+                    return (
+                      <AccordionItem
+                        eventKey={step.step}
+                        key={index}
+                        style={{ opacity: isDisabled ? 0.5 : 1, pointerEvents: isDisabled ? 'none' : 'auto' }}
+                      >
+                        <AccordionHeader>
+                          <b>{step.title}</b>
+                          {completedSteps.includes(step.step) && (
+                            <BsCheckCircle style={{ color: 'green', marginLeft: 10 }} />
+                          )}
+                        </AccordionHeader>
+                        <AccordionBody>
+                          <p>{step.description}</p>
+                          <pre style={{ userSelect: 'none', pointerEvents: 'none' }}>
+                            <code draggable={false}>{step.code}</code>
+                          </pre>
+
+                        </AccordionBody>
+                      </AccordionItem>
+                    );
+                  })}
+
+                  </Accordion>
+                </Col>
+
+                {/* Kolom untuk Editor dan Canvas */}
+                <Col xs={9}>
+                  <div className="skulpt-container" style={{ border: '2px solid #ccc', borderRadius: '8px', padding: '15px' }}>
+                    <div className="editor-section">
+                      <CodeMirror
+                        value={pythonCode}
+                        placeholder={'//Ketikan kode disini!'}
+                        height="150px"
+                        theme="light"
+                        extensions={[
+                          // python(),
+                          closeBrackets({ brackets: '' }) // <-- ini matikan auto-close kurung
+                        ]}
+                        onChange={(value) => setPythonCode(value)}
+                        onKeyDown={handleKeyDown}
+                      />
+                      <div
+                        style={{
+                          marginTop: '5px',
+                          marginBottom: '5px',
+                          display: 'flex',
+                          gap: '10px',
+                          // justifyContent: 'center',
+                        }}
+                      >
+                        <Button
+                          variant="success"
+                          disabled={!pythonCode.trim()}
+                          onClick={runAndCheck}
+                        >
+                          Run Code
+                        </Button>
+
+                        <Button
+                          variant="warning"
+                          disabled={commandHistory.length === 0}
+                          onClick={undoLastCommand}
+                        >
+                          Undo
+                        </Button>
 
 
 
-              <Col xs={9}>
-              <div className="skulpt-container" style={{border: "2px solid #ccc"}}>
-              <div className="editor-section">
-                {/* <h5>Python Turtle Code Editor</h5> */}
-                <CodeMirror
-                  value={pythonCode}
-                  placeholder={'//Ketikan kode disini!'}
-                  height="230px"
-                  theme="light"
-                  extensions={[python()]}
-                  onChange={(value) => setPythonCode(value)}
-                />
-                <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                  <Button variant="success" onClick={() => { runit(); checkCode(); }}>Run Code</Button>
-                  <Button variant="secondary" onClick={resetCode}>
-                    <BsArrowClockwise /> Reset
-                  </Button>
+
+                        <Button variant="secondary" onClick={resetCode}>
+                          <BsArrowClockwise /> Reset
+                        </Button>
+
+                        
+                      </div>
+                      <pre
+                        style={{
+                          height: '150px',
+                          overflowY: 'auto',
+                          backgroundColor: '#f8f9fa',
+                          border: '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '10px',
+                          fontFamily: 'monospace',
+                          fontSize: '14px',
+                          marginTop: '10px'
+                        }}
+                      > <b>History Commands:</b><br/>
+                        {commandHistory.map((cmd, idx) => `> ${cmd}\n`)}
+                      </pre>
+
+                      <pre className="output" style={{ height: 60, width: 330, overflow: 'auto' }}>{output}</pre>
+                    </div>
+                    <div className="canvas-section">
+                      <div id="mycanvas"></div>
+                    </div>
                   </div>
-                <pre id='output' className="output" style={{height:120}}>{output}</pre>
-              </div>
-              <div className="canvas-section" style={{width: 400, height: 400}}>
-                <div  style={{width: 400, height: 400}} id="mycanvas"></div>
-              </div>
-            </div>
-              </Col>
-            </Row>
+                </Col>
+              </Row>
             </div>
 
             <br></br>
