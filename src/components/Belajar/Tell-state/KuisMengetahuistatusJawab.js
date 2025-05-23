@@ -105,7 +105,7 @@ const quizData = [
       'Barat',
       'Utara'
     ],
-    answer: 'Selatan'
+    answer: 'Utara'
   }
 ];
 

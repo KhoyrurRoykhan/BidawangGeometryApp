@@ -55,7 +55,7 @@ const ForLoop = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(25);
   const [progresTantangan, setProgresTantangan] = useState(0);
   
   useEffect(() => {

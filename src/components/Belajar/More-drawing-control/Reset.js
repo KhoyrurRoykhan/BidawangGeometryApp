@@ -56,7 +56,7 @@ const Reset = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(22);
   
   useEffect(() => {
     const checkAkses = async () => {

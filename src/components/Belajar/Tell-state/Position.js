@@ -62,7 +62,7 @@ const Position = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(11);
   const [progresTantangan, setProgresTantangan] = useState(0);
   
   

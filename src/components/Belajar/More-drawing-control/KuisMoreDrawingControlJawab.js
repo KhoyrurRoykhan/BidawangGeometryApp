@@ -91,18 +91,18 @@ const quizData = [
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```python\nfor 4\nforward(50)```Apa yang akan digambar oleh kode tersebut?',
+    question: 'Perhatikan kode berikut:```\nfor 4\nforward(50)```Apa yang akan digambar oleh kode tersebut?',
     options: [
       'Lingkaran kecil',
       'Segitiga',
       'Persegi',
       'Garis lurus sepanjang 200'
     ],
-    answer: 'Persegi'
+    answer: 'Garis lurus sepanjang 200'
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```python\nfor 4\nforward(100)\nleft(90)```Apa yang akan digambar oleh kode tersebut?',
+    question: 'Perhatikan kode berikut:```\nfor 4\nforward(100)\nleft(90)```Apa yang akan digambar oleh kode tersebut?',
     options: [
       'Persegi',
       'Lingkaran',

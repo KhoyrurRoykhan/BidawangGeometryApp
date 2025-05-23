@@ -63,7 +63,7 @@ const Pendahuluan = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(0);
 
   const totalSteps = 27;
   const progressPercentage = Math.min((progresBelajar / totalSteps) * 100, 100);

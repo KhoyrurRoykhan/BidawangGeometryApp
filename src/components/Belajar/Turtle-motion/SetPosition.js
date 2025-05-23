@@ -60,7 +60,7 @@ const SetPosition = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(4);
   const [progresTantangan, setProgresTantangan] = useState(0);
   
   useEffect(() => {

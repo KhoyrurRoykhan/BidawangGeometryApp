@@ -39,7 +39,7 @@ const KuisMengetahuistatus = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(15);
   
   useEffect(() => {
     const checkAkses = async () => {

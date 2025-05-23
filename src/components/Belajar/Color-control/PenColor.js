@@ -55,7 +55,7 @@ const Color = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(19);
   
   useEffect(() => {
     const checkAkses = async () => {

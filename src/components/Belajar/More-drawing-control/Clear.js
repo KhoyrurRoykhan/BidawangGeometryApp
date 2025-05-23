@@ -57,7 +57,7 @@ const Clear = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(23);
   
   useEffect(() => {
     const checkAkses = async () => {
@@ -199,7 +199,7 @@ const handleSubmit = async () => {
     setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
 
   } else if (currentQuestion === 2) {
-    const isCorrect2 = selectedAnswer2 === 'C';
+    const isCorrect2 = selectedAnswer2 === 'B';
     setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
 
     if (isCorrect2) {
@@ -1213,7 +1213,7 @@ forward 100 # Memulai gambar baru dari posisi terakhir `}
         <pre><code>clear</code></pre>
         <pre><code>forward 100 </code></pre>
         <pre><code>circle 30 </code></pre>
-        <p> dimana posisi akhir Bidawang?</p>
+        <p>apa warna garis lingkaran kedua?</p>
       </Form.Label>
 
       {[

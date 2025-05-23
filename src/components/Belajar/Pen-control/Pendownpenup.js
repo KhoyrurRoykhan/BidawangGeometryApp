@@ -58,7 +58,7 @@ const Pendownpenup = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(16);
   const [progresTantangan, setProgresTantangan] = useState(0);
   
   useEffect(() => {

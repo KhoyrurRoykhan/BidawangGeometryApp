@@ -55,7 +55,7 @@ const Pensize = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(17);
   
   useEffect(() => {
     const checkAkses = async () => {

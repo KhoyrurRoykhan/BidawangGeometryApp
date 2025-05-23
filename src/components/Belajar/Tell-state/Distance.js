@@ -57,7 +57,7 @@ const Distance = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(14);
   const [progresTantangan, setProgresTantangan] = useState(0);
   
   useEffect(() => {

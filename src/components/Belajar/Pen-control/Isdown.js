@@ -56,7 +56,7 @@ const Isdown = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(18);
   
   useEffect(() => {
     const checkAkses = async () => {

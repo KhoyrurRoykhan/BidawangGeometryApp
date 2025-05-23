@@ -57,7 +57,7 @@ const Heading = () => {
   };
 
   //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(27);
+  const [progresBelajar, setProgresBelajar] = useState(13);
   
   useEffect(() => {
     const checkAkses = async () => {
