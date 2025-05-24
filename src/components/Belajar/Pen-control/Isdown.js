@@ -553,7 +553,7 @@ home()
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3 " style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -562,12 +562,12 @@ home()
       width:'100%'
     }}>
       
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
@@ -882,10 +882,11 @@ home()
         </div>
 
         
-        <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
+              // height: "100vh",
+              
 
             }}>
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
@@ -1267,55 +1268,7 @@ print isdown`}</code></pre>
             </Accordion.Item>
           </Accordion>
 
-          {/* <Accordion className="mb-4" style={{ outline: '3px solid lightblue' }}> */}
-            {/* Tantangan Accordion */}
-            {/* <Accordion.Item eventKey="1">
-              <Accordion.Header><h4>Tantangan</h4></Accordion.Header>
-              <Accordion.Body>
-                <p>
-                  Coba gunakan perintah <code>left()</code> dan <code>right()</code> untuk mengubah arah objek. Klik tombol di bawah ini untuk mengerjakan tantangan berikut.
-                </p>
-
-                <div className="skulpt-container" style={{border: "2px solid #ccc"}}>
-                  <div className="editor-section">
-                    <CodeMirror
-                      value={pythonCodeChallanges}
-                      placeholder={'//Ketikan kode disini!'}
-                      height="290px"
-                      theme="light"
-                      extensions={[python()]}
-                      onChange={(value) => setPythonCodeChallanges(value)}
-                    />
-                    <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                      <Button variant="success" onClick={() => { runitchallanges(); checkCode(); }}>Run Code</Button>
-                      <Button variant="secondary" onClick={resetCodeChallanges}>
-                        <BsArrowClockwise /> Reset
-                      </Button>
-                      </div>
-                    <pre id='outputChallanges' className="output" style={{height:120}}>{outputChallanges}</pre>
-                  </div>
-                  <div className="canvas-section" style={{ position: "relative", width: 400, height: 400,  }}>
-                    <div id="mycanvas-challanges" style={{ 
-                      width: 400, 
-                      height: 400, 
-                      position: "relative", 
-                    }}></div>
-                    <img
-                          src={broccoli}
-                          alt="Target Broccoli"
-                          style={{
-                            position: "absolute",
-                            left: "275px",
-                            top: "75px",
-                            width: "50px", // Sesuaikan ukuran jika perlu
-                            height: "50px",
-                          }}
-                      />
-                  </div>
-                </div>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion> */}
+          
           </div>
         </div>
         
