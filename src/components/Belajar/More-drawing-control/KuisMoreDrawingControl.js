@@ -20,6 +20,7 @@ const KuisMoreDrawingControl = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [riwayatNilai, setRiwayatNilai] = useState([]);
+  const [loadingRiwayat, setLoadingRiwayat] = useState(true);
 
   useEffect(() => {
     refreshToken();
@@ -106,6 +107,7 @@ const KuisMoreDrawingControl = () => {
 
   useEffect(() => {
     const fetchRiwayatNilai = async () => {
+      setLoadingRiwayat(true); // ⏳ mulai loading
       try {
         const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/nilai/by-user`, {
           headers: {
@@ -116,6 +118,8 @@ const KuisMoreDrawingControl = () => {
         setRiwayatNilai(res.data); // Sesuaikan ini dengan struktur data dari API
       } catch (error) {
         console.error("Gagal mengambil riwayat nilai:", error);
+      } finally {
+        setLoadingRiwayat(false); // ✅ selesai loading
       }
     };
   
@@ -519,29 +523,37 @@ const KuisMoreDrawingControl = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {riwayatNilai.length > 0 ? (
-                    riwayatNilai.map((item, index) => (
-                      <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
-                        <td style={{ padding: 10, textAlign: 'center' }}>{item.kuis_5 || 0}%</td>
-                        <td style={{ padding: 10, textAlign: 'center' }}>
-                          <span style={{
-                            padding: '2px 8px',
-                            backgroundColor: item.kuis_5 >= kkm ? '#d1fae5' : '#fee2e2',
-                            color: item.kuis_5 >= kkm ? '#065f46' : '#991b1b',
-                            border: `1px solid ${item.kuis_5 >= kkm ? '#34d399' : '#f87171'}`,
-                            borderRadius: 5,
-                            fontSize: '12px'
-                          }}>
-                            {item.kuis_5 >= kkm ? 'Lulus' : 'Tidak Lulus'}
-                          </span>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>Belum ada riwayat nilai.</td>
-                    </tr>
-                  )}
+                {loadingRiwayat ? (
+                <tr>
+                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>
+                    <div className="spinner-border text-primary" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : riwayatNilai.length > 0 ? (
+                riwayatNilai.map((item, index) => (
+                  <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
+                    <td style={{ padding: 10, textAlign: 'center' }}>{item.kuis_5 || 0}%</td>
+                    <td style={{ padding: 10, textAlign: 'center' }}>
+                      <span style={{
+                        padding: '2px 8px',
+                        backgroundColor: item.kuis_5 >= kkm ? '#d1fae5' : '#fee2e2',
+                        color: item.kuis_5 >= kkm ? '#065f46' : '#991b1b',
+                        border: `1px solid ${item.kuis_5 >= kkm ? '#34d399' : '#f87171'}`,
+                        borderRadius: 5,
+                        fontSize: '12px'
+                      }}>
+                        {item.kuis_5 >= kkm ? 'Lulus' : 'Tidak Lulus'}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>Belum ada riwayat nilai.</td>
+                </tr>
+              )}
                 </tbody>
               </table>
             </div>

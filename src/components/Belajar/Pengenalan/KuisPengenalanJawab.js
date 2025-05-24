@@ -399,10 +399,16 @@ if (nilaiAkhir >= kkm && progresBelajar === 1) {
               </div>
 
               {showResult && (
-                <div className="mt-2 text-center fw-bold text-primary">
-                  Nilai: {score} / {quizData.length}
+                <div className="mt-3 text-center">
+                  <div className="fw-bold text-primary mb-2">
+                    Nilai: {score} / {quizData.length}
+                  </div>
+                  <Button variant="warning" style={{width: '100%'}} onClick={() => navigate('/belajar/pendahuluan/kuis')}>
+                    Kembali ke Materi
+                  </Button>
                 </div>
               )}
+
 
               {!showResult && (
                 <Button className="mt-3" variant="danger" onClick={handleFinish}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import axios from "axios";
-import { Table, Button, Form, Row, Col } from 'react-bootstrap';
+import { Table, Form, Row, Col, Button, Spinner } from 'react-bootstrap';
 import {
   BsGrid, BsPeople, BsBook, BsLightning, BsBarChart, BsPencilSquare, BsTrash, BsX, BsSave
 } from 'react-icons/bs';
@@ -26,6 +26,7 @@ const DataSiswa = () => {
   const [token, setTokenKelas] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedSiswa, setSelectedSiswa] = useState({ nisn: '', nama: '' });
+  const [loading, setLoading] = useState(true);
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
@@ -55,7 +56,9 @@ const DataSiswa = () => {
   );
 
   const getUsers = async () => {
+
     try {
+      setLoading(true);
       const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token-guru`);
       const decoded = jwtDecode(response.data.accessToken);
       const tokenKelas = decoded.token;
@@ -68,6 +71,8 @@ const DataSiswa = () => {
       if (error.response) {
         navigate('/login-guru');
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -159,9 +164,16 @@ const DataSiswa = () => {
         </tr>
       </thead>
           <tbody>
-            {filteredSiswa.length === 0 ? (
+          {loading ? (
               <tr>
-                <td colSpan="4" className="text-center">Data tidak ditemukan.</td>
+                <td colSpan="9" className="text-center py-4">
+                  <Spinner animation="border" role="status" />
+                  <div>Memuat data...</div>
+                </td>
+              </tr>
+            ) : filteredSiswa.length === 0 ? (
+              <tr>
+                <td colSpan="9" className="text-center">Data tidak ditemukan.</td>
               </tr>
             ) : (
               filteredSiswa.map((siswa, index) => (

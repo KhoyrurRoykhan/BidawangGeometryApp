@@ -14,6 +14,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,6 +29,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/users`, {
         nama,
@@ -42,6 +44,8 @@ const Register = () => {
       if (error.response) {
         setMsg(error.response.data.msg);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -177,17 +181,30 @@ const Register = () => {
 
             <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
               <button
-                type="submit"
+                disabled={loading}
                 style={{
                   flex: 1,
                   padding: '10px',
                   backgroundColor: '#198754',
                   color: '#fff',
                   border: 'none',
-                  borderRadius: '5px'
+                  borderRadius: '5px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '10px',
+                  height: '50px',
+                  opacity: loading ? 0.7 : 1,
+                  cursor: loading ? 'not-allowed' : 'pointer'
                 }}
               >
-                DAFTAR
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  </>
+                ) : (
+                  'DAFTAR'
+                )}
               </button>
             </div>
 

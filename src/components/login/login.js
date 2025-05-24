@@ -1,4 +1,3 @@
-// Tambahkan ini di bagian atas file
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -10,20 +9,21 @@ const Login = () => {
   const [msg, setMsg] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
-    handleResize(); // set awal
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const Auth = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/login`, {
         email: nim,
@@ -34,6 +34,8 @@ const Login = () => {
       if (error.response) {
         setMsg(error.response.data.msg);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -55,8 +57,6 @@ const Login = () => {
         background: '#fff',
         flexDirection: isMobile ? 'column' : 'row'
       }}>
-
-        {/* Gambar */}
         {!isMobile && (
           <div style={{
             flex: 1,
@@ -69,7 +69,6 @@ const Login = () => {
           </div>
         )}
 
-        {/* Form Login */}
         <div style={{ flex: 2 }}>
           <h2 style={{ color: '#198754', fontSize: '2rem', fontWeight: 'bold', marginBottom: '20px' }}>MASUK</h2>
           <form onSubmit={Auth}>
@@ -128,7 +127,30 @@ const Login = () => {
               <a href="/forgot-password" style={{ color: '#198754', textDecoration: 'none' }}>Lupa kata sandi?</a>
             </div>
             <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-              <button type="submit" style={{ flex: 1, padding: '10px', backgroundColor: '#198754', color: '#fff', border: 'none', borderRadius: '5px' }}>MASUK</button>
+              <button
+                type="submit"
+                disabled={loading}
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  backgroundColor: loading ? '#198754' : '#198754',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '5px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '50px',
+                  opacity: loading ? 0.7 : 1,
+                  cursor: loading ? 'not-allowed' : 'pointer'
+                }}
+              >
+                {loading ? (
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                ) : (
+                  'MASUK'
+                )}
+              </button>
             </div>
             <p style={{ fontSize: '14px', marginBottom: '10px' }}>
               Belum punya akun? <a href="/register" style={{ color: '#198754' }}>Daftar</a>

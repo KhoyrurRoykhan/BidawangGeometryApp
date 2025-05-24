@@ -49,9 +49,9 @@ const NavbarGuru = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" style={{ marginLeft: '20px' }}>
           <Nav className="me-auto">
-            <Nav.Link style={{ color: 'white' }} className='ml-5' href="#"><FaBookReader /> Materi Siswa</Nav.Link>
+            {/* <Nav.Link style={{ color: 'white' }} className='ml-5' href="#"><FaBookReader /> Materi Siswa</Nav.Link>
             <Nav.Link style={{ color: 'white' }} className='ml-5' href="#"><FaGamepad /> Tantangan Siswa</Nav.Link>
-            <Nav.Link style={{ color: 'white' }} className='ml-5' href="#"><FaCode /> Text Editor</Nav.Link>
+            <Nav.Link style={{ color: 'white' }} className='ml-5' href="#"><FaCode /> Text Editor</Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
         {nama && (

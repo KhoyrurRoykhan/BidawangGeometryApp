@@ -21,6 +21,8 @@ const KuisPengenalan = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [riwayatNilai, setRiwayatNilai] = useState([]);
+  const [loadingRiwayat, setLoadingRiwayat] = useState(true);
+
 
 
   useEffect(() => {
@@ -108,6 +110,7 @@ const KuisPengenalan = () => {
 
   useEffect(() => {
     const fetchRiwayatNilai = async () => {
+      setLoadingRiwayat(true); // ⏳ mulai loading
       try {
         const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/nilai/by-user`, {
           headers: {
@@ -115,15 +118,17 @@ const KuisPengenalan = () => {
           }
         });
   
-        setRiwayatNilai(res.data); // Sesuaikan ini dengan struktur data dari API
-        console.log(riwayatNilai);
+        setRiwayatNilai(res.data);
       } catch (error) {
         console.error("Gagal mengambil riwayat nilai:", error);
+      } finally {
+        setLoadingRiwayat(false); // ✅ selesai loading
       }
     };
   
     if (token) fetchRiwayatNilai();
   }, [token]);
+  
   
 
   // Tentukan accordion aktif berdasarkan URL
@@ -513,43 +518,53 @@ const KuisPengenalan = () => {
           </div>
 
 
-            {/* Riwayat Section */}
-            <div style={{ marginTop: 50 }}>
-              <h4>Riwayat</h4>
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ backgroundColor: '#f8fafc' }}>
-                    <th style={{ padding: 10, textAlign: 'center' }}>Nilai Kuis Pengenalan</th>
-                    <th style={{ padding: 10, textAlign: 'center' }}>Status</th>
+          <div style={{ marginTop: 50 }}>
+          <h4>Riwayat</h4>
+
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ backgroundColor: '#f8fafc' }}>
+                <th style={{ padding: 10, textAlign: 'center' }}>Nilai Kuis Pengenalan</th>
+                <th style={{ padding: 10, textAlign: 'center' }}>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loadingRiwayat ? (
+                <tr>
+                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>
+                    <div className="spinner-border text-primary" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : riwayatNilai.length > 0 ? (
+                riwayatNilai.map((item, index) => (
+                  <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
+                    <td style={{ padding: 10, textAlign: 'center' }}>{item.kuis_1 || 0}%</td>
+                    <td style={{ padding: 10, textAlign: 'center' }}>
+                      <span style={{
+                        padding: '2px 8px',
+                        backgroundColor: item.kuis_1 >= kkm ? '#d1fae5' : '#fee2e2',
+                        color: item.kuis_1 >= kkm ? '#065f46' : '#991b1b',
+                        border: `1px solid ${item.kuis_1 >= kkm ? '#34d399' : '#f87171'}`,
+                        borderRadius: 5,
+                        fontSize: '12px'
+                      }}>
+                        {item.kuis_1 >= kkm ? 'Lulus' : 'Tidak Lulus'}
+                      </span>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {riwayatNilai.length > 0 ? (
-                    riwayatNilai.map((item, index) => (
-                      <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
-                        <td style={{ padding: 10, textAlign: 'center' }}>{item.kuis_1 || 0}%</td>
-                        <td style={{ padding: 10, textAlign: 'center' }}>
-                          <span style={{
-                            padding: '2px 8px',
-                            backgroundColor: item.kuis_1 >= kkm ? '#d1fae5' : '#fee2e2',
-                            color: item.kuis_1 >= kkm ? '#065f46' : '#991b1b',
-                            border: `1px solid ${item.kuis_1 >= kkm ? '#34d399' : '#f87171'}`,
-                            borderRadius: 5,
-                            fontSize: '12px'
-                          }}>
-                            {item.kuis_1 >= kkm ? 'Lulus' : 'Tidak Lulus'}
-                          </span>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>Belum ada riwayat nilai.</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>Belum ada riwayat nilai.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+
 
 
             </div>

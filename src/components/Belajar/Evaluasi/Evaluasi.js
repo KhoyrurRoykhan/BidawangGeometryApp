@@ -21,7 +21,8 @@ const Evaluasi = () => {
   const location = useLocation();
   const [riwayatNilai, setRiwayatNilai] = useState([]);
 
-  const [loadingProgres, setLoadingProgres] = useState(true);
+  // const [loadingProgres, setLoadingProgres] = useState(true);
+  const [loadingRiwayat, setLoadingRiwayat] = useState(true);
 
   useEffect(() => {
     refreshToken();
@@ -58,7 +59,7 @@ const Evaluasi = () => {
         const progresBelajar = progres.data.progres_belajar;
         console.log(progresBelajar);
         setProgresBelajar(progresBelajar);
-        setLoadingProgres(false); // ⬅️ penting, loading selesai
+        // setLoadingProgres(false); // ⬅️ penting, loading selesai
   
         if (progresBelajar < 1) {
           navigate('/belajar/pendahuluan');
@@ -100,6 +101,8 @@ const Evaluasi = () => {
         setKkm(res.data.kkm);
       } catch (err) {
         console.error("Gagal mengambil KKM:", err);
+      } finally {
+        setLoadingRiwayat(false); // ✅ selesai loading
       }
     };
 
@@ -108,6 +111,7 @@ const Evaluasi = () => {
 
   useEffect(() => {
     const fetchRiwayatNilai = async () => {
+      setLoadingRiwayat(true); // ⏳ mulai loading
       try {
         const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/nilai/by-user`, {
           headers: {
@@ -522,29 +526,37 @@ const Evaluasi = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {riwayatNilai.length > 0 ? (
-                    riwayatNilai.map((item, index) => (
-                      <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
-                        <td style={{ padding: 10, textAlign: 'center' }}>{item.evaluasi || 0}%</td>
-                        <td style={{ padding: 10, textAlign: 'center' }}>
-                          <span style={{
-                            padding: '2px 8px',
-                            backgroundColor: item.evaluasi >= kkm ? '#d1fae5' : '#fee2e2',
-                            color: item.evaluasi >= kkm ? '#065f46' : '#991b1b',
-                            border: `1px solid ${item.evaluasi >= kkm ? '#34d399' : '#f87171'}`,
-                            borderRadius: 5,
-                            fontSize: '12px'
-                          }}>
-                            {item.evaluasi >= kkm ? 'Lulus' : 'Tidak Lulus'}
-                          </span>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>Belum ada riwayat nilai.</td>
-                    </tr>
-                  )}
+                {loadingRiwayat ? (
+                <tr>
+                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>
+                    <div className="spinner-border text-primary" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : riwayatNilai.length > 0 ? (
+                riwayatNilai.map((item, index) => (
+                  <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
+                    <td style={{ padding: 10, textAlign: 'center' }}>{item.evaluasi || 0}%</td>
+                    <td style={{ padding: 10, textAlign: 'center' }}>
+                      <span style={{
+                        padding: '2px 8px',
+                        backgroundColor: item.evaluasi >= kkm ? '#d1fae5' : '#fee2e2',
+                        color: item.evaluasi >= kkm ? '#065f46' : '#991b1b',
+                        border: `1px solid ${item.evaluasi >= kkm ? '#34d399' : '#f87171'}`,
+                        borderRadius: 5,
+                        fontSize: '12px'
+                      }}>
+                        {item.evaluasi >= kkm ? 'Lulus' : 'Tidak Lulus'}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>Belum ada riwayat nilai.</td>
+                </tr>
+              )}
                 </tbody>
               </table>
             </div>

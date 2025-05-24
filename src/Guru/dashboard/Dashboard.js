@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { Card, Row, Col, Form, Button, Alert } from 'react-bootstrap';
+import { Card, Row, Col, Form, Button, Alert, Spinner } from 'react-bootstrap';
 import {
   BsGrid,
   BsPeople,
@@ -30,14 +30,15 @@ const Dashboard = () => {
 
   const [activeMenu, setActiveMenu] = useState('Dashboard');
   const [token, setTokenKelas] = useState("");
-  const [jumlahSiswa, setJumlahSiswa] = useState(0);
-  const [jumlahSelesaiBelajar, setJumlahSelesaiBelajar] = useState(0);
-  const [jumlahSelesaiTantangan, setJumlahSelesaiTantangan] = useState(0);
+  const [jumlahSiswa, setJumlahSiswa] = useState(null);
+  const [jumlahSelesaiBelajar, setJumlahSelesaiBelajar] = useState(null);
+  const [jumlahSelesaiTantangan, setJumlahSelesaiTantangan] = useState(null);
   const [dataNilai, setDataNilai] = useState([]);
   const [kkm, setKkm] = useState('');
   const [editKkm, setEditKkm] = useState('');
   const [kkmUpdated, setKkmUpdated] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true); // loader state
 
 
   useEffect(() => {
@@ -64,6 +65,7 @@ const Dashboard = () => {
           setKkm(kkmRes.data.kkm);
           setEditKkm(kkmRes.data.kkm);
         }
+        setLoading(false);
       } catch (error) {
         if (error.response) {
           navigate('/login-guru');
@@ -172,7 +174,9 @@ const Dashboard = () => {
               <BsKeyFill size={36} style={{ marginRight: '20px', color: '#0d6efd' }} />
               <div>
                 <h5 style={{ fontWeight: 'bold' }}>Token Guru untuk Siswa Masuk Kelas:</h5>
-                <h3 style={{ letterSpacing: '4px', marginTop: '10px', color: '#0d6efd' }}>{token}</h3>
+                <h3 style={{ letterSpacing: '4px', marginTop: '10px', color: '#0d6efd' }}>
+                  {token ? token : <Spinner animation="border" size="sm" />}
+                </h3>
               </div>
             </div>
           </Card.Body>
@@ -187,7 +191,9 @@ const Dashboard = () => {
                   <BsPeopleFill size={34} style={{ marginRight: '15px' }} />
                   <div>
                     <Card.Title style={{ fontSize: '1.1rem' }}>Total Siswa</Card.Title>
-                    <Card.Text style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>{jumlahSiswa}</Card.Text>
+                    <Card.Text style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>
+                      {jumlahSiswa ? jumlahSiswa : <Spinner animation="border" size="sm" />}
+                    </Card.Text>
                   </div>
                 </div>
               </Card.Body>
@@ -201,8 +207,13 @@ const Dashboard = () => {
                   <div>
                     <Card.Title style={{ fontSize: '1.1rem' }}>Selesai Belajar</Card.Title>
                     <Card.Text style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>
-                      {jumlahSelesaiBelajar}/{jumlahSiswa}
+                      {jumlahSelesaiBelajar != null && jumlahSiswa != null ? (
+                        `${jumlahSelesaiBelajar}/${jumlahSiswa}`
+                      ) : (
+                        <Spinner animation="border" size="sm" />
+                      )}
                     </Card.Text>
+
                   </div>
                 </div>
               </Card.Body>
@@ -215,8 +226,13 @@ const Dashboard = () => {
                   <BsLightningFill size={34} style={{ marginRight: '15px' }} />
                   <div>
                     <Card.Title style={{ fontSize: '1.1rem' }}>Tantangan Selesai</Card.Title>
+                    
                     <Card.Text style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>
-                      {jumlahSelesaiTantangan}/{jumlahSiswa}
+                      {jumlahSelesaiTantangan != null && jumlahSiswa != null ? (
+                        `${jumlahSelesaiTantangan}/${jumlahSiswa}`
+                      ) : (
+                        <Spinner animation="border" size="sm" />
+                      )}
                     </Card.Text>
                   </div>
                 </div>
@@ -230,7 +246,14 @@ const Dashboard = () => {
                   <BsBarChartFill size={34} style={{ marginRight: '15px' }} />
                   <div>
                     <Card.Title style={{ fontSize: '1.1rem' }}>Nilai Rata-rata</Card.Title>
-                    <Card.Text style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>{hitungRataRata()}</Card.Text>
+                    <Card.Text style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>
+                      {dataNilai && dataNilai.length > 0 ? (
+                        hitungRataRata()
+                      ) : (
+                        <Spinner animation="border" size="sm" />
+                      )}
+                    </Card.Text>
+
                   </div>
                 </div>
               </Card.Body>

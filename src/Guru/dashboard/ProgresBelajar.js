@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Table, Form, Row, Col, ProgressBar } from 'react-bootstrap';
+import { Table, Form, Row, Col, ProgressBar, Spinner } from 'react-bootstrap';
 import { BsGrid, BsPeople, BsBook, BsLightning, BsBarChart } from 'react-icons/bs';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
@@ -20,9 +20,11 @@ const ProgresBelajar = () => {
   const [tokenKelas, setTokenKelas] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   const getUsers = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token-guru`);
       const decoded = jwtDecode(response.data.accessToken);
       const token = decoded.token;
@@ -35,6 +37,8 @@ const ProgresBelajar = () => {
       if (error.response) {
         navigate('/login-guru');
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -107,9 +111,16 @@ const ProgresBelajar = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredSiswa.length === 0 ? (
+          {loading ? (
               <tr>
-                <td colSpan="5" className="text-center">Data tidak ditemukan.</td>
+                <td colSpan="9" className="text-center py-4">
+                  <Spinner animation="border" role="status" />
+                  <div>Memuat data...</div>
+                </td>
+              </tr>
+            ) : filteredSiswa.length === 0 ? (
+              <tr>
+                <td colSpan="9" className="text-center">Data tidak ditemukan.</td>
               </tr>
             ) : (
               filteredSiswa.map((siswa, index) => {
