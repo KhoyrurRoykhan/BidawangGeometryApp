@@ -886,7 +886,7 @@ home()
               flexGrow: 1,
               overflowY: "auto",
               // height: "100vh",
-              
+              backgroundColor: "#fff",
 
             }}>
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
