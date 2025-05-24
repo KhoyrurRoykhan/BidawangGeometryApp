@@ -1160,7 +1160,7 @@ print isdown`}
   {currentQuestion === 1 && (
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{color:'black', backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 1 dari 2:</strong>
+        <strong style={{color:'black'}}>Soal 1 dari 2:</strong>
         <p>Apa yang dikembalikan oleh metode isdown jika pena sedang dalam posisi turun?</p>
       </Form.Label>
 
