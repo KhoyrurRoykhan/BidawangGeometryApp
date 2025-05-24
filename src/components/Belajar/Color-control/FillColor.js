@@ -1428,11 +1428,12 @@ end_fill `}
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <strong>Soal 1 dari 2:</strong>
         <p>Perhatikan kode berikut:</p>
-        <pre><code>fillcolor "yellow"</code></pre>
-        <pre><code>forward 100</code></pre>
-        <pre><code>begin_fill</code></pre>
-        <pre><code>circle 50</code></pre>
-        <pre><code>end_fill</code></pre>
+        <pre><code>{`fillcolor "yellow"
+forward 100
+begin_fill
+circle 50
+end_fill`}</code></pre>
+        
         <p>Apa hasil dari kode tersebut?</p>
       </Form.Label>
 

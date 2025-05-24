@@ -1449,14 +1449,16 @@ circle 30 `}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
-        <p>Perhatikan kode berikut:</p>
-        <pre><code>penup</code></pre>
-        <pre><code>setposition 100 100</code></pre>
-        <pre><code>pendown</code></pre>
-        <pre><code>setposition 200 200</code></pre>
-        <p>Apa yang terjadi setelah kode tersebut dijalankan?</p>
-      </Form.Label>
+  <strong>Soal 2 dari 2:</strong>
+  <p>Perhatikan kode berikut:</p>
+  <pre><code>{`penup
+setposition 100 100
+pendown
+setposition 200 200`}</code></pre>
+  <p>Apa yang terjadi setelah kode tersebut dijalankan?</p>
+</Form.Label>
+
+
 
       {[
         { key: 'A', label: 'Bidawang menggambar garis dari titik awal ke (100, 100).' },

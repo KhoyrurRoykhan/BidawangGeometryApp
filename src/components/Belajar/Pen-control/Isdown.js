@@ -1198,10 +1198,10 @@ print isdown`}
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <strong>Soal 2 dari 2:</strong>
         <p>Perhatikan kode berikut:</p>
-        <pre><code>pendown</code></pre>
-        <pre><code>print isdown</code></pre>
-        <pre><code>penup</code></pre>
-        <pre><code>print isdown</code></pre>
+        <pre><code>{`pendown
+print isdown
+penup
+print isdown`}</code></pre>
         <p>Apa output dari kode tersebut? </p>
       </Form.Label>
 

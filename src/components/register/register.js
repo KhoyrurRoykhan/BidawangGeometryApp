@@ -20,16 +20,15 @@ const Register = () => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-
     handleResize();
     window.addEventListener('resize', handleResize);
-
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setMsg('');
     try {
       await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/users`, {
         nama,
@@ -41,8 +40,10 @@ const Register = () => {
       });
       navigate("/login");
     } catch (error) {
-      if (error.response) {
+      if (error.response && error.response.data && error.response.data.msg) {
         setMsg(error.response.data.msg);
+      } else {
+        setMsg("Registrasi gagal. Email atau NISN sudah terdaftar.");
       }
     } finally {
       setLoading(false);
@@ -68,18 +69,27 @@ const Register = () => {
         background: '#fff'
       }}>
 
-        {/* Gambar */}
         {!isMobile && (
           <div style={{ flex: 1, paddingRight: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img src={kurakura} alt="Register Illustration" style={{ width: '80%' }} />
           </div>
         )}
 
-        {/* Form Register */}
         <div style={{ flex: 2 }}>
           <h2 style={{ color: '#198754', fontSize: '2rem', fontWeight: 'bold', marginBottom: '20px' }}>DAFTAR</h2>
           <form onSubmit={handleRegister}>
-            {msg && <p style={{ color: 'red' }}>{msg}</p>}
+            {msg && (
+              <div style={{
+                backgroundColor: '#fee2e2',
+                color: '#991b1b',
+                border: '1px solid #f87171',
+                padding: '10px',
+                borderRadius: '5px',
+                marginBottom: '20px'
+              }}>
+                {msg}
+              </div>
+            )}
 
             <div style={{ marginBottom: '20px' }}>
               <label style={{ fontWeight: 'bold' }}>Nama</label>
@@ -134,7 +144,6 @@ const Register = () => {
               gap: '20px',
               marginBottom: '20px'
             }}>
-              {/* Password */}
               <div style={{ flex: 1 }}>
                 <label style={{ fontWeight: 'bold' }}>Password</label>
                 <input
@@ -147,7 +156,6 @@ const Register = () => {
                 />
               </div>
 
-              {/* Konfirmasi Password */}
               <div style={{ flex: 1 }}>
                 <label style={{ fontWeight: 'bold' }}>Konfirmasi Password</label>
                 <div style={{ position: 'relative' }}>

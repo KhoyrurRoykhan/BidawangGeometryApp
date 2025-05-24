@@ -1212,10 +1212,10 @@ forward 50  # Memulai gambar baru `}
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <strong>Soal 2 dari 2:</strong>
         <p>Perhatikan kode berikut: </p>
-        <pre><code>pencolor "green"</code></pre>
-        <pre><code>forward 100</code></pre>
-        <pre><code>reset</code></pre>
-        <pre><code>circle 50</code></pre>
+        <pre><code>{`pencolor "green"
+forward 100
+reset
+circle 50`}</code></pre>
         <p>Apa warna lingkaran yang akan dihasilkan?</p>
       </Form.Label>
 

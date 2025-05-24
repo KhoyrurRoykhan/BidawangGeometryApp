@@ -1208,11 +1208,11 @@ forward 100 # Memulai gambar baru dari posisi terakhir `}
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <strong>Soal 2 dari 2:</strong>
         <p>Perhatikan kode berikut:</p>
-        <pre><code>color "blue"</code></pre>
-        <pre><code>circle 50</code></pre>
-        <pre><code>clear</code></pre>
-        <pre><code>forward 100 </code></pre>
-        <pre><code>circle 30 </code></pre>
+        <pre><code>{`color "blue"
+circle 50
+clear
+forward 100
+circle 30`}</code></pre>
         <p>apa warna garis lingkaran kedua?</p>
       </Form.Label>
 

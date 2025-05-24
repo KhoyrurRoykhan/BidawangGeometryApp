@@ -1207,10 +1207,10 @@ circle 50`}
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <strong>Soal 2 dari 2:</strong>
         <p>Jika kode berikut dijalankan:</p>
-        <pre><code>pensize 5 </code></pre>
-        <pre><code>circle 30 </code></pre>
-        <pre><code>pensize 2</code></pre>
-        <pre><code>circle 50</code></pre>
+        <pre><code>{`pensize 5 
+circle 30
+pensize 2
+circle 50`}</code></pre>
         <p>Apa yang akan terlihat pada hasil akhir?</p>
       </Form.Label>
 

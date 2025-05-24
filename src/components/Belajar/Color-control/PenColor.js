@@ -1174,8 +1174,8 @@ left 90`}
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <strong>Soal 1 dari 2:</strong>
         <p>Apa yang terjadi jika kode berikut dijalankan?</p>
-        <pre><code>pencolor "red"</code></pre>
-        <pre><code>forward 100</code></pre>
+        <pre><code>{`pencolor "red"
+forward 100`}</code></pre>
       </Form.Label>
 
       {[
