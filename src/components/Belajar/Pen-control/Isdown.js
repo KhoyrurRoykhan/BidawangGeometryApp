@@ -573,7 +573,7 @@ home()
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
       <div className="p-2">
