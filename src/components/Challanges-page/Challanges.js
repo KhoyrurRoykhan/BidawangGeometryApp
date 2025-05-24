@@ -59,7 +59,7 @@ const Challenges = () => {
   }, [navigate]);
 
   return (
-    <Container style={{ marginTop: 100 }}>
+    <div className='px-3' style={{ paddingTop: '80px', paddingBottom: '20px', position: 'relative', zIndex: 1, maxWidth: '100%', overflowX: 'hidden' }}>
       <h2 className='mb-3'>Challanges</h2>
       <Row>
         {challenges.map((challenge) => {
@@ -112,7 +112,7 @@ const Challenges = () => {
           );
         })}
       </Row>
-    </Container>
+    </div>
   );
 };
 
