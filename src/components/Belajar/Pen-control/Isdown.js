@@ -910,7 +910,7 @@ home()
 
             <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -942,7 +942,7 @@ home()
 
             <br></br>
 
-            <h5>Contoh:</h5>
+            <h5 style={{color:'black'}}>Contoh:</h5>
             <p>Mengecek status pena sedang aktif atau tidak.</p>
             <Row className="align-items-center">
               <Col md={6}>
@@ -987,7 +987,7 @@ print isdown`}
               }}
             >
               <h4 style={{
-                  // color: '#2DAA9E',
+                  color: 'black',
                   fontSize: '22px',
                   fontWeight: 'bold',
                   borderLeft: '5px solid #198754',
@@ -1131,7 +1131,7 @@ print isdown`}
               }}
             >
               <h4 style={{
-                  // color: '#2DAA9E',
+                  color: 'black',
                   fontSize: '24px',
                   fontWeight: 'bold',
                   // borderLeft: '5px solid #2DAA9E',
@@ -1152,14 +1152,14 @@ print isdown`}
             {/* Kuis Accordion */}
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                <h4 style={{ fontWeight: "bold" }}>Pertanyaan</h4>
+                <h4 style={{ fontWeight: "bold",color:'black' }}>Pertanyaan</h4>
               </Accordion.Header>
               <Accordion.Body>
               <Form>
   {/* SOAL 1 */}
   {currentQuestion === 1 && (
     <Form.Group controlId="question1">
-      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+      <Form.Label className="p-3 mb-3" style={{color:'black', backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <strong>Soal 1 dari 2:</strong>
         <p>Apa yang dikembalikan oleh metode isdown jika pena sedang dalam posisi turun?</p>
       </Form.Label>
