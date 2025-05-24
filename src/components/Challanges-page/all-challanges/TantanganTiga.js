@@ -273,7 +273,7 @@ const TantanganTiga = () => {
         }
       
         if (userCodeLines.length === validCode.length) {
-          swal("Benar!", "Kamu berhasil menyelesaikan tantangan!", "success").then(async () => {
+          swal("Tantangan Selesai!", "Kamu berhasil menyelesaikan tantangan!", "success").then(async () => {
             try {
               if (progresTantangan === 2) {
                 await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
@@ -369,6 +369,7 @@ const TantanganTiga = () => {
               }}
             >
               3. Berpindah Posisi Sesuai Koordinat
+
             </h4>
             
             <p style={{ fontSize: "16px", marginBottom: "10px" }}>

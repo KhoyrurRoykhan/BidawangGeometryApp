@@ -330,7 +330,7 @@ const TantanganSepuluh = () => {
       if (userCodeLines.length === validCodeSteps.length) {
         if (!alertShownRef.current) {
           alertShownRef.current = true;
-          swal("Mantap!", "Semua langkah benar, kamu berhasil!", "success")
+          swal("Tantangan selesai!", "Semua langkah benar, kamu berhasil!", "success")
             .then(async () => {
               alertShownRef.current = false;
               try {

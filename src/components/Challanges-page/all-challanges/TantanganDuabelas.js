@@ -299,7 +299,7 @@ const runitchallanges = (code, forceReset = false, isInitial = false) => {
     }
   
     // Jika semua benar
-    swal("Berhasil!", "Kamu menyelesaikan tantangan ini!", "success")
+    swal("Tantangan selesai!", "Kamu menyelesaikan tantangan ini!", "success")
     .then(async () => {
       try {
         if (progresTantangan === 11) {

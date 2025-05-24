@@ -292,7 +292,7 @@ const runitchallanges = (code = '', forceReset = false) => {
     console.log("Step setelah cek:", step);
   
     if (step >= validCode.length) {
-      swal("Benar!", "Kamu berhasil menyelesaikan tantangan!", "success").then(async () => {
+      swal("Tantangan Selesai!", "Kamu berhasil menyelesaikan tantangan!", "success").then(async () => {
         try {
           if (progresTantangan === 1) {
             await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
@@ -387,6 +387,7 @@ const resetCodeChallanges = () => {
               }}
             >
               2. Bergerak dan Berbelok
+              
             </h4>
             
             <p style={{ fontSize: "16px", marginBottom: "10px" }}>

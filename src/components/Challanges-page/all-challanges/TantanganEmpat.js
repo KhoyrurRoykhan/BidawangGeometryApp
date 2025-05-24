@@ -261,7 +261,7 @@ const checkCodeChallanges = (code) => {
   );
 
   if (isMatch) {
-    swal("Benar!", "Kamu berhasil menyelesaikan tantangan!", "success").then(async () => {
+    swal("Tantangan Selesai!", "Kamu berhasil menyelesaikan tantangan!", "success").then(async () => {
       try {
         if (progresTantangan === 3) {
           await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {
@@ -421,6 +421,7 @@ const resetCodeChallanges = () => {
               }}
             >
               4. Berpindah Posisi Sesuai Koordinat X dan Y
+
             </h4>
             
             <p>

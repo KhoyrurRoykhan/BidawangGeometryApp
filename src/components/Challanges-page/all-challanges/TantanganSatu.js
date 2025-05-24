@@ -374,10 +374,15 @@ const TantanganSatu = () => {
                 borderLeft: '5px solid #2DAA9E',
                 paddingLeft: '10px',
                 marginBottom: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
               }}
             >
               1. Mengubah Arah ke Kiri dan ke Kanan
+
             </h4>
+
             
                 <p style={{ fontSize: "16px", marginBottom: "10px" }}>
                     Selesaikan tantangan dengan perintah <code>left()</code> dan <code>right()</code>. Klik petunjuk untuk bantuan.

@@ -270,7 +270,7 @@ const TantanganSembilan = () => {
       );
     
       if (isExactMatch) {
-        await swal("Jawaban Benar!", "Kamu berhasil!", "success");
+        await swal("Tantangan selesai!", "Kamu berhasil menyelesaikan tantangan distance!", "success");
         try {
           if (progresTantangan === 8) {
             await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/user/progres-tantangan`, {

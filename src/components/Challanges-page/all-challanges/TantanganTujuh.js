@@ -92,7 +92,7 @@ const TantanganTujuh = () => {
     const correctAnswersB = ["(-150.0, -100.0)", "(-150, -100)", "(-150,-100)"];
   
     if (correctAnswersA.includes(inputA) && correctAnswersB.includes(inputB)) {
-      await swal("Benar!", "Jawaban Anda benar.", "success");
+      await swal("Tantangan selesai!", "Jawaban anda benar.", "success");
   
       try {
         if (progresTantangan === 6) {
@@ -376,7 +376,7 @@ const TantanganTujuh = () => {
     }
   
     if (userLines.length === correctSteps.length) {
-      swal("Benar!", "Seluruh langkah sudah benar!", "success");
+      swal("Benar!", "Seluruh langkah sudah benar, silahkan tebak posisinya dikolom yang disediakan!", "success");
     }
   };
   

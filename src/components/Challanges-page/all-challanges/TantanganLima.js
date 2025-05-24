@@ -251,11 +251,11 @@ const TantanganLima = () => {
 
     setProcessingAlert(true);
     if (isCorrect) {
-      await swal("Jawaban Benar!", "Kamu berhasil!", "success").then(() => {
+      await swal("Jawaban Benar!", "Kamu berhasil! Kepiting akan berpindah posisi", "success").then(() => {
         if (step < headingAnswers.length - 1) {
           setStep((prev) => prev + 1);
-        } else {
-          swal("Selamat!", "Kamu berhasil menyelesaikan semua tantangan!", "success").then(async () => {
+        } else {  
+          swal("Tantangan Selesai!", "Kamu berhasil menebak semua arah posisi kepiting dengan setheading!", "success").then(async () => {
             try {
               if (progresTantangan === 4) {
                 // Update progres tantangan jika sudah menyelesaikan halaman ke-5

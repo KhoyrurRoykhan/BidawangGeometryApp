@@ -262,7 +262,7 @@ const TantanganEnam = () => {
             .then(resetCodeChallanges);
           return;
         } else if (radius === 100) {
-          swal("Mantap!", "Kamu berhasil membuat bidawang mengitari sungai dengan sempurna!", "success")
+          swal("Tantangan selesai!", "Kamu berhasil membuat bidawang mengitari sungai dengan sempurna!", "success")
             .then(async () => {
               try {
                 if (progresTantangan === 5) {
