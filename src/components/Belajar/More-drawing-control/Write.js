@@ -583,7 +583,7 @@ for i in range(100):
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -592,18 +592,18 @@ for i in range(100):
       width:'100%'
     }}>
       
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
 
@@ -913,12 +913,13 @@ for i in range(100):
         )}
         </div>
 
-        <div className='p-4 content' style={{
-          flexGrow: 1,
-          overflowY: "auto",
-          height: "100vh"
+        <div className='p-4 mt-5 content' style={{
+              flexGrow: 1,
+              overflowY: "auto",
+              // height: "100vh",
+              backgroundColor: "#fff",
 
-        }}>
+            }}>
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
           <div>
             <h2 style={{
@@ -941,7 +942,7 @@ for i in range(100):
 
             <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -979,7 +980,7 @@ for i in range(100):
 
             <br></br>
 
-            <h5>Contoh:</h5>
+            <h5 style={{color:'black'}}>Contoh:</h5>
             <p>Menulis "Hello, World!" di canvas.</p>
             <Row className="align-items-center">
               <Col md={6}>
@@ -1019,7 +1020,7 @@ forward 100  `}
               }}
             >
               <h4 style={{
-                  // color: '#2DAA9E',
+                  color: 'black',
                   fontSize: '22px',
                   fontWeight: 'bold',
                   borderLeft: '5px solid #198754',
@@ -1162,7 +1163,7 @@ forward 100  `}
               }}
             >
               <h4 style={{
-                  // color: '#2DAA9E',
+                  color: 'black',
                   fontSize: '24px',
                   fontWeight: 'bold',
                   // borderLeft: '5px solid #2DAA9E',
@@ -1184,7 +1185,7 @@ forward 100  `}
             {/* Kuis Accordion */}
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                <h4 style={{fontWeight: "bold" }}>Pertanyaan</h4>
+                <h4 style={{fontWeight: "bold",color:'black' }}>Pertanyaan</h4>
               </Accordion.Header>
               <Accordion.Body>
               <Form>
@@ -1192,7 +1193,7 @@ forward 100  `}
   {currentQuestion === 1 && (
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 1 dari 2:</strong>
+        <b>Soal 1 dari 2:</b>
         <p>Apa fungsi dari parameter <i>align</i> dalam metode write?</p>
       </Form.Label>
 
@@ -1229,7 +1230,7 @@ forward 100  `}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
+        <b>Soal 2 dari 2:</b>
         <p>Perhatikan kode berikut:</p>
         <pre><code>write("Belajar Python!", align="center", font=("Arial", 12, "italic"))</code></pre>
         <p>Apa yang akan terjadi jika kode tersebut dijalankan?</p>

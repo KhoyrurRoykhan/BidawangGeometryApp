@@ -541,7 +541,7 @@ const runit2 = (code, forceReset = false) => {
 
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -550,18 +550,18 @@ const runit2 = (code, forceReset = false) => {
       width:'100%'
     }}>
         
-        <div
+        <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
         <div className="p-2">
@@ -875,12 +875,13 @@ const runit2 = (code, forceReset = false) => {
         </div>
 
         
-        <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
-
+              // height: "100vh",
+              backgroundColor: "#fff",
             }}>
+
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
             <h1
               style={{
@@ -904,7 +905,7 @@ const runit2 = (code, forceReset = false) => {
 
             <h4
               style={{
-                // color: '#198754',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -953,7 +954,7 @@ const runit2 = (code, forceReset = false) => {
                 style={{
                   fontSize: '20px',
                   fontWeight: 'bold',
-                  // color: '#198754',
+                  color: 'black',
                   marginBottom: '15px',
                 }}
               >
@@ -1065,7 +1066,7 @@ const runit2 = (code, forceReset = false) => {
             >
               <h4
                 style={{
-                  // color: '#198754',
+                  color: 'black',
                   fontSize: '22px',
                   fontWeight: 'bold',
                   borderLeft: '5px solid #198754',
@@ -1097,7 +1098,7 @@ const runit2 = (code, forceReset = false) => {
                 style={{
                   fontSize: '20px',
                   fontWeight: 'bold',
-                  // color: '#198754',
+                  color: 'black',
                   marginBottom: '8px',
                 }}
               >
@@ -1294,8 +1295,8 @@ const runit2 = (code, forceReset = false) => {
           {currentQuestion === 1 && (
             <Form.Group controlId="question1">
               <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%'  }}>
-                <strong>Soal 1 dari 3:</strong>
-                <p>Jika posisi Bidawang berada di titik <strong>(0, 0)</strong> pada canvas, bagaimana gambar posisi Bidawang pada canvas?</p>
+                <strong style={{color:'black'}}>Soal 1 dari 3:</strong>
+                <p>Jika posisi Bidawang berada di titik <b>(0, 0)</b> pada canvas, bagaimana gambar posisi Bidawang pada canvas?</p>
               </Form.Label>
 
               <Row>
@@ -1333,9 +1334,9 @@ const runit2 = (code, forceReset = false) => {
           {currentQuestion === 2 && (
             <Form.Group controlId="question2">
               <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%'  }}>
-                <strong>Soal 2 dari 3:</strong> 
+                <strong style={{color:'black'}}>Soal 2 dari 3:</strong> 
                
-                <p>Tombol mana yang digunakan untuk <strong>menghapus kode</strong> serta <strong>hasil gambar</strong> di canvas dan <strong>mengembalikan Bidawang ke posisi awal?</strong></p>
+                <p>Tombol mana yang digunakan untuk menghapus kode serta hasil gambar di canvas dan mengembalikan Bidawang ke posisi awal?</p>
               </Form.Label>
 
               <Row>
@@ -1373,7 +1374,7 @@ const runit2 = (code, forceReset = false) => {
           {currentQuestion === 3 && (
             <Form.Group controlId="question3">
               <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-                <strong>Soal 3 dari 3:</strong> 
+                <strong style={{color:'black'}}>Soal 3 dari 3:</strong> 
                 <p>Untuk menggerakkan Bidawang seperti di bawah ini, kode apa yang harus dijalankan?</p>
               </Form.Label>
 

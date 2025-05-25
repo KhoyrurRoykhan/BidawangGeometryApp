@@ -142,7 +142,7 @@ const KuisMoreDrawingControl = () => {
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -151,18 +151,18 @@ const KuisMoreDrawingControl = () => {
       width:'100%'
     }}>
       
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
       <div className="p-2">
@@ -472,16 +472,16 @@ const KuisMoreDrawingControl = () => {
         </div>
 
 
-        <div className='p-4 content' style={{
-          flexGrow: 1,
-          overflowY: "auto",
-          height: "100vh"
-
-        }}>
+        <div className='p-4 mt-5 content' style={{
+              flexGrow: 1,
+              overflowY: "auto",
+              // height: "100vh",
+              backgroundColor: "#fff",
+            }}>
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
-            <h2>Aturan</h2>
+            <h2 style={{color:'black'}}>Aturan</h2>
             <p>
-              Kuis ini bertujuan untuk menguji pengetahuan Anda tentang materi <strong>Kontrol Gambar Lanjutan</strong>.
+              Kuis ini bertujuan untuk menguji pengetahuan Anda tentang materi <b>Kontrol Gambar Lanjutan</b>.
             </p>
             <p>
               Terdapat 10 pertanyaan yang harus dikerjakan dalam kuis ini. Beberapa ketentuannya sebagai berikut:
@@ -514,12 +514,12 @@ const KuisMoreDrawingControl = () => {
 
             {/* Riwayat Section */}
             <div style={{ marginTop: 50 }}>
-              <h4>Riwayat</h4>
+              <h4 style={{color:'black'}}>Riwayat</h4>
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ backgroundColor: '#f8fafc' }}>
-                    <th style={{ padding: 10, textAlign: 'center' }}>Nilai Kuis Kontrol Gambar Lainnya</th>
-                    <th style={{ padding: 10, textAlign: 'center' }}>Status</th>
+                    <th style={{ padding: 10, textAlign: 'center', color:'black' }}>Nilai Kuis Kontrol Gambar Lainnya</th>
+                    <th style={{ padding: 10, textAlign: 'center', color:'black' }}>Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -530,7 +530,7 @@ const KuisMoreDrawingControl = () => {
                       <span className="visually-hidden">Loading...</span>
                     </div>
                   </td>
-                </tr>
+                </tr> 
               ) : riwayatNilai.length > 0 ? (
                 riwayatNilai.map((item, index) => (
                   <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>

@@ -601,7 +601,7 @@ for i in range(100):
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -609,18 +609,18 @@ for i in range(100):
       position: "fixed",
       width:'100%'
     }}>
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
       <div className="p-2">
@@ -928,10 +928,11 @@ for i in range(100):
         )}
         </div>
 
-        <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
+              // height: "100vh",
+              backgroundColor: "#fff",
 
             }}>
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
@@ -954,7 +955,7 @@ for i in range(100):
 
             <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -985,15 +986,15 @@ for i in range(100):
             </p>
 
             <ul>
-              <li><strong>0°</strong>: Timur (Kanan Layar)</li>
-              <li><strong>90°</strong>: Utara (Atas Layar)</li>
-              <li><strong>180°</strong>: Barat (Kiri Layar)</li>
-              <li><strong>270°</strong>: Selatan (Bawah Layar)</li>
+              <li><b>0°</b>: Timur (Kanan Layar)</li>
+              <li><b>90°</b>: Utara (Atas Layar)</li>
+              <li><b>180°</b>: Barat (Kiri Layar)</li>
+              <li><b>270°</b>: Selatan (Bawah Layar)</li>
             </ul>
 
             <br></br>
 
-            <h5>Contoh:</h5>
+            <h5 style={{color: 'black'}}>Contoh:</h5>
             <p>Menampilkan posisi arah pergerakan dari bidawang sebelum dan sesudah berotasi:</p>
             <Row className="align-items-center">
               <Col md={6}>
@@ -1037,7 +1038,7 @@ print "Arah setelah putaran:" heading`}
               }}
             >
               <h4 style={{
-                  // color: '#2DAA9E',
+                  color: 'black',
                   fontSize: '22px',
                   fontWeight: 'bold',
                   borderLeft: '5px solid #198754',
@@ -1182,7 +1183,7 @@ print "Arah setelah putaran:" heading`}
               }}
             >
               <h4 style={{
-                  // color: '#2DAA9E',
+                  color: 'black',
                   fontSize: '24px',
                   fontWeight: 'bold',
                   // borderLeft: '5px solid #2DAA9E',
@@ -1204,7 +1205,7 @@ print "Arah setelah putaran:" heading`}
             {/* Kuis Accordion */}
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                <h4 style={{ fontWeight: "bold" }}>Pertanyaan</h4>
+                <h4 style={{ fontWeight: "bold", color:'black' }}>Pertanyaan</h4>
               </Accordion.Header>
               <Accordion.Body>
               <Form>
@@ -1212,7 +1213,7 @@ print "Arah setelah putaran:" heading`}
   {currentQuestion === 1 && (
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 1 dari 2:</strong>
+        <b>Soal 1 dari 2:</b>
         <p>Dalam canvas Bidawang, arah 0 derajat mengarah ke mana?</p>
       </Form.Label>
 
@@ -1249,7 +1250,7 @@ print "Arah setelah putaran:" heading`}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
+        <b>Soal 2 dari 2:</b>
         <p>Apa hasil dari perintah berikut jika bidawang sudah diputar 90 derajat ke kiri?</p>
         <pre><code>print heading</code></pre>
       </Form.Label>

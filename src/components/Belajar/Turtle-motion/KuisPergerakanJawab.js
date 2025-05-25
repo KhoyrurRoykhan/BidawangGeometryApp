@@ -276,7 +276,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 10) {
       icon: 'success',
       title: 'Selesai!',
       html: `
-        <p>Nilaimu: <strong>${nilaiAkhir}</strong></p>
+        <p>Nilaimu: <b>${nilaiAkhir}</b></p>
         <p>Materi selanjutnya sudah terbuka 🎉</p>
         <p>Pilih "Tutup" jika ingin memeriksa kembali jawabanmu.</p>
       `,
@@ -305,7 +305,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 10) {
     icon: 'info',
     title: 'Sudah Pernah Menyelesaikan Kuis Ini',
     html: `
-      <p>Nilaimu: <strong>${nilaiAkhir}</strong></p>
+      <p>Nilaimu: <b>${nilaiAkhir}</b></p>
       <p>Kamu sudah menyelesaikan kuis ini sebelumnya.</p>
       <p>Tidak ada perubahan pada progres belajar kamu.</p>
     `,
@@ -318,9 +318,9 @@ if (nilaiAkhir >= kkm && progresBelajar === 10) {
     title: 'Nilai Belum Memenuhi 😕',
     icon: 'warning',
     html: `
-      <p>Nilaimu: <strong>${nilaiAkhir}</strong></p>
+      <p>Nilaimu: <b>${nilaiAkhir}</b></p>
       <p>Sayangnya kamu belum memenuhi syarat nilai minimal ${kkm}.</p>
-      <p><strong>Silakan baca ulang materi sebelumnya</strong> lalu coba kerjakan ulang kuis ini ya 💪</p>
+      <p><b>Silakan baca ulang materi sebelumnya</b> lalu coba kerjakan ulang kuis ini ya 💪</p>
     `,
     confirmButtonText: 'Mengerti'
   }).then(() => {
@@ -394,8 +394,13 @@ if (nilaiAkhir >= kkm && progresBelajar === 10) {
               </div>
 
               {showResult && (
-                <div className="mt-2 text-center fw-bold text-primary">
-                  Nilai: {score} / {quizData.length}
+                <div className="mt-3 text-center">
+                  <div className="fw-bold text-primary mb-2">
+                    Nilai: {score} / {quizData.length}
+                  </div>
+                  <Button variant="warning" style={{width: '100%'}} onClick={() => navigate('/belajar/turtlemotion/kuis')}>
+                    Kembali ke Materi
+                  </Button>
                 </div>
               )}
 

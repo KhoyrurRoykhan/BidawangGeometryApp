@@ -565,7 +565,7 @@ const runit = (code, forceReset = false) => {
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -574,20 +574,21 @@ const runit = (code, forceReset = false) => {
       width:'100%'
     }}>
       
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
+
         <div className="p-2">
           <Button variant="light" onClick={toggleSidebar}>
             <FaBars />
@@ -895,12 +896,14 @@ const runit = (code, forceReset = false) => {
         </div>
 
        
-        <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
+              // height: "100vh",
+              backgroundColor: "#fff",
 
             }}>
+
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
             <h2 style={{
               textAlign: 'center',
@@ -921,7 +924,7 @@ const runit = (code, forceReset = false) => {
 
             <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -951,7 +954,7 @@ const runit = (code, forceReset = false) => {
             Perintah `home` digunakan untuk memindahkan Bidawang kembali ke posisi awalnya, yaitu titik (0, 0). Selain memindahkan Bidawang ke posisi awal, perintah ini juga mengatur arah Bidawang menghadap ke timur (0 derajat). Ini berguna ketika Anda ingin memulai kembali menggambar dari posisi awal. 
             </p>
 
-            <h5>Contoh:</h5>
+            <h5 style={{color:'black'}}>Contoh:</h5>
             <p>Memindahkan bidawang ke posisi awal setelah menjalankan berbagai perintah.</p>
             <Row className="align-items-center">
               <Col md={6}>
@@ -994,7 +997,7 @@ home`}
             }}>
               <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -1161,7 +1164,7 @@ home`}
               borderRight: '5px solid #198754',
             }}>
               <h4 style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '24px',
                 fontWeight: 'bold',
                 // borderLeft: '5px solid #2DAA9E',
@@ -1182,7 +1185,7 @@ home`}
             {/* Kuis Accordion */}
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                <h4 style={{fontWeight: "bold" }}>Pertanyaan</h4>
+                <h4 style={{fontWeight: "bold", color:'black' }}>Pertanyaan</h4>
               </Accordion.Header>
               <Accordion.Body>
               <Form>

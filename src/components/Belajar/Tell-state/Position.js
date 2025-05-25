@@ -781,7 +781,7 @@ const runit = (code, forceReset = false) => {
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -790,18 +790,18 @@ const runit = (code, forceReset = false) => {
       width:'100%'
     }}>
       
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
         <div className="p-2">
@@ -1112,10 +1112,11 @@ const runit = (code, forceReset = false) => {
         </div>
 
       
-      <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
+              // height: "100vh",
+              backgroundColor: "#fff",
 
             }}>
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
@@ -1139,7 +1140,7 @@ const runit = (code, forceReset = false) => {
 
           <h4
             style={{
-              // color: '#2DAA9E',
+              color: 'black',
               fontSize: '22px',
               fontWeight: 'bold',
               borderLeft: '5px solid #198754',
@@ -1171,7 +1172,7 @@ const runit = (code, forceReset = false) => {
 
           <br></br>
 
-          <h5>Contoh 1:</h5>
+          <h5 style={{color:"black"}}>Contoh 1:</h5>
           <p>Menampilkan posisi saat ini dari bidawang:</p>
           <Row className="align-items-center">
             <Col md={6}>
@@ -1197,7 +1198,7 @@ print position`}
           
           <br></br>
 
-          <h5>Contoh 2:</h5>
+          <h5 style={{color:'black'}}>Contoh 2:</h5>
           <p>Memeriksa posisi Bidawang sebelum dan sesudah pergerakan.:</p>
           <Row className="align-items-center">
             <Col md={6}>
@@ -1240,7 +1241,7 @@ print "Posisi setelah bergerak:", position`}
             }}
           >
             <h4 style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -1386,7 +1387,7 @@ print "Posisi setelah bergerak:", position`}
             }}
           >
             <h4 style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '24px',
                 fontWeight: 'bold',
                 // borderLeft: '5px solid #2DAA9E',
@@ -1407,7 +1408,7 @@ print "Posisi setelah bergerak:", position`}
           <Accordion className="mb-4" style={{ outline: "3px solid #198754", borderRadius: "10px" }}>
           {/* Tantangan Accordion */}
           <Accordion.Item eventKey="1">
-          <Accordion.Header><h4 style={{fontWeight: "bold" }}>Tantangan</h4></Accordion.Header>
+          <Accordion.Header><h4 style={{fontWeight: "bold", color:'black' }}>Tantangan</h4></Accordion.Header>
             <Accordion.Body>
             <p>
               Selesaikan tantangan dibawah ini!
@@ -1535,7 +1536,7 @@ print "Posisi setelah bergerak:", position`}
           {/* Kuis Accordion */}
           <Accordion.Item eventKey="0">
           <Accordion.Header>
-              <h4 style={{fontWeight: "bold" }}>Pertanyaan</h4>
+              <h4 style={{fontWeight: "bold", color:'black' }}>Pertanyaan</h4>
             </Accordion.Header>
             <Accordion.Body>
             <Form>
@@ -1543,7 +1544,7 @@ print "Posisi setelah bergerak:", position`}
   {currentQuestion === 1 && (
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 1 dari 2:</strong>
+        <b>Soal 1 dari 2:</b>
         <p>Apa fungsi dari position?</p>
       </Form.Label>
 
@@ -1580,7 +1581,7 @@ print "Posisi setelah bergerak:", position`}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
+        <b>Soal 2 dari 2:</b>
         <p>Apa hasil dari perintah berikut jika turtle berada di posisi (50, 100)? </p>
         <pre><code>print position</code></pre>
       </Form.Label>

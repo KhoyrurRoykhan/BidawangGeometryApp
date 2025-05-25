@@ -38,3 +38,10 @@
 .custom-progress .progress-bar {
   font-weight: bold;
 }
+
+@media (prefers-color-scheme: dark) {
+  pre, code {
+    background-color: #f5f5f5 !important;
+    color: #d6336c !important;
+  }
+}

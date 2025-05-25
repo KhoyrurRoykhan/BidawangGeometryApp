@@ -696,7 +696,7 @@ const resetCodeChallanges = () => {
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -705,18 +705,18 @@ const resetCodeChallanges = () => {
       width:'100%'
     }}>
       
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
         <div className="p-2">
@@ -1025,10 +1025,11 @@ const resetCodeChallanges = () => {
         </div>
 
         
-        <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
+              // height: "100vh",
+              backgroundColor: "#fff",
 
             }}>
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
@@ -1054,7 +1055,7 @@ const resetCodeChallanges = () => {
 
             <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -1085,7 +1086,7 @@ const resetCodeChallanges = () => {
               Perintah left dan right digunakan untuk memutar arah gerakan Bidawang berdasarkan sudut derajat yang diberikan, tanpa harus memindahkan posisinya. Ini berguna untuk mengatur arah Bidawang sebelum melanjutkan dengan perintah lainnya seperti bergerak.
             </p><br />
             
-            <h5>1. left</h5>
+            <h5 style={{color: 'black'}}>1. left</h5>
             <p>Memutar arah Bidawang berlawanan arah jarum jam (kiri) sebesar derajat yang ditentukan.</p>
             <p>Contoh:</p>
             <Row className="align-items-center">
@@ -1111,7 +1112,7 @@ left 120 `}
 
             <br/>
 
-            <h5>2. right</h5>
+            <h5 style={{color: 'black'}}>2. right</h5>
             <p>Memutar arah Bidawang searah jarum jam (kanan) sebesar derajat yang ditentukan.</p>
             <p>Contoh:</p>
             <Row className="align-items-center">
@@ -1152,7 +1153,7 @@ right 90`}
             >
             <h4
               style={{
-                // color: '#198754',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -1297,7 +1298,7 @@ right 90`}
             >
             <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '24px',
                 fontWeight: 'bold',
                 // borderLeft: '5px solid #2DAA9E',
@@ -1320,7 +1321,7 @@ right 90`}
             {/* Tantangan Accordion */}
             <Accordion.Item eventKey="1">
             
-                <Accordion.Header><h4 style={{ fontWeight: "bold" }}>Tantangan</h4></Accordion.Header>
+                <Accordion.Header><h4 style={{ fontWeight: "bold", color: 'black' }}>Tantangan</h4></Accordion.Header>
                 <Accordion.Body>
                   <p style={{ fontSize: "16px", marginBottom: "10px" }}>
                     Selesaikan tantangan dengan perintah <code>left</code> dan <code>right</code>. Klik petunjuk untuk bantuan.
@@ -1411,7 +1412,7 @@ right 90`}
             <Accordion className="mb-4" style={{ outline: "3px solid #198754", borderRadius: "10px" }}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>
-              <h4 style={{ fontWeight: "bold" }}>Pertanyaan</h4>
+              <h4 style={{ fontWeight: "bold", color:'black' }}>Pertanyaan</h4>
             </Accordion.Header>
             <Accordion.Body>
             <Form>
@@ -1419,7 +1420,7 @@ right 90`}
   {currentQuestion === 1 && (
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 1 dari 2:</strong>
+        <b>Soal 1 dari 2:</b>
         <p>Perhatikan kode berikut ini:</p>
         <pre><code>left 90</code></pre>
         <p>Apa yang terjadi dengan Bidawang jika kode tersebut dijalankan?</p>
@@ -1458,7 +1459,7 @@ right 90`}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
+        <b>Soal 2 dari 2:</b>
         <p>Bidawang sedang menghadap ke kanan. Jika kita memberikan perintah berikut:</p>
         <pre><code>right 90</code></pre>
         <p>Kemana arah Bidawang akan menghadap setelah perintah tersebut dijalankan?</p>

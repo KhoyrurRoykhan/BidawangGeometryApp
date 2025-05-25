@@ -144,7 +144,7 @@ const Evaluasi = () => {
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -153,18 +153,18 @@ const Evaluasi = () => {
       width:'100%'
     }}>
       
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
         <div className="p-2">
@@ -475,14 +475,14 @@ const Evaluasi = () => {
         </div>
 
         
-        <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
-
+              // height: "100vh",
+              backgroundColor: "#fff",
             }}>
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
-            <h2>Aturan Evaluasi</h2>
+            <h2 style={{color:'black'}}>Aturan Evaluasi</h2>
             <p>
               Evaluasi ini bertujuan untuk menguji pengetahuan Anda tentang keseluruhan materi yang telah di pelajari.
             </p>
@@ -517,12 +517,12 @@ const Evaluasi = () => {
 
             {/* Riwayat Section */}
             <div style={{ marginTop: 50 }}>
-              <h4>Riwayat</h4>
+              <h4 style={{color:'black'}}>Riwayat</h4>
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ backgroundColor: '#f8fafc' }}>
-                    <th style={{ padding: 10, textAlign: 'center' }}>Nilai Evaluasi</th>
-                    <th style={{ padding: 10, textAlign: 'center' }}>Status</th>
+                    <th style={{ padding: 10, textAlign: 'center', color:'black' }}>Nilai Evaluasi</th>
+                    <th style={{ padding: 10, textAlign: 'center', color:'black' }}>Status</th>
                   </tr>
                 </thead>
                 <tbody>

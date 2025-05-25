@@ -631,7 +631,7 @@ const runit = (code, forceReset = false) => {
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -640,19 +640,18 @@ const runit = (code, forceReset = false) => {
       width:'100%'
     }}>
       
-      
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
         <div className="p-2">
@@ -962,12 +961,14 @@ const runit = (code, forceReset = false) => {
         </div>
 
         
-        <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
+              // height: "100vh",
+              backgroundColor: "#fff",
 
             }}>
+
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
             <h2 style={{
               textAlign: 'center',
@@ -989,7 +990,7 @@ const runit = (code, forceReset = false) => {
 
             <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -1020,13 +1021,13 @@ const runit = (code, forceReset = false) => {
             </p>
 
             <ul>
-              <li><strong>0°</strong>: Timur (Kanan Layar)</li>
-              <li><strong>90°</strong>: Utara (Atas Layar)</li>
-              <li><strong>180°</strong>: Barat (Kiri Layar)</li>
-              <li><strong>270°</strong>: Selatan (Bawah Layar)</li>
+              <li><b>0°</b>: Timur (Kanan Layar)</li>
+              <li><b>90°</b>: Utara (Atas Layar)</li>
+              <li><b>180°</b>: Barat (Kiri Layar)</li>
+              <li><b>270°</b>: Selatan (Bawah Layar)</li>
             </ul>
 
-            <h5>Contoh:</h5>
+            <h5 style={{color: 'black'}}>Contoh:</h5>
             <p>Mengatur arah pergerakan bidawang dengan <code>setheading</code>.</p>
             <Row className="align-items-center">
               <Col md={6}>
@@ -1069,7 +1070,7 @@ forward 100  # Bergerak maju ke kiri`}
             }}>
               <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',

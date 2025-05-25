@@ -645,7 +645,7 @@ const resetCodeChallanges = () => {
     };
 
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -654,18 +654,18 @@ const resetCodeChallanges = () => {
       width:'100%'
     }}>
       
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
         <div className="p-2">
@@ -975,10 +975,11 @@ const resetCodeChallanges = () => {
         </div>
 
         
-        <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
+              // height: "100vh",
+              backgroundColor: "#fff",
 
             }}>
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
@@ -1003,7 +1004,7 @@ const resetCodeChallanges = () => {
 
             <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -1033,7 +1034,7 @@ const resetCodeChallanges = () => {
             Perintah `setposition` (bisa juga disingkat `setpos`) digunakan untuk memindahkan Bidawang ke titik tertentu dalam ruang canvas, berdasarkan koordinat yang ditentukan. Saat perintah ini digunakan, Bidawang akan menggambar jalur dari posisi sebelumnya ke posisi baru.
             </p>
 
-            <h5>Contoh:</h5>
+            <h5 style={{color:'black'}}>Contoh:</h5>
             <p>Memindahkan Bidawang ke koordinat <code>(<i>x</i> = 100, <i>y</i> = 100)</code> dalam ruang canvas.</p>
             <Row className="align-items-center">
               <Col md={6}>
@@ -1071,7 +1072,7 @@ setposition 100 100`}
             >
               <h4
                 style={{
-                  // color: '#198754',
+                  color: 'black',
                   fontSize: '22px',
                   fontWeight: 'bold',
                   borderLeft: '5px solid #198754',
@@ -1214,7 +1215,7 @@ setposition 100 100`}
             >
               <h4
                 style={{
-                  // color: '#2DAA9E',
+                  color: 'black',
                   fontSize: '24px',
                   fontWeight: 'bold',
                   // borderLeft: '5px solid #2DAA9E',
@@ -1236,7 +1237,7 @@ setposition 100 100`}
             <Accordion className="mb-4" style={{ outline: "3px solid #198754", borderRadius: "10px" }}>
             {/* Tantangan Accordion */}
             <Accordion.Item eventKey="1">
-            <Accordion.Header><h4 style={{ fontWeight: "bold" }}>Tantangan</h4></Accordion.Header>
+            <Accordion.Header><h4 style={{ fontWeight: "bold",color:'black' }}>Tantangan</h4></Accordion.Header>
               <Accordion.Body>
                 <p style={{ fontSize: "16px", marginBottom: "10px" }}>
                 Selesaikan tantangan dibawah ini!
@@ -1349,7 +1350,7 @@ setposition 100 100`}
             {/* Kuis Accordion */}
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                <h4 style={{ fontWeight: "bold" }}>Pertanyaan</h4>
+                <h4 style={{ fontWeight: "bold", color:'black' }}>Pertanyaan</h4>
               </Accordion.Header>
               <Accordion.Body>
               <Form>
@@ -1357,7 +1358,7 @@ setposition 100 100`}
   {currentQuestion === 1 && (
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 1 dari 2:</strong>
+        <b>Soal 1 dari 2:</b>
         <p>Apa fungsi utama dari perintah setposition?</p>
       </Form.Label>
 
@@ -1394,7 +1395,7 @@ setposition 100 100`}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
+        <b>Soal 2 dari 2:</b>
         <p>Jika posisi awal Bidawang adalah (0, 0), dan Anda menggunakan perintah: </p>
         <pre><code>setposition 50 100</code></pre>
         <p> dimana posisi akhir Bidawang?</p>

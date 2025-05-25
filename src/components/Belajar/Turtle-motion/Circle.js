@@ -660,7 +660,7 @@ const runit = (code, forceReset = false) => {
     };
   
   return (
-    <div className="pt-3 mt-5" style={{ fontFamily: 'Verdana, sans-serif',
+    <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
       height: "100vh",
       flexDirection: "row",
@@ -669,18 +669,18 @@ const runit = (code, forceReset = false) => {
       width:'100%'
     }}>
       
-      <div
+      <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
-          height: "100vh",
+          // height: "100vh",
           position: "sticky", // atau fixed jika mau benar-benar di luar alur scroll
           top: 0,
           zIndex: 10,
           flexShrink: 0, // penting agar tidak ikut menyusut
           overflow: 'auto',
-          paddingBottom:60
+          paddingBottom:80
         }}
       >
         <div className="p-2">
@@ -990,12 +990,14 @@ const runit = (code, forceReset = false) => {
         </div>
 
         
-        <div className='p-4 content' style={{
+        <div className='p-4 mt-5 content' style={{
               flexGrow: 1,
               overflowY: "auto",
-              height: "100vh"
+              // height: "100vh",
+              backgroundColor: "#fff",
 
             }}>
+
           <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
             <h2 
             style={{
@@ -1018,7 +1020,7 @@ const runit = (code, forceReset = false) => {
 
             <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -1049,13 +1051,13 @@ const runit = (code, forceReset = false) => {
             </p>
             <p><code>circle(jari_jari, extent=None)</code>: Menggambar lingkaran dengan jari-jari yang ditentukan. Parameter <code>extent</code> opsional dan digunakan untuk menggambar busur lingkaran. Jika <code>extent</code> tidak diberikan, maka lingkaran penuh akan digambar.</p>
             <ul>
-              <li><strong>jari_jari</strong>: Jari-jari lingkaran yang ingin digambar.</li>
-              <li><strong>extent</strong>: Sudut (dalam derajat) dari lingkaran yang ingin digambar. Jika tidak ada, menggambar lingkaran penuh (360 derajat).</li>
+              <li><b>jari_jari</b>: Jari-jari lingkaran yang ingin digambar.</li>
+              <li><b>extent</b>: Sudut (dalam derajat) dari lingkaran yang ingin digambar. Jika tidak ada, menggambar lingkaran penuh (360 derajat).</li>
             </ul>
 
             <br></br>
 
-            <h5>Contoh 1:</h5>
+            <h5 style={{color: 'black'}}>Contoh 1:</h5>
             <p>Menggambar lingkaran penuh dengan menentukan jari-jari:</p>
             <Row className="align-items-center">
               <Col md={6}>
@@ -1080,7 +1082,7 @@ circle 50`}
             
             <br></br>
 
-            <h5>Contoh 2:</h5>
+            <h5 style={{color:'black'}}>Contoh 2:</h5>
             <p>Menggambar busur dengan menentukan besaran derajatnya <i>'extent'</i>:</p>
             <Row className="align-items-center">
               <Col md={6}>
@@ -1116,7 +1118,7 @@ circle 50 180`}
               margin: 'auto',
             }}>
               <h4 style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '22px',
                 fontWeight: 'bold',
                 borderLeft: '5px solid #198754',
@@ -1261,7 +1263,7 @@ circle 50 180`}
               }}>
                 <h4
                 style={{
-                  // color: '#2DAA9E',
+                  color: 'black',
                   fontSize: '24px',
                   fontWeight: 'bold',
                   // borderLeft: '5px solid #2DAA9E',
@@ -1285,7 +1287,7 @@ circle 50 180`}
             {/* Tantangan Accordion */}
             <Accordion.Item eventKey="1">
             <Accordion.Header>
-                <h4 style={{fontWeight: "bold" }}>Tantangan</h4>
+                <h4 style={{fontWeight: "bold", color:'black' }}>Tantangan</h4>
               </Accordion.Header>
               <Accordion.Body>
                 <p style={{ fontSize: "16px", marginBottom: "10px" }}>
@@ -1392,7 +1394,7 @@ circle 50 180`}
             {/* Kuis Accordion */}
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                <h4 style={{ fontWeight: "bold" }}>Pertanyaan</h4>
+                <h4 style={{ fontWeight: "bold", color:'black' }}>Pertanyaan</h4>
               </Accordion.Header>
               <Accordion.Body>
               <Form>
@@ -1400,7 +1402,7 @@ circle 50 180`}
   {currentQuestion === 1 && (
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 1 dari 2:</strong>
+        <b>Soal 1 dari 2:</b>
         <p>Apa fungsi dari parameter <i>extent</i> dalam metode circle?</p>
       </Form.Label>
 
@@ -1437,7 +1439,7 @@ circle 50 180`}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
+        <b>Soal 2 dari 2:</b>
         <p>Apa yang terjadi jika Anda menjalankan perintah circle 50?</p>
 
       </Form.Label>
