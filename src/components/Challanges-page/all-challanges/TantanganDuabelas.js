@@ -338,7 +338,7 @@ const runitchallanges = (code, forceReset = false, isInitial = false) => {
   }, []);
 
   return (
-    <Container fluid className="sidenavigasi mt-5">
+    <Container fluid className="sidenavigasi mt-5" style={{backgroundColor:'white'}}>
         <Row>
         {/* Kolom Kiri - Prev */}
         <Col md={2} className="d-flex justify-content-center align-items-center">

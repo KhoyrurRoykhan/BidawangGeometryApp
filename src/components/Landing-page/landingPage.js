@@ -3,7 +3,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Image, Card } from 'react-bootstrap';
-import { FaBookReader, FaGamepad, FaScrewdriver } from 'react-icons/fa';
+import { FaBookReader, FaCode, FaGamepad, FaScrewdriver } from 'react-icons/fa';
 
 import MenaraPandang from '../Landing-page/assets/menara-pandang.jpeg';
 import JukungTeratai from '../Landing-page/assets/jukung-teratai.jpg';
@@ -14,7 +14,7 @@ import BelajarTurtle from '../Landing-page/assets/belajar-turtlee.png';
 import Tantangan from '../Landing-page/assets/tantangann.png';
 import SusurSungai from '../Landing-page/assets/susur-sungaii.png';
 import Tujuan from './assets/tujuan.webp';
-
+import BidawangKoding from './assets/bidkode.png';
 import './assets/landing-page.css';
 import './assets/button3d.css';
 
@@ -121,12 +121,12 @@ const LandingPage = () => {
           <Col xs={12} sm={6} md={4} className="mb-4">
             <Card className="h-100 text-center">
               <Card.Body>
-                <img src={SusurSungai} alt="Susur Sungai" className="mb-3" style={{ width: '80px', height: 'auto' }} />
-                <Card.Title><FaScrewdriver /> <b>Susur Sungai</b></Card.Title>
+                <img src={BidawangKoding} alt="Susur Sungai" className="mb-3" style={{ width: '80px', height: 'auto' }} />
+                <Card.Title><FaCode /> <b>Text Editor</b></Card.Title>
                 <Card.Text style={{ fontSize: '0.95rem' }}>
-                  Susuri dunia geometri dengan cara menyenangkan dan aplikatif melalui eksplorasi visual yang interaktif.
+                Tulis dan jalankan kode Turtle di editor interaktif dan lihat langsung hasil visualnya.
                 </Card.Text>
-                <a href="/susursungai" className="button-3d-eksplore">Mulai Berkreasi</a>
+                <a href="/texteditor" className="button-3d-eksplore">Mulai Berkreasi</a>
               </Card.Body>
             </Card>
           </Col>
