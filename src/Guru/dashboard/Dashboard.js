@@ -164,8 +164,8 @@ const Dashboard = () => {
       </div>
 
       {/* Main content */}
-      <div style={{ marginLeft: '250px', padding: '30px', width: '100%', marginTop: 50 }}>
-        <h2 className='mb-3'>{activeMenu}</h2>
+      <div style={{ marginLeft: '250px', padding: '30px', width: '100%', backgroundColor:'white', height:'100vh' }}>
+        <h2 className='mb-3' style={{marginTop: 50}}>{activeMenu}</h2>
 
         {/* Token & KKM Card */}
         <Card className="mb-4 shadow-sm">

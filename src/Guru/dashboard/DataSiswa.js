@@ -140,8 +140,8 @@ const DataSiswa = () => {
       </div>
 
       {/* Main Content */}
-      <div style={{ marginLeft: '250px', padding: '30px', width: '100%', marginTop: 50 }}>
-        <h2 className='mb-4'>{activeMenu}</h2>
+      <div style={{ marginLeft: '250px', padding: '30px', width: '100%',  backgroundColor:'white', height:'100vh' }}>
+        <h2 className='mb-4' style={{marginTop: 50}}>{activeMenu}</h2>
 
         <Row className="mb-3">
           <Col md={6}>
@@ -157,10 +157,10 @@ const DataSiswa = () => {
         <Table striped bordered hover responsive>
         <thead>
         <tr>
-          <th style={{ width: '5%' }}>No</th>
-          <th style={{ width: '20%' }}>NISN</th>
-          <th style={{ width: '60%' }}>Nama</th>
-          <th style={{ width: '15%' }}>Aksi</th>
+          <th style={{ width: '5%',color:'black' }}>No</th>
+          <th style={{ width: '20%',color:'black' }}>NISN</th>
+          <th style={{ width: '60%',color:'black' }}>Nama</th>
+          <th style={{ width: '15%',color:'black' }}>Aksi</th>
         </tr>
       </thead>
           <tbody>

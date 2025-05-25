@@ -85,8 +85,8 @@ const ProgresBelajar = () => {
       </div>
 
       {/* Main content */}
-      <div style={{ marginLeft: '250px', padding: '30px', width: '100%', marginTop: 50 }}>
-        <h2 className='mb-4'>{activeMenu}</h2>
+      <div style={{ marginLeft: '250px', padding: '30px', width: '100%', height:'100vh', backgroundColor:'white' }}>
+        <h2 className='mb-4' style={{marginTop: 50}}>{activeMenu}</h2>
 
         {/* Search Input */}
         <Row className="mb-3">
@@ -104,10 +104,10 @@ const ProgresBelajar = () => {
         <Table striped bordered hover responsive>
           <thead>
             <tr>
-              <th>No</th>
-              <th>NISN</th>
-              <th>Nama</th>
-              <th>Progres Belajar</th>
+              <th style={{color:'black'}}>No</th>
+              <th style={{color:'black'}}>NISN</th>
+              <th style={{color:'black'}}>Nama</th>
+              <th style={{color:'black'}}>Progres Belajar</th>
             </tr>
           </thead>
           <tbody>

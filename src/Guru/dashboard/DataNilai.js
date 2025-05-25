@@ -96,8 +96,8 @@ const DataNilai = () => {
       </div>
 
       {/* Main Content */}
-      <div style={{ marginLeft: '250px', padding: '30px', width: '100%', marginTop: 50 }}>
-        <h2 className="mb-4">Data Nilai</h2>
+      <div style={{ marginLeft: '250px', padding: '30px', width: '100%',  backgroundColor:'white', height:'100vh' }}>
+        <h2 className="mb-4" style={{marginTop: 50,}}>Data Nilai</h2>
 
         {/* Keterangan & Dropdown */}
         <Row className="mb-3 align-items-center">
@@ -132,15 +132,15 @@ const DataNilai = () => {
         <Table striped bordered hover responsive>
           <thead>
             <tr>
-              <th>No</th>
-              <th>NISN</th>
-              <th>Nama</th>
-              <th>Kuis 1</th>
-              <th>Kuis 2</th>
-              <th>Kuis 3</th>
-              <th>Kuis 4</th>
-              <th>Kuis 5</th>
-              <th>Evaluasi</th>
+              <th style={{color:'black'}}>No</th>
+              <th style={{color:'black'}}>NISN</th>
+              <th style={{color:'black'}}>Nama</th>
+              <th style={{color:'black'}}>Kuis 1</th>
+              <th style={{color:'black'}}>Kuis 2</th>
+              <th style={{color:'black'}}>Kuis 3</th>
+              <th style={{color:'black'}}>Kuis 4</th>
+              <th style={{color:'black'}}>Kuis 5</th>
+              <th style={{color:'black'}}>Evaluasi</th>
             </tr>
           </thead>
           <tbody>

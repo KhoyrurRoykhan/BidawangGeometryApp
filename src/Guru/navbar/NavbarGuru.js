@@ -63,7 +63,7 @@ const NavbarGuru = () => {
               <Dropdown.Menu>
                 <Dropdown.Header>{nama}</Dropdown.Header>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                <Dropdown.Item style={{backgroundColor:'white'}} onClick={handleLogout}>Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Collapse>
