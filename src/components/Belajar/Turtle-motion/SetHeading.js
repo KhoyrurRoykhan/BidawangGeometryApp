@@ -1213,7 +1213,7 @@ forward 100  # Bergerak maju ke kiri`}
             }}>
               <h4
               style={{
-                // color: '#2DAA9E',
+                color: 'black',
                 fontSize: '24px',
                 fontWeight: 'bold',
                 // borderLeft: '5px solid #2DAA9E',
@@ -1232,7 +1232,7 @@ forward 100  # Bergerak maju ke kiri`}
             <hr></hr>
             <Accordion className="mb-4" style={{ outline: "3px solid #198754", borderRadius: "10px" }}>
           <Accordion.Item eventKey="1">
-            <Accordion.Header><h4 style={{fontWeight: "bold" }}>Tantangan</h4></Accordion.Header>
+            <Accordion.Header><h4 style={{fontWeight: "bold", color:'black' }}>Tantangan</h4></Accordion.Header>
             <Accordion.Body>
               <p>Selesaikan tantangan dengan mengarahkan bidawang ke arah cacing menggunakan <code>setheading</code>.</p>
               <Button className='mb-2' variant="info" onClick={showHint} style={{ color: 'white', fontWeight: 'bold' }}>
@@ -1271,7 +1271,7 @@ forward 100  # Bergerak maju ke kiri`}
             {/* Kuis Accordion */}
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                <h4 style={{fontWeight: "bold" }}>Pertanyaan</h4>
+                <h4 style={{fontWeight: "bold", color:'black' }}>Pertanyaan</h4>
               </Accordion.Header>
               <Accordion.Body>
               <Form>
@@ -1279,7 +1279,7 @@ forward 100  # Bergerak maju ke kiri`}
   {currentQuestion === 1 && (
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 1 dari 2:</strong>
+        <b>Soal 1 dari 2:</b>
         <p>Jika Anda menggunakan perintah:</p>
         <pre><code>setheading 90</code></pre>
         <p>ke arah mana Bidawang akan menghadap?</p>
@@ -1318,7 +1318,7 @@ forward 100  # Bergerak maju ke kiri`}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
+        <b>Soal 2 dari 2:</b>
         <p>Apa fungsi utama dari perintah setheading?</p>
       </Form.Label>
 

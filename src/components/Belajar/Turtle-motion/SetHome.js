@@ -1193,7 +1193,7 @@ home`}
                 {currentQuestion === 1 && (
                   <Form.Group controlId="question1">
                     <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-                      <strong>Soal 1 dari 2:</strong>
+                      <b>Soal 1 dari 2:</b>
                       <p>Apa fungsi dari perintah home?</p>
                     </Form.Label>
 
@@ -1230,7 +1230,7 @@ home`}
                 {currentQuestion === 2 && (
                   <Form.Group controlId="question2">
                     <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-                      <strong>Soal 2 dari 2:</strong>
+                      <b>Soal 2 dari 2:</b>
                       <p>Jika posisi awal Bidawang adalah (100, 100) dan arahnya ke barat, apa yang terjadi setelah menggunakan home?</p>
                     </Form.Label>
 
