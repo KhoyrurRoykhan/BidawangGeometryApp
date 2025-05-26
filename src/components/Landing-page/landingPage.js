@@ -65,10 +65,10 @@ const LandingPage = () => {
               Media Pembelajaran Interaktif
             </h3>
             <h3 style={{ fontSize: isMobile ? '1.5rem' : '2rem', color: 'white', marginBottom: '1rem' }}>
-              Library Turtle
+              Pemrograman Turtle
             </h3>
             <p style={{ fontSize: isMobile ? '1rem' : '1.1rem', color: 'white', marginBottom: '1.5rem' }}>
-              Bidawang Geometry adalah perangkat gratis yang membantu siswa memahami lebih dalam konsep-konsep pemrograman library turtle (Pemrograman Logo).
+              Bidawang Geometry adalah perangkat gratis yang membantu siswa memahami lebih dalam konsep-konsep pemrograman turtle.
               Dengan tutorial interaktif dan tantangan-tantangan yang menarik.
             </p>
             <a href="#Ayo-Eksplore" className="button-3d" style={{ fontSize: '18px' }}><b>Mulai Eksplore</b></a>
