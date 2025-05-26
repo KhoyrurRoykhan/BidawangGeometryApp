@@ -173,7 +173,7 @@ const Dashboard = () => {
             <div className="d-flex align-items-center mb-3">
               <BsKeyFill size={36} style={{ marginRight: '20px', color: '#0d6efd' }} />
               <div>
-                <h5 style={{ fontWeight: 'bold' }}>Token Guru untuk Siswa Masuk Kelas:</h5>
+                <h5 style={{ fontWeight: 'bold' }}>Token untuk Siswa Masuk Kelas:</h5>
                 <h3 style={{ letterSpacing: '4px', marginTop: '10px', color: '#0d6efd' }}>
                   {token ? token : <Spinner animation="border" size="sm" />}
                 </h3>
