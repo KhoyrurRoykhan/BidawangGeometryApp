@@ -7,6 +7,8 @@ import {
   BsGrid, BsPeople, BsBook, BsLightning, BsBarChart, BsPencilSquare, BsTrash, BsX, BsSave
 } from 'react-icons/bs';
 import Swal from 'sweetalert2';
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 const menuItems = [
   { name: 'Dashboard', icon: <BsGrid />, path: '/guru/dashboard' },
@@ -53,6 +55,31 @@ const DataNilai = () => {
     } finally {
       setLoading(false); // Selesai loading
     }
+  };
+
+  const exportToExcel = () => {
+    const dataExport = filteredSiswa.map((siswa, index) => {
+      const nilaiSiswa = dataNilai.find((n) => n.user.id === siswa.id) || {};
+      return {
+        No: index + 1,
+        NISN: siswa.nisn,
+        Nama: siswa.nama,
+        'Kuis 1': nilaiSiswa.kuis_1 ?? '-',
+        'Kuis 2': nilaiSiswa.kuis_2 ?? '-',
+        'Kuis 3': nilaiSiswa.kuis_3 ?? '-',
+        'Kuis 4': nilaiSiswa.kuis_4 ?? '-',
+        'Kuis 5': nilaiSiswa.kuis_5 ?? '-',
+        Evaluasi: nilaiSiswa.evaluasi ?? '-',
+      };
+    });
+  
+    const worksheet = XLSX.utils.json_to_sheet(dataExport);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Data Nilai");
+  
+    const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+    saveAs(data, "data_nilai.xlsx");
   };
   
   
@@ -126,6 +153,11 @@ const DataNilai = () => {
             />
         </Col>
         </Row>
+
+        <Button variant="success" className="mb-3" onClick={exportToExcel}>
+          Export ke Excel
+        </Button>
+
 
 
         {/* Table Nilai */}
