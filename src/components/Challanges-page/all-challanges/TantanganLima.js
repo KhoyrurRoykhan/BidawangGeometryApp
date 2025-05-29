@@ -302,8 +302,8 @@ const TantanganLima = () => {
     runitchallanges(); // Jalankan kode saat halaman dimuat
   }, []);
   return (
-    <Container fluid className="sidenavigasi mt-5" style={{backgroundColor:'white'}}>
-        <Row>
+    <Container  fluid className="sidenavigasi mt-5 pb-5" style={{backgroundColor:'white', overflowY: 'auto'}}>
+        <Row className='mb-5'>
         {/* Kolom Kiri - Prev */}
         <Col md={2} className="d-flex justify-content-center align-items-center">
         <Button
