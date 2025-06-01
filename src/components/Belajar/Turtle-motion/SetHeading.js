@@ -1032,7 +1032,8 @@ const runit = (code, forceReset = false) => {
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`forward 100
+                  value={`setheading 90
+forward 100
                   
 setheading 180
 forward 100 `}
