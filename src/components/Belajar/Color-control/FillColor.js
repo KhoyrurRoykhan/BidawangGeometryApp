@@ -1112,10 +1112,10 @@ for i in range(100):
         <Row className="align-items-center">
           <Col md={6}>
             <CodeMirror
-              value={`fillcolor "green"  # Warna isian hijau 
+              value={`fillcolor "green" 
 
 begin_fill
-circle 50  # Membuat lingkaran 
+circle 50  
 end_fill `}
               height="340px"
               theme="light"
@@ -1349,7 +1349,7 @@ end_fill `}
                   }}
                 />
                 <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                  <Button variant="success" onClick={() => { runitchallanges(); checkCode(); }}>Run Code</Button>
+                  <Button variant="success" onClick={() => { runitchallanges(); }}>Run Code</Button>
                   <Button variant="secondary" onClick={resetCodeChallanges}>
                     <BsArrowClockwise /> Reset
                   </Button>

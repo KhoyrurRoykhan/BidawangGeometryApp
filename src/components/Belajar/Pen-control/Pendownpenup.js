@@ -1096,12 +1096,8 @@ for i in range(100):
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Gerakkan tanpa menggambar 
-penup
-
+                  value={`penup
 setposition 100 100
-    
-# Aktifkan menggambar 
 pendown
 circle 30 `}
                   height="340px"
@@ -1335,7 +1331,7 @@ circle 30 `}
                       }}
                     />
                     <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                      <Button variant="success" onClick={() => { runitchallanges(); checkCode(); }}>Run Code</Button>
+                      <Button variant="success" onClick={() => { runitchallanges(); }}>Run Code</Button>
                       <Button variant="secondary" onClick={resetCodeChallanges}>
                         <BsArrowClockwise /> Reset
                       </Button>

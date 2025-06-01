@@ -598,7 +598,7 @@ const runit = (code, forceReset = false) => {
             .then(resetCodeChallanges);
           return;
         } else if (radius === 100) {
-          swal("Mantap!", "Kamu berhasil membuat bidawang mengitari sungai dengan sempurna!", "success")
+          swal("Benar!", "Kamu berhasil membuat bidawang mengitari sungai dengan sempurna!", "success")
             .then(async () => {
               try {
                 if (progresTantangan === 5) {
@@ -1062,8 +1062,7 @@ const runit = (code, forceReset = false) => {
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Menggambar lingkaran dengan jari-jari 50
-circle 50`}
+                  value={`circle 50`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1087,8 +1086,7 @@ circle 50`}
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Menggambar busur dengan jari 50 dan 180 derajat
-circle 50 180`}
+                  value={`circle 50 180`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1323,7 +1321,7 @@ circle 50 180`}
                       }}
                     />
                     <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                      <Button variant="success" onClick={() => { runitchallanges(); checkCode(); }}>Run Code</Button>
+                      <Button variant="success" onClick={() => { runitchallanges(); }}>Run Code</Button>
                       <Button variant="secondary" onClick={resetCodeChallanges}>
                         <BsArrowClockwise /> Reset
                       </Button>

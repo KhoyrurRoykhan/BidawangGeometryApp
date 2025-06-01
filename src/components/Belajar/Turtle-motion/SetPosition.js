@@ -1039,8 +1039,7 @@ const resetCodeChallanges = () => {
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Pindahkan Bidawang ke koordinat (100, 100)
-setposition 100 100`}
+                  value={`setposition 100 100`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}

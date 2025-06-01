@@ -992,8 +992,7 @@ const runit = (code, forceReset = false) => {
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Menggambar titik dengan ukuran 10 dan warna default
-dot 10
+                  value={`dot 10
 forward 200`}
                   height="400px"
                   theme="light"
@@ -1009,7 +1008,7 @@ forward 200`}
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Fungsi <code>dot(10)</code> akan menggambar titik pada posisi bidawang tersebut dengan ukuran 10 dan warna default.</p>
+            <p><b>Hasil:</b> Fungsi <code>dot 10</code> akan menggambar titik pada posisi bidawang tersebut dengan ukuran 10 dan warna default.</p>
             
             <br></br>
 
@@ -1018,13 +1017,10 @@ forward 200`}
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Menggambar titik dengan ukuran 20 dan warna merah
-dot 20 "red"
+                  value={`dot 20 "red"
                   
-# Pindahkan turtle untuk menggambar titik berikutnya
 setposition 50 50
                 
-# Menggambar titik dengan ukuran 15 dan warna biru
 dot 15 "blue"
 
 setposition 200 200`}
@@ -1068,7 +1064,7 @@ setposition 200 200`}
                 Latihan Menggunakan dot 🐢
               </h4>
             <p>
-            Untuk lebih mudah memahami cara kerja perintah <code>dot()</code>, ikuti instruksi dibawah ini
+            Untuk lebih mudah memahami cara kerja perintah <code>dot</code>, ikuti instruksi dibawah ini
             </p>
             <Row>
                 {/* Kolom untuk Accordion */}

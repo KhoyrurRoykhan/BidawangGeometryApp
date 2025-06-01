@@ -166,7 +166,7 @@ const Position = () => {
     const correctAnswersB = ["(-150.0, -100.0)", "(-150, -100)", "(-150,-100)"];
   
     if (correctAnswersA.includes(inputA) && correctAnswersB.includes(inputB)) {
-      await swal("Benar!", "Jawaban Anda benar.", "success");
+      await swal("Benar!", "Tantangan Selesai!", "success");
   
       try {
         if (progresTantangan === 6) {
@@ -601,7 +601,7 @@ const runit = (code, forceReset = false) => {
   };
 
   const runit2 = (code, forceReset = false) => {
-    setOutput2('Posisi awal: (0.0, 0.0) \nPosisi setelah bergerak: (100.0, 0.0)');
+    setOutput2('(0.0, 0.0) \n(100.0, 0.0)');
     const parsedCode = parseSimpleCommands(code || pythonCode2); // Gunakan kode hasil parse
     const imports = "from turtle import *\nreset()\nshape('turtle')\n";
     const prog = forceReset ? imports : imports + parsedCode;
@@ -744,7 +744,7 @@ const runit = (code, forceReset = false) => {
     }
   
     if (userLines.length === correctSteps.length) {
-      swal("Benar!", "Seluruh langkah sudah benar!", "success");
+      swal("Benar!", "Seluruh langkah sudah benar! Silahkan jawab posisi objek A dan B! ", "success");
     }
   };
   
@@ -1177,8 +1177,7 @@ const runit = (code, forceReset = false) => {
           <Row className="align-items-center">
             <Col md={6}>
               <CodeMirror
-                value={`#  Menampilkan posisi saat ini dari bidawang
-print position`}
+                value={`print position`}
                 height="340px"
                 theme="light"
                 extensions={[python()]}
@@ -1199,16 +1198,14 @@ print position`}
           <br></br>
 
           <h5 style={{color:'black'}}>Contoh 2:</h5>
-          <p>Memeriksa posisi Bidawang sebelum dan sesudah pergerakan.:</p>
+          <p>Memeriksa posisi Bidawang sebelum dan sesudah pergerakan:</p>
           <Row className="align-items-center">
             <Col md={6}>
               <CodeMirror
-                value={`# Posisi awal 
-print "Posisi awal:" position
-# Gerakkan Bidawang ke depan sejauh 100 langkah
+                value={`print position
+
 forward 100 
-# Cek posisi baru 
-print "Posisi setelah bergerak:", position`}
+print position`}
                 height="300px"
                 theme="light"
                 extensions={[python()]}
@@ -1248,10 +1245,10 @@ print "Posisi setelah bergerak:", position`}
                 paddingLeft: '10px',
                 marginBottom: '15px',
               }}>
-                Latihan Menggunakan setposition 🐢  
+                Latihan Menggunakan position 🐢  
               </h4>
           <p>
-          Untuk lebih mudah memahami cara kerja perintah <code>setposition</code>, ikuti instruksi dibawah ini
+          Untuk lebih mudah memahami cara kerja perintah <code>position</code>, ikuti instruksi dibawah ini
           </p>
           <Row>
                 {/* Kolom untuk Accordion */}
@@ -1453,7 +1450,7 @@ print "Posisi setelah bergerak:", position`}
                     }}
                   />
                   <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                    <Button variant="success" onClick={() => { runitchallanges(); checkCode(); }}>Run Code</Button>
+                    <Button variant="success" onClick={() => { runitchallanges(); }}>Run Code</Button>
                     <Button variant="secondary" onClick={resetCodeChallanges}>
                       <BsArrowClockwise /> Reset
                     </Button>

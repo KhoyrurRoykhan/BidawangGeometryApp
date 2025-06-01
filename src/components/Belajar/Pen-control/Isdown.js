@@ -474,7 +474,7 @@ home()
   
     // ✅ Fungsi untuk menjalankan pythonCode1 (Contoh 1) - Perbaikan disini
     const runit1 = (code, forceReset = false) => {
-      setOutput1('Status Pena saat ini:\nTrue\nPena setelah diangkat:\nFalse');
+      setOutput1('True\nFalse');
       const parsedCode = parseSimpleCommands(code || pythonCode1); // Gunakan kode hasil parse
       const imports = "from turtle import *\nreset()\nshape('turtle')\n";
       const prog = forceReset ? imports : imports + parsedCode;
@@ -947,14 +947,10 @@ home()
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Cek status pena 
-print "Status Pena saat ini:"
-print isdown
+                  value={`print isdown
 
-# Mengangkat pena
 penup
 
-print "Pena setelah diangkat:" 
 print isdown`}
                   height="280px"
                   theme="light"

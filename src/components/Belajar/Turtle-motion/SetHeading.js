@@ -1032,13 +1032,10 @@ const runit = (code, forceReset = false) => {
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Atur arah turtle menghadap utara (90 derajat)
-setheading 90
-forward 100  # Bergerak maju ke atas
+                  value={`forward 100
                   
-# Atur arah turtle menghadap barat (180 derajat)
 setheading 180
-forward 100  # Bergerak maju ke kiri`}
+forward 100 `}
                   height="400px"
                   theme="light"
                   extensions={[python()]}

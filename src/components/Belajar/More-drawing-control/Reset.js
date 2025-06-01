@@ -966,9 +966,8 @@ forward 100
 left 90
 forward 100
 
-# Reset layar dan posisi turtle 
 reset
-forward 50  # Memulai gambar baru `}
+forward 50 `}
                   height="340px"
                   theme="light"
                   extensions={[python()]}

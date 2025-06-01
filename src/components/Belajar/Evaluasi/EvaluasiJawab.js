@@ -197,7 +197,7 @@ const quizData = [
     answer: 'Mempercepat dan mempersingkat kode yang berulang'
   },
   {
-    question: 'Perhatikan kode berikut:```for 4\nforward 100\nleft 90```Apa yang akan digambar oleh kode tersebut?',
+    question: 'Perhatikan kode berikut:```for 4\n   forward 100\n   left 90```Apa yang akan digambar oleh kode tersebut?',
     options: [
       'Persegi',
       'Lingkaran',

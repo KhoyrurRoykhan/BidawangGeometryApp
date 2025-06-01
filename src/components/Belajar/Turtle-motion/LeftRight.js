@@ -1092,8 +1092,7 @@ const resetCodeChallanges = () => {
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Putar Bidawang ke kiri sejauh 120 derajat 
-left 120 `}
+                  value={`left 120 `}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1118,8 +1117,7 @@ left 120 `}
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Putar Bidawang ke kanan sejauh 90 derajat 
-right 90`}
+                  value={`right 90`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}

@@ -188,9 +188,7 @@ const handleAnswerChange = (questionId, answer) => {
     setSelectedAnswer(answer);
   } else if (questionId === "question2") {
     setSelectedAnswer2(answer);
-  } else if (questionId === "question3") {
-    setSelectedAnswer3(answer);
-  }
+  } 
 };
 
 const handleSubmit = async () => {
@@ -202,11 +200,7 @@ const handleSubmit = async () => {
     const isCorrect2 = selectedAnswer2 === 'option2b';
     setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
 
-  } else if (currentQuestion === 3) {
-    const isCorrect3 = selectedAnswer3 === 'forward 100';
-    setFeedback((prev) => ({ ...prev, question3: isCorrect3 ? 'Benar!' : 'Salah!' }));
-
-    if (isCorrect3) {
+    if (isCorrect2) {
       try {
         if (Number(progresBelajar) === 0) {
           await axios.put(
@@ -928,8 +922,7 @@ const runit2 = (code, forceReset = false) => {
                 Memahami konsep canvas sebagai ruang pergerakan Bidawang.
               </li>
               <li>
-                Mengenali tampilan lingkungan kerja dan perintah dasar untuk menggerakan
-                Bidawang pada canvas.
+                Mengenali tampilan lingkungan kerja untuk menggerakan Bidawang.
               </li>
             </ol>
 
@@ -1291,158 +1284,114 @@ const runit2 = (code, forceReset = false) => {
         </Accordion.Header>
         <Accordion.Body>
         <Form>
-          {/* SOAL 1 */}
-          {currentQuestion === 1 && (
-            <Form.Group controlId="question1">
-              <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%'  }}>
-                <strong style={{color:'black'}}>Soal 1 dari 3:</strong>
-                <p>Jika posisi Bidawang berada di titik <b>(0, 0)</b> pada canvas, bagaimana gambar posisi Bidawang pada canvas?</p>
-              </Form.Label>
+        {/* SOAL 1 */}
+        {currentQuestion === 1 && (
+          <Form.Group controlId="question1">
+            <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+              <strong style={{ color: 'black' }}>Soal 1 dari 2:</strong>
+              <p>Jika posisi Bidawang berada di titik <b>(0, 0)</b> pada canvas, bagaimana gambar posisi Bidawang pada canvas?</p>
+            </Form.Label>
 
-              <Row>
-                {[
-                  { key: 'option1a', img: option1a },
-                  { key: 'option1b', img: option1b },
-                  { key: 'option1c', img: option1c },
-                  { key: 'option1d', img: option1d },
-                ].map(({ key, img }) => (
-                  <Col xs={6} md={3} key={key} className="mb-3 text-center">
-                    <Image
-                      src={img}
-                      alt={key}
-                      onClick={() => handleAnswerChange("question1", key)}
-                      thumbnail
-                      style={{
-                        cursor: "pointer",
-                        border: selectedAnswer === key ? "4px solid #198754" : "2px solid #ccc",
-                        borderRadius: "10px",
-                      }}
-                    />
-                  </Col>
-                ))}
-              </Row>
-
-              {feedback.question1 && (
-                <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
-                  {feedback.question1}
-                </Alert>
-              )}
-            </Form.Group>
-          )}
-
-          {/* SOAL 2 */}
-          {currentQuestion === 2 && (
-            <Form.Group controlId="question2">
-              <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%'  }}>
-                <strong style={{color:'black'}}>Soal 2 dari 3:</strong> 
-               
-                <p>Tombol mana yang digunakan untuk menghapus kode serta hasil gambar di canvas dan mengembalikan Bidawang ke posisi awal?</p>
-              </Form.Label>
-
-              <Row>
-                {[
-                  { key: 'option2a', img: option2a },
-                  { key: 'option2b', img: option2b },
-                  { key: 'option2c', img: option2c },
-                  { key: 'option2d', img: option2d },
-                ].map(({ key, img }) => (
-                  <Col xs={6} md={3} key={key} className="mb-3 text-center">
-                    <Image
-                      src={img}
-                      alt={key}
-                      onClick={() => handleAnswerChange("question2", key)}
-                      thumbnail
-                      style={{
-                        cursor: "pointer",
-                        border: selectedAnswer2 === key ? "4px solid #198754" : "2px solid #ccc",
-                        borderRadius: "10px",
-                      }}
-                    />
-                  </Col>
-                ))}
-              </Row>
-
-              {feedback.question2 && (
-                <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
-                  {feedback.question2}
-                </Alert>
-              )}
-            </Form.Group>
-          )}
-
-          {/* SOAL 3 */}
-          {currentQuestion === 3 && (
-            <Form.Group controlId="question3">
-              <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-                <strong style={{color:'black'}}>Soal 3 dari 3:</strong> 
-                <p>Untuk menggerakkan Bidawang seperti di bawah ini, kode apa yang harus dijalankan?</p>
-              </Form.Label>
-
-              <div className="text-center mb-4">
-                <Image
-                  src={soal3prog}
-                  alt="Gerakan Bidawang"
-                  style={{ maxWidth: "400px", height: "auto", borderRadius: "10px" }}
-                />
-              </div>
-
-              {["forward 100", "backward 100", "left 90", "right 90"].map((answer) => (
-                <div key={answer} className="mb-2">
-                  <Button
-                    variant={selectedAnswer3 === answer ? "success" : "outline-success"}
-                    onClick={() => handleAnswerChange("question3", answer)}
-                    className="w-100 p-2"
+            <Row>
+              {[
+                { key: 'option1a', img: option1a },
+                { key: 'option1b', img: option1b },
+                { key: 'option1c', img: option1c },
+                { key: 'option1d', img: option1d },
+              ].map(({ key, img }) => (
+                <Col xs={6} md={3} key={key} className="mb-3 text-center">
+                  <Image
+                    src={img}
+                    alt={key}
+                    onClick={() => handleAnswerChange("question1", key)}
+                    thumbnail
                     style={{
-                      fontSize: "16px",
-                      backgroundColor: selectedAnswer3 === answer ? "#198754" : "",
-                      borderColor: "#198754",
-                      
+                      cursor: "pointer",
+                      border: selectedAnswer === key ? "4px solid #198754" : "2px solid #ccc",
+                      borderRadius: "10px",
                     }}
-                  >
-                    {answer}
-                  </Button>
-                </div>
+                  />
+                </Col>
               ))}
+            </Row>
 
-              {feedback.question3 && (
-                <Alert variant={feedback.question3 === "Benar!" ? "success" : "danger"} className="mt-3">
-                  {feedback.question3}
-                </Alert>
-              )}
-            </Form.Group>
-          )}
+            {feedback.question1 && (
+              <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+                {feedback.question1}
+              </Alert>
+            )}
+          </Form.Group>
+        )}
 
-          {/* TOMBOL NAVIGASI */}
-          <div className="text-center mt-4 d-flex justify-content-between">
-            <Button
-              variant="secondary"
-              onClick={() => setCurrentQuestion((prev) => Math.max(1, prev - 1))}
-              disabled={currentQuestion === 1}
-            >
-              Sebelumnya
-            </Button>
+        {/* SOAL 2 */}
+        {currentQuestion === 2 && (
+          <Form.Group controlId="question2">
+            <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+              <strong style={{ color: 'black' }}>Soal 2 dari 2:</strong>
+              <p>Tombol mana yang digunakan untuk menghapus kode serta hasil gambar di canvas dan mengembalikan Bidawang ke posisi awal?</p>
+            </Form.Label>
 
-            <Button
-              variant="primary"
-              onClick={handleSubmit}
-            >
-              Periksa Jawaban
-            </Button>
+            <Row>
+              {[
+                { key: 'option2a', img: option2a },
+                { key: 'option2b', img: option2b },
+                { key: 'option2c', img: option2c },
+                { key: 'option2d', img: option2d },
+              ].map(({ key, img }) => (
+                <Col xs={6} md={3} key={key} className="mb-3 text-center">
+                  <Image
+                    src={img}
+                    alt={key}
+                    onClick={() => handleAnswerChange("question2", key)}
+                    thumbnail
+                    style={{
+                      cursor: "pointer",
+                      border: selectedAnswer2 === key ? "4px solid #198754" : "2px solid #ccc",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </Col>
+              ))}
+            </Row>
 
-            <Button
-              variant="secondary"
-              onClick={() => setCurrentQuestion((prev) => Math.min(3, prev + 1))}
-              disabled={
-                (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
-                (currentQuestion === 2 && feedback.question2 !== "Benar!") ||
-                currentQuestion === 3
-              }
-            >
-              Selanjutnya
-            </Button>
+            {feedback.question2 && (
+              <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+                {feedback.question2}
+              </Alert>
+            )}
+          </Form.Group>
+        )}
 
-          </div>
-        </Form>
+        {/* TOMBOL NAVIGASI */}
+        <div className="text-center mt-4 d-flex justify-content-between">
+          <Button
+            variant="secondary"
+            onClick={() => setCurrentQuestion((prev) => Math.max(1, prev - 1))}
+            disabled={currentQuestion === 1}
+          >
+            Sebelumnya
+          </Button>
+
+          <Button
+            variant="primary"
+            onClick={handleSubmit}
+          >
+            Periksa Jawaban
+          </Button>
+
+          <Button
+            variant="secondary"
+            onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
+            disabled={
+              (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+              (currentQuestion === 2)
+            }
+          >
+            Selanjutnya
+          </Button>
+        </div>
+      </Form>
+
 
         </Accordion.Body>
       </Accordion.Item>

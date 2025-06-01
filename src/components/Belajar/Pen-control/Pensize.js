@@ -959,10 +959,8 @@ for i in range(100):
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Ubah ketebalan pena 
-pensize 5
+                  value={`pensize 5
 
-# Gambar lingkaran dengan garis tebal 
 circle 50`}
                   height="340px"
                   theme="light"

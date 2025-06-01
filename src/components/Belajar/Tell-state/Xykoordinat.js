@@ -167,7 +167,7 @@ const Xykoordinat = () => {
       const correctAnswersB = ["100.0", "100", "100 "];
     
       if (correctAnswersA.includes(inputA) && correctAnswersB.includes(inputB)) {
-        await swal("Benar!", "Jawaban Anda benar.", "success");
+        await swal("Benar!", "Tantangan selesai.", "success");
     
         try {
           if (progresTantangan === 7) {
@@ -566,7 +566,7 @@ for i in range(100):
   
     // ✅ Fungsi untuk menjalankan pythonCode1 (Contoh 1) - Perbaikan disini
     const runit1 = (code, forceReset = false) => {
-      setOutput1('Posisi x awal: 0.0\nPosisi y awal: 0.0\nPosisi x akhir: 106.0660171779821\nPosisi y akhir: 106.0660171779821');
+      setOutput1('0.0\n0.0\n106.0660171779821\n106.0660171779821');
       const parsedCode = parseSimpleCommands(code || pythonCode1); // Gunakan kode hasil parse
       const imports = "from turtle import *\nreset()\nshape('turtle')\n";
       const prog = forceReset ? imports : imports + parsedCode;
@@ -688,7 +688,7 @@ for i in range(100):
       }
     
       if (parsedLines.length === expectedSteps.length) {
-        swal("Benar!", "Seluruh langkah sudah benar!", "success");
+        swal("Benar!", "Seluruh langkah sudah benar, silahkan jawab posisi X dan Y yang di dapatkan!", "success");
       }
     };
     
@@ -1122,17 +1122,14 @@ for i in range(100):
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Menampilkan posisi awal bidawang
-print "Posisi x awal:" xcor 
-print "Posisi y awal:" ycor
+                  value={`print xcor 
+print ycor
 
-# Memindahkan bidawang ke posisi lain
 left 45
 forward 150
 
-# Menampilkan posisi akhir bidawang
-print "Posisi x akhir:" xcor 
-print "Posisi y akhir:" ycor `}
+print xcor 
+print ycor `}
                   height="280px"
                   theme="light"
                   extensions={[python()]}
@@ -1318,7 +1315,7 @@ print "Posisi y akhir:" ycor `}
                 }}>
                   Kesimpulan</h4>
             <p>
-            Perintah <code>xcor()</code> dan <code>ycor()</code> berfungsi untuk mengetahui posisi bidawang secara terpisah pada sumbu x dan y. Perintah ini membantu menentukan apakah turtle telah mencapai batas tertentu, atau digunakan dalam penghitungan pola geometris yang memerlukan pengawasan koordinat.
+            Perintah <code>xcor</code> dan <code>ycor</code> berfungsi untuk mengetahui posisi bidawang secara terpisah pada sumbu x dan y. Perintah ini membantu menentukan apakah turtle telah mencapai batas tertentu, atau digunakan dalam penghitungan pola geometris yang memerlukan pengawasan koordinat.
             </p>
             </div>
             
@@ -1373,7 +1370,7 @@ print "Posisi y akhir:" ycor `}
                       }}
                     />
                     <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                      <Button variant="success" onClick={() => { runitchallanges(); checkCode(); }}>Run Code</Button>
+                      <Button variant="success" onClick={() => { runitchallanges(); }}>Run Code</Button>
                       <Button variant="secondary" onClick={resetCodeChallanges}>
                         <BsArrowClockwise /> Reset
                       </Button>

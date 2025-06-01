@@ -503,7 +503,7 @@ for i in range(100):
   
     // ✅ Fungsi untuk menjalankan pythonCode1 (Contoh 1) - Perbaikan disini
     const runit1 = (code, forceReset = false) => {
-      setOutput1('Arah awal: 0.0\nArah setelah putaran: 90.0');
+      setOutput1('0.0\n90.0');
       const parsedCode = parseSimpleCommands(code || pythonCode1); // Gunakan kode hasil parse
       const imports = "from turtle import *\nreset()\nshape('turtle')\n";
       const prog = forceReset ? imports : imports + parsedCode;
@@ -982,7 +982,7 @@ for i in range(100):
             <hr/>
 
             <p>
-            Fungsi <code>heading</code> digunakan untuk menampilkan arah pergerakan bidawang dalam satuan derajat. Sama seperti perintah sebelumnya (<i>Position()</i>) Untuk menampilkan hasilnya kita bisa menggunakan fungsi <code>print()</code>.
+            Fungsi <code>heading</code> digunakan untuk menampilkan arah pergerakan bidawang dalam satuan derajat. Sama seperti perintah sebelumnya (<i>position</i>) Untuk menampilkan hasilnya kita bisa menggunakan fungsi <code>print</code>.
             </p>
 
             <ul>
@@ -999,14 +999,11 @@ for i in range(100):
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Periksa arah awal 
-print "Arah awal:" heading 
+                  value={`print heading 
 
-# Putar turtle ke kiri sebesar 90 derajat 
 left 90
 
-# Periksa arah setelah putaran 
-print "Arah setelah putaran:" heading`}
+print heading`}
                   height="280px"
                   theme="light"
                   extensions={[python()]}

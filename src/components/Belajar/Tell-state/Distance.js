@@ -519,7 +519,7 @@ for i in range(100):
   
     // ✅ Fungsi untuk menjalankan pythonCode1 (Contoh 1) - Perbaikan disini
     const runit1 = (code, forceReset = false) => {
-      setOutput1('Jarak ke (100, 100):\n141.4213562373095\nJarak setelah mencapai (100,100):\n0.0');
+      setOutput1('141.4213562373095\n0.0');
       const parsedCode = parseSimpleCommands(code || pythonCode1); // Gunakan kode hasil parse
       const imports = "from turtle import *\nreset()\nshape('turtle')\n";
       const prog = forceReset ? imports : imports + parsedCode;
@@ -1099,15 +1099,10 @@ for i in range(100):
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Hitung jarak dari posisi awal ke titik (100, 100) 
-print "Jarak ke (100, 100):"
-print distance 100 100
+                  value={`print distance 100 100
 
-# Gerakkan turtle ke titik (100, 100) 
 setposition 100 100
 
-# Hitung jarak setelah mencapai (100, 100) 
-print "Jarak setelah mencapai (100,100):" 
 print distance 100 100`}
                   height="280px"
                   theme="light"
@@ -1337,7 +1332,7 @@ print distance 100 100`}
                       }}
                     />
                     <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                      <Button variant="success" onClick={() => { runitchallanges(); checkCode(); }}>Run Code</Button>
+                      <Button variant="success" onClick={() => { runitchallanges(); }}>Run Code</Button>
                       <Button variant="secondary" onClick={resetCodeChallanges}>
                         <BsArrowClockwise /> Reset
                       </Button>

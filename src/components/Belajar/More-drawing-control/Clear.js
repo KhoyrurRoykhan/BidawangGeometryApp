@@ -958,10 +958,10 @@ for i in range(100):
                   value={`pencolor "blue" 
 forward 100
 circle 50
-# Menghapus gambar tetapi posisi dan atribut tetap sama 
+
 clear
 
-forward 100 # Memulai gambar baru dari posisi terakhir `}
+forward 100  `}
                   height="340px"
                   theme="light"
                   extensions={[python()]}

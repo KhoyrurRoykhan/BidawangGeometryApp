@@ -958,17 +958,15 @@ for i in range(100):
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Mengatur warna garis menjadi biru 
-pencolor "blue"
+                  value={`pencolor "blue"
 
-# Membuat persegi 
 forward 100
 left 90
 forward 100
 left 90
 forward 100
 left 90
-forward 10
+forward 100
 left 90`}
                   height="340px"
                   theme="light"

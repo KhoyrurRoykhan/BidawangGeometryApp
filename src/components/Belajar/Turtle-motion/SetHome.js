@@ -959,12 +959,10 @@ const runit = (code, forceReset = false) => {
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Pindahkan turtle ke beberapa posisi
-forward 100
+                  value={`forward 100
 left 90
 forward 150
                 
-# Kembali ke posisi awal
 home`}
                   height="400px"
                   theme="light"

@@ -1150,7 +1150,7 @@ for i in range(100):
                       {completedSteps.includes('1b') && <BsCheckCircle style={{ color: 'green', marginLeft: 10 }} />}
                     </AccordionHeader>
                     <AccordionBody>
-                    <p>Hapus semua kode yang sudah di ketik sebelumnya lalu gunakan kode perintah dibawah ini untuk membuat bintang sederhana dengan perulangan for:</p>
+                    <p>Lalu lanjutkan lagi kode perintah dibawah ini untuk membuat bintang sederhana dengan perulangan for:</p>
                       <pre>
                         <code>
 {`for 5
@@ -1269,7 +1269,7 @@ for i in range(100):
                       }}
                     />
                     <div style={{ marginTop: '5px', marginBottom: '5px', display: 'flex', gap: '10px' }}>
-                      <Button variant="success" onClick={() => { runitchallanges(); checkCode(); }}>Run Code</Button>
+                      <Button variant="success" onClick={() => { runitchallanges();}}>Run Code</Button>
                       <Button variant="secondary" onClick={resetCodeChallanges}>
                         <BsArrowClockwise /> Reset
                       </Button>

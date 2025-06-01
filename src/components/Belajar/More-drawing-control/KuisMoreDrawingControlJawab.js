@@ -39,7 +39,7 @@ const quizData = [
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```color("blue")\ncircle(50)\nclear()\nforward(100)\ncircle(30)```Apa warna lingkaran kedua?',
+    question: 'Perhatikan kode berikut:```color "blue"\ncircle 50\nclear\nforward 100\ncircle 30```Apa warna lingkaran kedua?',
     options: [
       'Tidak Berwarna.',
       'Biru.',
@@ -91,7 +91,7 @@ const quizData = [
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```\nfor 4\nforward(50)```Apa yang akan digambar oleh kode tersebut?',
+    question: 'Perhatikan kode berikut:```for 4\n   forward 50```Apa yang akan digambar oleh kode tersebut?',
     options: [
       'Lingkaran kecil',
       'Segitiga',
@@ -102,7 +102,7 @@ const quizData = [
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```\nfor 4\nforward(100)\nleft(90)```Apa yang akan digambar oleh kode tersebut?',
+    question: 'Perhatikan kode berikut:```for 4\n   forward 100 \n   left 90```Apa yang akan digambar oleh kode tersebut?',
     options: [
       'Persegi',
       'Lingkaran',

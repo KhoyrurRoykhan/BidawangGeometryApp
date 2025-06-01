@@ -987,7 +987,6 @@ for i in range(100):
                 <CodeMirror
                   value={`write("Hello, World!", align="center", font=("Arial", 16, "bold")) 
 
-# Bidawang tetap dapat menggambar setelah menulis 
 forward 100  `}
                   height="340px"
                   theme="light"

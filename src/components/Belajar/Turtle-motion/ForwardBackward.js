@@ -1089,8 +1089,7 @@ const resetCodeChallanges = () => {
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Gerakkan turtle ke depan sejauh 100 piksel
-forward 100 `}
+                  value={`forward 100 `}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
@@ -1114,8 +1113,7 @@ forward 100 `}
             <Row className="align-items-center">
               <Col md={6}>
                 <CodeMirror
-                  value={`# Gerakkan turtle ke belakang sejauh 150 piksel
-backward 150`}
+                  value={`backward 150`}
                   height="400px"
                   theme="light"
                   extensions={[python()]}
