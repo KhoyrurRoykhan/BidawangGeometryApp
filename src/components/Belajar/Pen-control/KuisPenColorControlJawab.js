@@ -88,14 +88,14 @@ const quizData = [
     answer: '"bold_red"'
   },
   {
-    question: 'Perhatikan kode berikut:```forward 100\nbegin_fill\ncircle 50\nend_fill```Apa hasil dari kode tersebut?',
+    question: 'Perhatikan kode berikut:```fillcolor "yellow"\nforward 100\nbegin_fill\ncircle 50\nend_fill```Apa hasil dari kode tersebut?',
     options: [
       'Sebuah lingkaran dengan warna garis kuning tanpa isian.',
       'Sebuah lingkaran dengan warna isian kuning.',
-      'Sebuah lingkaran dengan warna garis hitam dan isian kuning.',
+      'Sebuah lingkaran dengan warna isian biru.',
       'Tidak ada lingkaran yang digambar.'
     ],
-    answer: 'Sebuah lingkaran dengan warna garis hitam dan isian kuning.'
+    answer: 'Sebuah lingkaran dengan warna isian kuning.'
   },
   {
     question: 'Apa fungsi dari end_fill dalam proses pengisian warna?',

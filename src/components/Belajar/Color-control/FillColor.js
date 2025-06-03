@@ -1305,7 +1305,7 @@ end_fill `}
 
                       <pre className="output" style={{ height: 60, overflow: 'auto' }}>{output}</pre>
                     </div>
-                    <div className="canvas-section">
+                    <div className="canvas-section" style={{width:400,height:400}}>
                       <div id="mycanvas"></div>
                     </div>
                   </div>
@@ -1477,7 +1477,7 @@ end_fill`}</code></pre>
       {[
         { key: 'A', label: 'Sebuah lingkaran dengan warna garis kuning tanpa isian.' },
         { key: 'B', label: 'Sebuah lingkaran dengan warna isian kuning.' },
-        { key: 'C', label: 'Sebuah lingkaran dengan warna garis hitam dan isian kuning.' },
+        { key: 'C', label: 'Sebuah lingkaran dengan warna isian biru.' },
         { key: 'D', label: 'Tidak ada lingkaran yang digambar. ' },
       ].map(({ key, label }) => (
         <Button

@@ -1210,7 +1210,7 @@ setposition 200 200`}
 
                       <pre className="output" style={{ height: 60, overflow: 'auto' }}>{output}</pre>
                     </div>
-                    <div className="canvas-section">
+                    <div className="canvas-section" style={{width:400,height:400}}>
                       <div id="mycanvas"></div>
                     </div>
                   </div>
