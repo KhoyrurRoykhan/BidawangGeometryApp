@@ -171,7 +171,7 @@ const KuisMoreDrawingControl = () => {
           </Button>
         </div>
         {!collapsed && (
-            <Accordion defaultActiveKey={activeAccordionKey} className='p-2'>
+        <Accordion defaultActiveKey={activeAccordionKey} className='p-2'>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Pengenalan</Accordion.Header>
               <Accordion.Body>
@@ -272,6 +272,15 @@ const KuisMoreDrawingControl = () => {
                   </button>
 
                   <button
+                    className={`${getButtonClass("/belajar/turtlemotion/rangkuman")} d-flex justify-content-between align-items-center w-100`}
+                    onClick={() => handleNavigate("/belajar/turtlemotion/rangkuman", progresBelajar >= 10)}
+                    style={{ pointerEvents: progresBelajar < 10 ? "auto" : "auto", opacity: progresBelajar < 10 ? 0.5 : 1 }}
+                  >
+                    Rangkuman
+                    {progresBelajar < 10 && <span className="ms-2">🔒</span>}
+                  </button>
+
+                  <button
                     className={`${getButtonClass("/belajar/turtlemotion/kuis")} d-flex justify-content-between align-items-center w-100`}
                     onClick={() => handleNavigate("/belajar/turtlemotion/kuis", progresBelajar >= 10)}
                     style={{ pointerEvents: progresBelajar < 10 ? "auto" : "auto", opacity: progresBelajar < 10 ? 0.5 : 1 }}
@@ -322,6 +331,15 @@ const KuisMoreDrawingControl = () => {
                   >
                     Distance
                     {progresBelajar < 14 && <span className="ms-2">🔒</span>}
+                  </button>
+
+                  <button
+                    className={`${getButtonClass("/belajar/tellstate/rangkuman")} d-flex justify-content-between align-items-center w-100`}
+                    onClick={() => handleNavigate("/belajar/tellstate/rangkuman", progresBelajar >= 15)}
+                    style={{ pointerEvents: progresBelajar < 15 ? "auto" : "auto", opacity: progresBelajar < 15 ? 0.5 : 1 }}
+                  >
+                    Rangkuman
+                    {progresBelajar < 15 && <span className="ms-2">🔒</span>}
                   </button>
 
                   <button
@@ -386,6 +404,15 @@ const KuisMoreDrawingControl = () => {
                   </button>
 
                   <button
+                    className={`${getButtonClass("/belajar/pencolorcontrol/rangkuman")} d-flex justify-content-between align-items-center w-100`}
+                    onClick={() => handleNavigate("/belajar/pencolorcontrol/rangkuman", progresBelajar >= 21)}
+                    style={{ pointerEvents: progresBelajar < 21 ? "auto" : "auto", opacity: progresBelajar < 21 ? 0.5 : 1 }}
+                  >
+                    Rangkuman
+                    {progresBelajar < 21 && <span className="ms-2">🔒</span>}
+                  </button>
+
+                  <button
                     className={`${getButtonClass("/belajar/pencolorcontrol/kuis")} d-flex justify-content-between align-items-center w-100`}
                     onClick={() => handleNavigate("/belajar/pencolorcontrol/kuis", progresBelajar >= 21)}
                     style={{ pointerEvents: progresBelajar < 21 ? "auto" : "auto", opacity: progresBelajar < 21 ? 0.5 : 1 }}
@@ -436,6 +463,15 @@ const KuisMoreDrawingControl = () => {
                   >
                     For Loops
                     {progresBelajar < 25 && <span className="ms-2">🔒</span>}
+                  </button>
+
+                  <button
+                    className={`${getButtonClass("/belajar/moredrawingcontrol/rangkuman")} d-flex justify-content-between align-items-center w-100`}
+                    onClick={() => handleNavigate("/belajar/moredrawingcontrol/rangkuman", progresBelajar >= 26)}
+                    style={{ pointerEvents: progresBelajar < 26 ? "auto" : "auto", opacity: progresBelajar < 26 ? 0.5 : 1 }}
+                  >
+                    Rangkuman
+                    {progresBelajar < 26 && <span className="ms-2">🔒</span>}
                   </button>
 
                   <button

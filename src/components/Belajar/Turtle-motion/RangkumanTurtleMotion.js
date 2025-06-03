@@ -1,48 +1,58 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
-import { Accordion, Container, Row, Col, Button, Form, Alert, Card, Image, AccordionItem, AccordionHeader, AccordionBody } from 'react-bootstrap';
+import { Accordion, Container, Row, Col, Button, Form, Alert, Card, Image, AccordionItem, AccordionHeader, AccordionBody, Table } from 'react-bootstrap';
+import { BsArrowClockwise, BsCheckCircle } from 'react-icons/bs'; // Import ikon Bootstrap
 import '../assets/tutor.css';
 import '../asset_skulpt/SkulptTurtleRunner.css';
-import { BsArrowClockwise, BsCheckCircle } from 'react-icons/bs'; // Import ikon Bootstrap
-import Swal from "sweetalert2";
+import forward100 from './assets/2turtle-forward.gif';
+import backward100 from './assets/2turtle-backward.gif';
+// import combinedForwardBackward from './assets/combinedForwardBackward.gif';
+import { FaBars } from "react-icons/fa";
+
+// Challange
+import swal from 'sweetalert'; // Import SweetAlert
+import papuyu from './assets/papuyu-1.png';
+import kepiting from './assets/kepiting.png';
+import map from './assets/7-circle-tilemap.png';
+import grid from './assets/3-setposition-b.png';
+import { closeBrackets } from '@codemirror/autocomplete';
 
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import "../assets/tutor-copy.css";
-import { FaBars } from "react-icons/fa";
+import Swal from "sweetalert2";
 
-const KuisPergerakan = () => {
-    const [activeButton, setActiveButton] = useState("intro-1");
-  const [token, setToken] = useState("");
-  const [expire, setExpire] = useState("");
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [riwayatNilai, setRiwayatNilai] = useState([]);
-  const [loadingRiwayat, setLoadingRiwayat] = useState(true);
 
-  useEffect(() => {
-    refreshToken();
-  }, []);
+const RangkumanTurtleMotion = () => {
+    const [progresBelajar, setProgresBelajar] = useState(9);
 
-  const refreshToken = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
-      setToken(response.data.accessToken);
-      const decoded = jwtDecode(response.data.accessToken);
-      setExpire(decoded.exp);
-    } catch (error) {
-      if (error.response) {
-        navigate("/login");
-      }
+//token
+const [activeButton, setActiveButton] = useState("intro-1");
+const [token, setToken] = useState("");
+const [expire, setExpire] = useState("");
+const navigate = useNavigate();
+const location = useLocation();
+
+useEffect(() => {
+  refreshToken();
+}, []);
+
+const refreshToken = async () => {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
+    setToken(response.data.accessToken);
+    const decoded = jwtDecode(response.data.accessToken);
+    setExpire(decoded.exp);
+  } catch (error) {
+    if (error.response) {
+      navigate("/login");
     }
-  };
+  }
+};
 
-  //kunci halaman
-  const [progresBelajar, setProgresBelajar] = useState(10);
-  
-  useEffect(() => {
+useEffect(() => {
     const checkAkses = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token`);
@@ -84,56 +94,17 @@ const KuisPergerakan = () => {
         confirmButtonColor: '#3085d6',
       });
     }
-  };
-
-  const [kkm, setKkm] = useState(80); // default sementara
-
-  useEffect(() => {
-    const fetchKKM = async () => {
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/kkm/kuis`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setKkm(res.data.kkm);
-      } catch (err) {
-        console.error("Gagal mengambil KKM:", err);
-      }
-    };
-
-    if (token) fetchKKM();
-  }, [token]);
-
-  useEffect(() => {
-    const fetchRiwayatNilai = async () => {
-      setLoadingRiwayat(true); // ⏳ mulai loading
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/nilai/by-user`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-  
-        setRiwayatNilai(res.data); // Sesuaikan ini dengan struktur data dari API
-      } catch (error) {
-        console.error("Gagal mengambil riwayat nilai:", error);
-      } finally {
-        setLoadingRiwayat(false); // ✅ selesai loading
-      }
-    };
-  
-    if (token) fetchRiwayatNilai();
-  }, [token]);
+  };  
 
   // Tentukan accordion aktif berdasarkan URL
-  const activeAccordionKey = location.pathname.includes("/belajar/turtlemotion") || location.pathname.includes("/belajar/turtlemotion/kuis")
+  const activeAccordionKey = location.pathname.includes("/belajar/turtlemotion") || location.pathname.includes("/belajar/turtlemotion/dot")
     ? "1"
     : "0";
 
   // Class untuk tombol aktif
   const getButtonClass = (path) =>
     location.pathname === path ? "btn text-start mb-2 btn-success" : "btn text-start mb-2 btn-outline-success";
+
 
     const [collapsed, setCollapsed] = useState(false);
 
@@ -150,8 +121,7 @@ const KuisPergerakan = () => {
       position: "fixed",
       width:'100%'
     }}>
-      
-      <div className='mt-5'
+        <div className='mt-5'
         style={{
           width: collapsed ? "60px" : "250px",
           transition: "width 0.3s",
@@ -164,7 +134,7 @@ const KuisPergerakan = () => {
           overflow: 'auto',
           paddingBottom:80
         }}
-      >
+        > 
         <div className="p-2">
           <Button variant="light" onClick={toggleSidebar}>
             <FaBars />
@@ -505,104 +475,95 @@ const KuisPergerakan = () => {
 
           </Accordion>
         )}
+      </div>
+      
+      <div className='p-4 mt-5 content' style={{
+        flexGrow: 1,
+        overflowY: "auto",
+        // height: "100vh",
+        backgroundColor: "#fff",
+        }}>
+        
+        <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
+        <h2 style={{
+              textAlign: 'center',
+              backgroundColor: '#198754',
+              color: 'white',
+              padding: '10px 20px',
+              // borderRadius: '10px',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+              fontWeight: 'bold',
+              fontSize: '24px',
+              letterSpacing: '1px',
+              borderLeft: '10px solid orange' // Border kiri dengan warna oranye
+            }}>RANGKUMAN: Pergerakan Bidawang</h2>
+            <hr></hr>
+            <br/>
 
+            <p>
+            Pada Bab ini, kamu telah mempelajari berbagai perintah untuk menggerakkan objek (bidawang) dalam canvas. Adapun poin-poin penting yang dipelajari antara lain dapat dilihat pada Tabel dibawah ini.
+            </p>
+
+            <Table striped bordered hover responsive>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Fungsi</th>
+                <th>Keterangan</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>left & right</td>
+                <td>Perintah left dan right memungkinkan pengaturan arah gerakan bidawang dengan rotasi ke kiri atau ke kanan berdasarkan derajat yang ditentukan. Perintah ini sangat berguna untuk kontrol arah sebelum melakukan perintah lain dalam pembuatan gambar atau pola.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>forward & bakward </td>
+                <td>Perintah forward dan backward digunakan untuk menggerakkan Bidawang ke depan atau ke belakang sejauh jarak yang ditentukan dalam piksel. Perintah forward dan backward sering dikombinasikan dengan perintah rotasi seperti left dan right untuk membuat pola atau gambar yang lebih kompleks.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>setposition</td>
+                <td>Perintah setposition atau setpos digunakan untuk memindahkan Bidawang ke koordinat tertentu dalam ruang canvas. Perintah ini sangat berguna untuk mengatur posisi awal Bidawang atau membuat jalur menggambar yang kompleks dengan mengombinasikan pergerakan dan kontrol pena.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>setx & sety </td>
+                <td>Perintah setx dan sety digunakan untuk memindahkan Bidawang secara horizontal atau vertikal tanpa mengubah koordinat lainnya. Perintah ini berguna untuk memindahkan Bidawang ke posisi yang diinginkan dengan lebih fleksibel, terutama saat mengatur pola atau jalur yang spesifik. </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>setheading</td>
+                <td>Perintah setheading sangat berguna untuk mengontrol arah objek dengan presisi. Dengan mengatur sudut arah secara langsung, Anda dapat membuat pola yang kompleks dan menggambar dengan lebih terstruktur. </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>home</td>
+                <td>Perintah home memudahkan untuk kembali ke posisi awal (0, 0) dan mengatur arah Bidawang ke posisi semula. Ini berguna untuk memulai kembali proses menggambar dari titik awal. </td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>circle </td>
+                <td>Perintah circle digunakan untuk menggambar lingkaran atau busur dengan mudah. Dengan mengatur jari-jari dan opsi `extent`, kita dapat menggambar berbagai bentuk bulat yang berbeda untuk memperkaya gambar atau pola yang dibuat. 
+                </td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>dot</td>
+                <td>Perintah dot berfungsi untuk menggambar titik dengan ukuran dan warna yang dapat disesuaikan. Fungsi ini berguna untuk menandai posisi, membuat pola, atau menambah detail pada gambar yang dibuat. 
+                </td>
+            </tr>
+            </tbody>
+        </Table>
+        
         </div>
 
-        
-        <div className='p-4 mt-5 content' style={{
-              flexGrow: 1,
-              overflowY: "auto",
-              // height: "100vh",
-              backgroundColor: "#fff",
-
-            }}>
-          <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
-            <h2 style={{color:'black'}}>Aturan</h2>
-            <p>
-              Kuis ini bertujuan untuk menguji pemahaman Anda mengenai materi <b>Pergerakan Bidawang</b>.
-            </p>
-            <p>
-              Terdapat 10 pertanyaan yang harus Anda selesaikan dalam kuis ini. Ketentuannya sebagai berikut:
-            </p>
-            <ul>
-              <li>Nilai kelulusan minimum: {kkm}</li>
-              <li>Durasi pengerjaan: 15 menit</li>
-            </ul>
-            <p>
-              Jika Anda belum mencapai nilai kelulusan, Anda harus mengulangi kuis!
-            </p>
-
-            <p>Selamat Mengerjakan!</p>
-            {/* Button Start - Aligned to Right */}
-            <div style={{ marginTop: 20, textAlign: 'right' }}>
-            <button
-              onClick={() => navigate('/belajar/turtlemotion/kuis2')}
-              style={{
-                backgroundColor: '#2d3748',
-                color: 'white',
-                padding: '10px 20px',
-                borderRadius: '5px',
-                border: 'none'
-              }}
-            >
-              Mulai
-            </button>
-          </div>
-
-
-            {/* Riwayat Section */}
-            <div style={{ marginTop: 50 }}>
-              <h4 style={{color:'black'}}>Riwayat</h4>
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ backgroundColor: '#f8fafc' }}>
-                    <th style={{ padding: 10, textAlign: 'center', color:'black' }}>Nilai Kuis Pergerakan</th>
-                    <th style={{ padding: 10, textAlign: 'center', color:'black' }}>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {loadingRiwayat ? (
-                <tr>
-                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>
-                    <div className="spinner-border text-primary" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                    </div>
-                  </td>
-                </tr>
-              ) : riwayatNilai.length > 0 ? (
-                riwayatNilai.map((item, index) => (
-                  <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
-                    <td style={{ padding: 10, textAlign: 'center' }}>{item.kuis_2 || 0}%</td>
-                    <td style={{ padding: 10, textAlign: 'center' }}>
-                      <span style={{
-                        padding: '2px 8px',
-                        backgroundColor: item.kuis_2 >= kkm ? '#d1fae5' : '#fee2e2',
-                        color: item.kuis_2 >= kkm ? '#065f46' : '#991b1b',
-                        border: `1px solid ${item.kuis_2 >= kkm ? '#34d399' : '#f87171'}`,
-                        borderRadius: 5,
-                        fontSize: '12px'
-                      }}>
-                        {item.kuis_2 >= kkm ? 'Lulus' : 'Tidak Lulus'}
-                      </span>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>Belum ada riwayat nilai.</td>
-                </tr>
-              )}
-                </tbody>
-              </table>
-            </div>
-
-
-            </div>
-          </div>
-        
+      </div>
       
     </div>
   )
 }
 
-export default KuisPergerakan
+export default RangkumanTurtleMotion

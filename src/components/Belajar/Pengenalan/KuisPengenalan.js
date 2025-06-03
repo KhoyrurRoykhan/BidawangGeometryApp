@@ -278,6 +278,15 @@ const KuisPengenalan = () => {
                   </button>
 
                   <button
+                    className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
+                    onClick={() => handleNavigate("/belajar/turtlemotion/rangkuman", progresBelajar >= 9)}
+                    style={{ pointerEvents: progresBelajar < 9 ? "auto" : "auto", opacity: progresBelajar < 9 ? 0.5 : 1 }}
+                  >
+                    Rangkuman
+                    {progresBelajar < 9 && <span className="ms-2">🔒</span>}
+                  </button>
+
+                  <button
                     className={`${getButtonClass("/belajar/turtlemotion/kuis")} d-flex justify-content-between align-items-center w-100`}
                     onClick={() => handleNavigate("/belajar/turtlemotion/kuis", progresBelajar >= 10)}
                     style={{ pointerEvents: progresBelajar < 10 ? "auto" : "auto", opacity: progresBelajar < 10 ? 0.5 : 1 }}

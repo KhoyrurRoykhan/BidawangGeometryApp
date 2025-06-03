@@ -88,6 +88,10 @@ import KuisMoreDrawingControlJawab from "./components/Belajar/More-drawing-contr
 import EvaluasiJawab from "./components/Belajar/Evaluasi/EvaluasiJawab";
 import RegisterGuru from "./Guru/Register-guru/RegisterGuru";
 import CobaSidebar from "./components/Belajar/Evaluasi/CobaSidebar";
+import RangkumanTurtleMotion from "./components/Belajar/Turtle-motion/RangkumanTurtleMotion";
+import RangkumanTellState from "./components/Belajar/Tell-state/RangkumanTellState";
+import RangkumanPenColorControl from "./components/Belajar/Pen-control/RangkumanPenColorControl";
+import RangkumanMoreDrawingControl from "./components/Belajar/More-drawing-control/RangkumanMoreDrawingControl";
 
 function App() {
   return (
@@ -136,6 +140,7 @@ function App() {
       <Route path="/belajar/turtlemotion/home" element={<><Navigasibar/><SetHome/></>}/>
       <Route path="/belajar/turtlemotion/circle" element={<><Navigasibar/><Circle/></>}/>
       <Route path="/belajar/turtlemotion/dot" element={<><Navigasibar/><Dot/></>}/>
+      <Route path="/belajar/turtlemotion/rangkuman" element={<><Navigasibar/><RangkumanTurtleMotion/></>}/>
       <Route path="/belajar/turtlemotion/kuis" element={<><Navigasibar/><KuisPergerakan/></>}/>
       <Route path="/belajar/turtlemotion/kuis2" element={<><KuisPergerakanJawab/></>}/>
       
@@ -144,6 +149,7 @@ function App() {
       <Route path="/belajar/tellstate/xcorycor" element={<><Navigasibar/><Xykoordinat/></>}/>
       <Route path="/belajar/tellstate/heading" element={<><Navigasibar/><Heading/></>}/>
       <Route path="/belajar/tellstate/distance" element={<><Navigasibar/><Distance/></>}/>
+      <Route path="/belajar/tellstate/rangkuman" element={<><Navigasibar/><RangkumanTellState/></>}/>
       <Route path="/belajar/tellstate/kuis" element={<><Navigasibar/><KuisMengetahuistatus/></>}/>
       <Route path="/belajar/tellstate/kuis3" element={<><KuisMengetahuistatusJawab/></>}/>
 
@@ -152,6 +158,7 @@ function App() {
       <Route path="/belajar/pencontrol/isdown" element={<><Navigasibar/><Isdown/></>}/>
       <Route path="/belajar/colorcontrol/pencolor" element={<><Navigasibar/><Color/></>}/>
       <Route path="/belajar/colorcontrol/fillcolor" element={<><Navigasibar/><FillColor/></>}/>
+      <Route path="/belajar/pencolorcontrol/rangkuman" element={<><Navigasibar/><RangkumanPenColorControl/></>}/>
       <Route path="/belajar/pencolorcontrol/kuis" element={<><Navigasibar/><KuisPenColorControl/></>}/>
       <Route path="/belajar/pencolorcontrol/kuis4" element={<><KuisPenColorControlJawab/></>}/>
 
@@ -159,6 +166,7 @@ function App() {
       <Route path="/belajar/moredrawingcontrol/clear" element={<><Navigasibar/><Clear/></>}/>
       <Route path="/belajar/moredrawingcontrol/write" element={<><Navigasibar/><Write/></>}/>
       <Route path="/belajar/perulangan/forloop" element={<><Navigasibar/><ForLoop/></>}/>
+      <Route path="/belajar/moredrawingcontrol/rangkuman" element={<><Navigasibar/><RangkumanMoreDrawingControl/></>}/>
       <Route path="/belajar/moredrawingcontrol/kuis" element={<><Navigasibar/><KuisMoreDrawingControl/></>}/>
       <Route path="/belajar/moredrawingcontrol/kuis5" element={<><KuisMoreDrawingControlJawab/></>}/>
 
