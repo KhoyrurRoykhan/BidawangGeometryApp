@@ -13,7 +13,7 @@ import backward100 from './assets/2turtle-backward.gif';
 import swal from 'sweetalert'; // Import SweetAlert
 import Swal from "sweetalert2";
 import papuyu from './assets/papuyu-1.png';
-import broccoli from './assets/kepiting.png';
+import broccoli from './assets/cacingsetheading.png';
 import grid from './assets/3-setposition-b.png';
 import map from './assets/5-setheading-tilemap.png';
 
@@ -36,9 +36,9 @@ const TantanganLima = () => {
           element: "div",
           attributes: {
             innerHTML: `
-              <p>Bidawang saat ini berada di tengah layar (titik <b>(0, 0)</b>), sedangkan kepiting berada di suatu arah tertentu.</p>
-              <p>Tugas kamu adalah <b>mengubah arah Bidawang</b> agar menghadap ke arah kepiting menggunakan perintah <b>setheading()</b>.</p>
-              <p>Jika arah yang kamu masukkan benar, kepiting akan <b>berpindah tempat</b>. Tantangan akan selesai setelah kamu berhasil <b>menebak semua arah kepiting</b> dengan benar.</p>
+              <p>Bidawang saat ini berada di tengah layar (titik <b>(0, 0)</b>), sedangkan cacing berada di suatu arah tertentu.</p>
+              <p>Tugas kamu adalah <b>mengubah arah Bidawang</b> agar menghadap ke arah cacing menggunakan perintah <b>setheading()</b>.</p>
+              <p>Jika arah yang kamu masukkan benar, cacing akan <b>berpindah tempat</b>. Tantangan akan selesai setelah kamu berhasil <b>menebak semua arah cacing</b> dengan benar.</p>
             `
           }
         },
@@ -251,11 +251,11 @@ const TantanganLima = () => {
 
     setProcessingAlert(true);
     if (isCorrect) {
-      await swal("Jawaban Benar!", "Kamu berhasil! Kepiting akan berpindah posisi", "success").then(() => {
+      await swal("Jawaban Benar!", "Kamu berhasil! Cacing akan berpindah posisi", "success").then(() => {
         if (step < headingAnswers.length - 1) {
           setStep((prev) => prev + 1);
         } else {  
-          swal("Tantangan Selesai!", "Kamu berhasil menebak semua arah posisi kepiting dengan setheading!", "success").then(async () => {
+          swal("Tantangan Selesai!", "Kamu berhasil menebak semua arah posisi cacing dengan setheading!", "success").then(async () => {
             try {
               if (progresTantangan === 4) {
                 // Update progres tantangan jika sudah menyelesaikan halaman ke-5
@@ -337,7 +337,7 @@ const TantanganLima = () => {
                 marginBottom: '15px',
               }}
             >
-              5. Menebak Arah Kepiting Dengan Spesifik
+              5. Menebak Arah Cacing Dengan Spesifik
             </h4>
             
             <p>Selesaikan tantangan dengan mengarahkan bidawang ke arah cacing menggunakan <code>setheading()</code>.</p>

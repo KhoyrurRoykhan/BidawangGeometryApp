@@ -328,7 +328,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 1) {
     `,
     confirmButtonText: 'Mengerti'
   }).then(() => {
-    navigate('/belajar/pendahuluan');
+    navigate('/belajar/pendahuluan/kuis');
   });
 }}
 
@@ -363,10 +363,12 @@ if (nilaiAkhir >= kkm && progresBelajar === 1) {
                     variant={
                       current === i
                         ? 'secondary'
+                        : showResult && answers[i] !== undefined && quizData[i].options[answers[i]] === quizData[i].answer
+                        ? 'success'
                         : isWrong(i)
                         ? 'danger'
                         : isAnswered(i)
-                          ? 'success'
+                          ? 'primary'
                           : 'outline-secondary'
                     }
                     onClick={() => setCurrent(i)}
@@ -415,6 +417,39 @@ if (nilaiAkhir >= kkm && progresBelajar === 1) {
                   Selesai
                 </Button>
               )}
+
+<div
+                className="mt-3"
+                style={{
+                  fontSize: '13px',
+                  color: '#555',
+                  backgroundColor: '#f8f9fa',
+                  border: '1px solid #ccc',
+                  borderRadius: '6px',
+                  padding: '10px',
+                }}
+              >
+                <b>Keterangan warna tombol soal:</b>
+                <ul style={{ paddingLeft: '0', marginTop: '8px', listStyle: 'none' }}>
+                  <li style={{ display: 'flex', alignItems: 'center', marginBottom: '6px' }}>
+                    <div style={{ width: '18px', height: '18px', backgroundColor: '#6c757d', borderRadius: '4px', marginRight: '8px' }}></div>
+                    Soal yang sedang dipilih
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', marginBottom: '6px' }}>
+                    <div style={{ width: '18px', height: '18px', backgroundColor: '#0d6efd', borderRadius: '4px', marginRight: '8px' }}></div>
+                    Soal sudah dijawab
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', marginBottom: '6px' }}>
+                    <div style={{ width: '18px', height: '18px', backgroundColor: '#dc3545', borderRadius: '4px', marginRight: '8px' }}></div>
+                    Jawaban salah setelah menekan <b>Selesai</b>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ width: '18px', height: '18px', backgroundColor: '#198754', borderRadius: '4px', marginRight: '8px' }}></div>
+                    Jawaban benar setelah menekan <b>Selesai</b>
+                  </li>
+                </ul>
+              </div>
+
             </Card.Body>
           </Card>
         </Col>

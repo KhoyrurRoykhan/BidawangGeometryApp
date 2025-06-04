@@ -281,7 +281,7 @@ const TantanganSatu = () => {
     }
   
     if (validAngles.includes(Math.abs(correctAngle)) && isCorrect) {
-      swal("Benar!", "Cacing berpindah ke posisi lain.", "success").then(() => {
+      swal("Benar!", "Kepiting berpindah ke posisi lain.", "success").then(() => {
         resetTurtlePosition();
         moveBroccoli();
         setPythonCodeChallanges('');

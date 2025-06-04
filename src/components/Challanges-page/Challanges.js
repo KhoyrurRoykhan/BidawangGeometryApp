@@ -21,7 +21,7 @@ const challenges = [
   { id: 2, name: 'Bergerak dan Berbelok', link: '/challanges/2', image: map2 },
   { id: 3, name: 'Berpindah Posisi Sesuai Koordinat', link: '/challanges/3', image: map3 },
   { id: 4, name: 'Berpindah Posisi Sesuai Koordinat X dan Y', link: '/challanges/4', image: map4 },
-  { id: 5, name: 'Menebak Arah Kepiting Dengan Spesifik', link: '/challanges/5', image: map5 },
+  { id: 5, name: 'Menebak Arah Cacing Dengan Spesifik', link: '/challanges/5', image: map5 },
   { id: 6, name: 'Bergerak Melingkar', link: '/challanges/6', image: map6 },
   { id: 7, name: 'Mencari Tahu Koordinat Sayur dan Ikan', link: '/challanges/7', image: map7 },
   { id: 8, name: 'Mencari Tahu Koordinat X dan Y Udang', link: '/challanges/8', image: map8 },

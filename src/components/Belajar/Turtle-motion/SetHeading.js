@@ -14,7 +14,7 @@ import { closeBrackets } from '@codemirror/autocomplete';
 // Challange
 import swal from 'sweetalert'; // Import SweetAlert
 import papuyu from './assets/papuyu-1.png';
-import broccoli from './assets/cacingtarget.png';
+import broccoli from './assets/cacingsetheading.png';
 import grid from './assets/3-setposition-b.png';
 import map from './assets/5-setheading-tilemap.png';
 
@@ -1055,6 +1055,7 @@ const runit = (code, forceReset = false) => {
             <p>
             Perintah <b>setheading</b> digunakan untuk mengatur arah Bidawang ke sudut tertentu, diukur dalam derajat. Sudut dihitung berlawanan arah jarum jam, dimulai dari arah timur (0 derajat). Dengan menggunakan setheading dapat mengontrol ke mana bidawang akan menghadap sebelum bergerak.
             </p>
+            
 
             <ul>
               <li><b>0°</b>: Timur (Kanan Layar)</li>
@@ -1116,6 +1117,11 @@ forward 100 `}
             <p>
             Untuk lebih mudah memahami cara kerja perintah <code>setheading</code>, ikuti instruksi dibawah ini
             </p>
+            <ul style={{ color: '#444', lineHeight: '1.8', paddingLeft: '20px' }}>
+              <li>Tuliskan kode pada text editor sesuai instruksi di bawah ini.</li>
+              <li>Klik <b>Run Code</b> atau tekan <b>Enter</b> untuk menjalankan perintah.</li>
+              <li>Jika perintah yang dijalankan salah, klik <b>Undo</b> terlebih dahulu sebelum mencoba lagi.</li>
+            </ul>
             <Row>
                 {/* Kolom untuk Accordion */}
                 <Col xs={3} style={{ fontSize: '15px' }}>

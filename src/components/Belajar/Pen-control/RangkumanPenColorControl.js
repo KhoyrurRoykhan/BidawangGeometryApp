@@ -499,9 +499,9 @@ useEffect(() => {
             <Table striped bordered hover responsive>
             <thead>
             <tr>
-                <th>No</th>
-                <th>Nama Fungsi</th>
-                <th>Keterangan</th>
+                <th style={{color:'black'}}>No</th>
+                <th style={{color:'black'}}>Nama Fungsi</th>
+                <th style={{color:'black'}}>Keterangan</th>
             </tr>
             </thead>
             <tbody>
