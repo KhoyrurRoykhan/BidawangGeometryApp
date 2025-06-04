@@ -194,11 +194,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'option1a';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Gambar tersebut menunjukkan Bidawang di posisi (0, 0), yaitu di tengah canvas.' : 'Salah! Posisi (0, 0) berada di tengah canvas. Coba perhatikan gambar yang menunjukkan Bidawang tepat di tengah.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'option2b';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Tombol tersebut digunakan untuk menghapus semua gambar dan mengembalikan Bidawang ke posisi awal.' : 'Salah!' }));
 
     if (isCorrect2) {
       try {
@@ -1353,7 +1353,7 @@ const runit2 = (code, forceReset = false) => {
             </Row>
 
             {feedback.question1 && (
-              <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+              <Alert variant={feedback.question1 === "Benar! Gambar tersebut menunjukkan Bidawang di posisi (0, 0), yaitu di tengah canvas." ? "success" : "danger"} className="mt-3">
                 {feedback.question1}
               </Alert>
             )}
@@ -1392,7 +1392,7 @@ const runit2 = (code, forceReset = false) => {
             </Row>
 
             {feedback.question2 && (
-              <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+              <Alert variant={feedback.question2 === "Benar! Tombol tersebut digunakan untuk menghapus semua gambar dan mengembalikan Bidawang ke posisi awal." ? "success" : "danger"} className="mt-3">
                 {feedback.question2}
               </Alert>
             )}
@@ -1420,7 +1420,7 @@ const runit2 = (code, forceReset = false) => {
             variant="secondary"
             onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
             disabled={
-              (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+              (currentQuestion === 1 && feedback.question1 !== "Benar! Gambar tersebut menunjukkan Bidawang di posisi (0, 0), yaitu di tengah canvas.") ||
               (currentQuestion === 2)
             }
           >

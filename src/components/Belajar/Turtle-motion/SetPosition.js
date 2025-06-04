@@ -229,10 +229,10 @@ const checkCode = (customCommands = null) => {
   const handleSubmit = async () => {
     if (currentQuestion === 1) {
       const isCorrect1 = selectedAnswer === 'C';
-      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `setposition` digunakan untuk memindahkan Bidawang (turtle) ke koordinat tertentu di area gambar, tanpa mengubah arah hadapnya.' : 'Salah! Perintah `setposition` bukan untuk mengatur warna, ukuran, atau arah. Fungsinya adalah memindahkan Bidawang ke titik koordinat tertentu seperti (x, y).' }));
     } else if (currentQuestion === 2) {
       const isCorrect2 = selectedAnswer2 === 'D';
-      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Perintah `setposition 50 100` akan memindahkan Bidawang ke titik dengan koordinat x = 50 dan y = 100.' : 'Salah! Perintah `setposition 50 100` berarti posisi x = 50 dan y = 100. Urutan angka adalah (x, y), bukan sebaliknya.' }));
   
       if (isCorrect2) {
         try {
@@ -1424,7 +1424,7 @@ const resetCodeChallanges = () => {
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Perintah `setposition` digunakan untuk memindahkan Bidawang (turtle) ke koordinat tertentu di area gambar, tanpa mengubah arah hadapnya." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1463,7 +1463,7 @@ const resetCodeChallanges = () => {
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === "Benar! Perintah `setposition 50 100` akan memindahkan Bidawang ke titik dengan koordinat x = 50 dan y = 100." ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1491,7 +1491,7 @@ const resetCodeChallanges = () => {
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Perintah `setposition` digunakan untuk memindahkan Bidawang (turtle) ke koordinat tertentu di area gambar, tanpa mengubah arah hadapnya.") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

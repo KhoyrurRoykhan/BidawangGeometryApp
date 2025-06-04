@@ -218,11 +218,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Dalam canvas Bidawang atau Python Turtle, arah 0 derajat menunjuk ke Timur (kanan).' : 'Salah! Arah 0 derajat pada canvas Bidawang menunjuk ke Timur (kanan), bukan ' + (selectedAnswer === 'A' ? 'Utara' : selectedAnswer === 'C' ? 'Barat' : 'Selatan') + '.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Jika bidawang diputar 90 derajat ke kiri dari posisi 0 (Timur), maka heading-nya menjadi 90 derajat, yang menunjuk ke Utara.' : 'Salah! Setelah diputar 90 derajat ke kiri dari posisi awal (0 derajat / Timur), bidawang akan menghadap Utara dengan heading 90 derajat.' }));
 
     if (isCorrect2) {
       try {
@@ -1277,7 +1277,7 @@ print heading`}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Dalam canvas Bidawang atau Python Turtle, arah 0 derajat menunjuk ke Timur (kanan)." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1315,7 +1315,7 @@ print heading`}
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === "Benar! Jika bidawang diputar 90 derajat ke kiri dari posisi 0 (Timur), maka heading-nya menjadi 90 derajat, yang menunjuk ke Utara." ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1343,7 +1343,7 @@ print heading`}
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Dalam canvas Bidawang atau Python Turtle, arah 0 derajat menunjuk ke Timur (kanan).") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

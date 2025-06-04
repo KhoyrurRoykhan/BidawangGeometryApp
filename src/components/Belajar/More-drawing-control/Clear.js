@@ -196,11 +196,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'A';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! clear hanya menghapus gambar, tetapi posisi dan atribut bidawang tidak berubah. Sedangkan reset menghapus gambar dan mengembalikan posisi serta atribut ke default.' : 'Salah! clear hanya menghapus gambar tanpa mengubah posisi atau atribut bidawang, sedangkan reset menghapus gambar dan mengatur ulang posisi serta atribut.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Setelah perintah clear, warna tidak kembali ke default.' : 'Salah! Setelah clear, gambar hilang tetapi warna tetap sesuai dengan yang telah ditetapkan sebelumnya.' }));
 
     if (isCorrect2) {
       try {
@@ -1237,7 +1237,7 @@ forward 100  `}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! clear hanya menghapus gambar, tetapi posisi dan atribut bidawang tidak berubah. Sedangkan reset menghapus gambar dan mengembalikan posisi serta atribut ke default.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1280,7 +1280,7 @@ circle 30`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Setelah perintah clear, warna tidak kembali ke default.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1308,7 +1308,7 @@ circle 30`}</code></pre>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! clear hanya menghapus gambar, tetapi posisi dan atribut bidawang tidak berubah. Sedangkan reset menghapus gambar dan mengembalikan posisi serta atribut ke default.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

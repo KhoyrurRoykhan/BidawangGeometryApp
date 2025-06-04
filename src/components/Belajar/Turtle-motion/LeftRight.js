@@ -226,11 +226,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `left 90` akan membuat Bidawang berputar ke kiri (berlawanan arah jarum jam) sebesar 90 derajat.' : 'Salah! Perintah `left 90` berarti Bidawang harus berputar ke kiri sebesar 90 derajat, bukan ke kanan atau dengan derajat yang berbeda.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'D';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Jika Bidawang menghadap ke kanan dan diberi perintah `right 90`, maka ia akan berputar ke kanan sebesar 90 derajat, sehingga menghadap ke bawah.' : 'Salah! Perintah `right 90` membuat Bidawang berputar ke kanan 90 derajat dari arah semula (kanan), sehingga posisinya menjadi menghadap ke bawah.' }));
 
     if (isCorrect2) {
       try {
@@ -1487,7 +1487,7 @@ const resetCodeChallanges = () => {
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Perintah `left 90` akan membuat Bidawang berputar ke kiri (berlawanan arah jarum jam) sebesar 90 derajat." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1526,7 +1526,7 @@ const resetCodeChallanges = () => {
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Jika Bidawang menghadap ke kanan dan diberi perintah `right 90`, maka ia akan berputar ke kanan sebesar 90 derajat, sehingga menghadap ke bawah.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1554,7 +1554,7 @@ const resetCodeChallanges = () => {
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Perintah `left 90` akan membuat Bidawang berputar ke kiri (berlawanan arah jarum jam) sebesar 90 derajat.") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

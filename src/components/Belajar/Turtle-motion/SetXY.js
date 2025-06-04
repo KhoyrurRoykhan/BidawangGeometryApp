@@ -231,10 +231,10 @@ const SetXY = () => {
   const handleSubmit = async () => {
     if (currentQuestion === 1) {
       const isCorrect1 = selectedAnswer === 'A';
-      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `setx 200` hanya mengubah nilai koordinat x menjadi 200, sementara y tetap 50, sehingga posisi baru adalah (200, 50).' : 'Salah! Perintah `setx` hanya mengubah nilai x saja. Jika posisi awal (100, 50), maka `setx 200` mengubah nilai menjadi 200.' }));
     } else if (currentQuestion === 2) {
       const isCorrect2 = selectedAnswer2 === 'A';
-      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Perintah `sety -50` memindahkan bidawang secara vertikal ke y = -50, tanpa mengubah posisi x.' : 'Salah! Perintah yang benar untuk memindahkan secara vertikal (y) tanpa mengubah x adalah sety.' }));
   
       if (isCorrect2) {
         try {
@@ -1464,7 +1464,7 @@ const resetCodeChallanges = () => {
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Perintah `setx 200` hanya mengubah nilai koordinat x menjadi 200, sementara y tetap 50, sehingga posisi baru adalah (200, 50)." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1501,7 +1501,7 @@ const resetCodeChallanges = () => {
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === "Benar! Perintah `sety -50` memindahkan bidawang secara vertikal ke y = -50, tanpa mengubah posisi x." ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1529,7 +1529,7 @@ const resetCodeChallanges = () => {
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Perintah `setx 200` hanya mengubah nilai koordinat x menjadi 200, sementara y tetap 50, sehingga posisi baru adalah (200, 50).") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

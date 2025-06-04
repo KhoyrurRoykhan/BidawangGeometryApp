@@ -243,11 +243,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'C';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Setelah penup, jika pendown tidak dipanggil, bidawang tidak akan menggambar garis saat bergerak.' : `Salah! Setelah penup, bidawang hanya akan bergerak tanpa menggambar. Jawaban yang benar adalah C: "Bidawang tidak akan menggambar garis saat bergerak."` }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Setelah pendown dipanggil, barulah bidawang akan menggambar garis dari (100, 100) ke (200, 200).' : `Salah! Bidawang baru menggambar setelah pendown dipanggil, yaitu dari (100, 100) ke (200, 200).` }));
 
     if (isCorrect2) {
       try {
@@ -1477,7 +1477,7 @@ circle 30 `}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Setelah penup, jika pendown tidak dipanggil, bidawang tidak akan menggambar garis saat bergerak." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1521,7 +1521,7 @@ setposition 200 200`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Setelah pendown dipanggil, barulah bidawang akan menggambar garis dari (100, 100) ke (200, 200).' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1549,7 +1549,7 @@ setposition 200 200`}</code></pre>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Setelah penup, jika pendown tidak dipanggil, bidawang tidak akan menggambar garis saat bergerak.") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

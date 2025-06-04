@@ -234,11 +234,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi `distance` digunakan untuk menghitung jarak Euclidean dari posisi bidawang saat ini ke titik (x, y).' : `Salah! Fungsi \`distance\` sebenarnya digunakan untuk menghitung jarak lurus (Euclidean) dari posisi sekarang ke koordinat (x, y), bukan untuk ${selectedAnswer === 'A' ? 'menentukan arah' : selectedAnswer === 'C' ? 'menggerakkan posisi' : 'menghapus jarak'}.` }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'C';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Jarak dari titik (0, 0) ke (0, 100) adalah 100 satuan karena hanya bergerak di sumbu Y.' : `Salah! Jarak dari titik (0, 0) ke (0, 100) adalah 100 satuan karena hanya ada perbedaan pada sumbu Y.` }));
 
     if (isCorrect2) {
       try {
@@ -1478,7 +1478,7 @@ print distance 100 100`}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Fungsi `distance` digunakan untuk menghitung jarak Euclidean dari posisi bidawang saat ini ke titik (x, y).' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1516,7 +1516,7 @@ print distance 100 100`}
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Jarak dari titik (0, 0) ke (0, 100) adalah 100 satuan karena hanya bergerak di sumbu Y.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1544,7 +1544,7 @@ print distance 100 100`}
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Fungsi `distance` digunakan untuk menghitung jarak Euclidean dari posisi bidawang saat ini ke titik (x, y).') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

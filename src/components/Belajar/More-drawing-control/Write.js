@@ -204,11 +204,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'C';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Parameter align digunakan untuk mengatur perataan teks saat ditulis oleh bidawang, misalnya "left", "center", atau "right".' : 'Salah! align bukan untuk mengatur font, warna, atau posisi bidawang, tetapi untuk mengatur perataan teks seperti "center", "left", atau "right".' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Teks akan ditulis di layar menggunakan font Arial ukuran 12 dengan gaya italic, dan teks akan dipusatkan terhadap posisi bidawang.' : 'Salah! Kode tersebut menggunakan font Arial ukuran 12 dengan gaya italic dan perataan "center"' }));
 
     if (isCorrect2) {
       try {
@@ -1259,7 +1259,7 @@ forward 100  `}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Parameter align digunakan untuk mengatur perataan teks saat ditulis oleh bidawang, misalnya "left", "center", atau "right".' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1298,7 +1298,7 @@ forward 100  `}
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Teks akan ditulis di layar menggunakan font Arial ukuran 12 dengan gaya italic, dan teks akan dipusatkan terhadap posisi bidawang.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1326,7 +1326,7 @@ forward 100  `}
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Parameter align digunakan untuk mengatur perataan teks saat ditulis oleh bidawang, misalnya "left", "center", atau "right".') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

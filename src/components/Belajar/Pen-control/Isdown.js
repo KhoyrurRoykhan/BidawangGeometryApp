@@ -196,11 +196,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'A';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Metode isdown mengembalikan nilai True jika pena sedang dalam posisi turun.' : 'Salah! Metode isdown akan mengembalikan True jika pena dalam posisi turun, dan False jika pena diangkat.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'A';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Saat pena diturunkan, isdown mengembalikan True, dan setelah pena diangkat, isdown mengembalikan False.' : 'Salah! Output yang benar adalah True, False karena awalnya pena turun (pendown) lalu diangkat (penup), sehingga statusnya berubah.' }));
 
     if (isCorrect2) {
       try {
@@ -1223,7 +1223,7 @@ print isdown`}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Metode isdown mengembalikan nilai True jika pena sedang dalam posisi turun.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1234,7 +1234,7 @@ print isdown`}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
+        <b>Soal 2 dari 2:</b>
         <p>Perhatikan kode berikut:</p>
         <pre><code>{`pendown
 print isdown
@@ -1265,7 +1265,7 @@ print isdown`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Saat pena diturunkan, isdown mengembalikan True, dan setelah pena diangkat, isdown mengembalikan False.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1293,7 +1293,7 @@ print isdown`}</code></pre>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Metode isdown mengembalikan nilai True jika pena sedang dalam posisi turun.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

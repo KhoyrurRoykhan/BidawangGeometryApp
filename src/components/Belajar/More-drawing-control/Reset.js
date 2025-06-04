@@ -195,11 +195,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi reset akan menghapus semua gambar di layar dan mengembalikan bidawang ke posisi awal dengan atribut default.' : 'Salah! Fungsi reset tidak hanya menghapus gambar, tetapi juga mengatur ulang posisi dan atribut bidawang ke default.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Setelah reset, semua atribut seperti warna garis akan kembali ke default, yaitu hitam. Maka lingkaran berwarna hitam.' : 'Salah! Setelah reset, warna yang sebelumnya diatur (seperti hijau) akan hilang karena semua atribut kembali ke default. Warna default adalah hitam.' }));
 
     if (isCorrect2) {
       try {
@@ -1238,7 +1238,7 @@ forward 50 `}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Fungsi reset akan menghapus semua gambar di layar dan mengembalikan bidawang ke posisi awal dengan atribut default.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1249,7 +1249,7 @@ forward 50 `}
   {currentQuestion === 2 && (
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <strong>Soal 2 dari 2:</strong>
+        <b>Soal 2 dari 2:</b>
         <p>Perhatikan kode berikut: </p>
         <pre><code>{`pencolor "green"
 forward 100
@@ -1280,7 +1280,7 @@ circle 50`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Setelah reset, semua atribut seperti warna garis akan kembali ke default, yaitu hitam. Maka lingkaran berwarna hitam.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1308,7 +1308,7 @@ circle 50`}</code></pre>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Fungsi reset akan menghapus semua gambar di layar dan mengembalikan bidawang ke posisi awal dengan atribut default.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

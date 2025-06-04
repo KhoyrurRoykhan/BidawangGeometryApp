@@ -234,11 +234,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'C';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Parameter *extent* digunakan untuk menentukan besar sudut (dalam derajat) dari lingkaran yang ingin digambar, misalnya 180 untuk setengah lingkaran.' : 'Salah! Parameter *extent* bukan untuk arah, ukuran jari-jari, atau warna, melainkan untuk menentukan besar sudut busur yang ingin digambar.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Perintah `circle(50)` akan menggambar lingkaran dengan jari-jari 50.' : 'Salah! Perintah `circle(50)` berarti menggambar lingkaran dengan jari-jari 50, bukan 100 atau sekadar bergerak.' }));
 
     if (isCorrect2) {
       try {
@@ -1467,7 +1467,7 @@ const runit = (code, forceReset = false) => {
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Parameter *extent* digunakan untuk menentukan besar sudut (dalam derajat) dari lingkaran yang ingin digambar, misalnya 180 untuk setengah lingkaran." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1505,7 +1505,7 @@ const runit = (code, forceReset = false) => {
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === "Benar! Perintah `circle(50)` akan menggambar lingkaran dengan jari-jari 50." ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1533,7 +1533,7 @@ const runit = (code, forceReset = false) => {
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Parameter *extent* digunakan untuk menentukan besar sudut (dalam derajat) dari lingkaran yang ingin digambar, misalnya 180 untuk setengah lingkaran.") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

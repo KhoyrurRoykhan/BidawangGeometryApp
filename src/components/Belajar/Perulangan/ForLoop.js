@@ -228,11 +228,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'C';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perulangan for membantu mengulangi perintah yang sama, sehingga kode menjadi lebih singkat dan efisien saat menggambar pola.' : 'Salah! Perulangan for digunakan untuk mengulang perintah berulang, sangat berguna dalam menggambar pola seperti segitiga, kotak, dan lainnya.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Segilima memiliki 5 sisi, jadi kita perlu mengulangi langkah menggambar sebanyak 5 kali.' : 'Salah! Segilima berarti memiliki 5 sisi, sehingga perulangan harus dilakukan 5 kali untuk menyelesaikan gambar.' }));
 
     if (isCorrect2) {
       try {
@@ -1415,7 +1415,7 @@ for i in range(100):
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Perulangan for membantu mengulangi perintah yang sama, sehingga kode menjadi lebih singkat dan efisien saat menggambar pola.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1452,7 +1452,7 @@ for i in range(100):
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Segilima memiliki 5 sisi, jadi kita perlu mengulangi langkah menggambar sebanyak 5 kali.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1480,7 +1480,7 @@ for i in range(100):
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Perulangan for membantu mengulangi perintah yang sama, sehingga kode menjadi lebih singkat dan efisien saat menggambar pola.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

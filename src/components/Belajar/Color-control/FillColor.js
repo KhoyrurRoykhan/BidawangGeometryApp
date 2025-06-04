@@ -244,11 +244,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Kode tersebut menggambar lingkaran dengan isian kuning karena fillcolor "yellow", lalu begin_fill dan end_fill digunakan untuk mengisi warna.' : 'Salah! Kode ini menggunakan fillcolor "yellow" dan begin_fill hingga end_fill untuk menggambar lingkaran dengan isian kuning, bukan hanya garis atau tanpa gambar.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! end_fill menandai akhir area bentuk yang akan diisi warna setelah begin_fill.' : 'Salah! end_fill digunakan untuk menutup pengisian warna, bukan untuk menghapus atau mengatur transparansi.' }));
 
     if (isCorrect2) {
       try {
@@ -1501,7 +1501,7 @@ end_fill`}</code></pre>
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Kode tersebut menggambar lingkaran dengan isian kuning karena fillcolor "yellow", lalu begin_fill dan end_fill digunakan untuk mengisi warna.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1538,7 +1538,7 @@ end_fill`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! end_fill menandai akhir area bentuk yang akan diisi warna setelah begin_fill.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1566,7 +1566,7 @@ end_fill`}</code></pre>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Kode tersebut menggambar lingkaran dengan isian kuning karena fillcolor "yellow", lalu begin_fill dan end_fill digunakan untuk mengisi warna.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

@@ -278,11 +278,11 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'C';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi `position` digunakan untuk mengetahui posisi turtle saat ini dalam bentuk koordinat (x, y).' : 'Salah! Fungsi `position` bukan untuk mengatur atau menghapus posisi, tetapi untuk **memberitahu posisi turtle saat ini dalam bentuk koordinat (x, y)**.' }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'A';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Jika turtle berada di posisi (50, 100), maka perintah `print position` akan menampilkan `(50, 100)`.' : 'Salah! Perintah `print position` akan mencetak posisi turtle saat ini, yaitu `(50, 100)`' }));
 
     if (isCorrect2) {
       try {
@@ -1608,7 +1608,7 @@ print position`}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Fungsi `position` digunakan untuk mengetahui posisi turtle saat ini dalam bentuk koordinat (x, y)." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1646,7 +1646,7 @@ print position`}
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === "Benar! Jika turtle berada di posisi (50, 100), maka perintah `print position` akan menampilkan `(50, 100)`." ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1674,7 +1674,7 @@ print position`}
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Fungsi `position` digunakan untuk mengetahui posisi turtle saat ini dalam bentuk koordinat (x, y).") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

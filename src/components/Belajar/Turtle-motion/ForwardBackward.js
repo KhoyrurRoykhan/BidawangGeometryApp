@@ -231,10 +231,10 @@ const ForwardBackward = () => {
   const handleSubmit = async () => {
     if (currentQuestion === 1) {
       const isCorrect1 = selectedAnswer === 'B';
-      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar!' : 'Salah!' }));
+      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya.' : 'Salah! Perintah `forward 100` bukan berarti mundur atau berputar, tetapi membuat Bidawang maju sejauh 100 langkah ke arah yang sedang dihadapinya.' }));
     } else if (currentQuestion === 2) {
       const isCorrect2 = selectedAnswer2 === 'optionA';
-      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar!' : 'Salah!' }));
+      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Saat menghadap ke kanan, perintah `backward 200` akan membuat Bidawang bergerak mundur sejauh 200 langkah, sehingga ke tepi kiri canvas.' : 'Salah! Karena Bidawang menghadap ke kanan, perintah `backward 200` akan menggerakkannya ke arah berlawanan, yaitu ke kiri sejauh 200 langkah hingga mencapai tepi.' }));
   
       if (isCorrect2) {
         try {
@@ -1512,7 +1512,7 @@ const resetCodeChallanges = () => {
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1553,7 +1553,7 @@ const resetCodeChallanges = () => {
       </Row>
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar!" ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === "Benar! Saat menghadap ke kanan, perintah `backward 200` akan membuat Bidawang bergerak mundur sejauh 200 langkah, sehingga ke tepi kiri canvas." ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1581,7 +1581,7 @@ const resetCodeChallanges = () => {
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar!") ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya.") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar!")
       }
     >
