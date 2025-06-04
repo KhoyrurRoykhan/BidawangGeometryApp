@@ -221,7 +221,7 @@ const TextEditorPage = () => {
             placeholder={'# Tuliskan kode anda disini!'}
             value={pythonCode}
             height="400px"
-            theme="light"
+            theme="dark"
             extensions={[python()]}
             onChange={(value) => setPythonCode(value)}
             style={{ border: '1px solid #ccc', width: '100%' }}
