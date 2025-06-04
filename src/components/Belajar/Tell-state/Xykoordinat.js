@@ -1320,7 +1320,7 @@ print ycor `}
                         {commandHistory.map((cmd, idx) => `> ${cmd}\n`)}
                       </pre>
 
-                      <pre className="output" style={{ height: 60, width: 330, overflow: 'auto' }}>{output}</pre>
+                      <pre className="output" style={{ height: 60, overflow: 'auto' }}>{output}</pre>
                     </div>
                     <div className="canvas-section" style={{width:400,height:400}}>
                       <div id="mycanvas"></div>
