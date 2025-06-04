@@ -122,7 +122,7 @@ const LandingPage = () => {
             <Card className="h-100 text-center">
               <Card.Body>
                 <img src={BidawangKoding} alt="Susur Sungai" className="mb-3" style={{ width: '80px', height: 'auto' }} />
-                <Card.Title><FaCode /> <b>Text Editor</b></Card.Title>
+                <Card.Title><FaCode /> <b>Editor</b></Card.Title>
                 <Card.Text style={{ fontSize: '0.95rem' }}>
                 Tulis dan jalankan kode Turtle di editor interaktif dan lihat langsung hasil visualnya.
                 </Card.Text>

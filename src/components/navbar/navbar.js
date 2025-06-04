@@ -58,7 +58,7 @@ const Navigasibar = () => {
       <Nav className="me-auto">
         <Nav.Link style={{ color: 'white', marginRight:10}} href="/belajar/pendahuluan"><FaBookReader /> Belajar Turtle</Nav.Link>
         <Nav.Link style={{ color: 'white', marginRight:10 }} href="/challanges"><FaGamepad /> Tantangan</Nav.Link>
-        <Nav.Link style={{ color: 'white' }} href="/texteditor"><FaCode /> Text Editor</Nav.Link>
+        <Nav.Link style={{ color: 'white' }} href="/texteditor"><FaCode/> Editor</Nav.Link>
       </Nav>
 
       <Nav className="ms-auto align-items-center">
