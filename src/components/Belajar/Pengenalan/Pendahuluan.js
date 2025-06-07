@@ -532,6 +532,17 @@ const runit2 = (code, forceReset = false) => {
       setCollapsed(!collapsed);
     };
   
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768); // Atur sesuai breakpoint yang diinginkan
+      };
+
+      handleResize(); // inisialisasi
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
 
   return (
@@ -546,7 +557,7 @@ const runit2 = (code, forceReset = false) => {
         
         <div className='mt-5'
         style={{
-          width: collapsed ? "60px" : "250px",
+          width: collapsed ? "50px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
           // height: "100vh",
@@ -558,7 +569,7 @@ const runit2 = (code, forceReset = false) => {
           paddingBottom:80
         }}
       >
-        <div className="p-2">
+        <div className="p-1">
           <Button variant="light" onClick={toggleSidebar}>
             <FaBars />
           </Button>
@@ -913,7 +924,13 @@ const runit2 = (code, forceReset = false) => {
               backgroundColor: "#fff",
             }}>
 
-          <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
+          <div
+            style={{
+              paddingLeft: isMobile ? 5 : 50,
+              paddingRight: isMobile ? 5 : 50,
+              paddingBottom: 50,
+            }}
+          >
             <h1
               style={{
                 textAlign: 'center',
@@ -990,20 +1007,34 @@ const runit2 = (code, forceReset = false) => {
               >
                 Perhatikan Video Ilustrasi di bawah ini:
               </h5>
-              <iframe
-                width="100%"
-                height="500"
-                // src="https://www.youtube.com/embed/iefPvNd_diM?si=_Ou4N5Xe9TA-cezk"
-                src="https://drive.google.com/file/d/1Mg1EjePyRlk7wKbm_Bobg11vWc5Te9_R/preview"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
+              <div
                 style={{
+                  position: 'relative',
+                  width: '100%',
+                  paddingBottom: '56.25%', // Rasio 16:9
+                  height: 0,
+                  overflow: 'hidden',
                   borderRadius: '10px',
                   boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
                 }}
-              ></iframe>
+              >
+                <iframe
+                  src="https://drive.google.com/file/d/1Mg1EjePyRlk7wKbm_Bobg11vWc5Te9_R/preview"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    border: 'none',
+                  }}
+                ></iframe>
+              </div>
+
             </div>
 
 
@@ -1015,49 +1046,52 @@ const runit2 = (code, forceReset = false) => {
               <Row>
                 {/* Kolom kiri: Canvas dan gambar */}
                 <Col md={6} xs={12}>
-                  <div
-                    style={{
-                      position: 'relative',
-                      width: '100%',
-                      height: '500px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {/* Gambar canvas sebagai latar */}
-                    <Image
-                      src={canvas}
-                      alt="Canvas"
-                      width="470px"
-                      height="470px"
-                      style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        zIndex: 1,
-                        opacity: 0.4,
-                      }}
-                    />
-
-                    {/* Canvas untuk Turtle */}
+                  <div style={{ overflowX: 'auto' }}>
                     <div
-                      id="mycanvas-contoh"
                       style={{
-                        width: '400px',
-                        height: '400px',
                         position: 'relative',
-                        zIndex: 2,
-                        marginTop: 10,
+                        width: '500px', // Tetap besar agar bisa scroll
+                        height: '500px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
-                    ></div>
+                    >
+                      {/* Gambar canvas sebagai latar */}
+                      <Image
+                        src={canvas}
+                        alt="Canvas"
+                        width="470px"
+                        height="470px"
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          left: '50%',
+                          transform: 'translate(-50%, -50%)',
+                          zIndex: 1,
+                          opacity: 0.4,
+                        }}
+                      />
+
+                      {/* Canvas untuk Turtle */}
+                      <div
+                        id="mycanvas-contoh"
+                        style={{
+                          width: '400px',
+                          height: '400px',
+                          position: 'relative',
+                          zIndex: 2,
+                          marginTop: 10,
+                        }}
+                      ></div>
+                    </div>
                   </div>
 
                   <p style={{ textAlign: 'center', marginTop: 10 }}>
                     (Bidawang bergerak di atas gambar canvas)
                   </p>
                 </Col>
+
 
                 {/* Kolom kanan: Penjelasan */}
                 <Col md={6} xs={12}>
@@ -1110,18 +1144,19 @@ const runit2 = (code, forceReset = false) => {
                 Untuk mempermudah mengontrol <b>Bidawang</b>, tersedia lingkungan kerja yang terdiri dari beberapa komponen seperti gambar di bawah ini:
               </p>
 
-              {/* Gambar Lingkungan Kerja */}
               <div style={{ textAlign: 'center', marginBottom: '15px' }}>
                 <Image
                   src={lingkungankerja}
                   alt="Tampilan Lingkungan Kerja"
-                  width="75%"
+                  width={isMobile ? '100%' : '75%'}
                   style={{
                     borderRadius: '10px',
-                    // boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                    maxWidth: '100%',
+                    height: 'auto',
                   }}
                 />
               </div>
+
 
               {/* Penjelasan */}
               <h5
