@@ -263,7 +263,7 @@ for i in range(100):
   # Kembali ke posisi awal
   home()
   speed(0)
-  home()
+  time.sleep(3) 
   reset()
 
 `);
@@ -474,7 +474,7 @@ const runit = (code, forceReset = false) => {
   const runit1 = (code, forceReset = false) => {
     setOutput('');
     const parsedCode = parseSimpleCommands(code || pythonCode1); // Gunakan kode hasil parse
-    const imports = "from turtle import *\nreset()\nshape('turtle')\n";
+    const imports = "import time\nfrom turtle import *\nreset()\nshape('turtle')\n";
     const prog = forceReset ? imports : imports + parsedCode;
   
     window.Sk.pre = "output1";

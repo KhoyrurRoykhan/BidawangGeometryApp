@@ -280,7 +280,7 @@ for i in range(100):
   speed(1)
   forward(100)
   speed(0)
-  home()
+  time.sleep(3) 
   reset()
 
 `);
@@ -290,7 +290,7 @@ for i in range(100):
   speed(1)
   backward(150)
   speed(0)
-  home()
+  time.sleep(3) 
   reset()
 
 `);
@@ -500,7 +500,7 @@ const runit = (code, forceReset = false) => {
   const runit1 = (code, forceReset = false) => {
     setOutput('');
     const parsedCode = parseSimpleCommands(code || pythonCode1); // Gunakan kode hasil parse
-    const imports = "from turtle import *\nreset()\nshape('turtle')\n";
+    const imports = "import time\nfrom turtle import *\nreset()\nshape('turtle')\n";
     const prog = forceReset ? imports : imports + parsedCode;
   
     window.Sk.pre = "output1";
@@ -518,7 +518,7 @@ const runit = (code, forceReset = false) => {
   const runit2 = (code, forceReset = false) => {
     setOutput('');
     const parsedCode = parseSimpleCommands(code || pythonCode2); // Gunakan kode hasil parse
-    const imports = "from turtle import *\nreset()\nshape('turtle')\n";
+    const imports = "import time\nfrom turtle import *\nreset()\nshape('turtle')\n";
     const prog = forceReset ? imports : imports + parsedCode;
   
     window.Sk.pre = "output2";

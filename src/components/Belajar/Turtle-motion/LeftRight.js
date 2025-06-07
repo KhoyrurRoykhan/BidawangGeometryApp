@@ -274,11 +274,12 @@ const handleSubmit = async () => {
   const [pythonCode, setPythonCode] = useState(``);
   const [pythonCode2, setPythonCode2] = useState(`
 
-for i in range(100):
+for i in range(1000):
   speed(1)
   left 120
   speed(0)
-  home()
+  time.sleep(3)  
+  reset()
 
 `);
 
@@ -288,7 +289,8 @@ for i in range(100):
   speed(1)
   right(90)
   speed(0)
-  home()
+  time.sleep(3)  
+  reset()
 
 `);
 
@@ -502,7 +504,7 @@ const runit = (code, forceReset = false) => {
 const runit2 = (code, forceReset = false) => {
   setOutput('');
   const parsedCode = parseSimpleCommands(code || pythonCode2);
-  const imports = "from turtle import *\nreset()\nshape('turtle')\n";
+  const imports = "import time\nfrom turtle import *\nreset()\nshape('turtle')\n";
   const prog = forceReset ? imports : imports + parsedCode;
 
   window.Sk.pre = "output2";
@@ -521,7 +523,7 @@ const runit2 = (code, forceReset = false) => {
 const runit3 = (code, forceReset = false) => {
   setOutput('');
   const parsedCode = parseSimpleCommands(code || pythonCode3);
-  const imports = "from turtle import *\nreset()\nshape('turtle')\n";
+  const imports = "import time\nfrom turtle import *\nreset()\nshape('turtle')\n";
   const prog = forceReset ? imports : imports + parsedCode;
 
   window.Sk.pre = "output3";
