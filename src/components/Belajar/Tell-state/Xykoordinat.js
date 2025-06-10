@@ -721,6 +721,18 @@ for i in range(100):
       setCollapsed(!collapsed);
     };
 
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768); // Atur sesuai breakpoint yang diinginkan
+      };
+
+      handleResize(); // inisialisasi
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
   return (
     <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
@@ -733,7 +745,7 @@ for i in range(100):
       
       <div className='mt-5'
         style={{
-          width: collapsed ? "60px" : "250px",
+          width: collapsed ? "50px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
           // height: "100vh",
@@ -745,7 +757,7 @@ for i in range(100):
           paddingBottom:80
         }}
       >
-        <div className="p-2">
+        <div className="p-1">
           <Button variant="light" onClick={toggleSidebar}>
             <FaBars />
           </Button>
@@ -1096,7 +1108,14 @@ for i in range(100):
 
             }}>
 
-          <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
+              <div
+                style={{
+                  paddingLeft: isMobile ? 5 : 50,
+                  paddingRight: isMobile ? 5 : 50,
+                  paddingBottom: 50,
+                }}
+              >
+
             <h2 style={{
                 textAlign: 'center',
                 backgroundColor: '#198754',
@@ -1175,8 +1194,15 @@ print ycor `}
                 <pre id='output1' className="output mt-2" style={{height:120}}>{output1}</pre>
               </Col>
               <Col md={6} className="text-center">
-                <div className="canvas-section" style={{width:400,height:400,  textAlign:'center'}}>
-                  <div style={{textAlign:'center'}} id="mycanvas-contoh1"></div>
+                <div className="canvas-section" 
+                style={{
+                  flex: isMobile ? 'none' : '0 0 400px',
+                  width: '100%',
+                  maxWidth: '400px',
+                  maxHeight: 400,
+                  alignSelf: isMobile ? 'center' : 'flex-start',
+                  overflowX: isMobile ? 'auto' : 'visible',}}>
+                  <div style={{textAlign:'center', width: '100%'}} id="mycanvas-contoh1"></div>
                 </div>
               </Col>
             </Row>
@@ -1216,7 +1242,7 @@ print ycor `}
             </ul>
             <Row>
                 {/* Kolom untuk Accordion */}
-                <Col xs={3} style={{ fontSize: '15px' }}>
+                <Col xs={12} md={3} style={{ fontSize: '15px', marginBottom: isMobile ? '20px' : '0' }}>
                   <Accordion activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
                   {[
                     { step: '1a', title: 'Cek posisi x', code: 'print xcor', description: 'Lakukan pemeriksaan posisi x menggunakan perintah di bawah ini:' },
@@ -1255,77 +1281,103 @@ print ycor `}
                 </Col>
 
                 {/* Kolom untuk Editor dan Canvas */}
-                <Col xs={9}>
-                  <div className="skulpt-container" style={{ border: '2px solid #ccc', borderRadius: '8px', padding: '15px' }}>
-                    <div className="editor-section">
-                      <CodeMirror
-                        value={pythonCode}
-                        placeholder={'//Ketikan kode disini!'}
-                        height="150px"
-                        theme="light"
-                        extensions={[
-                          // python(),
-                          closeBrackets({ brackets: '' }) // <-- ini matikan auto-close kurung
-                        ]}
-                        onChange={(value) => setPythonCode(value)}
-                        onKeyDown={handleKeyDown}
-                      />
-                      <div
-                        style={{
-                          marginTop: '5px',
-                          marginBottom: '5px',
-                          display: 'flex',
-                          gap: '10px',
-                          // justifyContent: 'center',
-                        }}
-                      >
-                        <Button
-                          variant="success"
-                          disabled={!pythonCode.trim()}
-                          onClick={runAndCheck}
-                        >
-                          Run Code
-                        </Button>
+                <Col xs={12} md={9}>
+                  <div className="skulpt-container" 
+                  style={{ border: '2px solid #ccc',
+                    borderRadius: '8px',
+                    padding: '15px',
+                    display: 'flex',
+                    flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
+                    gap: '20px',
+                    flexWrap: 'wrap',
+                    width: '100%',
+                    boxSizing: 'border-box', }}>
+                    {/* Editor Section */}
+              <div
+                className="editor-section"
+                style={{
+                  flex: 1,
+                  minWidth: 0,
+                  width: '100%',
+                  boxSizing: 'border-box',
+                }}
+              >
+                <div style={{ width: '100%', maxWidth: '100%' }}>
+                  <CodeMirror
+                    value={pythonCode}
+                    placeholder={'//Ketikan kode disini!'}
+                    height="150px"
+                    theme="light"
+                    extensions={[closeBrackets({ brackets: '' })]}
+                    onChange={(value) => setPythonCode(value)}
+                    onKeyDown={handleKeyDown}
+                    style={{ width: '100%' }}
+                  />
+                </div>
+                <div
+                  style={{
+                    marginTop: '5px',
+                    marginBottom: '5px',
+                    display: 'flex',
+                    gap: '10px',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <Button
+                    variant="success"
+                    disabled={!pythonCode.trim()}
+                    onClick={runAndCheck}
+                  >
+                    Run Code
+                  </Button>
+                  <Button
+                    variant="warning"
+                    disabled={commandHistory.length === 0}
+                    onClick={undoLastCommand}
+                  >
+                    Undo
+                  </Button>
+                  <Button variant="secondary" onClick={resetCode}>
+                    <BsArrowClockwise /> Reset
+                  </Button>
+                </div>
+                <pre
+                  style={{
+                    height: '150px',
+                    overflowY: 'auto',
+                    backgroundColor: '#f8f9fa',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                    padding: '10px',
+                    fontFamily: 'monospace',
+                    fontSize: '14px',
+                    marginTop: '10px',
+                  }}
+                >
+                  <b>History Commands:</b>
+                  <br />
+                  {commandHistory.map((cmd, idx) => `> ${cmd}\n`)}
+                </pre>
+                <pre className="output" style={{ height: 60, overflow: 'auto' }}>
+                  {output}
+                </pre>
+              </div>
 
-                        <Button
-                          variant="warning"
-                          disabled={commandHistory.length === 0}
-                          onClick={undoLastCommand}
-                        >
-                          Undo
-                        </Button>
-
-
-
-
-                        <Button variant="secondary" onClick={resetCode}>
-                          <BsArrowClockwise /> Reset
-                        </Button>
-
-                        
-                      </div>
-                      <pre
-                        style={{
-                          height: '150px',
-                          overflowY: 'auto',
-                          backgroundColor: '#f8f9fa',
-                          border: '1px solid #ccc',
-                          borderRadius: '4px',
-                          padding: '10px',
-                          fontFamily: 'monospace',
-                          fontSize: '14px',
-                          marginTop: '10px'
-                        }}
-                      > <b>History Commands:</b><br/>
-                        {commandHistory.map((cmd, idx) => `> ${cmd}\n`)}
-                      </pre>
-
-                      <pre className="output" style={{ height: 60, overflow: 'auto' }}>{output}</pre>
-                    </div>
-                    <div className="canvas-section" style={{width:400,height:400}}>
-                      <div id="mycanvas"></div>
-                    </div>
-                  </div>
+              {/* Canvas Section */}
+              <div
+                className="canvas-section"
+                style={{
+                  flex: isMobile ? 'none' : '0 0 400px',
+                  width: '100%',
+                  maxWidth: '400px',
+                  maxHeight: 400,
+                  alignSelf: isMobile ? 'center' : 'flex-start',
+                  overflowX: isMobile ? 'auto' : 'visible',
+                }}
+              >
+                <div id="mycanvas" style={{ width: '100%' }}></div>
+              </div>
+            </div>
                 </Col>
               </Row>
             </div>

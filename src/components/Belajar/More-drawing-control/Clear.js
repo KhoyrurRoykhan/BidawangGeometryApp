@@ -563,6 +563,18 @@ for i in range(100):
       setCollapsed(!collapsed);
     };
 
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768); // Atur sesuai breakpoint yang diinginkan
+      };
+
+      handleResize(); // inisialisasi
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
   return (
     <div className="pt-3" style={{ fontFamily: 'Verdana, sans-serif',
       display: "flex",
@@ -574,7 +586,7 @@ for i in range(100):
     }}>
       <div className='mt-5'
         style={{
-          width: collapsed ? "60px" : "250px",
+          width: collapsed ? "50px" : "250px",
           transition: "width 0.3s",
           backgroundColor: "#f0f0f0",
           // height: "100vh",
@@ -586,7 +598,7 @@ for i in range(100):
           paddingBottom:80
         }}
       >
-      <div className="p-2">
+      <div className="p-1">
           <Button variant="light" onClick={toggleSidebar}>
             <FaBars />
           </Button>
@@ -934,7 +946,15 @@ for i in range(100):
               backgroundColor: "#fff",
 
             }}>
-          <div style={{paddingLeft:50, paddingRight:50, paddingBottom:50}}>
+          
+          <div
+                style={{
+                  paddingLeft: isMobile ? 5 : 50,
+                  paddingRight: isMobile ? 5 : 50,
+                  paddingBottom: 50,
+                }}
+              >
+
           <h2 style={{
                 textAlign: 'center',
                 backgroundColor: '#198754',
@@ -988,9 +1008,9 @@ for i in range(100):
 
             <h5 style={{color:'black'}}>Contoh:</h5>
             <p>Membuat persegi berwarna hijau.</p>
-            <div className="d-flex flex-column flex-md-row align-items-center justify-content-center">
-              <div className="mb-4 mb-md-0 me-md-4" style={{ flex: 1, minWidth: 0 }}>
-                <CodeMirror
+            <Row className="align-items-center">
+              <Col md={6}>
+              <CodeMirror
                   value={`pencolor "blue" 
 forward 100
 circle 50
@@ -1005,15 +1025,24 @@ forward 100  `}
                   options={{ readOnly: 'nocursor' }}
                 />
                 <pre id='output1' className="output mt-2" style={{ height: 60 }}>{output1}</pre>
-              </div>
-
-              <div className="canvas-section text-center" style={{ flex: '0 0 auto' }}>
+              </Col>
+              <Col md={6} className="text-center">
+              <div className="canvas-section" 
+              style={{
+                flex: isMobile ? 'none' : '0 0 400px',
+                width: '100%',
+                maxWidth: '400px',
+                maxHeight: 400,
+                alignSelf: isMobile ? 'center' : 'flex-start',
+                overflowX: isMobile ? 'auto' : 'visible',}}>
                 <div
                   id="mycanvas-contoh1"
-                  style={{ width: 400, height: 400, maxWidth: '100%' }}
+                  style={{textAlign:'center, width: "100%"'}}
                 ></div>
               </div>
-            </div>
+              </Col>
+            </Row>
+        
 
             <br></br>
             <p><b>Hasil:</b> Bidawang akan menggambar lingkaran dengan garis biru, Setelah di clear atribut pencolor “blue” akan tetap aktif.</p>
@@ -1051,7 +1080,7 @@ forward 100  `}
             </ul>
             <Row>
                 {/* Kolom untuk Accordion */}
-                <Col xs={3} style={{ fontSize: '15px' }}>
+                <Col xs={12} md={3} style={{ fontSize: '15px', marginBottom: isMobile ? '20px' : '0' }}>
                   <Accordion activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
                   {[
                     { step: '1a', title: 'Pena Merah', code: 'pencolor "red"', description: 'Atur warna pena menjadi merah dengan perintah dibawah ini:' },
@@ -1090,28 +1119,46 @@ forward 100  `}
                 </Col>
 
                 {/* Kolom untuk Editor dan Canvas */}
-                <Col xs={9}>
-                  <div className="skulpt-container" style={{ border: '2px solid #ccc', borderRadius: '8px', padding: '15px' }}>
-                    <div className="editor-section">
-                      <CodeMirror
-                        value={pythonCode}
-                        placeholder={'//Ketikan kode disini!'}
-                        height="150px"
-                        theme="light"
-                        extensions={[
-                          // python(),
-                          closeBrackets({ brackets: '' }) // <-- ini matikan auto-close kurung
-                        ]}
-                        onChange={(value) => setPythonCode(value)}
-                        onKeyDown={handleKeyDown}
-                      />
+                <Col xs={12} md={9}>
+                  <div className="skulpt-container" 
+                  style={{ border: '2px solid #ccc',
+                    borderRadius: '8px',
+                    padding: '15px',
+                    display: 'flex',
+                    flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
+                    gap: '20px',
+                    flexWrap: 'wrap',
+                    width: '100%',
+                    boxSizing: 'border-box', }}>
+                    {/* Editor Section */}
+                    <div
+                      className="editor-section"
+                      style={{
+                        flex: 1,
+                        minWidth: 0,
+                        width: '100%',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                      <div style={{ width: '100%', maxWidth: '100%' }}>
+                        <CodeMirror
+                          value={pythonCode}
+                          placeholder={'//Ketikan kode disini!'}
+                          height="150px"
+                          theme="light"
+                          extensions={[closeBrackets({ brackets: '' })]}
+                          onChange={(value) => setPythonCode(value)}
+                          onKeyDown={handleKeyDown}
+                          style={{ width: '100%' }}
+                        />
+                      </div>
                       <div
                         style={{
                           marginTop: '5px',
                           marginBottom: '5px',
                           display: 'flex',
                           gap: '10px',
-                          // justifyContent: 'center',
+                          flexWrap: 'wrap',
                         }}
                       >
                         <Button
@@ -1121,7 +1168,6 @@ forward 100  `}
                         >
                           Run Code
                         </Button>
-
                         <Button
                           variant="warning"
                           disabled={commandHistory.length === 0}
@@ -1129,15 +1175,9 @@ forward 100  `}
                         >
                           Undo
                         </Button>
-
-
-
-
                         <Button variant="secondary" onClick={resetCode}>
                           <BsArrowClockwise /> Reset
                         </Button>
-
-                        
                       </div>
                       <pre
                         style={{
@@ -1149,18 +1189,33 @@ forward 100  `}
                           padding: '10px',
                           fontFamily: 'monospace',
                           fontSize: '14px',
-                          marginTop: '10px'
+                          marginTop: '10px',
                         }}
-                      > <b>History Commands:</b><br/>
+                      >
+                        <b>History Commands:</b>
+                        <br />
                         {commandHistory.map((cmd, idx) => `> ${cmd}\n`)}
                       </pre>
+                      <pre className="output" style={{ height: 60, overflow: 'auto' }}>
+                        {output}
+                      </pre>
+                    </div>
 
-                      <pre className="output" style={{ height: 60, overflow: 'auto' }}>{output}</pre>
-                    </div>
-                    <div className="canvas-section" style={{width:400,height:400}}>
-                      <div id="mycanvas"></div>
-                    </div>
-                  </div>
+                    {/* Canvas Section */}
+                    <div
+                      className="canvas-section"
+                      style={{
+                        flex: isMobile ? 'none' : '0 0 400px',
+                        width: '100%',
+                        maxWidth: '400px',
+                        maxHeight: 400,
+                        alignSelf: isMobile ? 'center' : 'flex-start',
+                        overflowX: isMobile ? 'auto' : 'visible',
+                      }}
+                    >
+                <div id="mycanvas" style={{ width: '100%' }}></div>
+              </div>
+            </div>
                 </Col>
               </Row>
             </div>        

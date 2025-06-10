@@ -121,7 +121,7 @@ const LoginGuru = () => {
               </div>
             </div>
             <div style={{ marginBottom: '20px', textAlign: 'right' }}>
-              <a href="/forgot-password-guru" style={{ color: '#198754', textDecoration: 'none' }}>Lupa kata sandi?</a>
+              {/* <a href="/forgot-password-guru" style={{ color: '#198754', textDecoration: 'none' }}>Lupa kata sandi?</a> */}
             </div>
             <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
               <button
