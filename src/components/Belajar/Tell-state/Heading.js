@@ -221,7 +221,7 @@ const handleSubmit = async () => {
     setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Dalam canvas Bidawang atau Python Turtle, arah 0 derajat menunjuk ke Timur (kanan).' : 'Salah! Arah 0 derajat pada canvas Bidawang menunjuk ke Timur (kanan), bukan ' + (selectedAnswer === 'A' ? 'Utara' : selectedAnswer === 'C' ? 'Barat' : 'Selatan') + '.' }));
 
   } else if (currentQuestion === 2) {
-    const isCorrect2 = selectedAnswer2 === 'B';
+    const isCorrect2 = selectedAnswer2 === 'A';
     setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Jika bidawang diputar 90 derajat ke kiri dari posisi 0 (Timur), maka heading-nya menjadi 90 derajat, yang menunjuk ke Utara.' : 'Salah! Setelah diputar 90 derajat ke kiri dari posisi awal (0 derajat / Timur), bidawang akan menghadap Utara dengan heading 90 derajat.' }));
 
     if (isCorrect2) {
@@ -1305,14 +1305,17 @@ print heading`}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Dalam canvas Bidawang, arah 0 derajat mengarah ke mana?</p>
+        <p>Perhatikan kode perintah berikut:</p>
+        <p><pre>{`right 90  
+print heading`}</pre></p>
+<p>Nilai yang akan muncul pada Output Log adalah …</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'Utara (atas).' },
-        { key: 'B', label: 'Timur (kanan).' },
-        { key: 'C', label: 'Barat (kiri).' },
-        { key: 'D', label: 'Selatan (bawah).' },
+        { key: 'A', label: '270' },
+        { key: 'B', label: '90' },
+        { key: 'C', label: '0' },
+        { key: 'D', label: '180' },
       ].map(({ key, label }) => (
         <Button
           key={key}
@@ -1338,34 +1341,36 @@ print heading`}
   )}
 
   {/* SOAL 2 */}
-  {currentQuestion === 2 && (
-    <Form.Group controlId="question2">
-      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <b>Soal 2 dari 2:</b>
-        <p>Apa hasil dari perintah berikut jika bidawang sudah diputar 90 derajat ke kiri?</p>
-        <pre><code>print heading</code></pre>
-      </Form.Label>
+  {/* SOAL 2 */}
+{currentQuestion === 2 && (
+  <Form.Group controlId="question2">
+    <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+      <b>Soal 2 dari 2:</b>
+      <p>Jika arah awal Bidawang adalah 0°, lalu dijalankan kode berikut:</p>
+      <pre><code>right 45{'\n'}left 90{'\n'}print heading</code></pre>
+      <p>Nilai yang ditampilkan pada Output Log adalah …</p>
+    </Form.Label>
 
-      {[
-        { key: 'A', label: '0' },
-        { key: 'B', label: '90' },
-        { key: 'C', label: '180' },
-        { key: 'D', label: '270' },
-      ].map(({ key, label }) => (
-        <Button
-          key={key}
-          variant={selectedAnswer2 === key ? "success" : "outline-success"}
-          onClick={() => handleAnswerChange("question2", key)}
-          className="w-100 mb-2 text-start"
-          style={{
-            fontSize: "16px",
-            backgroundColor: selectedAnswer2 === key ? "#2DAA9E" : "",
-            borderColor: "#2DAA9E"
-          }}
-        >
-          {key}. {label}
-        </Button>
-      ))}
+    {[
+      { key: 'A', label: '45' },
+      { key: 'B', label: '90' },
+      { key: 'C', label: '315' },
+      { key: 'D', label: '135' },
+    ].map(({ key, label }) => (
+      <Button
+        key={key}
+        variant={selectedAnswer2 === key ? "success" : "outline-success"}
+        onClick={() => handleAnswerChange("question2", key)}
+        className="w-100 mb-2 text-start"
+        style={{
+          fontSize: "16px",
+          backgroundColor: selectedAnswer2 === key ? "#2DAA9E" : "",
+          borderColor: "#2DAA9E"
+        }}
+      >
+        {key}. {label}
+      </Button>
+    ))}
 
       {feedback.question2 && (
         <Alert variant={feedback.question2 === "Benar! Jika bidawang diputar 90 derajat ke kiri dari posisi 0 (Timur), maka heading-nya menjadi 90 derajat, yang menunjuk ke Utara." ? "success" : "danger"} className="mt-3">

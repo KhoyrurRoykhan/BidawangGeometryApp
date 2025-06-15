@@ -233,7 +233,7 @@ const handleAnswerChange = (questionId, answer) => {
 
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
-    const isCorrect1 = selectedAnswer === 'B';
+    const isCorrect1 = selectedAnswer === 'C';
     setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi `distance` digunakan untuk menghitung jarak Euclidean dari posisi bidawang saat ini ke titik (x, y).' : `Salah! Fungsi \`distance\` sebenarnya digunakan untuk menghitung jarak lurus (Euclidean) dari posisi sekarang ke koordinat (x, y), bukan untuk ${selectedAnswer === 'A' ? 'menentukan arah' : selectedAnswer === 'C' ? 'menggerakkan posisi' : 'menghapus jarak'}.` }));
 
   } else if (currentQuestion === 2) {
@@ -1502,32 +1502,32 @@ print distance 100 100`}
               <Form>
   {/* SOAL 1 */}
   {currentQuestion === 1 && (
-    <Form.Group controlId="question1">
-      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <b>Soal 1 dari 2:</b>
-        <p> Apa fungsi dari distance?</p>
-      </Form.Label>
+  <Form.Group controlId="question1">
+    <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+      <b>Soal 1 dari 2:</b>
+      <p>Fungsi dari kode perintah <code>distance</code> adalah …</p>
+    </Form.Label>
 
-      {[
-        { key: 'A', label: 'Mengembalikan arah bidawang menuju titik (x, y).' },
-        { key: 'B', label: 'Menghitung jarak Euclidean antara posisi saat ini dan koordinat (x, y).' },
-        { key: 'C', label: 'Mengatur bidawang untuk bergerak ke posisi (x, y).' },
-        { key: 'D', label: 'Menghapus jarak antara dua titik.' },
-      ].map(({ key, label }) => (
-        <Button
-          key={key}
-          variant={selectedAnswer === key ? "success" : "outline-success"}
-          onClick={() => handleAnswerChange("question1", key)}
-          className="w-100 mb-2 text-start"
-          style={{
-            fontSize: "16px",
-            backgroundColor: selectedAnswer === key ? "#2DAA9E" : "",
-            borderColor: "#2DAA9E"
-          }}
-        >
-          {key}. {label}
-        </Button>
-      ))}
+    {[
+      { key: 'A', label: 'Mengatur kecepatan gerakan bidawang' },
+      { key: 'B', label: 'Menentukan arah hadap bidawang' },
+      { key: 'C', label: 'Mengukur jarak antara posisi bidawang dan titik tertentu' },
+      { key: 'D', label: 'Memindahkan bidawang ke titik tujuan' },
+    ].map(({ key, label }) => (
+      <Button
+        key={key}
+        variant={selectedAnswer === key ? "success" : "outline-success"}
+        onClick={() => handleAnswerChange("question1", key)}
+        className="w-100 mb-2 text-start"
+        style={{
+          fontSize: "16px",
+          backgroundColor: selectedAnswer === key ? "#2DAA9E" : "",
+          borderColor: "#2DAA9E"
+        }}
+      >
+        {key}. {label}
+      </Button>
+    ))}
 
       {feedback.question1 && (
         <Alert variant={feedback.question1 === 'Benar! Fungsi `distance` digunakan untuk menghitung jarak Euclidean dari posisi bidawang saat ini ke titik (x, y).' ? "success" : "danger"} className="mt-3">
@@ -1538,34 +1538,35 @@ print distance 100 100`}
   )}
 
   {/* SOAL 2 */}
-  {currentQuestion === 2 && (
-    <Form.Group controlId="question2">
-      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <b>Soal 2 dari 2:</b>
-        <p>Jika turtle berada di koordinat (0, 0), apa hasil dari perintah berikut?</p>
-        <pre><code>print distance 0 100</code></pre>
-      </Form.Label>
+{currentQuestion === 2 && (
+  <Form.Group controlId="question2">
+    <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+      <b>Soal 2 dari 2:</b>
+      <p>Perhatikan kode perintah di bawah ini:</p>
+      <pre><code>print distance 100 0</code></pre>
+      <p>Jika turtle berada di koordinat (0, 0), hasil yang muncul pada Output Log ketika kode tersebut dijalankan adalah …</p>
+    </Form.Label>
 
-      {[
-        { key: 'A', label: '50' },
-        { key: 'B', label: '75' },
-        { key: 'C', label: '100' },
-        { key: 'D', label: '125' },
-      ].map(({ key, label }) => (
-        <Button
-          key={key}
-          variant={selectedAnswer2 === key ? "success" : "outline-success"}
-          onClick={() => handleAnswerChange("question2", key)}
-          className="w-100 mb-2 text-start"
-          style={{
-            fontSize: "16px",
-            backgroundColor: selectedAnswer2 === key ? "#2DAA9E" : "",
-            borderColor: "#2DAA9E"
-          }}
-        >
-          {key}. {label}
-        </Button>
-      ))}
+    {[
+      { key: 'A', label: '0' },
+      { key: 'B', label: '50' },
+      { key: 'C', label: '100' },
+      { key: 'D', label: '-100' },
+    ].map(({ key, label }) => (
+      <Button
+        key={key}
+        variant={selectedAnswer2 === key ? "success" : "outline-success"}
+        onClick={() => handleAnswerChange("question2", key)}
+        className="w-100 mb-2 text-start"
+        style={{
+          fontSize: "16px",
+          backgroundColor: selectedAnswer2 === key ? "#2DAA9E" : "",
+          borderColor: "#2DAA9E"
+        }}
+      >
+        {key}. {label}
+      </Button>
+    ))}
 
       {feedback.question2 && (
         <Alert variant={feedback.question2 === 'Benar! Jarak dari titik (0, 0) ke (0, 100) adalah 100 satuan karena hanya bergerak di sumbu Y.' ? "success" : "danger"} className="mt-3">

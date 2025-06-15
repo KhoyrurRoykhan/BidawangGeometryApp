@@ -1528,7 +1528,7 @@ begin_fill
 circle 50
 end_fill`}</code></pre>
         
-        <p>Apa hasil dari kode tersebut?</p>
+        <p>Hasil dari kode tersebut jika dijalankan adalah ...</p>
       </Form.Label>
 
       {[
@@ -1565,7 +1565,7 @@ end_fill`}</code></pre>
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Apa fungsi dari end_fill dalam proses pengisian warna?</p>
+        <p>2.	Fungsi dari end_fill dalam proses pengisian warna adalah ...</p>
       </Form.Label>
 
       {[

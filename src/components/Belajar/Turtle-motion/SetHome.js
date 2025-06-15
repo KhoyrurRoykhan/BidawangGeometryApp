@@ -1285,14 +1285,14 @@ home`}
                   <Form.Group controlId="question1">
                     <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
                       <b>Soal 1 dari 2:</b>
-                      <p>Apa fungsi dari perintah home?</p>
+                      <p>Kegunaan perintah home dalam menggambar beberapa pola dari titik pusat canvas adalah ...</p>
                     </Form.Label>
 
                     {[
-                      { key: 'A', label: 'Menghapus seluruh gambar yang telah dibuat.' },
-                      { key: 'B', label: 'Mengembalikan Bidawang ke posisi awal (0, 0) dan mengatur arahnya ke timur.' },
-                      { key: 'C', label: 'Utara.' },
-                      { key: 'D', label: 'Memindahkan Bidawang ke posisi y = 0.' },
+                      { key: 'A', label: 'Membuat Bidawang menghapus semua gambar.' },
+                      { key: 'B', label: 'Mengembalikan posisi dan arah awal, sehingga memudahkan memulai pola baru dari titik Tengah.' },
+                      { key: 'C', label: 'Memperbesar ukuran canvas.' },
+                      { key: 'D', label: 'Mengubah warna garis.' },
                     ].map(({ key, label }) => (
                       <Button
                         key={key}
@@ -1322,7 +1322,7 @@ home`}
                   <Form.Group controlId="question2">
                     <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
                       <b>Soal 2 dari 2:</b>
-                      <p>Jika posisi awal Bidawang adalah (100, 100) dan arahnya ke barat, apa yang terjadi setelah menggunakan home?</p>
+                      <p>2.	Hasil dari penggunaan perintah home saat posisi Bidawang berada di (100, 100) dan menghadap ke barat adalah ...</p>
                     </Form.Label>
 
                     {[

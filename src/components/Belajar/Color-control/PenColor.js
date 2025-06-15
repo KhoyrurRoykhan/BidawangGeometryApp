@@ -1266,9 +1266,10 @@ left 90`}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa yang terjadi jika kode berikut dijalankan?</p>
+        <p>Perhatikan kode dibawah ini:</p>
         <pre><code>{`pencolor "red"
 forward 100`}</code></pre>
+        <p>Hasil dari kode perintah tersebut jika diajalankan adalah ...</p>
       </Form.Label>
 
       {[
@@ -1305,7 +1306,7 @@ forward 100`}</code></pre>
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Apa format yang tidak valid untuk parameter warna dalam fungsi pencolor?</p>
+        <p>2.	Format yang tidak valid untuk parameter warna dalam fungsi pencolor adalah ...</p>
       </Form.Label>
 
       {[

@@ -225,11 +225,11 @@ const handleAnswerChange = (questionId, answer) => {
 
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
-    const isCorrect1 = selectedAnswer === 'B';
+    const isCorrect1 = selectedAnswer === 'C';
     setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `left 90` akan membuat Bidawang berputar ke kiri (berlawanan arah jarum jam) sebesar 90 derajat.' : 'Salah! Perintah `left 90` berarti Bidawang harus berputar ke kiri sebesar 90 derajat, bukan ke kanan atau dengan derajat yang berbeda.' }));
 
   } else if (currentQuestion === 2) {
-    const isCorrect2 = selectedAnswer2 === 'D';
+    const isCorrect2 = selectedAnswer2 === 'C';
     setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Jika Bidawang menghadap ke kanan dan diberi perintah `right 90`, maka ia akan berputar ke kanan sebesar 90 derajat, sehingga menghadap ke bawah.' : 'Salah! Perintah `right 90` membuat Bidawang berputar ke kanan 90 derajat dari arah semula (kanan), sehingga posisinya menjadi menghadap ke bawah.' }));
 
     if (isCorrect2) {
@@ -1522,16 +1522,18 @@ const resetCodeChallanges = () => {
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Perhatikan kode berikut ini:</p>
-        <pre><code>left 90</code></pre>
-        <p>Apa yang terjadi dengan Bidawang jika kode tersebut dijalankan?</p>
+        <p>Perhatikan kode perintah dibawah ini:</p>
+        <pre><code>{`left 90
+left 180
+right 90`}</code></pre>
+        <p>Jika Bidawang awalnya menghadap ke kanan, arah bidawang setelah kode perintah dijalankan adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'Berputar ke kanan 90 derajat' },
-        { key: 'B', label: 'Berputar ke kiri 90 derajat' },
-        { key: 'C', label: 'Berputar ke kanan 60 derajat' },
-        { key: 'D', label: 'Berputar ke kiri 60 derajat' },
+        { key: 'A', label: 'Kanan' },
+        { key: 'B', label: 'Atas' },
+        { key: 'C', label: 'Kiri' },
+        { key: 'D', label: 'Bawah' },
       ].map(({ key, label }) => (
         <Button
           key={key}
@@ -1561,16 +1563,14 @@ const resetCodeChallanges = () => {
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Bidawang sedang menghadap ke kanan. Jika kita memberikan perintah berikut:</p>
-        <pre><code>right 90</code></pre>
-        <p>Kemana arah Bidawang akan menghadap setelah perintah tersebut dijalankan?</p>
+        <p>2.	Seorang siswa ingin memutar arah Bidawang ke kanan sebanyak setengah putaran. Sudut yang perlu digunakan adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'Ke kiri' },
-        { key: 'B', label: 'Ke kanan' },
-        { key: 'C', label: 'Ke atas' },
-        { key: 'D', label: 'Ke bawah' },
+        { key: 'A', label: '90°' },
+        { key: 'B', label: '120°' },
+        { key: 'C', label: '180°' },
+        { key: 'D', label: '360°' },
       ].map(({ key, label }) => (
         <Button
           key={key}

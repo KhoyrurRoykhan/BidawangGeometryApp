@@ -208,7 +208,7 @@ const handleSubmit = async () => {
     setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? "Benar! Perintah `dot` digunakan untuk menggambar titik di posisi turtle saat ini. Kamu juga bisa menentukan ukuran dan warnanya." : 'Salah! Perintah `dot` bukan untuk menggambar lingkaran penuh, busur, atau menghapus titik, tetapi untuk menggambar titik di posisi turtle.' }));
 
   } else if (currentQuestion === 2) {
-    const isCorrect2 = selectedAnswer2 === 'A';
+    const isCorrect2 = selectedAnswer2 === 'C';
     setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! `dot 15 "blue"` akan menggambar titik berwarna biru dengan diameter 15 piksel di posisi turtle saat ini.' : 'Salah! Perintah `dot 15, "blue"` menggambar *titik*, bukan lingkaran penuh atau busur, dan hasilnya langsung tampak di posisi turtle.' }));
 
     if (isCorrect2) {
@@ -1330,7 +1330,7 @@ setposition 200 200`}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa fungsi dari perintah dot?</p>
+        <p>1.	Fungsi kode perintah dot adalah ...</p>
       </Form.Label>
 
       {[
@@ -1367,16 +1367,16 @@ setposition 200 200`}
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Perhatikan perintah dibawah ini: </p>
-        <pre><code>dot 15 "blue"</code></pre>
-        <p>Apa yang terjadi jika perintah tersebut dijalankan?</p>
+        <p>Perhatikan kode perintah dibawah ini:</p>
+        <pre><code>dot 40 "yellow"</code></pre>
+        <p>Hasil dari menjalankan kode perintah tersebut adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'Titik biru dengan ukuran 15 piksel digambar di posisi saat ini.' },
-        { key: 'B', label: 'Lingkaran biru dengan ukuran 15 piksel digambar di posisi saat ini.' },
-        { key: 'C', label: 'Lingkaran penuh biru dengan jari-jari 15 digambar di posisi saat ini.' },
-        { key: 'D', label: 'Tidak ada yang terjadi.' },
+        { key: 'A', label: 'Menggambar titik dengan warna default dan ukuran.' },
+        { key: 'B', label: 'Menggambar lingkaran ungu dengan jari-jari.' },
+        { key: 'C', label: 'Menggambar titik kuning dengan ukuran 40.' },
+        { key: 'D', label: 'Menggambar titik di posisi (40, "yellow").' },
       ].map(({ key, label }) => (
         <Button
           key={key}

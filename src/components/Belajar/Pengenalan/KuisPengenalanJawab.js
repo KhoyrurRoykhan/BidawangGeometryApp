@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const quizData = [
   {
-    question: 'Apa yang dimaksud dengan canvas?',
+    question: 'Fungsi canvas yang berada pada lingkungan kerja turtle adalah ...',
     options: [
       'tempat menulis kode',
       'tombol menyimpan file',
@@ -17,7 +17,7 @@ const quizData = [
     answer: 'Area tempat Bidawang bergerak dan menggambar'
   },
   {
-    question: 'Di titik manakah awal posisi bidawang?',
+    question: 'Titik awal posisi Bidawang di dalam canvas adalah ...',
     options: [
       '(200, 200)',
       '(0, 0)',
@@ -27,84 +27,84 @@ const quizData = [
     answer: '(0, 0)'
   },
   {
-    question: 'Perintah apa yang digunakan untuk menggerakkan Bidawang ke depan?',
-    options: [
-      'left',
-      'backward',
-      'run',
-      'forward'
-    ],
-    answer: 'forward'
-  },
-  {
-    question: 'Komponen lingkungan kerja manakah yang digunakan untuk menjalankan kode?',
-    options: [
-      'Text Editor',
-      'Tombol "Run Code"',
-      'Tombol "Reset"',
-      'Output Log'
-    ],
-    answer: 'Tombol "Run Code"'
-  },
-  {
-    question: 'Tombol "Reset" digunakan untuk...',
-    options: [
-      'Menyimpan file ke komputer',
-      'Menghapus perintah forward',
-      'Menghapus hasil gambar dan mengulang dari awal',
-      'Menjalankan kode Bidawang'
-    ],
-    answer: 'Menghapus hasil gambar dan mengulang dari awal'
-  },
-  {
-    question: 'Di lingkungan kerja Bidawang, tempat kita mengetikan perintah disebut ...',
+    question: 'Komponen yang digunakan untuk mengetikkan perintah penggerak Bidawang disebut ...',
     options: [
       'Output Log',
       'Canvas',
       'Text Editor',
-      'Kode Button'
+      'Tombol Reset'
     ],
     answer: 'Text Editor'
   },
   {
-    question: 'Apa yang terjadi jika Bidawang diberi perintah right 180?',
+    question: 'Tindakan yang terjadi saat tombol "Run Code" ditekan adalah ...',
     options: [
-      'Bidawang akan bergerak ke kiri 180 langkah',
-      'Bidawang berbalik arah ke belakang',
-      'Bidawang menggambar lingkaran',
-      'Bidawang tidak bergerak sama sekali'
+      'Bidawang dihapus dari canvas',
+      'Perintah pada canvas direset',
+      'Perintah dijalankan dan pergerakan Bidawang divisualisasikan',
+      'Output log dikosongkan'
     ],
-    answer: 'Bidawang berbalik arah ke belakang'
+    answer: 'Perintah dijalankan dan pergerakan Bidawang divisualisasikan'
   },
   {
-    question: 'Apa fungsi dari perintah left 90 dalam menggerakkan Bidawang?',
+    question: 'Fungsi tombol "Reset" dalam lingkungan kerja adalah untuk ...',
     options: [
-      'Membuat Bidawang bergerak maju 90 langkah',
-      'Memutar Bidawang ke kanan 90 derajat',
-      'Memutar Bidawang ke kiri 90 derajat',
-      'Mengembalikan Bidawang ke posisi awal'
+      'Menyimpan perintah kode',
+      'Menampilkan hasil program',
+      'Menghapus semua perintah dan hasil gambar',
+      'Menampilkan kesalahan program'
     ],
-    answer: 'Memutar Bidawang ke kiri 90 derajat'
+    answer: 'Menghapus semua perintah dan hasil gambar'
   },
   {
-    question: 'Apa yang akan terjadi jika pengguna mengetikkan kode yang salah di Text Editor?',
+    question: 'Fungsi komponen Output Log dalam lingkungan kerja adalah untuk ...',
     options: [
-      'Bidawang tetap akan berjalan seperti biasa',
-      'Tidak akan terjadi apa-apa',
-      'Akan muncul pesan eror di Output Log',
-      'Canvas akan langsung tertutup'
+      'Menggambar hasil perintah',
+      'Menyimpan hasil karya',
+      'Menampilkan pesan atau kesalahan dari kode',
+      'Mengatur posisi awal Bidawang'
     ],
-    answer: 'Akan muncul pesan eror di Output Log'
+    answer: 'Menampilkan pesan atau kesalahan dari kode'
   },
   {
-    question: 'Titik (200, -200) berada di bagian mana dari canvas?',
+    question: 'Seorang siswa ingin memulai ulang dan menghapus semua jejak Bidawang. Tindakan yang harus dilakukan adalah ...',
     options: [
-      'Pojok kiri atas',
-      'Pusat canvas',
-      'Pojok kanan bawah',
-      'Pojok kiri bawah'
+      'Klik "Run Code"',
+      'Tekan "Reset"',
+      'Cek Output Log',
+      'Ganti kode menjadi home'
     ],
-    answer: 'Pojok kanan bawah'
+    answer: 'Tekan "Reset"'
+  },
+  {
+    question: 'Seorang siswa melihat bahwa perintah forward 100 tidak menghasilkan gerakan apa pun di canvas. Setelah memeriksa kembali, ia menyadari bahwa tidak menekan tombol tertentu. Kesalahan yang dilakukannya adalah ...',
+    options: [
+      'Tidak mengetik perintah',
+      'Menekan "Reset" terlalu cepat',
+      'Tidak menekan tombol "Run Code"',
+      'Salah memahami posisi Bidawang'
+    ],
+    answer: 'Tidak menekan tombol "Run Code"'
+  },
+  {
+    question: 'Komponen lingkungan kerja yang sebaiknya diperiksa saat hasil pergerakan Bidawang tidak sesuai adalah ...',
+    options: [
+      'Canvas, untuk melihat posisi awal',
+      'Text Editor, untuk memindahkan Bidawang',
+      'Output Log, karena menampilkan pesan kesalahan',
+      'Reset, untuk memulai kembali'
+    ],
+    answer: 'Output Log, karena menampilkan pesan kesalahan'
+  },
+  {
+    question: 'Canvas memiliki ukuran 400×400 piksel. Jika Bidawang berada di tengah canvas dan kemudian digerakkan maju sejauh 250 piksel, maka yang terjadi adalah ...',
+    options: [
+      'Bidawang tetap berada di tengah canvas karena bergerak simetris',
+      'Bidawang tidak terlihat seluruhnya karena melewati batas kanan canvas',
+      'Bidawang memutar arah dan kembali ke posisi semula',
+      'Tidak ada yang terjadi karena nilai 250 terlalu kecil untuk pergerakan'
+    ],
+    answer: 'Bidawang tidak terlihat seluruhnya karena melewati batas kanan canvas'
   }
 ];
 

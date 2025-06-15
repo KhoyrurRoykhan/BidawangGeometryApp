@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const quizData = [
   {
-    question: 'Apa yang terjadi jika metode pendown tidak dipanggil setelah penup?',
+    question: 'Ketika kode perintah pendown tidak dipanggil setelah penup maka yang terjadi adalah ...',
     options: [
       'Bidawang akan terus menggambar saat bergerak.',
       'Bidawang akan berhenti bergerak.',
@@ -18,7 +18,7 @@ const quizData = [
     answer: 'Bidawang tidak akan menggambar garis saat bergerak.'
   },
   {
-    question: 'Perhatikan kode berikut:```penup\nsetposition 100 100\npendown\nsetposition 200 200```Apa yang terjadi setelah kode tersebut dijalankan?',
+    question: 'Perhatikan kode berikut:```penup\nsetposition 100 100\npendown\nsetposition 200 200```Hasil dari kode perintah tersebut ketika dijalankan adalah ...',
     options: [
       'Bidawang menggambar garis dari titik awal ke (100, 100).',
       'Bidawang menggambar garis dari (100, 100) ke (200, 200).',
@@ -28,7 +28,7 @@ const quizData = [
     answer: 'Bidawang menggambar garis dari (100, 100) ke (200, 200).'
   },
   {
-    question: 'Apa efek dari penggunaan perintah pensize 10 sebelum menggambar?',
+    question: 'Hasil dari penggunaan fungsi pensize 10 sebelum menggambar adalah ...',
     options: [
       'Mengganti warna garis menjadi hitam.',
       'Mengubah ketebalan garis menjadi 10 piksel.',
@@ -38,7 +38,7 @@ const quizData = [
     answer: 'Mengubah ketebalan garis menjadi 10 piksel.'
   },
   {
-    question: 'Jika kode berikut dijalankan:```pensize 5\ncircle 30\npensize 2\ncircle 50```Apa yang akan terlihat pada hasil akhir?',
+    question: 'Perhatikan kode perintah dibawah ini:```pensize 5\ncircle 30\npensize 2\ncircle 50```Hasil dari kode perintah tersebut ketika dijalankan adalah ...',
     options: [
       'Dua lingkaran dengan ketebalan garis yang sama.',
       'Lingkaran pertama memiliki garis lebih tebal daripada lingkaran kedua.',
@@ -48,7 +48,7 @@ const quizData = [
     answer: 'Lingkaran pertama memiliki garis lebih tebal daripada lingkaran kedua.'
   },
   {
-    question: 'Apa yang dikembalikan oleh metode isdown jika pena sedang dalam posisi turun?',
+    question: 'Nilai yang dikembalikan oleh kode perintah isdown ketika pena berada dalam posisi turun adalah ...',
     options: [
       'True',
       'False',
@@ -58,7 +58,7 @@ const quizData = [
     answer: 'True'
   },
   {
-    question: 'Perhatikan kode berikut:```pendown\nprint isdown\npenup\nprint isdown```Apa output dari kode tersebut?',
+    question: 'Perhatikan kode berikut:```pendown\nprint isdown\npenup\nprint isdown```Hasil yang muncul pada output log ketika perintah tersebut dijalankan adalah ...',
     options: [
       'True, False',
       'False, True',
@@ -68,7 +68,7 @@ const quizData = [
     answer: 'True, False'
   },
   {
-    question: 'Apa yang terjadi jika kode berikut dijalankan?```pencolor "red"\nforward 100```',
+    question: 'Perhatikan kode berikut:```pencolor "red"\nforward 100```Hasil dari kode perintah tersebut jika diajalankan adalah ...',
     options: [
       'Bidawang menggambar garis merah sepanjang 100 piksel.',
       'Bidawang menggambar garis hitam sepanjang 100 piksel.',
@@ -78,7 +78,7 @@ const quizData = [
     answer: 'Bidawang menggambar garis merah sepanjang 100 piksel.'
   },
   {
-    question: 'Apa format yang tidak valid untuk parameter warna dalam fungsi pencolor?',
+    question: '8.	Format yang tidak valid untuk parameter warna dalam fungsi pencolor adalah ...',
     options: [
       '"blue"',
       '"#00FF00"',
@@ -88,7 +88,7 @@ const quizData = [
     answer: '"bold_red"'
   },
   {
-    question: 'Perhatikan kode berikut:```fillcolor "yellow"\nforward 100\nbegin_fill\ncircle 50\nend_fill```Apa hasil dari kode tersebut?',
+    question: 'Perhatikan kode berikut:```fillcolor "yellow"\nforward 100\nbegin_fill\ncircle 50\nend_fill```Hasil dari kode tersebut jika dijalankan adalah ...',
     options: [
       'Sebuah lingkaran dengan warna garis kuning tanpa isian.',
       'Sebuah lingkaran dengan warna isian kuning.',
@@ -98,7 +98,7 @@ const quizData = [
     answer: 'Sebuah lingkaran dengan warna isian kuning.'
   },
   {
-    question: 'Apa fungsi dari end_fill dalam proses pengisian warna?',
+    question: 'Fungsi dari end_fill dalam proses pengisian warna adalah …',
     options: [
       'Mengatur warna isian menjadi transparan.',
       'Menandai akhir area yang akan diisi warna.',

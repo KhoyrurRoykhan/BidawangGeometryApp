@@ -1267,7 +1267,7 @@ forward 100  `}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa perbedaan utama antara fungsi clear dan reset?</p>
+        <p>Perbedaan antara fungsi clear dan reset adalah ...</p>
       </Form.Label>
 
       {[
@@ -1305,12 +1305,12 @@ forward 100  `}
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
         <p>Perhatikan kode berikut:</p>
-        <pre><code>{`color "blue"
+        <pre><code>{`pencolor "blue"
 circle 50
 clear
 forward 100
 circle 30`}</code></pre>
-        <p>apa warna garis lingkaran kedua?</p>
+        <p>Warna garis lingkaran kedua yang dihasilkan kode tersebut adalah ...</p>
       </Form.Label>
 
       {[

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const quizData = [
   {
-    question: 'Apa perbedaan utama antara perintah left dan right?',
+    question: 'Perbedaan utama antara perintah left dan right adalah ...',
     options: [
       'left memutar bidawang ke arah kanan, sementara right memutar bidawang ke arah kiri.',
       'left memutar bidawang ke arah kiri, sementara right memutar bidawang ke arah kanan.',
@@ -17,27 +17,27 @@ const quizData = [
     answer: 'left memutar bidawang ke arah kiri, sementara right memutar bidawang ke arah kanan.'
   },
   {
-    question: 'Perintah apa yang digunakan untuk menggerakkan turtle ke depan sejauh 150 piksel?',
+    question: 'Perhatikan kode perintah berikut:```right(90)\nbackward(100)```Jika awalnya Bidawang menghadap ke kanan, posisi bidawang setelah kode dijalankan adalah ...',
     options: [
-      'backward 150',
-      'forward 150',
-      'left 150',
-      'right 150'
+      '100 piksel di atas titik awal',
+      '100 piksel di bawah titik awal',
+      '100 piksel ke kanan titik awal',
+      '100 piksel ke kiri titik awal'
     ],
-    answer: 'forward 150'
+    answer: '100 piksel di atas titik awal'
   },
   {
-    question: 'Jika posisi awal Bidawang adalah (0, 0), dan Anda menggunakan perintah setposition 50 100, di mana posisi akhir Bidawang?',
+    question: 'Seorang siswa ingin menggambar segitiga dengan menggunakan tiga titik koordinat: (0,0), (100,0), dan (50,100). Urutan perintah setposition yang tepat untuk menggambar bentuk segitiga adalah ...',
     options: [
-      '(100, 50)',
-      '(50, 0)',
-      '(0, 100)',
-      '(50, 100)'
+      'setposition 100 0 → setposition 50 100 → setposition 0 0',
+      'setposition 0 0 → setposition 100 100 → setposition 0 100',
+      'setposition 0 0 → setposition 50 50 → setposition 0 100',
+      'setposition 50 100 → setposition 0 0 → setposition 100 0'
     ],
-    answer: '(50, 100)'
+    answer: 'setposition 100 0 → setposition 50 100 → setposition 0 0'
   },
   {
-    question: 'Apa hasil dari perintah setx 200 jika posisi awal turtle adalah (100,50)?',
+    question: 'Perhatikan kode perintah berikut:```setx 200```Jika posisi bidawang saat ini adalah (100,50), Setelah kode tersebut dijalankan yang terjadi adalah ...',
     options: [
       'Posisi baru menjadi (200, 50).',
       'Posisi baru menjadi (100, 200).',
@@ -47,17 +47,17 @@ const quizData = [
     answer: 'Posisi baru menjadi (200, 50).'
   },
   {
-    question: 'Apa yang terjadi jika Anda menjalankan perintah circle -50?',
+    question: 'Hasil dari menjalankan perintah circle 50 adalah ...',
     options: [
       'Tidak ada lingkaran yang Digambar.',
-      'Lingkaran dengan jari-jari 50 akan digambar berlawanan dengan arah.',
-      'Lingkaran dengan jari-jari 50 akan digambar dengan arah normal (berlawanan arah jarum jam).',
-      'Lingkaran kecil akan digambar di posisi saat ini.'
+      'Lingkaran dengan jari-jari 50 akan digambar.',
+      'Lingkaran dengan jari-jari 100 akan digambar.',
+      'Bidawang akan bergerak maju 50 langakah.'
     ],
-    answer: 'Lingkaran dengan jari-jari 50 akan digambar berlawanan dengan arah.'
+    answer: 'Lingkaran dengan jari-jari 50 akan digambar.'
   },
   {
-    question: 'Jika posisi awal Bidawang adalah (100, 100) dan arahnya ke barat, apa yang terjadi setelah menggunakan home?',
+    question: 'Hasil dari penggunaan perintah home saat posisi Bidawang berada di (100, 100) dan menghadap ke barat adalah ...',
     options: [
       'Bidawang tetap di posisi (100, 100).',
       'Bidawang kembali ke posisi (0, 0) dengan arah tetap ke barat.',
@@ -67,27 +67,27 @@ const quizData = [
     answer: 'Bidawang kembali ke posisi (0, 0) dan menghadap ke timur.'
   },
   {
-    question: 'Apa fungsi dari position?',
+    question: 'Jenis data yang dikembalikan oleh perintah position adalah ...',
     options: [
-      'Memberitahu arah pergerakan turtle saat ini.',
-      'Menghapus posisi turtle sebelumnya.',
-      'Memberitahu posisi turtle saat ini dalam bentuk koordinat (x, y).',
-      'Mengatur posisi turtle ke titik tertentu.'
+      'Bilangan bulat',
+      'Pasangan koordinat (x, y)',
+      'Teks berwarna',
+      'Derajat arah sudut'
     ],
-    answer: 'Memberitahu posisi turtle saat ini dalam bentuk koordinat (x, y).'
+    answer: 'Pasangan koordinat (x, y)'
   },
   {
-    question: 'Apa hasil dari perintah berikut jika bidawang berada di koordinat (30, 20)?```print xcor```',
+    question: 'Perhatikan kode perintah berikut:```setx 50\nsety -75\nprint xcor\nprint ycor```Hasil yang muncul pada Output Log setelah perintah dijalankan adalah ...',
     options: [
-      '-20',
-      '30',
-      '(30, -20)',
-      '0'
+      '(50, -75)',
+      'x: 50 dan y: -75',
+      'xcor = 0 dan ycor = -75',
+      'xcor = 50 dan ycor =-75'
     ],
-    answer: '30'
+    answer: '(50, -75)'
   },
   {
-    question: 'Apa hasil dari perintah berikut jika bidawang sudah diputar 90 derajat ke kiri?```print heading```',
+    question: 'Perhatikan kode perintah berikut:```right 90\nprint heading```Nilai yang akan muncul pada Output Log adalah ...',
     options: [
       '0',
       '90',
@@ -97,17 +97,17 @@ const quizData = [
     answer: '90'
   },
   {
-    question: 'Jika bidawang diputar ke kanan sebanyak 270 derajat dari arah awal, ke arah mana ia akan menghadap?',
+    question: 'Jika arah awal Bidawang adalah 0°, lalu dijalankan kode berikut:```right 45\nleft 90\nprint heading```Nilai yang ditampilkan pada Output Log adalah ...',
     options: [
-      'Timur',
-      'Selatan',
-      'Barat',
-      'Utara'
+      '45',
+      '90',
+      '315',
+      '135'
     ],
-    answer: 'Utara'
+    answer: '45'
   },
   {
-    question: 'Apa yang terjadi jika metode pendown tidak dipanggil setelah penup?',
+    question: 'Ketika kode perintah pendown tidak dipanggil setelah penup maka yang terjadi adalah ...',
     options: [
       'Bidawang akan terus menggambar saat bergerak.',
       'Bidawang akan berhenti bergerak.',
@@ -117,7 +117,7 @@ const quizData = [
     answer: 'Bidawang tidak akan menggambar garis saat bergerak.'
   },
   {
-    question: 'Perhatikan kode berikut:```penup\nsetposition 100 100\npendown\nsetposition 200 200```Apa yang terjadi setelah kode tersebut dijalankan?',
+    question: 'Perhatikan kode berikut:```penup\nsetposition 100 100\npendown\nsetposition 200 200```Hasil dari kode perintah tersebut ketika dijalankan adalah ...',
     options: [
       'Bidawang menggambar garis dari titik awal ke (100, 100).',
       'Bidawang menggambar garis dari (100, 100) ke (200, 200).',
@@ -127,7 +127,7 @@ const quizData = [
     answer: 'Bidawang menggambar garis dari (100, 100) ke (200, 200).'
   },
   {
-    question: 'Apa efek dari penggunaan perintah pensize 10 sebelum menggambar?',
+    question: 'Hasil dari penggunaan fungsi pensize 10 sebelum menggambar adalah ...',
     options: [
       'Mengganti warna garis menjadi hitam.',
       'Mengubah ketebalan garis menjadi 10 piksel.',
@@ -137,7 +137,7 @@ const quizData = [
     answer: 'Mengubah ketebalan garis menjadi 10 piksel.'
   },
   {
-    question: 'Apa yang dikembalikan oleh metode isdown jika pena sedang dalam posisi turun (pendown)?',
+    question: 'Nilai yang dikembalikan oleh kode perintah isdown ketika pena berada dalam posisi turun adalah …',
     options: [
       'True',
       'False',
@@ -147,7 +147,7 @@ const quizData = [
     answer: 'True'
   },
   {
-    question: 'Apa fungsi dari end_fill dalam proses pengisian warna?',
+    question: 'Fungsi dari end_fill dalam proses pengisian warna adalah …',
     options: [
       'Mengatur warna isian menjadi transparan.',
       'Menandai akhir area yang akan diisi warna.',
@@ -157,7 +157,7 @@ const quizData = [
     answer: 'Menandai akhir area yang akan diisi warna.'
   },
   {
-    question: 'Apa yang terjadi jika fungsi reset dipanggil setelah menggambar garis?',
+    question: 'Ketika kode perintah reset dijalankan setelah menggambar garis, maka hal yang akan terjadi adalah …',
     options: [
       'Semua gambar dihapus, tetapi atribut bidawang tetap sama.',
       'Semua gambar dihapus, dan bidawang kembali ke posisi awal dengan atribut default.',
@@ -167,7 +167,7 @@ const quizData = [
     answer: 'Semua gambar dihapus, dan bidawang kembali ke posisi awal dengan atribut default.'
   },
   {
-    question: 'Apa perbedaan utama antara fungsi clear dan reset?',
+    question: 'Perbedaan antara fungsi clear dan reset adalah ...',
     options: [
       'clear menghapus gambar tanpa mengubah posisi atau atribut, sedangkan reset juga mengatur ulang posisi dan atribut bidawang.',
       'clear menghapus gambar beserta posisi bidawang, sedangkan reset hanya menghapus gambar.',
@@ -177,7 +177,7 @@ const quizData = [
     answer: 'clear menghapus gambar tanpa mengubah posisi atau atribut, sedangkan reset juga mengatur ulang posisi dan atribut bidawang.'
   },
   {
-    question: 'Perhatikan kode berikut:```write("Belajar Python!", align="center", font=("Arial", 12, "italic"))```Apa yang akan terjadi?',
+    question: 'Perhatikan kode berikut:```write("Belajar Python!", align="center", font=("Arial", 12, "italic"))```Hasil dari kode perintah tersebut ketika dijalankan adalah ...',
     options: [
       'Teks ditulis di layar dengan font Arial, ukuran 12, dan bergaya italic di posisi kiri bidawang.',
       'Teks ditulis di layar dengan font Arial, ukuran 12, dan bergaya italic di posisi tengah bidawang.',
@@ -187,7 +187,7 @@ const quizData = [
     answer: 'Teks ditulis di layar dengan font Arial, ukuran 12, dan bergaya italic di posisi tengah bidawang.'
   },
   {
-    question: 'Apa manfaat utama menggunakan perulangan for dalam membuat pola gambar dengan Bidawang?',
+    question: 'Manfaat penggunaan perulangan for dalam membuat pola gambar dengan Bidawang adalah ...',
     options: [
       'Menghapus kode secara otomatis',
       'Mengubah arah turtle secara acak',
@@ -197,7 +197,7 @@ const quizData = [
     answer: 'Mempercepat dan mempersingkat kode yang berulang'
   },
   {
-    question: 'Perhatikan kode berikut:```for 4\n   forward 100\n   left 90```Apa yang akan digambar oleh kode tersebut?',
+    question: 'Perhatikan kode berikut:```for 4\n   forward 100\n   left 90```Gambar yang akan dihasilkan saat kode tersebut dijalankan adalah ...',
     options: [
       'Persegi',
       'Lingkaran',
@@ -207,6 +207,7 @@ const quizData = [
     answer: 'Persegi'
   }
 ];
+
 
 const EvaluasiJawab = () => {
   const [current, setCurrent] = useState(0);

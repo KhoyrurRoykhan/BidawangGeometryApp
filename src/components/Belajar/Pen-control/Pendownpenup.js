@@ -1500,33 +1500,33 @@ circle 30 `}
               <Accordion.Body>
               <Form>
   {/* SOAL 1 */}
-  {currentQuestion === 1 && (
-    <Form.Group controlId="question1">
-      <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
-        <b>Soal 1 dari 2:</b>
-        <p>Apa yang terjadi jika metode pendown tidak dipanggil setelah penup?</p>
-      </Form.Label>
+{currentQuestion === 1 && (
+  <Form.Group controlId="question1">
+    <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
+      <b>Soal 1 dari 2:</b>
+      <p>Ketika kode perintah <code>pendown</code> tidak dipanggil setelah <code>penup</code> maka yang terjadi adalah ...</p>
+    </Form.Label>
 
-      {[
-        { key: 'A', label: 'Bidawang akan terus menggambar saat bergerak.' },
-        { key: 'B', label: 'Bidawang akan berhenti bergerak.' },
-        { key: 'C', label: 'Bidawang tidak akan menggambar garis saat bergerak.' },
-        { key: 'D', label: 'Bidawang akan menggambar lingkaran secara otomatis.' },
-      ].map(({ key, label }) => (
-        <Button
-          key={key}
-          variant={selectedAnswer === key ? "success" : "outline-success"}
-          onClick={() => handleAnswerChange("question1", key)}
-          className="w-100 mb-2 text-start"
-          style={{
-            fontSize: "16px",
-            backgroundColor: selectedAnswer === key ? "#2DAA9E" : "",
-            borderColor: "#2DAA9E"
-          }}
-        >
-          {key}. {label}
-        </Button>
-      ))}
+    {[
+      { key: 'A', label: 'Bidawang akan terus menggambar saat bergerak.' },
+      { key: 'B', label: 'Bidawang akan berhenti bergerak.' },
+      { key: 'C', label: 'Bidawang tidak akan menggambar garis saat bergerak.' },
+      { key: 'D', label: 'Bidawang akan menggambar lingkaran secara otomatis.' },
+    ].map(({ key, label }) => (
+      <Button
+        key={key}
+        variant={selectedAnswer === key ? "success" : "outline-success"}
+        onClick={() => handleAnswerChange("question1", key)}
+        className="w-100 mb-2 text-start"
+        style={{
+          fontSize: "16px",
+          backgroundColor: selectedAnswer === key ? "#2DAA9E" : "",
+          borderColor: "#2DAA9E"
+        }}
+      >
+        {key}. {label}
+      </Button>
+    ))}
 
       {feedback.question1 && (
         <Alert variant={feedback.question1 === "Benar! Setelah penup, jika pendown tidak dipanggil, bidawang tidak akan menggambar garis saat bergerak." ? "success" : "danger"} className="mt-3">
@@ -1546,7 +1546,7 @@ circle 30 `}
 setposition 100 100
 pendown
 setposition 200 200`}</code></pre>
-  <p>Apa yang terjadi setelah kode tersebut dijalankan?</p>
+  <p>Hasil dari kode perintah tersebut ketika dijalankan adalah ...</p>
 </Form.Label>
 
 

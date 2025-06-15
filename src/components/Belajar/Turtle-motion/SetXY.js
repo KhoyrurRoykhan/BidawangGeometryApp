@@ -233,7 +233,7 @@ const SetXY = () => {
       const isCorrect1 = selectedAnswer === 'A';
       setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `setx 200` hanya mengubah nilai koordinat x menjadi 200, sementara y tetap 50, sehingga posisi baru adalah (200, 50).' : 'Salah! Perintah `setx` hanya mengubah nilai x saja. Jika posisi awal (100, 50), maka `setx 200` mengubah nilai menjadi 200.' }));
     } else if (currentQuestion === 2) {
-      const isCorrect2 = selectedAnswer2 === 'A';
+      const isCorrect2 = selectedAnswer2 === 'C';
       setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Perintah `sety -50` memindahkan bidawang secara vertikal ke y = -50, tanpa mengubah posisi x.' : 'Salah! Perintah yang benar untuk memindahkan secara vertikal (y) tanpa mengubah x adalah sety.' }));
   
       if (isCorrect2) {
@@ -1497,9 +1497,9 @@ const resetCodeChallanges = () => {
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa hasil dari perintah:</p>
+        <p>Perhatikan kode perintah dibawah ini:</p>
         <pre><code> setx 200</code></pre>
-        <p> jika posisi bidawang saat ini adalah (100,50)?</p>
+        <p>Jika posisi bidawang saat ini adalah (100,50), Setelah kode tersebut dijalankan yang terjadi adalah ...</p>
       </Form.Label>
 
       {[
@@ -1536,14 +1536,17 @@ const resetCodeChallanges = () => {
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Jika Anda ingin memindahkan bidawang secara vertikal ke posisi y = -50 tanpa mengubah posisi x, perintah apa yang harus digunakan? </p>
+        <p>Perhatikan kode perintah dibawah ini:</p>
+        <pre><code>{`setx 100
+sety -100`}</code></pre>
+        <p>Setelah kode dijalankan, koordinat Bidawang saat ini adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'sety -50' },
-        { key: 'B', label: 'setx -50' },
-        { key: 'C', label: 'setposition -50 0' },
-        { key: 'D', label: 'home' },
+        { key: 'A', label: '(100, 0)' },
+        { key: 'B', label: '(0, -100)' },
+        { key: 'C', label: '(100, -100)' },
+        { key: 'D', label: '(-100, 100)' },
       ].map(({ key, label }) => (
         <Button
           key={key}

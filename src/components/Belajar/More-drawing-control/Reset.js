@@ -1268,7 +1268,7 @@ forward 50 `}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa yang terjadi jika fungsi reset dipanggil setelah menggambar garis?</p>
+        <p>Ketika kode perintah reset dijalankan setelah menggambar garis, maka hal yang akan terjadi adalah ...</p>
       </Form.Label>
 
       {[
@@ -1310,7 +1310,7 @@ forward 50 `}
 forward 100
 reset
 circle 50`}</code></pre>
-        <p>Apa warna lingkaran yang akan dihasilkan?</p>
+        <p>Warna garis lingkaran yang dihasilkan setelah kode tersebut dijalankan adalah ...</p>
       </Form.Label>
 
       {[

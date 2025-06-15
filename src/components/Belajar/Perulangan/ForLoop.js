@@ -1427,7 +1427,7 @@ for i in range(100):
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa manfaat utama menggunakan perulangan for dalam membuat pola gambar dengan Bidawang? </p>
+        <p>Manfaat penggunaan perulangan for dalam membuat pola gambar dengan Bidawang adalah ...</p>
       </Form.Label>
 
       {[
@@ -1464,7 +1464,7 @@ for i in range(100):
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Jika kamu ingin menggambar segilima beraturan, berapa kali perulangan yang harus digunakan?</p>
+        <p>Jumlah perulangan yang harus digunakan untuk menggambar segilima beraturan adalah ...</p>
       </Form.Label>
 
       {[

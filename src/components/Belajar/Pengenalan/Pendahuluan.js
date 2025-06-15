@@ -1361,7 +1361,7 @@ const runit2 = (code, forceReset = false) => {
           <Form.Group controlId="question1">
             <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
               <strong style={{ color: 'black' }}>Soal 1 dari 2:</strong>
-              <p>Jika posisi Bidawang berada di titik <b>(0, 0)</b> pada canvas, bagaimana gambar posisi Bidawang pada canvas?</p>
+              <p>Jika posisi Bidawang berada di titik (0, 0) pada canvas, gambar dibawah ini yang tepat untuk menggambarkan posisi Bidawang pada canvas adalah...</p>
             </Form.Label>
 
             <Row>
@@ -1400,7 +1400,7 @@ const runit2 = (code, forceReset = false) => {
           <Form.Group controlId="question2">
             <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
               <strong style={{ color: 'black' }}>Soal 2 dari 2:</strong>
-              <p>Tombol mana yang digunakan untuk menghapus kode serta hasil gambar di canvas dan mengembalikan Bidawang ke posisi awal?</p>
+              <p>Jika ingin menjalankan kode untuk menggerakkan Bidawang setelah mengetikkan perintah di text editor. Komponen yang harus di klik agar pergerakan Bidawang dapat divisualisasikan di canvas adalah ...</p>
             </Form.Label>
 
             <Row>

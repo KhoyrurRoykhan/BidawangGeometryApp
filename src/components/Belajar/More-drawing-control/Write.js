@@ -1295,7 +1295,7 @@ forward 100  `}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa fungsi dari parameter <i>align</i> dalam metode write?</p>
+        <p>Fungsi dari parameter align dalam kode perintah write adalah ...</p>
       </Form.Label>
 
       {[
@@ -1334,7 +1334,7 @@ forward 100  `}
         <b>Soal 2 dari 2:</b>
         <p>Perhatikan kode berikut:</p>
         <pre><code>write("Belajar Python!", align="center", font=("Arial", 12, "italic"))</code></pre>
-        <p>Apa yang akan terjadi jika kode tersebut dijalankan?</p>
+        <p>Hasil dari kode perintah tersebut ketika dijalankan adalah ...</p>
       </Form.Label>
 
       {[

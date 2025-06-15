@@ -233,7 +233,7 @@ const ForwardBackward = () => {
       const isCorrect1 = selectedAnswer === 'B';
       setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya.' : 'Salah! Perintah `forward 100` bukan berarti mundur atau berputar, tetapi membuat Bidawang maju sejauh 100 langkah ke arah yang sedang dihadapinya.' }));
     } else if (currentQuestion === 2) {
-      const isCorrect2 = selectedAnswer2 === 'optionA';
+      const isCorrect2 = selectedAnswer2 === 'optionC';
       setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Saat menghadap ke kanan, perintah `backward 200` akan membuat Bidawang bergerak mundur sejauh 200 langkah, sehingga ke tepi kiri canvas.' : 'Salah! Karena Bidawang menghadap ke kanan, perintah `backward 200` akan menggerakkannya ke arah berlawanan, yaitu ke kiri sejauh 200 langkah hingga mencapai tepi.' }));
   
       if (isCorrect2) {
@@ -1548,16 +1548,14 @@ const resetCodeChallanges = () => {
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Perhatikan potongan kode berikut:</p>
-        <pre><code>forward 100</code></pre>
-        <p>Apa yang terjadi pada Bidawang?</p>
+        <p>Perintah yang digunakan untuk menggerakan bidawang maju 100 pixel adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'Bidawang mundur sejauh 100 langkah' },
-        { key: 'B', label: 'Bidawang maju sejauh 100 langkah' },
-        { key: 'C', label: 'Bidawang berputar ke kanan' },
-        { key: 'D', label: 'Bidawang tidak bergerak' },
+        { key: 'A', label: 'backward 100' },
+        { key: 'B', label: 'forward 100' },
+        { key: 'C', label: 'left 90' },
+        { key: 'D', label: 'right 90' },
       ].map(({ key, label }) => (
         <Button
           key={key}
@@ -1587,8 +1585,9 @@ const resetCodeChallanges = () => {
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Bidawang sedang menghadap ke kanan. Jika diberi perintah berikut:</p>
-        <pre><code>backward 200</code></pre>
+        <p>Perhatikan kode dibawah ini:</p>
+        <pre><code>{`left 90
+forward 100`}</code></pre>
         <p>Kemana arah Bidawang akan bergerak?</p>
       </Form.Label>
 

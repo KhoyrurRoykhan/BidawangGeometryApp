@@ -239,7 +239,7 @@ const SetHeading = () => {
       const isCorrect1 = selectedAnswer === 'C';
       setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? "Benar! Perintah `setheading 90` akan mengubah arah turtle menghadap ke atas atau ke arah Utara." : "Salah! Perintah `setheading 90` membuat turtle menghadap ke Utara (atas). Arah ini mengikuti sistem koordinat turtle, di mana 0 adalah Timur, 90 adalah Utara, 180 adalah Barat, dan 270 adalah Selatan." }));
     } else if (currentQuestion === 2) {
-      const isCorrect2 = selectedAnswer2 === 'B';
+      const isCorrect2 = selectedAnswer2 === 'C';
       setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! `setheading` digunakan untuk mengatur arah turtle dalam derajat: 0 ke Timur, 90 ke Utara, 180 ke Barat, dan 270 ke Selatan.' : 'Salah! Perintah `setheading` tidak mengatur posisi, warna, atau langsung bergerak. Ia hanya mengubah arah turtle berdasarkan derajat yang ditentukan.' }));
   
       if (isCorrect2) {
@@ -1373,9 +1373,9 @@ forward 100 `}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Jika Anda menggunakan perintah:</p>
+        <p>Perhatikan kode perintah dibawah ini:</p>
         <pre><code>setheading 90</code></pre>
-        <p>ke arah mana Bidawang akan menghadap?</p>
+        <p>Arah yang di hadap bidawang setelah kode perintah tersebut dijalankan adalah ...</p>
       </Form.Label>
 
       {[
@@ -1412,14 +1412,14 @@ forward 100 `}
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Apa fungsi utama dari perintah setheading?</p>
+        <p>2.	Jika saat ini bidawang menghadap ke kanan layar, kemudian pada teks editor diketikkan perintah setheading 180 lalu forward 50. Setelah perintah dijalankan, arah pergerakan bidawang adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'Mengatur posisi turtle ke koordinat (0, 0).' },
-        { key: 'B', label: 'Mengatur arah turtle ke sudut tertentu berdasarkan derajat.' },
-        { key: 'C', label: 'Menggerakkan turtle ke arah utara.' },
-        { key: 'D', label: 'Mengubah warna turtle.' },
+        { key: 'A', label: 'Ke atas layar' },
+        { key: 'B', label: 'Ke kanan layar' },
+        { key: 'C', label: 'Ke kiri layar' },
+        { key: 'D', label: 'Ke bawah layar' },
       ].map(({ key, label }) => (
         <Button
           key={key}

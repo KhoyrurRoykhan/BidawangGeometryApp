@@ -1251,7 +1251,7 @@ print isdown`}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{color:'black', backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <strong style={{color:'black'}}>Soal 1 dari 2:</strong>
-        <p>Apa yang dikembalikan oleh metode isdown jika pena sedang dalam posisi turun?</p>
+        <p>Nilai yang dikembalikan oleh kode perintah isdown ketika pena berada dalam posisi turun adalah ...</p>
       </Form.Label>
 
       {[
@@ -1293,7 +1293,7 @@ print isdown`}
 print isdown
 penup
 print isdown`}</code></pre>
-        <p>Apa output dari kode tersebut? </p>
+        <p>Hasil yang muncul pada output log ketika perintah tersebut dijalankan adalah ... </p>
       </Form.Label>
 
       {[

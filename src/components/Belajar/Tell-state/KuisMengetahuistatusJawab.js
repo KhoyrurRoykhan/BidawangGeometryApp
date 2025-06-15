@@ -8,57 +8,57 @@ import { useNavigate } from "react-router-dom";
 
 const quizData = [
   {
-    question: 'Apa fungsi dari position?',
+    question: 'Fungsi kode perintah position adalah...',
     options: [
-      'Memberitahu arah pergerakan turtle saat ini.',
-      'Menghapus posisi turtle sebelumnya.',
-      'Memberitahu posisi turtle saat ini dalam bentuk koordinat (x, y).',
-      'Mengatur posisi turtle ke titik tertentu.'
+      'Mengatur kecepatan gerakan bidawang',
+      'Menentukan arah hadap bidawang',
+      'Menampilkan koordinat posisi saat ini dari bidawang',
+      'Menghapus jejak gerakan bidawang'
     ],
-    answer: 'Memberitahu posisi turtle saat ini dalam bentuk koordinat (x, y).'
+    answer: 'Menampilkan koordinat posisi saat ini dari bidawang'
   },
   {
-    question: 'Apa hasil dari perintah berikut jika turtle berada di posisi (50, 100)?```print position```',
+    question: 'Perhatikan kode perintah di bawah ini:```setposition 100 50\nprint position```Hasil pada output log setelah kode tersebut dijalankan adalah …',
     options: [
-      '(50, 100)',
-      '0',
-      '(0, 0)',
-      '[50, 100]'
+      '(100, 0)',
+      '(0, 50)',
+      '(100, 50)',
+      '[100, 50]'
     ],
-    answer: '(50, 100)'
+    answer: '(100, 50)'
   },
   {
-    question: 'Apa perbedaan antara xcor dan ycor?',
+    question: 'Perhatikan kode perintah di bawah ini:```forward 100\nleft 90\nforward 100\nprint position```Jika posisi awal bidawang adalah (0, 0), maka posisi terakhir bidawang setelah kode perintah tersebut dijalankan adalah …',
     options: [
-      'xcor menampilkan posisi horizontal (sumbu x), sementara ycor() menampilkan posisi vertikal (sumbu y).',
-      'xcor mengatur posisi horizontal, sementara ycor() mengembalikan posisi vertikal.',
-      'xcor menghapus posisi pada sumbu x, sementara ycor() membaca posisi awal.',
-      'Tidak ada perbedaan, keduanya menampilkan posisi (x, y).'
+      '(0, 100)',
+      '(100, 0)',
+      '(100, 100)',
+      '(100, -100)'
     ],
-    answer: 'xcor menampilkan posisi horizontal (sumbu x), sementara ycor() menampilkan posisi vertikal (sumbu y).'
+    answer: '(100, 100)'
   },
   {
-    question: 'Apa hasil dari perintah berikut jika bidawang berada di koordinat (30, 20)?```print xcor```',
+    question: 'Fungsi kode perintah xcor adalah ...',
     options: [
-      '-20',
-      '30',
-      '(30, -20)',
-      '0'
+      'Menampilkan Arah hadap bidawang dalam derajat',
+      'Posisi vertikal (sumbu y) bidawang',
+      'Posisi horizontal (sumbu x) bidawang',
+      'Jarak antara dua titik'
     ],
-    answer: '30'
+    answer: 'Posisi horizontal (sumbu x) bidawang'
   },
   {
-    question: 'Dalam canvas Bidawang, arah 0 derajat mengarah ke mana?',
+    question: 'Perhatikan kode perintah berikut:```setx 50\nsety -75\nprint xcor\nprint ycor```Hasil yang muncul pada output log setelah perintah dijalankan adalah …',
     options: [
-      'Utara (atas).',
-      'Timur (kanan).',
-      'Barat (kiri).',
-      'Selatan (bawah).'
+      '(50, -75)',
+      'x: 50 dan y: -75',
+      'xcor = 0 dan ycor = -75',
+      'xcor = 50 dan ycor =-75'
     ],
-    answer: 'Timur (kanan).'
+    answer: '(50, -75)'
   },
   {
-    question: 'Apa hasil dari perintah berikut jika bidawang sudah diputar 90 derajat ke kiri?```print heading```',
+    question: 'Perhatikan kode di bawah ini:```print heading```Hasil dari perintah berikut jika bidawang sudah diputar 90 derajat ke kiri adalah …',
     options: [
       '0',
       '90',
@@ -68,17 +68,17 @@ const quizData = [
     answer: '90'
   },
   {
-    question: 'Apa fungsi dari metode distance?',
+    question: 'Fungsi kode perintah distance digunakan adalah …',
     options: [
-      'Mengembalikan arah bidawang menuju titik (x, y).',
-      'Menghitung jarak Euclidean antara posisi saat ini dan koordinat (x, y).',
-      'Mengatur bidawang untuk bergerak ke posisi (x, y).',
-      'Menghapus jarak antara dua titik.'
+      'Mengatur kecepatan gerakan bidawang',
+      'Menentukan arah hadap bidawang',
+      'Mengukur jarak antara posisi bidawang dan titik tertentu',
+      'Memindahkan bidawang ke titik tujuan'
     ],
-    answer: 'Menghitung jarak Euclidean antara posisi saat ini dan koordinat (x, y).'
+    answer: 'Mengukur jarak antara posisi bidawang dan titik tertentu'
   },
   {
-    question: 'Jika turtle berada di koordinat (0, 0), apa hasil dari perintah berikut?```print distance 0 100```',
+    question: 'Perhatikan kode perintah di bawah ini:```print distance 0 100```Jika turtle berada di koordinat (0, 0), hasil dari kode perintah tersebut adalah …',
     options: [
       '50',
       '75',
@@ -88,26 +88,27 @@ const quizData = [
     answer: '100'
   },
   {
-    question: 'Apa yang terjadi jika kita menulis print ycor saat posisi turtle adalah (100, -75)?',
+    question: 'Perhatikan kode perintah di bawah ini:```left 180\nright 90\nprint heading```Jika arah awal bidawang adalah 0°, hasil pada output log ketika perintah tersebut dijalankan adalah …',
     options: [
-      'Menampilkan nilai -75',
-      'Menampilkan nilai 100',
-      'Menampilkan (100, -75)',
-      'Turtle berpindah ke koordinat (0, -75)'
+      '270°',
+      '180°',
+      '90°',
+      '0°'
     ],
-    answer: 'Menampilkan nilai -75'
+    answer: '90°'
   },
   {
-    question: 'Jika bidawang diputar ke kanan sebanyak 270 derajat dari arah awal, ke arah mana ia akan menghadap?',
+    question: 'Jika arah awal Bidawang adalah 0°, lalu dijalankan kode berikut:```right 45\nleft 90\nprint heading```Hasil yang muncul pada output log ketika perintah tersebut dijalankan adalah …',
     options: [
-      'Timur',
-      'Selatan',
-      'Barat',
-      'Utara'
+      '45',
+      '90',
+      '315',
+      '135'
     ],
-    answer: 'Utara'
+    answer: '45'
   }
 ];
+
 
   
 

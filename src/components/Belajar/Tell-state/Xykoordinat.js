@@ -1544,14 +1544,19 @@ print ycor `}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa perbedaan antara xcor dan ycor?</p>
+        <p>1.	Perhatikan kode perintah berikut:</p>
+        <p><pre>{`setx 50  
+sety -75  
+print xcor  
+print ycor`}</pre></p>
+        <p>Hasil yang muncul pada Output Log setelah perintah dijalankan adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'xcor menampilkan posisi horizontal (sumbu x), sementara ycor() menampilkan posisi vertikal (sumbu y).' },
-        { key: 'B', label: 'xcor mengatur posisi horizontal, sementara ycor() mengembalikan posisi vertikal.' },
-        { key: 'C', label: 'xcor menghapus posisi pada sumbu x, sementara ycor() membaca posisi awal.' },
-        { key: 'D', label: 'Tidak ada perbedaan, keduanya menampilkan posisi (x, y).' },
+        { key: 'A', label: '(50, -75)' },
+        { key: 'B', label: 'x: 50 dan y: -75' },
+        { key: 'C', label: 'xcor = 0 dan ycor = -75' },
+        { key: 'D', label: 'xcor = 50 dan ycor =-75' },
       ].map(({ key, label }) => (
         <Button
           key={key}
@@ -1581,15 +1586,16 @@ print ycor `}
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Apa hasil dari perintah berikut jika bidawang berada di koordinat (30, 20)?</p>
+        <p>Perintah berikut dijalankan saat Bidawang berada di koordinat (30, 20):</p>
         <pre><code>print xcor</code></pre>
+        <p>Hasil yang ditampilkan pada Output Log adalah ...</p>
       </Form.Label>
 
       {[
         { key: 'A', label: '-20' },
         { key: 'B', label: '30' },
-        { key: 'C', label: '(30, -20)' },
-        { key: 'D', label: '0' },
+        { key: 'C', label: '(30, 20)' },
+        { key: 'D', label: '20' },
       ].map(({ key, label }) => (
         <Button
           key={key}

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const quizData = [
   {
-    question: 'Apa perbedaan utama antara perintah left dan right?',
+    question: 'Perbedaan antara perintah left dan right adalah …',
     options: [
       'left memutar bidawang ke arah kanan, sementara right memutar bidawang ke arah kiri.',
       'left memutar bidawang ke arah kiri, sementara right memutar bidawang ke arah kanan.',
@@ -17,37 +17,37 @@ const quizData = [
     answer: 'left memutar bidawang ke arah kiri, sementara right memutar bidawang ke arah kanan.'
   },
   {
-    question: 'Perintah apa yang digunakan untuk menggerakkan turtle ke depan sejauh 150 piksel?',
+    question: 'Jika bidawang menghadap ke kanan, lalu diberi perintah left 180, maka arah akhirnya adalah...',
     options: [
-      'backward 150',
-      'forward 150',
-      'left 150',
-      'right 150'
+      'Kanan',
+      'Atas',
+      'Kiri',
+      'Bawah'
     ],
-    answer: 'forward 150'
+    answer: 'Kiri'
   },
   {
-    question: 'Jika turtle menghadap ke barat dan Anda menggunakan perintah backward 100, ke arah mana turtle akan bergerak?',
+    question: 'Dampak dari menjalankan perintah backward 50 setelah setheading 90 adalah …',
     options: [
-      'Ke barat',
-      'Ke timur',
-      'Ke utara',
-      'Ke selatan'
+      'Bidawang mundur ke arah barat',
+      'Bidawang mundur ke arah selatan',
+      'Bidawang maju ke utara',
+      'Bidawang diam di tempat'
     ],
-    answer: 'Ke timur'
+    answer: 'Bidawang mundur ke arah selatan'
   },
   {
-    question: 'Jika posisi awal Bidawang adalah (0, 0), dan Anda menggunakan perintah setposition 50 100, di mana posisi akhir Bidawang?',
+    question: 'Apa perbedaan antara setposition 50 50 dan setx 50?',
     options: [
-      '(100, 50)',
-      '(50, 0)',
-      '(0, 100)',
-      '(50, 100)'
+      'Keduanya sama',
+      'setposition memindahkan ke (50,50), sedangkan setx hanya mengubah nilai X ke 50',
+      'setx menghapus gambar',
+      'setposition mengatur warna'
     ],
-    answer: '(50, 100)'
+    answer: 'setposition memindahkan ke (50,50), sedangkan setx hanya mengubah nilai X ke 50'
   },
   {
-    question: 'Apa hasil dari perintah setx 200 jika posisi awal turtle adalah (100, 50)?',
+    question: 'Hasil dari menjalankan perintah setx 200 jika posisi awal Bidawang adalah (100, 50) adalah …',
     options: [
       'Posisi baru menjadi (200, 50).',
       'Posisi baru menjadi (100, 200).',
@@ -57,27 +57,27 @@ const quizData = [
     answer: 'Posisi baru menjadi (200, 50).'
   },
   {
-    question: 'Jika Anda menggunakan perintah setheading 90, ke arah mana Bidawang akan menghadap?',
+    question: 'Perhatikan kode perintah dibawah ini:```setheading 180\nforward 100\nhome\n```Arah terakhir Bidawang setelah perintah di atas adalah …',
     options: [
       'Timur',
       'Barat',
       'Utara',
       'Selatan'
     ],
-    answer: 'Utara'
+    answer: 'Timur'
   },
   {
-    question: 'Apa fungsi dari perintah home?',
+    question: 'Perintah home digunakan untuk …',
     options: [
-      'Menghapus seluruh gambar yang telah dibuat.',
-      'Mengembalikan Bidawang ke posisi awal (0, 0) dan mengatur arahnya ke timur.',
-      'Utara',
-      'Memindahkan Bidawang ke posisi y = 0.'
+      'Untuk menyimpan posisi.',
+      'Untuk menghapus semua jalur.',
+      'Untuk mengembalikan posisi awal agar lebih rapi.',
+      'Untuk memutar arah ke barat.'
     ],
-    answer: 'Mengembalikan Bidawang ke posisi awal (0, 0) dan mengatur arahnya ke timur.'
+    answer: 'Untuk mengembalikan posisi awal agar lebih rapi.'
   },
   {
-    question: 'Jika posisi awal Bidawang adalah (100, 100) dan arahnya ke barat, apa yang terjadi setelah menggunakan home?',
+    question: 'Dampak dari menjalankan perintah home ketika posisi awal Bidawang adalah (100, 100) dan arahnya ke barat adalah …',
     options: [
       'Bidawang tetap di posisi (100, 100).',
       'Bidawang kembali ke posisi (0, 0) dengan arah tetap ke barat.',
@@ -87,26 +87,27 @@ const quizData = [
     answer: 'Bidawang kembali ke posisi (0, 0) dan menghadap ke timur.'
   },
   {
-    question: 'Apa yang terjadi jika Anda menjalankan perintah circle -50?',
+    question: 'Seorang siswa menggunakan circle 100 180, hasil yang terbentuk adalah...',
     options: [
-      'Tidak ada lingkaran yang digambar.',
-      'Lingkaran dengan jari-jari 50 akan digambar berlawanan dengan arah.',
-      'Lingkaran dengan jari-jari 50 akan digambar dengan arah normal (berlawanan arah jarum jam).',
-      'Lingkaran kecil akan digambar di posisi saat ini.'
+      'Titik kecil.',
+      'Busur setengah lingkaran.',
+      'Lingkaran penuh.',
+      'Lingkaran warna-warni.'
     ],
-    answer: 'Lingkaran dengan jari-jari 50 akan digambar berlawanan dengan arah.'
+    answer: 'Busur setengah lingkaran.'
   },
   {
-    question: 'Apa fungsi dari perintah dot?',
+    question: 'Perintah yang paling tepat untuk menggambar dua titik sejajar secara horizontal dengan jarak 100 piksel adalah …',
     options: [
-      'Menggambar lingkaran penuh.',
-      'Menggambar busur lingkaran.',
-      'Menggambar titik di posisi saat ini.',
-      'Menghapus titik pada kanvas.'
+      'dot 20 → forward 100 → dot 20',
+      'dot 20 → sety 100 → dot 20',
+      'setx 100 → dot 20 → forward 100',
+      'forward 100 → dot 20 → backward 100 → dot 20'
     ],
-    answer: 'Menggambar titik di posisi saat ini.'
+    answer: 'dot 20 → sety 100 → dot 20'
   }
 ];
+
 
   
 

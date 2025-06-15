@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const quizData = [
   {
-    question: 'Apa yang terjadi jika fungsi reset dipanggil setelah menggambar garis?',
+    question: 'Ketika kode perintah reset dijalankan setelah menggambar garis, maka hal yang akan terjadi adalah ...',
     options: [
       'Semua gambar dihapus, tetapi atribut bidawang tetap sama.',
       'Semua gambar dihapus, dan bidawang kembali ke posisi awal dengan atribut default.',
@@ -18,7 +18,7 @@ const quizData = [
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```pencolor("green")\nforward(100)\nreset()\ncircle(50)```Apa warna lingkaran yang akan dihasilkan?',
+    question: 'Perhatikan kode berikut:```pencolor("green")\nforward(100)\nreset()\ncircle(50)```Warna garis lingkaran yang dihasilkan setelah kode tersebut dijalankan adalah ...',
     options: [
       'Hijau.',
       'Hitam.',
@@ -28,7 +28,7 @@ const quizData = [
     answer: 'Hitam.'
   },
   {
-    question: 'Apa perbedaan utama antara fungsi clear dan reset?',
+    question: 'Perbedaan antara fungsi clear dan reset adalah ...',
     options: [
       'clear menghapus gambar tanpa mengubah posisi atau atribut, sedangkan reset juga mengatur ulang posisi dan atribut bidawang.',
       'clear menghapus gambar beserta posisi bidawang, sedangkan reset hanya menghapus gambar.',
@@ -39,7 +39,7 @@ const quizData = [
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```color "blue"\ncircle 50\nclear\nforward 100\ncircle 30```Apa warna lingkaran kedua?',
+    question: 'Perhatikan kode berikut:```pencolor "blue"\ncircle 50\nclear\nforward 100\ncircle 30```Warna garis lingkaran kedua yang dihasilkan kode tersebut adalah ...',
     options: [
       'Tidak Berwarna.',
       'Biru.',
@@ -49,7 +49,7 @@ const quizData = [
     answer: 'Biru.'
   },
   {
-    question: 'Apa fungsi dari parameter align dalam metode write?',
+    question: 'Fungsi dari parameter align dalam kode perintah write adalah ...',
     options: [
       'Mengatur posisi turtle setelah menulis teks.',
       'Menentukan jenis font yang digunakan.',
@@ -60,7 +60,7 @@ const quizData = [
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```write("Belajar Python!", align="center", font=("Arial", 12, "italic"))```Apa yang akan terjadi?',
+    question: 'Perhatikan kode berikut:```write("Belajar Python!", align="center", font=("Arial", 12, "italic"))```Hasil dari kode perintah tersebut ketika dijalankan adalah ...',
     options: [
       'Teks ditulis di layar dengan font Arial, ukuran 12, dan bergaya italic di posisi kiri bidawang.',
       'Teks ditulis di layar dengan font Arial, ukuran 12, dan bergaya italic di posisi tengah bidawang.',
@@ -70,7 +70,7 @@ const quizData = [
     answer: 'Teks ditulis di layar dengan font Arial, ukuran 12, dan bergaya italic di posisi tengah bidawang.'
   },
   {
-    question: 'Apa manfaat utama menggunakan perulangan for dalam membuat pola gambar dengan Bidawang?',
+    question: 'Manfaat penggunaan perulangan for dalam membuat pola gambar dengan Bidawang adalah ...',
     options: [
       'Menghapus kode secara otomatis',
       'Mengubah arah turtle secara acak',
@@ -80,7 +80,7 @@ const quizData = [
     answer: 'Mempercepat dan mempersingkat kode yang berulang'
   },
   {
-    question: 'Jika kamu ingin menggambar segilima beraturan, berapa kali perulangan yang harus digunakan?',
+    question: 'Jumlah perulangan yang harus digunakan untuk menggambar segilima beraturan adalah ...',
     options: [
       '4',
       '5',
@@ -91,7 +91,7 @@ const quizData = [
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```for 4\n   forward 50```Apa yang akan digambar oleh kode tersebut?',
+    question: 'Perhatikan kode berikut:```for 4\n   forward 50```Hasil dari kode tersebut ketika dijalankan adalah ...',
     options: [
       'Lingkaran kecil',
       'Segitiga',
@@ -102,7 +102,7 @@ const quizData = [
   },
   {
     // 🔹 Mengandung kode
-    question: 'Perhatikan kode berikut:```for 4\n   forward 100 \n   left 90```Apa yang akan digambar oleh kode tersebut?',
+    question: 'Perhatikan kode berikut:```for 4\n   forward 100 \n   left 90```Gambar yang akan dihasilkan saat kode tersebut dijalankan adalah ...',
     options: [
       'Persegi',
       'Lingkaran',

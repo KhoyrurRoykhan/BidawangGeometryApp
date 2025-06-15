@@ -231,7 +231,7 @@ const checkCode = (customCommands = null) => {
       const isCorrect1 = selectedAnswer === 'C';
       setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `setposition` digunakan untuk memindahkan Bidawang (turtle) ke koordinat tertentu di area gambar, tanpa mengubah arah hadapnya.' : 'Salah! Perintah `setposition` bukan untuk mengatur warna, ukuran, atau arah. Fungsinya adalah memindahkan Bidawang ke titik koordinat tertentu seperti (x, y).' }));
     } else if (currentQuestion === 2) {
-      const isCorrect2 = selectedAnswer2 === 'D';
+      const isCorrect2 = selectedAnswer2 === 'A';
       setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Perintah `setposition 50 100` akan memindahkan Bidawang ke titik dengan koordinat x = 50 dan y = 100.' : 'Salah! Perintah `setposition 50 100` berarti posisi x = 50 dan y = 100. Urutan angka adalah (x, y), bukan sebaliknya.' }));
   
       if (isCorrect2) {
@@ -1452,14 +1452,14 @@ const resetCodeChallanges = () => {
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa fungsi utama dari perintah setposition?</p>
+        <p>Perintah setposition digunakan untuk ...</p>
       </Form.Label>
 
       {[
         { key: 'A', label: 'Mengatur warna garis.' },
         { key: 'B', label: 'Memutar turtle ke arah tertentu.' },
         { key: 'C', label: 'Memindahkan bidawang ke koordinat tertentu dalam ruang gambar.' },
-        { key: 'D', label: 'Mengubah ukuran turtle.' },
+        { key: 'D', label: 'Mengubah ukuran bidawang.' },
       ].map(({ key, label }) => (
         <Button
           key={key}
@@ -1489,16 +1489,14 @@ const resetCodeChallanges = () => {
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Jika posisi awal Bidawang adalah (0, 0), dan Anda menggunakan perintah: </p>
-        <pre><code>setposition 50 100</code></pre>
-        <p> dimana posisi akhir Bidawang?</p>
+        <p>Seorang siswa ingin menggambar segitiga dengan menggunakan tiga titik koordinat: (0,0), (100,0), dan (50,100). Urutan perintah setposition yang tepat untuk menggambar bentuk segitiga adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: '(100, 50)' },
-        { key: 'B', label: '(50, 0)' },
-        { key: 'C', label: '(0, 100)' },
-        { key: 'D', label: '(50, 100)' },
+        { key: 'A', label: 'setposition 100 0 → setposition 50 100 → setposition 0 0' },
+        { key: 'B', label: 'setposition 0 0 → setposition 100 100 → setposition 0 100' },
+        { key: 'C', label: 'setposition 0 0 → setposition 50 50 → setposition 0 100' },
+        { key: 'D', label: 'setposition 50 100 → setposition 0 0 → setposition 100 0' },
       ].map(({ key, label }) => (
         <Button
           key={key}

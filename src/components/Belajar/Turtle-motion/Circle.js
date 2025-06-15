@@ -233,11 +233,11 @@ const handleAnswerChange = (questionId, answer) => {
 
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
-    const isCorrect1 = selectedAnswer === 'C';
+    const isCorrect1 = selectedAnswer === 'B';
     setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Parameter *extent* digunakan untuk menentukan besar sudut (dalam derajat) dari lingkaran yang ingin digambar, misalnya 180 untuk setengah lingkaran.' : 'Salah! Parameter *extent* bukan untuk arah, ukuran jari-jari, atau warna, melainkan untuk menentukan besar sudut busur yang ingin digambar.' }));
 
   } else if (currentQuestion === 2) {
-    const isCorrect2 = selectedAnswer2 === 'B';
+    const isCorrect2 = selectedAnswer2 === 'C';
     setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Perintah `circle(50)` akan menggambar lingkaran dengan jari-jari 50.' : 'Salah! Perintah `circle(50)` berarti menggambar lingkaran dengan jari-jari 50, bukan 100 atau sekadar bergerak.' }));
 
     if (isCorrect2) {
@@ -1502,14 +1502,14 @@ const runit = (code, forceReset = false) => {
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa fungsi dari parameter <i>extent</i> dalam metode circle?</p>
+        <p>Hasil dari menjalankan perintah circle 50 adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'Mengatur arah lingkaran.' },
-        { key: 'B', label: 'Menentukan ukuran jari-jari lingkaran.' },
-        { key: 'C', label: 'Menentukan besaran sudut busur yang ingin Digambar.' },
-        { key: 'D', label: 'Mengubah warna lingkaran.' },
+        { key: 'A', label: 'Tidak ada lingkaran yang Digambar.' },
+        { key: 'B', label: 'Lingkaran dengan jari-jari 50 akan digambar.' },
+        { key: 'C', label: 'Lingkaran dengan jari-jari 100 akan digambar.' },
+        { key: 'D', label: 'Bidawang akan bergerak maju 50 langakah.' },
       ].map(({ key, label }) => (
         <Button
           key={key}
@@ -1539,15 +1539,15 @@ const runit = (code, forceReset = false) => {
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Apa yang terjadi jika Anda menjalankan perintah circle 50?</p>
+        <p>Jika kode perintah circle 60 180 dijalankan, bentuk yang akan digambar oleh bidawang adalah ...</p>
 
       </Form.Label>
 
       {[
-        { key: 'A', label: 'Tidak ada lingkaran yang Digambar.' },
-        { key: 'B', label: 'Lingkaran dengan jari-jari 50 akan digambar.' },
-        { key: 'C', label: 'Lingkaran dengan jari-jari 100 akan digambar.' },
-        { key: 'D', label: 'Bidawang akan bergerak maju 50 langakah.' },
+        { key: 'A', label: 'Lingkaran penuh dengan jari-jari 60.' },
+        { key: 'B', label: 'Garis lurus sejauh 60 langkah.' },
+        { key: 'C', label: 'Busur setengah lingkaran dengan jari-jari 60.' },
+        { key: 'D', label: 'Lingkaran penuh yang bergerak ke kiri.' },
       ].map(({ key, label }) => (
         <Button
           key={key}

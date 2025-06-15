@@ -1262,8 +1262,7 @@ circle 50`}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa efek dari penggunaan fungsi dibawah ini sebelum menggambar</p>
-        <pre><code>pensize 10</code></pre>
+        <p>Hasil dari penggunaan fungsi pensize 10 sebelum menggambar adalah ...</p>
       </Form.Label>
 
       {[
@@ -1305,7 +1304,7 @@ circle 50`}
 circle 30
 pensize 2
 circle 50`}</code></pre>
-        <p>Apa yang akan terlihat pada hasil akhir?</p>
+        <p>Hasil dari kode perintah tersebut ketika dijalankan adalah ...</p>
       </Form.Label>
 
       {[

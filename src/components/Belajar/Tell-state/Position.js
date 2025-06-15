@@ -277,11 +277,11 @@ const handleAnswerChange = (questionId, answer) => {
 
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
-    const isCorrect1 = selectedAnswer === 'C';
+    const isCorrect1 = selectedAnswer === 'B';
     setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi `position` digunakan untuk mengetahui posisi turtle saat ini dalam bentuk koordinat (x, y).' : 'Salah! Fungsi `position` bukan untuk mengatur atau menghapus posisi, tetapi untuk **memberitahu posisi turtle saat ini dalam bentuk koordinat (x, y)**.' }));
 
   } else if (currentQuestion === 2) {
-    const isCorrect2 = selectedAnswer2 === 'A';
+    const isCorrect2 = selectedAnswer2 === 'C';
     setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Jika turtle berada di posisi (50, 100), maka perintah `print position` akan menampilkan `(50, 100)`.' : 'Salah! Perintah `print position` akan mencetak posisi turtle saat ini, yaitu `(50, 100)`' }));
 
     if (isCorrect2) {
@@ -1641,14 +1641,14 @@ print position`}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Apa fungsi dari position?</p>
+        <p>Jenis data yang dikembalikan oleh perintah position adalah...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: 'Memberitahu arah pergerakan turtle saat ini.' },
-        { key: 'B', label: 'Menghapus posisi turtle sebelumnya.' },
-        { key: 'C', label: 'Memberitahu posisi turtle saat ini dalam bentuk koordinat (x, y).' },
-        { key: 'D', label: 'Mengatur posisi turtle ke titik tertentu.' },
+        { key: 'A', label: 'Bilangan bulat' },
+        { key: 'B', label: 'Pasangan koordinat (x, y)' },
+        { key: 'C', label: 'Teks berwarna' },
+        { key: 'D', label: 'd.	Derajat arah sudut' },
       ].map(({ key, label }) => (
         <Button
           key={key}
@@ -1678,15 +1678,18 @@ print position`}
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>Apa hasil dari perintah berikut jika turtle berada di posisi (50, 100)? </p>
-        <pre><code>print position</code></pre>
+        <p>2.	Bidawang saat ini berada di titik (0, 0), lalu seorang siswa menulis kode berikut dan memperkirakan bahwa posisi akhir Bidawang adalah (50, 50):</p>
+        <pre><code>{`forward 50
+sety 50
+print position`}</code></pre>
+      <p>Perkiraan siswa tersebut adalah ...</p>
       </Form.Label>
 
       {[
-        { key: 'A', label: '(50, 100)' },
-        { key: 'B', label: '0' },
-        { key: 'C', label: '(0, 0)' },
-        { key: 'D', label: '[50, 100]' },
+        { key: 'A', label: 'Tidak tepat, karena posisi akhirnya akan tetap di (0, 50)' },
+        { key: 'B', label: 'Tidak tepat, karena perintah sety tidak memengaruhi posisi' },
+        { key: 'C', label: 'Tepat, karena saat posisi awal (0, 0), forward 50 akan menggerakkan Bidawang ke x 50 dan sety 50 mengubah nilai y secara langsung' },
+        { key: 'D', label: 'Tepat, karena posisi awal adalah (50, 50)' },
       ].map(({ key, label }) => (
         <Button
           key={key}
