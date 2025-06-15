@@ -78,7 +78,7 @@ const quizData = [
     answer: 'Bidawang menggambar garis merah sepanjang 100 piksel.'
   },
   {
-    question: '8.	Format yang tidak valid untuk parameter warna dalam fungsi pencolor adalah ...',
+    question: 'Format yang tidak valid untuk parameter warna dalam fungsi pencolor adalah ...',
     options: [
       '"blue"',
       '"#00FF00"',
@@ -246,9 +246,10 @@ useEffect(() => {
     setShowResult(true);
 
     const nilaiAkhir = (sc / quizData.length) * 100;
+    const kkmKuis4 = kkm?.kuis_4 ?? 70;
 
 // ✅ Update progres jika memenuhi syarat
-if (nilaiAkhir >= kkm && progresBelajar === 21) {
+if (nilaiAkhir >= kkmKuis4 && progresBelajar === 21) {
   try {
     // 1. Update progres belajar
     await axios.put(
@@ -300,7 +301,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 21) {
     });
   }
 
-} else if (nilaiAkhir >= kkm && progresBelajar > 21) {
+} else if (nilaiAkhir >= kkmKuis4 && progresBelajar > 21) {
   // ⚠️ Sudah pernah menjawab kuis ini sebelumnya
   Swal.fire({
     icon: 'info',
@@ -320,7 +321,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 21) {
     icon: 'warning',
     html: `
       <p>Nilaimu: <b>${nilaiAkhir}</b></p>
-      <p>Sayangnya kamu belum memenuhi syarat nilai minimal ${kkm}.</p>
+      <p>Sayangnya kamu belum memenuhi syarat nilai minimal ${kkmKuis4}.</p>
       <p><b>Silakan baca ulang materi sebelumnya</b> lalu coba kerjakan ulang kuis ini ya 💪</p>
     `,
     confirmButtonText: 'Mengerti'

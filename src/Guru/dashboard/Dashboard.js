@@ -34,8 +34,9 @@ const Dashboard = () => {
   const [jumlahSelesaiBelajar, setJumlahSelesaiBelajar] = useState(null);
   const [jumlahSelesaiTantangan, setJumlahSelesaiTantangan] = useState(null);
   const [dataNilai, setDataNilai] = useState([]);
-  const [kkm, setKkm] = useState('');
-  const [editKkm, setEditKkm] = useState('');
+  const [kkm, setKkm] = useState({});
+  const [editKkm, setEditKkm] = useState({});
+
   const [kkmUpdated, setKkmUpdated] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true); // loader state
@@ -61,10 +62,11 @@ const Dashboard = () => {
         setJumlahSelesaiTantangan(tantangan.data.count);
         setDataNilai(nilaiRes.data);
 
-        if (kkmRes.data && kkmRes.data.kkm !== undefined) {
+        if (kkmRes.data && kkmRes.data.kkm) {
           setKkm(kkmRes.data.kkm);
           setEditKkm(kkmRes.data.kkm);
         }
+
         setLoading(false);
       } catch (error) {
         if (error.response) {
@@ -100,11 +102,9 @@ const Dashboard = () => {
     e.preventDefault();
   
     try {
-      // Ambil token terbaru dari endpoint backend
       const resToken = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/token-guru`);
       const accessToken = resToken.data.accessToken;
   
-      // Kirim permintaan update dengan token yang valid
       await axios.put(
         `${process.env.REACT_APP_API_ENDPOINT}/api/guru/kkm`,
         { kkm: editKkm },
@@ -115,8 +115,9 @@ const Dashboard = () => {
         }
       );
   
-      setKkm(editKkm);
+      setKkm(editKkm); // Update nilai KKM di state utama
       setKkmUpdated(true);
+      setShowModal(false); // ✅ Pindahkan ini ke sini agar hanya tertutup kalau update sukses
       setTimeout(() => setKkmUpdated(false), 3000);
     } catch (err) {
       console.error("Gagal update KKM", err);
@@ -128,9 +129,10 @@ const Dashboard = () => {
   };
   
   
+  
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex'}}>
       {/* Sidebar */}
       <div
         style={{
@@ -164,7 +166,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main content */}
-      <div style={{ marginLeft: '250px', padding: '30px', width: '100%', backgroundColor:'white', height:'100vh' }}>
+      <div style={{ marginLeft: '250px', padding: '30px', width: '100%', backgroundColor:'white', minHeight:'100vh' }}>
         <h2 className='mb-3' style={{marginTop: 50}}>{activeMenu}</h2>
 
         {/* Token & KKM Card */}
@@ -192,7 +194,9 @@ const Dashboard = () => {
                   <div>
                     <Card.Title style={{ fontSize: '1.1rem' }}>Total Siswa</Card.Title>
                     <Card.Text style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>
-                      {jumlahSiswa ? jumlahSiswa : <Spinner animation="border" size="sm" />}
+                    {jumlahSiswa !== null && jumlahSiswa !== undefined
+                      ? jumlahSiswa
+                      : <Spinner animation="border" size="sm" />}
                     </Card.Text>
                   </div>
                 </div>
@@ -247,11 +251,16 @@ const Dashboard = () => {
                   <div>
                     <Card.Title style={{ fontSize: '1.1rem' }}>Nilai Rata-rata</Card.Title>
                     <Card.Text style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>
-                      {dataNilai && dataNilai.length > 0 ? (
-                        hitungRataRata()
+                    {dataNilai !== null && dataNilai !== undefined ? (
+                        dataNilai.length > 0 ? (
+                          hitungRataRata()
+                        ) : (
+                          0 // atau "-" jika tidak ingin menampilkan angka
+                        )
                       ) : (
                         <Spinner animation="border" size="sm" />
                       )}
+
                     </Card.Text>
 
                   </div>
@@ -261,71 +270,89 @@ const Dashboard = () => {
           </Col>
         </Row>
         <div className="mt-4">
+          
         {/* KKM Display and Edit Button */}
-        <Card className="shadow-sm mt-4">
-          <Card.Body>
-            <Form.Group controlId="kkmDisplay">
-              <Form.Label><strong>KKM</strong></Form.Label>
-              <div className="d-flex">
-                <Form.Control
-                  type="number"
-                  value={kkm}
-                  readOnly
-                  style={{ backgroundColor: '#e9ecef' }}
-                />
-                <Button
-                  variant="outline-primary"
-                  onClick={() => setShowModal(true)}
-                  style={{ marginLeft: '10px' }}
-                >
-                  UBAH
-                </Button>
-              </div>
-            </Form.Group>
-          </Card.Body>
-        </Card>
+        <Card className="shadow-sm mt-4 mb-5">
+        <Card.Body>
+          <Form.Group>
+            <Form.Label><strong>KKM</strong></Form.Label>
+            <div className="row">
+              {['kuis_1', 'kuis_2', 'kuis_3', 'kuis_4', 'kuis_5', 'evaluasi'].map((item) => (
+                <div key={item} className="col-md-4 col-sm-6 mb-2 d-flex align-items-center">
+                  <Form.Label className="me-2 mb-0" style={{ minWidth: '70px', fontSize: '0.9rem' }}>
+                    {item.replace('_', ' ').toUpperCase()}
+                  </Form.Label>
+                  <Form.Control
+                    type="number"
+                    size="sm"
+                    value={kkm[item] || ''}
+                    readOnly
+                    style={{
+                      backgroundColor: '#e9ecef',
+                      fontSize: '0.9rem',
+                      flex: 1
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="mt-3">
+              <Button
+                variant="outline-primary"
+                size="sm"
+                onClick={() => setShowModal(true)}
+              >
+                UBAH
+              </Button>
+            </div>
+          </Form.Group>
+        </Card.Body>
+      </Card>
+
       </div>
       </div>
 
-      {/* Modal untuk edit KKM */}
       {showModal && (
-        <div className="modal show fade" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Perbarui KKM</h5>
-                <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
-              </div>
-              <div className="modal-body">
-                <Form onSubmit={(e) => {
-                  handleUpdateKkm(e);
-                  setShowModal(false);
-                }}>
-                  <Form.Group controlId="editKkmInput">
-                    <Form.Label>Masukkan KKM Baru</Form.Label>
-                    <Form.Control
-                      type="number"
-                      value={editKkm}
-                      onChange={(e) => setEditKkm(e.target.value)}
-                      min={0}
-                      max={100}
-                      required
-                    />
-                  </Form.Group>
-                  <div className="mt-3 d-flex justify-content-end">
-                    <Button variant="secondary" onClick={() => setShowModal(false)} className="me-2">
-                      Batal
-                    </Button>
-                    <Button variant="primary" type="submit">
-                      Simpan
-                    </Button>
-                  </div>
-                </Form>
-              </div>
-            </div>
-          </div>
+  <div className="modal show fade" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+    <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title">Perbarui Nilai KKM</h5>
+          <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
         </div>
-      )}
+        <div className="modal-body">
+        <Form onSubmit={handleUpdateKkm}>
+            {['kuis_1', 'kuis_2', 'kuis_3', 'kuis_4', 'kuis_5', 'evaluasi'].map((item) => (
+              <Form.Group key={item} className="mb-3">
+                <Form.Label>{item.replace('_', ' ').toUpperCase()}</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={editKkm[item] || ''}
+                  onChange={(e) =>
+                    setEditKkm({ ...editKkm, [item]: parseInt(e.target.value) || 0 })
+                  }
+                  min={0}
+                  max={100}
+                  required
+                />
+              </Form.Group>
+            ))}
+
+            <div className="d-flex justify-content-end">
+              <Button variant="secondary" onClick={() => setShowModal(false)} className="me-2">
+                Batal
+              </Button>
+              <Button variant="primary" type="submit">
+                Simpan
+              </Button>
+            </div>
+          </Form>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
 
 
       

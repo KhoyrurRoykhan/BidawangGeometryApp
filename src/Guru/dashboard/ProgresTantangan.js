@@ -34,9 +34,14 @@ const ProgresTantangan = () => {
       setDataSiswa(siswaRes.data);
     } catch (error) {
       console.log(error);
-      if (error.response) {
+      if (error.response && error.response.status === 401) {
+        // Hanya logout jika token tidak valid / unauthorized
         navigate('/login-guru');
-      }
+      } else {
+        // Tampilkan error lain di console, atau log
+        console.warn('Gagal mengambil data siswa:', error.response?.statusText || error.message);
+        setDataSiswa([]); // anggap tidak ada siswa
+      }      
     } finally {
       setLoading(false);
     }

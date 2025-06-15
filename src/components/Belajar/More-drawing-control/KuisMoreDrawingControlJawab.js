@@ -251,9 +251,10 @@ useEffect(() => {
     setShowResult(true);
 
     const nilaiAkhir = (sc / quizData.length) * 100;
+    const kkmKuis5 = kkm?.kuis_5 ?? 70;
 
 // ✅ Update progres jika memenuhi syarat
-if (nilaiAkhir >= kkm && progresBelajar === 26) {
+if (nilaiAkhir >= kkmKuis5 && progresBelajar === 26) {
   try {
     // 1. Update progres belajar
     await axios.put(
@@ -305,7 +306,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 26) {
     });
   }
 
-} else if (nilaiAkhir >= kkm && progresBelajar > 26) {
+} else if (nilaiAkhir >= kkmKuis5 && progresBelajar > 26) {
   // ⚠️ Sudah pernah menjawab kuis ini sebelumnya
   Swal.fire({
     icon: 'info',
@@ -325,7 +326,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 26) {
     icon: 'warning',
     html: `
       <p>Nilaimu: <b>${nilaiAkhir}</b></p>
-      <p>Sayangnya kamu belum memenuhi syarat nilai minimal ${kkm}.</p>
+      <p>Sayangnya kamu belum memenuhi syarat nilai minimal ${kkmKuis5}.</p>
       <p><b>Silakan baca ulang materi sebelumnya</b> lalu coba kerjakan ulang kuis ini ya 💪</p>
     `,
     confirmButtonText: 'Mengerti'

@@ -246,9 +246,10 @@ useEffect(() => {
     setShowResult(true);
 
     const nilaiAkhir = (sc / quizData.length) * 100;
+    const kkmKuis2 = kkm?.kuis_2 ?? 70;
 
 // ✅ Update progres jika memenuhi syarat
-if (nilaiAkhir >= kkm && progresBelajar === 10) {
+if (nilaiAkhir >= kkmKuis2 && progresBelajar === 10) {
   try {
     // 1. Update progres belajar
     await axios.put(
@@ -320,7 +321,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 10) {
     icon: 'warning',
     html: `
       <p>Nilaimu: <b>${nilaiAkhir}</b></p>
-      <p>Sayangnya kamu belum memenuhi syarat nilai minimal ${kkm}.</p>
+      <p>Sayangnya kamu belum memenuhi syarat nilai minimal ${kkmKuis2}.</p>
       <p><b>Silakan baca ulang materi sebelumnya</b> lalu coba kerjakan ulang kuis ini ya 💪</p>
     `,
     confirmButtonText: 'Mengerti'

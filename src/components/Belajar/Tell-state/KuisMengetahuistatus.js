@@ -86,7 +86,7 @@ const KuisMengetahuistatus = () => {
     }
   };
 
-  const [kkm, setKkm] = useState(80); // default sementara
+  const [kkm, setKkm] = useState({ kuis_3: 70 }); // default fallback 70
 
   useEffect(() => {
     const fetchKKM = async () => {
@@ -101,7 +101,7 @@ const KuisMengetahuistatus = () => {
         console.error("Gagal mengambil KKM:", err);
       }
     };
-
+  
     if (token) fetchKKM();
   }, [token]);
 
@@ -169,6 +169,7 @@ const KuisMengetahuistatus = () => {
             <FaBars />
           </Button>
         </div>
+
         {!collapsed && (
         <Accordion defaultActiveKey={activeAccordionKey} className='p-2'>
             <Accordion.Item eventKey="0">
@@ -521,7 +522,7 @@ const KuisMengetahuistatus = () => {
               Terdapat 10 pertanyaan yang harus dikerjakan dalam kuis ini. Beberapa ketentuannya sebagai berikut:
             </p>
             <ul>
-              <li>Nilai kelulusan minimum: {kkm}</li>
+              <li>Nilai kelulusan minimum: {kkm.kuis_3}</li>
               <li>Durasi pengerjaan: 15 menit</li>
             </ul>
             <p>
@@ -551,14 +552,14 @@ const KuisMengetahuistatus = () => {
             <div style={{ marginTop: 50 }}>
               <h4 style={{color:'black'}}>Riwayat</h4>
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ backgroundColor: '#f8fafc' }}>
-                    <th style={{ padding: 10, textAlign: 'center', color: 'black' }}>Nilai Kuis Mengetahui Status</th>
-                    <th style={{ padding: 10, textAlign: 'center', color: 'black' }}>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {loadingRiwayat ? (
+            <thead>
+              <tr style={{ backgroundColor: '#f8fafc' }}>
+                <th style={{ padding: 10, textAlign: 'center', color: 'black' }}>Nilai Kuis Pengenalan</th>
+                <th style={{ padding: 10, textAlign: 'center', color: 'black' }}>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loadingRiwayat ? (
                 <tr>
                   <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>
                     <div className="spinner-border text-primary" role="status">
@@ -567,30 +568,38 @@ const KuisMengetahuistatus = () => {
                   </td>
                 </tr>
               ) : riwayatNilai.length > 0 ? (
-                riwayatNilai.map((item, index) => (
-                  <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
-                    <td style={{ padding: 10, textAlign: 'center' }}>{item.kuis_3 || 0}%</td>
-                    <td style={{ padding: 10, textAlign: 'center' }}>
-                      <span style={{
-                        padding: '2px 8px',
-                        backgroundColor: item.kuis_3 >= kkm ? '#d1fae5' : '#fee2e2',
-                        color: item.kuis_3 >= kkm ? '#065f46' : '#991b1b',
-                        border: `1px solid ${item.kuis_3 >= kkm ? '#34d399' : '#f87171'}`,
-                        borderRadius: 5,
-                        fontSize: '12px'
-                      }}>
-                        {item.kuis_3 >= kkm ? 'Lulus' : 'Tidak Lulus'}
-                      </span>
-                    </td>
-                  </tr>
-                ))
+                riwayatNilai.map((item, index) => {
+                  const nilai = item.kuis_3 ?? 0;
+                  const kkmValue = kkm?.kuis_3 ?? 70; // fallback default
+                  const isLulus = nilai >= kkmValue;
+
+                  return (
+                    <tr key={index} style={{ borderBottom: '1px solid #e2e8f0' }}>
+                      <td style={{ padding: 10, textAlign: 'center' }}>{nilai}%</td>
+                      <td style={{ padding: 10, textAlign: 'center' }}>
+                        <span style={{
+                          padding: '2px 8px',
+                          backgroundColor: isLulus ? '#d1fae5' : '#fee2e2',
+                          color: isLulus ? '#065f46' : '#991b1b',
+                          border: `1px solid ${isLulus ? '#34d399' : '#f87171'}`,
+                          borderRadius: 5,
+                          fontSize: '12px'
+                        }}>
+                          {isLulus ? 'Lulus' : 'Tidak Lulus'}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })
               ) : (
                 <tr>
-                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>Belum ada riwayat nilai.</td>
+                  <td colSpan="2" style={{ textAlign: 'center', padding: 20 }}>
+                    Belum ada riwayat nilai.
+                  </td>
                 </tr>
               )}
-                </tbody>
-              </table>
+            </tbody>
+          </table>
             </div>
 
 

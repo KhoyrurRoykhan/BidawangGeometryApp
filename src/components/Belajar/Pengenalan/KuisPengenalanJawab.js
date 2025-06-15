@@ -203,7 +203,7 @@ useEffect(() => {
     }
   };
 
-  const [kkm, setKkm] = useState(80); // default sementara
+  const [kkm, setKkm] = useState({ kuis_1: 70 }); // default fallback 70
 
   useEffect(() => {
     const fetchKKM = async () => {
@@ -218,7 +218,7 @@ useEffect(() => {
         console.error("Gagal mengambil KKM:", err);
       }
     };
-
+  
     if (token) fetchKKM();
   }, [token]);
 
@@ -228,7 +228,7 @@ useEffect(() => {
     hasFinishedRef.current = true;
 
     clearInterval(timerRef.current);
-    console.log("kkm :", kkm)
+    console.log("kkm :", kkm?.kuis_1)
 
     let sc = 0;
     const wrong = [];
@@ -249,8 +249,10 @@ useEffect(() => {
 
     const nilaiAkhir = (sc / quizData.length) * 100;
 
+    const kkmKuis1 = kkm?.kuis_1 ?? 70;
+
 // ✅ Update progres jika memenuhi syarat
-if (nilaiAkhir >= kkm && progresBelajar === 1) {
+if (nilaiAkhir >= kkmKuis1 && progresBelajar === 1) {
   try {
     // 1. Update progres belajar
     await axios.put(
@@ -303,7 +305,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 1) {
     });
   }
 
-} else if (nilaiAkhir >= kkm && progresBelajar > 1) {
+} else if (nilaiAkhir >= kkmKuis1 && progresBelajar > 1) {
   // ⚠️ Sudah pernah menjawab kuis ini sebelumnya
   Swal.fire({
     icon: 'info',
@@ -323,7 +325,7 @@ if (nilaiAkhir >= kkm && progresBelajar === 1) {
     icon: 'warning',
     html: `
       <p>Nilaimu: <b>${nilaiAkhir}</b></p>
-      <p>Sayangnya kamu belum memenuhi syarat nilai minimal ${kkm}.</p>
+      <p>Sayangnya kamu belum memenuhi syarat nilai minimal ${kkmKuis1}.</p>
       <p><b>Silakan baca ulang materi sebelumnya</b> lalu coba kerjakan ulang kuis ini ya 💪</p>
     `,
     confirmButtonText: 'Mengerti'

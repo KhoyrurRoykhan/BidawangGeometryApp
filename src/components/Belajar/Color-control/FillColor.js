@@ -1565,7 +1565,7 @@ end_fill`}</code></pre>
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>2.	Fungsi dari end_fill dalam proses pengisian warna adalah ...</p>
+        <p>Fungsi dari end_fill dalam proses pengisian warna adalah ...</p>
       </Form.Label>
 
       {[
