@@ -232,7 +232,7 @@ const handleSubmit = async () => {
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Segilima memiliki 5 sisi, jadi kita perlu mengulangi langkah menggambar sebanyak 5 kali.' : 'Salah! Segilima berarti memiliki 5 sisi, sehingga perulangan harus dilakukan 5 kali untuk menyelesaikan gambar.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Segilima memiliki 5 sisi, jadi kita perlu mengulangi langkah menggambar sebanyak 5 kali.' : 'Salah! Perhatikan jumlah sisinya.' }));
 
     if (isCorrect2) {
       try {

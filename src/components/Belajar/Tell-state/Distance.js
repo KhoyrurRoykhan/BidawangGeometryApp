@@ -234,11 +234,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'C';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi `distance` digunakan untuk menghitung jarak Euclidean dari posisi bidawang saat ini ke titik (x, y).' : `Salah! Fungsi \`distance\` sebenarnya digunakan untuk menghitung jarak lurus (Euclidean) dari posisi sekarang ke koordinat (x, y), bukan untuk ${selectedAnswer === 'A' ? 'menentukan arah' : selectedAnswer === 'C' ? 'menggerakkan posisi' : 'menghapus jarak'}.` }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! Fungsi `distance` digunakan untuk menghitung jarak Euclidean dari posisi bidawang saat ini ke titik (x, y).'
+      : 'Salah. Fungsi `distance` berkaitan dengan pengukuran jarak, bukan tindakan atau arah gerak.',
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'C';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Jarak dari titik (0, 0) ke (0, 100) adalah 100 satuan karena hanya bergerak di sumbu Y.' : `Salah! Jarak dari titik (0, 0) ke (0, 100) adalah 100 satuan karena hanya ada perbedaan pada sumbu Y.` }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! Jarak dari titik (0, 0) ke (100, 0) adalah 100 satuan karena hanya bergerak di sumbu X.'
+      : 'Salah. Nilai jarak ditentukan berdasarkan perbedaan koordinat antar titik.',
+  }));
 
     if (isCorrect2) {
       try {
@@ -1569,7 +1575,7 @@ print distance 100 100`}
     ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === 'Benar! Jarak dari titik (0, 0) ke (0, 100) adalah 100 satuan karena hanya bergerak di sumbu Y.' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Jarak dari titik (0, 0) ke (100, 0) adalah 100 satuan karena hanya bergerak di sumbu X.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}

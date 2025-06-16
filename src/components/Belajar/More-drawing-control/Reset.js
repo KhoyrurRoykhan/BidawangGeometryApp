@@ -195,11 +195,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi reset akan menghapus semua gambar di layar dan mengembalikan bidawang ke posisi awal dengan atribut default.' : 'Salah! Fungsi reset tidak hanya menghapus gambar, tetapi juga mengatur ulang posisi dan atribut bidawang ke default.' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! Fungsi reset akan menghapus semua gambar di layar dan mengembalikan bidawang ke posisi awal dengan atribut default.'
+      : 'Salah. Fungsi reset tidak hanya menghapus gambar.',
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Setelah reset, semua atribut seperti warna garis akan kembali ke default, yaitu hitam. Maka lingkaran berwarna hitam.' : 'Salah! Setelah reset, warna yang sebelumnya diatur (seperti hijau) akan hilang karena semua atribut kembali ke default. Warna default adalah hitam.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! Setelah reset, semua atribut seperti warna garis akan kembali ke default, yaitu hitam.'
+      : 'Salah. Fungsi reset mengembalikan semua atribut turtle ke keadaan awal.',
+  }));
 
     if (isCorrect2) {
       try {
@@ -1335,7 +1341,7 @@ circle 50`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === 'Benar! Setelah reset, semua atribut seperti warna garis akan kembali ke default, yaitu hitam. Maka lingkaran berwarna hitam.' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Setelah reset, semua atribut seperti warna garis akan kembali ke default, yaitu hitam.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}

@@ -237,10 +237,16 @@ const SetHeading = () => {
   const handleSubmit = async () => {
     if (currentQuestion === 1) {
       const isCorrect1 = selectedAnswer === 'C';
-      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? "Benar! Perintah `setheading 90` akan mengubah arah turtle menghadap ke atas atau ke arah Utara." : "Salah! Perintah `setheading 90` membuat turtle menghadap ke Utara (atas). Arah ini mengikuti sistem koordinat turtle, di mana 0 adalah Timur, 90 adalah Utara, 180 adalah Barat, dan 270 adalah Selatan." }));
+      setFeedback((prev) => ({ ...prev, question1: isCorrect1
+        ? "Benar! Perintah `setheading 90` akan mengubah arah turtle menghadap ke atas atau ke arah Utara."
+        : "Salah! Coba ingat kembali arah-arah dalam sistem koordinat turtle: angka derajat tertentu mewakili arah hadap tertentu.",
+    }));
     } else if (currentQuestion === 2) {
       const isCorrect2 = selectedAnswer2 === 'C';
-      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! `setheading` digunakan untuk mengatur arah turtle dalam derajat: 0 ke Timur, 90 ke Utara, 180 ke Barat, dan 270 ke Selatan.' : 'Salah! Perintah `setheading` tidak mengatur posisi, warna, atau langsung bergerak. Ia hanya mengubah arah turtle berdasarkan derajat yang ditentukan.' }));
+      setFeedback((prev) => ({ ...prev, question2: isCorrect2
+        ? "Benar! Setelah perintah `setheading 180`, arah gerak bidawang berubah sesuai derajat, lalu `forward` akan melanjutkan ke arah tersebut."
+        : "Salah! Perintah `setheading` menentukan arah gerak bidawang berdasarkan nilai derajat sebelum `forward` dijalankan.",
+    }));
   
       if (isCorrect2) {
         try {
@@ -1400,7 +1406,7 @@ forward 100 `}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === 'Benar! Perintah `setheading 90` akan mengubah arah turtle menghadap ke atas atau ke arah Utara.' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Perintah `setheading 90` akan mengubah arah turtle menghadap ke atas atau ke arah Utara." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1412,7 +1418,7 @@ forward 100 `}
     <Form.Group controlId="question2">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 2 dari 2:</b>
-        <p>2.	Jika saat ini bidawang menghadap ke kanan layar, kemudian pada teks editor diketikkan perintah setheading 180 lalu forward 50. Setelah perintah dijalankan, arah pergerakan bidawang adalah ...</p>
+        <p>Jika saat ini bidawang menghadap ke kanan layar, kemudian pada teks editor diketikkan perintah setheading 180 lalu forward 50. Setelah perintah dijalankan, arah pergerakan bidawang adalah ...</p>
       </Form.Label>
 
       {[
@@ -1437,7 +1443,7 @@ forward 100 `}
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === 'Benar! `setheading` digunakan untuk mengatur arah turtle dalam derajat: 0 ke Timur, 90 ke Utara, 180 ke Barat, dan 270 ke Selatan.' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === "Benar! Setelah perintah `setheading 180`, arah gerak bidawang berubah sesuai derajat, lalu `forward` akan melanjutkan ke arah tersebut." ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1465,7 +1471,7 @@ forward 100 `}
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== 'Benar! Perintah `setheading 90` akan mengubah arah turtle menghadap ke atas atau ke arah Utara.') ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Perintah `setheading 90` akan mengubah arah turtle menghadap ke atas atau ke arah Utara.") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

@@ -281,11 +281,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'A';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi `xcor` digunakan untuk mengetahui posisi turtle pada sumbu horizontal (x), sedangkan `ycor` untuk sumbu vertikal (y).' : 'Salah! `xcor` menampilkan posisi turtle pada sumbu x (horizontal), sedangkan `ycor` menampilkan posisi pada sumbu y (vertikal).' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! Perintah `xcor` dan `ycor` mencetak posisi bidawang pada sumbu-x dan sumbu-y secara terpisah, sehingga hasilnya bukan koordinat langsung atau format lain.'
+      : 'Salah! Perintah `xcor` dan `ycor` akan mencetak nilai posisi secara terpisah, bukan dalam bentuk koordinat gabungan atau format tambahan.',
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Karena turtle berada di posisi (30, 20), maka `xcor` akan mencetak nilai 30, yaitu posisi pada sumbu-x.' : 'Salah! Perintah `xcor` hanya mencetak posisi pada sumbu-x saja, bukan koordinat lengkap atau sumbu-y. Jawaban yang benar adalah 30.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! Fungsi `xcor` mencetak nilai posisi turtle pada sumbu-x, dalam kasus ini yaitu 30.'
+      : 'Salah! Fungsi `xcor` hanya mencetak nilai posisi di sumbu-x saja, bukan nilai y atau pasangan koordinat.',
+  }));
 
     if (isCorrect2) {
       try {
@@ -1574,7 +1580,7 @@ print ycor`}</pre></p>
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar! Fungsi `xcor` digunakan untuk mengetahui posisi turtle pada sumbu horizontal (x), sedangkan `ycor` untuk sumbu vertikal (y)." ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Perintah `xcor` dan `ycor` mencetak posisi bidawang pada sumbu-x dan sumbu-y secara terpisah, sehingga hasilnya bukan koordinat langsung atau format lain.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1613,7 +1619,7 @@ print ycor`}</pre></p>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar! Karena turtle berada di posisi (30, 20), maka `xcor` akan mencetak nilai 30, yaitu posisi pada sumbu-x." ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Fungsi `xcor` mencetak nilai posisi turtle pada sumbu-x, dalam kasus ini yaitu 30.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1641,7 +1647,7 @@ print ycor`}</pre></p>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar! Fungsi `xcor` digunakan untuk mengetahui posisi turtle pada sumbu horizontal (x), sedangkan `ycor` untuk sumbu vertikal (y).") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Perintah `xcor` dan `ycor` mencetak posisi bidawang pada sumbu-x dan sumbu-y secara terpisah, sehingga hasilnya bukan koordinat langsung atau format lain.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

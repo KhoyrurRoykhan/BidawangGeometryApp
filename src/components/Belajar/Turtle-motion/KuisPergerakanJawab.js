@@ -27,7 +27,7 @@ const quizData = [
     answer: 'Kiri'
   },
   {
-    question: 'Dampak dari menjalankan perintah backward 50 setelah setheading 90 adalah …',
+    question: 'Hasil dari menjalankan perintah backward 50 setelah setheading 90 adalah …',
     options: [
       'Bidawang mundur ke arah barat',
       'Bidawang mundur ke arah selatan',
@@ -104,7 +104,7 @@ const quizData = [
       'setx 100 → dot 20 → forward 100',
       'forward 100 → dot 20 → backward 100 → dot 20'
     ],
-    answer: 'dot 20 → sety 100 → dot 20'
+    answer: 'dot 20 → forward 100 → dot 20'
   }
 ];
 

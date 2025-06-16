@@ -217,12 +217,18 @@ const handleAnswerChange = (questionId, answer) => {
 
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
-    const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Dalam canvas Bidawang atau Python Turtle, arah 0 derajat menunjuk ke Timur (kanan).' : 'Salah! Arah 0 derajat pada canvas Bidawang menunjuk ke Timur (kanan), bukan ' + (selectedAnswer === 'A' ? 'Utara' : selectedAnswer === 'C' ? 'Barat' : 'Selatan') + '.' }));
+    const isCorrect1 = selectedAnswer === 'A';
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! Perintah `right 90` memutar turtle searah jarum jam dari posisi awal (0°) dan menghadap ke bawah layar, sehingga nilai headingnya adalah 270°.'
+      : 'Salah! Perintah `right 90` memutar turtle searah jarum jam sebesar 90° dari arah awal, jadi arahnya akan ke bawah layar.',    
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'A';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Jika bidawang diputar 90 derajat ke kiri dari posisi 0 (Timur), maka heading-nya menjadi 90 derajat, yang menunjuk ke Utara.' : 'Salah! Setelah diputar 90 derajat ke kiri dari posisi awal (0 derajat / Timur), bidawang akan menghadap Utara dengan heading 90 derajat.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! Kombinasi `right 45` lalu `left 90` akan menghasilkan arah akhir sebesar 315 derajat (karena bergerak ke kiri dari 45).'
+      : 'Salah! Perlu diperhatikan bahwa `right` memutar searah jarum jam dan `left` berlawanan arah jarum jam, sehingga hasil akhirnya harus dihitung berdasarkan rotasi gabungan tersebut.',
+  }));
 
     if (isCorrect2) {
       try {
@@ -1333,7 +1339,7 @@ print heading`}</pre></p>
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar! Dalam canvas Bidawang atau Python Turtle, arah 0 derajat menunjuk ke Timur (kanan)." ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Perintah `right 90` memutar turtle searah jarum jam dari posisi awal (0°) dan menghadap ke bawah layar, sehingga nilai headingnya adalah 270°.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1373,7 +1379,7 @@ print heading`}</pre></p>
     ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar! Jika bidawang diputar 90 derajat ke kiri dari posisi 0 (Timur), maka heading-nya menjadi 90 derajat, yang menunjuk ke Utara." ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Kombinasi `right 45` lalu `left 90` akan menghasilkan arah akhir sebesar 315 derajat (karena bergerak ke kiri dari 45).' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1401,7 +1407,7 @@ print heading`}</pre></p>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar! Dalam canvas Bidawang atau Python Turtle, arah 0 derajat menunjuk ke Timur (kanan).") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Setelah perintah `right 90`, turtle akan menghadap ke arah 90 derajat, yang berarti ke Selatan.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

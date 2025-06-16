@@ -205,11 +205,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'C';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? "Benar! Perintah `dot` digunakan untuk menggambar titik di posisi turtle saat ini. Kamu juga bisa menentukan ukuran dan warnanya." : 'Salah! Perintah `dot` bukan untuk menggambar lingkaran penuh, busur, atau menghapus titik, tetapi untuk menggambar titik di posisi turtle.' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? "Benar! Perintah `dot` digunakan untuk menggambar titik di posisi turtle saat ini. Kamu juga bisa menentukan ukuran dan warnanya."
+      : "Salah! Perintah ini tidak digunakan untuk menggambar lingkaran penuh, busur, atau menghapus titik.",
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'C';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! `dot 15 "blue"` akan menggambar titik berwarna biru dengan diameter 15 piksel di posisi turtle saat ini.' : 'Salah! Perintah `dot 15, "blue"` menggambar *titik*, bukan lingkaran penuh atau busur, dan hasilnya langsung tampak di posisi turtle.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! `dot 40 "yellow"` akan menggambar titik berwarna kuning dengan ukuran 40 piksel di posisi turtle saat ini.'
+      : 'Salah! Perintah ini digunakan untuk menggambar titik, bukan menentukan posisi atau menggambar bentuk lain.',
+  }));
 
     if (isCorrect2) {
       try {
@@ -1330,7 +1336,7 @@ setposition 200 200`}
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>1.	Fungsi kode perintah dot adalah ...</p>
+        <p>Fungsi kode perintah dot adalah ...</p>
       </Form.Label>
 
       {[
@@ -1355,7 +1361,7 @@ setposition 200 200`}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === 'Benar! Perintah `dot` digunakan untuk menggambar titik di posisi turtle saat ini. Kamu juga bisa menentukan ukuran dan warnanya.' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === "Benar! Perintah `dot` digunakan untuk menggambar titik di posisi turtle saat ini. Kamu juga bisa menentukan ukuran dan warnanya." ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1394,7 +1400,7 @@ setposition 200 200`}
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === 'Benar! `dot 15 "blue"` akan menggambar titik berwarna biru dengan diameter 15 piksel di posisi turtle saat ini.' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! `dot 40 "yellow"` akan menggambar titik berwarna kuning dengan ukuran 40 piksel di posisi turtle saat ini.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1422,7 +1428,7 @@ setposition 200 200`}
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== 'Benar! Perintah `dot` digunakan untuk menggambar titik di posisi turtle saat ini. Kamu juga bisa menentukan ukuran dan warnanya.') ||
+        (currentQuestion === 1 && feedback.question1 !== "Benar! Perintah `dot` digunakan untuk menggambar titik di posisi turtle saat ini. Kamu juga bisa menentukan ukuran dan warnanya.") ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

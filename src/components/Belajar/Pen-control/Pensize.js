@@ -194,12 +194,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi pensize 10 akan mengatur ketebalan garis menjadi 10 piksel.' : 'Salah! Fungsi pensize digunakan untuk mengatur ketebalan garis, bukan mengubah warna atau menghapus garis.', }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! Fungsi pensize mengatur ketebalan garis sebelum menggambar.'
+      : 'Salah. Pertimbangkan kembali fungsi pensize dan efeknya terhadap garis yang digambar.',
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Lingkaran pertama digambar dengan ketebalan 5 piksel, dan lingkaran kedua dengan ketebalan 2 piksel.' : 'Salah! Kode tersebut menggambar dua lingkaran dengan ketebalan yang berbeda: 5 piksel untuk yang pertama dan 2 piksel untuk yang kedua.' }));
-
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! Setiap pemanggilan pensize akan memengaruhi ketebalan bentuk yang digambar setelahnya.'
+      : 'Salah. Perhatikan perubahan ketebalan garis berdasarkan urutan penggunaan fungsi pensize.',
+  }));
     if (isCorrect2) {
       try {
         if (Number(progresBelajar) === 17) {
@@ -1287,7 +1292,7 @@ circle 50`}
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === 'Benar! Fungsi pensize 10 akan mengatur ketebalan garis menjadi 10 piksel.' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Fungsi pensize mengatur ketebalan garis sebelum menggambar.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1329,7 +1334,7 @@ circle 50`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === 'Benar! Lingkaran pertama digambar dengan ketebalan 5 piksel, dan lingkaran kedua dengan ketebalan 2 piksel.' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Setiap pemanggilan pensize akan memengaruhi ketebalan bentuk yang digambar setelahnya.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1357,7 +1362,7 @@ circle 50`}</code></pre>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== 'Benar! Fungsi pensize 10 akan mengatur ketebalan garis menjadi 10 piksel.') ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Fungsi pensize mengatur ketebalan garis sebelum menggambar.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

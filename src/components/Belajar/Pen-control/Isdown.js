@@ -196,11 +196,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'A';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Metode isdown mengembalikan nilai True jika pena sedang dalam posisi turun.' : 'Salah! Metode isdown akan mengembalikan True jika pena dalam posisi turun, dan False jika pena diangkat.' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! Metode isdown mengembalikan nilai True jika pena sedang dalam posisi turun.'
+      : 'Salah. Pertimbangkan apa yang terjadi jika pena sedang digunakan untuk menggambar.',
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'A';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Saat pena diturunkan, isdown mengembalikan True, dan setelah pena diangkat, isdown mengembalikan False.' : 'Salah! Output yang benar adalah True, False karena awalnya pena turun (pendown) lalu diangkat (penup), sehingga statusnya berubah.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! Status pena dapat dicek dengan isdown, dan akan berubah setelah penup dipanggil.'
+      : 'Salah. Coba perhatikan bagaimana urutan pendown dan penup memengaruhi hasil isdown.',
+  }));
 
     if (isCorrect2) {
       try {
@@ -1318,7 +1324,7 @@ print isdown`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === 'Benar! Saat pena diturunkan, isdown mengembalikan True, dan setelah pena diangkat, isdown mengembalikan False.' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Status pena dapat dicek dengan isdown, dan akan berubah setelah penup dipanggil.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}

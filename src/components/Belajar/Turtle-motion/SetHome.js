@@ -208,11 +208,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `home()` mengembalikan Bidawang ke posisi (0, 0) dan menghadap ke timur.' : 'Salah! Perintah `home()` bukan untuk menghapus gambar atau memindahkan ke sumbu Y, melainkan mengembalikan Bidawang ke (0, 0) dan arah timur.' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! Perintah `home()` mengembalikan Bidawang ke posisi (0, 0) dan menghadap ke timur, memudahkan memulai ulang dari tengah.'
+      : 'Salah! Perintah `home()` berfungsi untuk mengatur ulang posisi dan arah Bidawang agar memulai dari titik tengah canvas.',
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'C';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Setelah perintah `home()`, Bidawang kembali ke (0, 0) dan arah default yaitu ke timur.' : 'Salah! Perintah `home()` akan memindahkan posisi ke (0, 0) dan mengubah arah menjadi timur, bukan tetap di posisi atau mempertahankan arah sebelumnya.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! Setelah `home()` dijalankan, Bidawang akan berada di posisi awal dan arah default ke timur.'
+      : 'Salah! Perintah `home()` mengatur ulang posisi dan arah Bidawang, bukan mempertahankan posisi atau arah sebelumnya.',
+  }));
 
     if (isCorrect2) {
       try {
@@ -1310,7 +1316,7 @@ home`}
                     ))}
 
                     {feedback.question1 && (
-                      <Alert variant={feedback.question1 === "Benar! Perintah `home()` mengembalikan Bidawang ke posisi (0, 0) dan menghadap ke timur." ? "success" : "danger"} className="mt-3">
+                      <Alert variant={feedback.question1 === 'Benar! Perintah `home()` mengembalikan Bidawang ke posisi (0, 0) dan menghadap ke timur, memudahkan memulai ulang dari tengah.' ? "success" : "danger"} className="mt-3">
                         {feedback.question1}
                       </Alert>
                     )}
@@ -1322,7 +1328,7 @@ home`}
                   <Form.Group controlId="question2">
                     <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
                       <b>Soal 2 dari 2:</b>
-                      <p>2.	Hasil dari penggunaan perintah home saat posisi Bidawang berada di (100, 100) dan menghadap ke barat adalah ...</p>
+                      <p>Hasil dari penggunaan perintah home saat posisi Bidawang berada di (100, 100) dan menghadap ke barat adalah ...</p>
                     </Form.Label>
 
                     {[
@@ -1347,7 +1353,7 @@ home`}
                     ))}
 
                     {feedback.question2 && (
-                      <Alert variant={feedback.question2 === "Benar! Setelah perintah `home()`, Bidawang kembali ke (0, 0) dan arah default yaitu ke timur." ? "success" : "danger"} className="mt-3">
+                      <Alert variant={feedback.question2 === 'Benar! Setelah `home()` dijalankan, Bidawang akan berada di posisi awal dan arah default ke timur.' ? "success" : "danger"} className="mt-3">
                         {feedback.question2}
                       </Alert>
                     )}
@@ -1375,7 +1381,7 @@ home`}
                     variant="secondary"
                     onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
                     disabled={
-                      (currentQuestion === 1 && feedback.question1 !== "Benar! Perintah `home()` mengembalikan Bidawang ke posisi (0, 0) dan menghadap ke timur.") ||
+                      (currentQuestion === 1 && feedback.question1 !== 'Benar! Perintah `home()` mengembalikan Bidawang ke posisi (0, 0) dan menghadap ke timur, memudahkan memulai ulang dari tengah.') ||
                       (currentQuestion === 2 && feedback.question2 !== "Benar()")
                     }
                   >

@@ -194,11 +194,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'A';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Fungsi pencolor "red" mengatur warna pena menjadi merah, jadi saat forward 100 dijalankan, garis merah sepanjang 100 piksel akan digambar.' : 'Salah! Karena warna pena sudah diatur menjadi "red", maka Bidawang akan menggambar garis merah sepanjang 100 piksel.' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! Fungsi pencolor "red" mengatur warna pena menjadi merah, jadi saat forward 100 dijalankan, garis merah sepanjang 100 piksel akan digambar.'
+      : 'Salah. Perhatikan bahwa fungsi pencolor akan memengaruhi warna garis yang digambar setelahnya.',
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'D';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! "bold_red" bukan format warna yang valid. Fungsi pencolor hanya menerima nama warna standar seperti "red", kode heksadesimal seperti "#FF0000", atau tuple RGB seperti (1, 0, 0).' : 'Salah! Format warna seperti "blue", "#00FF00", dan (1,0,0) adalah valid. Yang tidak valid adalah "bold_red" karena bukan nama warna standar maupun format warna resmi.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! "bold_red" bukan format warna yang valid. Fungsi pencolor hanya menerima nama warna standar, kode hex, atau tuple RGB.'
+      : 'Salah. Hanya format warna standar seperti nama warna umum, kode hex, atau RGB tuple yang diterima.',
+  }));
 
     if (isCorrect2) {
       try {
@@ -1331,7 +1337,7 @@ forward 100`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === 'Benar! "bold_red" bukan format warna yang valid. Fungsi pencolor hanya menerima nama warna standar seperti "red", kode heksadesimal seperti "#FF0000", atau tuple RGB seperti (1, 0, 0).' ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! "bold_red" bukan format warna yang valid. Fungsi pencolor hanya menerima nama warna standar, kode hex, atau tuple RGB.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}

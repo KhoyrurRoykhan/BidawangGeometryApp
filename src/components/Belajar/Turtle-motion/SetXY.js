@@ -231,10 +231,16 @@ const SetXY = () => {
   const handleSubmit = async () => {
     if (currentQuestion === 1) {
       const isCorrect1 = selectedAnswer === 'A';
-      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `setx 200` hanya mengubah nilai koordinat x menjadi 200, sementara y tetap 50, sehingga posisi baru adalah (200, 50).' : 'Salah! Perintah `setx` hanya mengubah nilai x saja. Jika posisi awal (100, 50), maka `setx 200` mengubah nilai menjadi 200.' }));
+      setFeedback((prev) => ({ ...prev, question1: isCorrect1
+        ? 'Benar! Perintah `setx 200` akan mengubah posisi koordinat x menjadi 200, sementara nilai y tetap seperti semula.'
+        : 'Salah! Coba perhatikan kembali fungsi `setx`. Perintah ini hanya memengaruhi salah satu nilai koordinat, bukan keduanya.',
+    }));
     } else if (currentQuestion === 2) {
       const isCorrect2 = selectedAnswer2 === 'C';
-      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Perintah `sety -50` memindahkan bidawang secara vertikal ke y = -50, tanpa mengubah posisi x.' : 'Salah! Perintah yang benar untuk memindahkan secara vertikal (y) tanpa mengubah x adalah sety.' }));
+      setFeedback((prev) => ({ ...prev, question2: isCorrect2
+        ? 'Benar! Kombinasi `setx` dan `sety` akan memindahkan Bidawang ke titik koordinat sesuai nilai yang diberikan.'
+        : 'Salah! Perhatikan bahwa perintah `setx` dan `sety` digunakan untuk mengatur posisi secara terpisah. Cermati bagaimana perubahan masing-masing memengaruhi posisi akhir.',
+    }));
   
       if (isCorrect2) {
         try {
@@ -1524,7 +1530,7 @@ const resetCodeChallanges = () => {
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar! Perintah `setx 200` hanya mengubah nilai koordinat x menjadi 200, sementara y tetap 50, sehingga posisi baru adalah (200, 50)." ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Perintah `setx 200` akan mengubah posisi koordinat x menjadi 200, sementara nilai y tetap seperti semula.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1564,7 +1570,7 @@ sety -100`}</code></pre>
       ))}
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar! Perintah `sety -50` memindahkan bidawang secara vertikal ke y = -50, tanpa mengubah posisi x." ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Kombinasi `setx` dan `sety` akan memindahkan Bidawang ke titik koordinat sesuai nilai yang diberikan.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1592,7 +1598,7 @@ sety -100`}</code></pre>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar! Perintah `setx 200` hanya mengubah nilai koordinat x menjadi 200, sementara y tetap 50, sehingga posisi baru adalah (200, 50).") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Perintah `setx 200` akan mengubah posisi koordinat x menjadi 200, sementara nilai y tetap seperti semula.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar()")
       }
     >

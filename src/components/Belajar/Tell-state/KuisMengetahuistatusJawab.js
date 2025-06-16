@@ -41,11 +41,11 @@ const quizData = [
     question: 'Fungsi kode perintah xcor adalah ...',
     options: [
       'Menampilkan Arah hadap bidawang dalam derajat',
-      'Posisi vertikal (sumbu y) bidawang',
-      'Posisi horizontal (sumbu x) bidawang',
-      'Jarak antara dua titik'
+      'Menampilkan posisi vertikal (sumbu y) bidawang',
+      'Menampilkan posisi horizontal (sumbu x) bidawang',
+      'Menampilkan Jarak antara dua titik'
     ],
-    answer: 'Posisi horizontal (sumbu x) bidawang'
+    answer: 'Menampilkan posisi horizontal (sumbu x) bidawang'
   },
   {
     question: 'Perhatikan kode perintah berikut:```setx 50\nsety -75\nprint xcor\nprint ycor```Hasil yang muncul pada output log setelah perintah dijalankan adalah …',

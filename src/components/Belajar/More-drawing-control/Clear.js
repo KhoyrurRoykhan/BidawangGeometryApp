@@ -196,11 +196,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'A';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! clear hanya menghapus gambar, tetapi posisi dan atribut bidawang tidak berubah. Sedangkan reset menghapus gambar dan mengembalikan posisi serta atribut ke default.' : 'Salah! clear hanya menghapus gambar tanpa mengubah posisi atau atribut bidawang, sedangkan reset menghapus gambar dan mengatur ulang posisi serta atribut.' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! clear hanya menghapus gambar, tetapi posisi dan atribut bidawang tidak berubah. Sedangkan reset menghapus gambar dan mengembalikan posisi serta atribut ke default.'
+      : 'Salah. Perhatikan bahwa ada perbedaan antara efek clear dan reset terhadap posisi dan atribut bidawang.',
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Setelah perintah clear, warna tidak kembali ke default.' : 'Salah! Setelah clear, gambar hilang tetapi warna tetap sesuai dengan yang telah ditetapkan sebelumnya.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! Setelah perintah clear, warna tidak kembali ke default.'
+      : 'Salah. Fungsi clear hanya menghapus gambar, tetapi tidak memengaruhi atribut seperti warna yang telah ditetapkan.',
+  }));
 
     if (isCorrect2) {
       try {

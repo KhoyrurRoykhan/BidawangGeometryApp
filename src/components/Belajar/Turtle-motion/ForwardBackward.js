@@ -231,10 +231,16 @@ const ForwardBackward = () => {
   const handleSubmit = async () => {
     if (currentQuestion === 1) {
       const isCorrect1 = selectedAnswer === 'B';
-      setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya.' : 'Salah! Perintah `forward 100` bukan berarti mundur atau berputar, tetapi membuat Bidawang maju sejauh 100 langkah ke arah yang sedang dihadapinya.' }));
+      setFeedback((prev) => ({ ...prev, question1: isCorrect1
+        ? 'Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya.'
+        : 'Salah! Coba cermati lagi perintah yang digunakan untuk membuat Bidawang bergerak ke arah depan dari posisi awalnya.',
+    }));
     } else if (currentQuestion === 2) {
       const isCorrect2 = selectedAnswer2 === 'optionC';
-      setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Saat menghadap ke kanan, perintah `backward 200` akan membuat Bidawang bergerak mundur sejauh 200 langkah, sehingga ke tepi kiri canvas.' : 'Salah! Karena Bidawang menghadap ke kanan, perintah `backward 200` akan menggerakkannya ke arah berlawanan, yaitu ke kiri sejauh 200 langkah hingga mencapai tepi.' }));
+      setFeedback((prev) => ({ ...prev, question2: isCorrect2
+        ? 'Benar! Arah pergerakan Bidawang ditentukan oleh rotasi `left 90` dan dilanjutkan dengan perintah maju sejauh 100 pixel.'
+        : 'Salah! Perhatikan kembali bagaimana arah Bidawang berubah setelah diputar, dan ke mana arahnya saat diperintahkan maju.',
+    }));
   
       if (isCorrect2) {
         try {
@@ -1554,8 +1560,8 @@ const resetCodeChallanges = () => {
       {[
         { key: 'A', label: 'backward 100' },
         { key: 'B', label: 'forward 100' },
-        { key: 'C', label: 'left 90' },
-        { key: 'D', label: 'right 90' },
+        { key: 'C', label: 'left 100' },
+        { key: 'D', label: 'right 100' },
       ].map(({ key, label }) => (
         <Button
           key={key}
@@ -1573,7 +1579,7 @@ const resetCodeChallanges = () => {
       ))}
 
       {feedback.question1 && (
-        <Alert variant={feedback.question1 === "Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya." ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question1 === 'Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya.' ? "success" : "danger"} className="mt-3">
           {feedback.question1}
         </Alert>
       )}
@@ -1588,7 +1594,7 @@ const resetCodeChallanges = () => {
         <p>Perhatikan kode dibawah ini:</p>
         <pre><code>{`left 90
 forward 100`}</code></pre>
-        <p>Kemana arah Bidawang akan bergerak?</p>
+        <p>Jika awalnya Bidawang menghadap ke kanan, posisi bidawang setelah kode dijalankan adalah ...</p>
       </Form.Label>
 
       <Row>
@@ -1615,7 +1621,7 @@ forward 100`}</code></pre>
       </Row>
 
       {feedback.question2 && (
-        <Alert variant={feedback.question2 === "Benar! Saat menghadap ke kanan, perintah `backward 200` akan membuat Bidawang bergerak mundur sejauh 200 langkah, sehingga ke tepi kiri canvas." ? "success" : "danger"} className="mt-3">
+        <Alert variant={feedback.question2 === 'Benar! Arah pergerakan Bidawang ditentukan oleh rotasi `left 90` dan dilanjutkan dengan perintah maju sejauh 100 pixel.' ? "success" : "danger"} className="mt-3">
           {feedback.question2}
         </Alert>
       )}
@@ -1643,7 +1649,7 @@ forward 100`}</code></pre>
       variant="secondary"
       onClick={() => setCurrentQuestion((prev) => Math.min(2, prev + 1))}
       disabled={
-        (currentQuestion === 1 && feedback.question1 !== "Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya.") ||
+        (currentQuestion === 1 && feedback.question1 !== 'Benar! Perintah `forward 100` akan membuat Bidawang bergerak maju sejauh 100 langkah ke arah yang sedang dihadapinya.') ||
         (currentQuestion === 2 && feedback.question2 !== "Benar!")
       }
     >

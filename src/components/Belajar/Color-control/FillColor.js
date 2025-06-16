@@ -244,11 +244,17 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'B';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Kode tersebut menggambar lingkaran dengan isian kuning karena fillcolor "yellow", lalu begin_fill dan end_fill digunakan untuk mengisi warna.' : 'Salah! Kode ini menggunakan fillcolor "yellow" dan begin_fill hingga end_fill untuk menggambar lingkaran dengan isian kuning, bukan hanya garis atau tanpa gambar.' }));
+    setFeedback((prev) => ({ ...prev, question1: isCorrect1
+      ? 'Benar! Kode tersebut menggambar lingkaran dengan isian kuning karena fillcolor "yellow", lalu begin_fill dan end_fill digunakan untuk mengisi warna.'
+      : 'Salah. Perhatikan bagaimana fillcolor, begin_fill, dan end_fill bekerja bersama untuk memengaruhi hasil gambar.',
+  }));
 
   } else if (currentQuestion === 2) {
     const isCorrect2 = selectedAnswer2 === 'B';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! end_fill menandai akhir area bentuk yang akan diisi warna setelah begin_fill.' : 'Salah! end_fill digunakan untuk menutup pengisian warna, bukan untuk menghapus atau mengatur transparansi.' }));
+    setFeedback((prev) => ({ ...prev, question2: isCorrect2
+      ? 'Benar! end_fill menandai akhir area bentuk yang akan diisi warna setelah begin_fill.'
+      : 'Salah. Fungsi ini berkaitan dengan penutupan proses pengisian warna, bukan penghapusan atau pengaturan transparansi.',
+  }));
 
     if (isCorrect2) {
       try {

@@ -194,11 +194,18 @@ const handleAnswerChange = (questionId, answer) => {
 const handleSubmit = async () => {
   if (currentQuestion === 1) {
     const isCorrect1 = selectedAnswer === 'option1a';
-    setFeedback((prev) => ({ ...prev, question1: isCorrect1 ? 'Benar! Gambar tersebut menunjukkan Bidawang di posisi (0, 0), yaitu di tengah canvas.' : 'Salah! Posisi (0, 0) berada di tengah canvas. Coba perhatikan gambar yang menunjukkan Bidawang tepat di tengah.' }));
+    setFeedback((prev) => ({ ...prev, 
+      question1: isCorrect1
+        ? 'Benar! Gambar tersebut menunjukkan Bidawang di posisi (0, 0), yaitu di tengah canvas.'
+        : 'Salah! Posisi (0, 0) berada di tengah canvas. Perhatikan letak Bidawang dibandingkan dengan tepi-tepi canvas.', }));
 
   } else if (currentQuestion === 2) {
-    const isCorrect2 = selectedAnswer2 === 'option2b';
-    setFeedback((prev) => ({ ...prev, question2: isCorrect2 ? 'Benar! Tombol tersebut digunakan untuk menghapus semua gambar dan mengembalikan Bidawang ke posisi awal.' : 'Salah!' }));
+    const isCorrect2 = selectedAnswer2 === 'option2a';
+    setFeedback((prev) => ({ ...prev, 
+      question2: isCorrect2
+        ? 'Benar! Tombol “Jalankan” digunakan untuk mengeksekusi perintah dan memvisualisasikan gerakan Bidawang.'
+        : 'Salah! Tombol yang dimaksud berkaitan dengan proses menjalankan perintah yang telah diketik.',
+    }));
 
     if (isCorrect2) {
       try {
@@ -1427,7 +1434,7 @@ const runit2 = (code, forceReset = false) => {
             </Row>
 
             {feedback.question2 && (
-              <Alert variant={feedback.question2 === "Benar! Tombol tersebut digunakan untuk menghapus semua gambar dan mengembalikan Bidawang ke posisi awal." ? "success" : "danger"} className="mt-3">
+              <Alert variant={feedback.question2 === "Benar! Tombol “Jalankan” digunakan untuk mengeksekusi perintah dan memvisualisasikan gerakan Bidawang." ? "success" : "danger"} className="mt-3">
                 {feedback.question2}
               </Alert>
             )}

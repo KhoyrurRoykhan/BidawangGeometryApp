@@ -94,7 +94,7 @@ const quizData = [
       '180',
       '270'
     ],
-    answer: '90'
+    answer: '270'
   },
   {
     question: 'Jika arah awal Bidawang adalah 0°, lalu dijalankan kode berikut:```right 45\nleft 90\nprint heading```Nilai yang ditampilkan pada Output Log adalah ...',
