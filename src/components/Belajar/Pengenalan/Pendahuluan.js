@@ -64,6 +64,7 @@ const Pendahuluan = () => {
 
   //kunci halaman
   const [progresBelajar, setProgresBelajar] = useState(0);
+  const [loadingProgres, setLoadingProgres] = useState(true);
 
   const totalSteps = 27;
   const progressPercentage = Math.min((progresBelajar / totalSteps) * 100, 100);
@@ -94,6 +95,8 @@ const Pendahuluan = () => {
       } catch (error) {
         console.log(error);
         navigate('/login'); // atau ke halaman login siswa
+      } finally {
+        setLoadingProgres(false); // ⬅️ ini penting
       }
     };
 
@@ -518,7 +521,6 @@ const runit2 = (code, forceReset = false) => {
 };
 
 
-
   const resetCode = () => {
     setPythonCode('');
     setOutput('');
@@ -583,8 +585,6 @@ const runit2 = (code, forceReset = false) => {
         </div>
 
         {!collapsed && (
-          
-
         <Accordion defaultActiveKey="0" className='p-2'>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Pengenalan</Accordion.Header>
@@ -600,10 +600,18 @@ const runit2 = (code, forceReset = false) => {
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/pendahuluan/kuis", progresBelajar >= 1)}
-                    style={{ pointerEvents: progresBelajar < 1 ? "auto" : "auto", opacity: progresBelajar < 1 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar < 1 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     📋 Kuis: Pengenalan
-                    {progresBelajar < 1 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 1 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
                 </div>
               </Accordion.Body>
@@ -616,92 +624,172 @@ const runit2 = (code, forceReset = false) => {
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/turtlemotion/leftright", progresBelajar >= 2)}
-                    style={{ pointerEvents: progresBelajar < 2 ? "auto" : "auto", opacity: progresBelajar < 2 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar < 2 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Left & Right
-                    {progresBelajar < 2 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 2 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/turtlemotion/forwardbackward", progresBelajar >= 3)}
-                    style={{ pointerEvents: progresBelajar < 3 ? "auto" : "auto", opacity: progresBelajar < 3 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar < 3 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                     
                   >
                     Forward & Backward
-                    {progresBelajar < 3 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 3 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/turtlemotion/setposition", progresBelajar >= 4)}
-                    style={{ pointerEvents: progresBelajar < 4 ? "auto" : "auto", opacity: progresBelajar < 4 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar < 4 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Set Position
-                    {progresBelajar < 4 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 4 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/turtlemotion/setxy", progresBelajar >= 5)}
-                    style={{ pointerEvents: progresBelajar < 5 ? "auto" : "auto", opacity: progresBelajar < 5 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar < 5 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Setx & sety
-                    {progresBelajar < 5 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 5 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/turtlemotion/setheading", progresBelajar >= 6)}
-                    style={{ pointerEvents: progresBelajar < 6 ? "auto" : "auto", opacity: progresBelajar < 6 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar < 6 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Setheading
-                    {progresBelajar < 6 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 6 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/turtlemotion/home", progresBelajar >= 7)}
-                    style={{ pointerEvents: progresBelajar < 7 ? "auto" : "auto", opacity: progresBelajar < 7 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  7 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Home
-                    {progresBelajar < 7 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 7 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/turtlemotion/circle", progresBelajar >= 8)}
-                    style={{ pointerEvents: progresBelajar < 8 ? "auto" : "auto", opacity: progresBelajar < 8 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  8 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Circle
-                    {progresBelajar < 8 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 8 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/turtlemotion/dot", progresBelajar >= 9)}
-                    style={{ pointerEvents: progresBelajar < 9 ? "auto" : "auto", opacity: progresBelajar < 9 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  9 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Dot
-                    {progresBelajar < 9 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 9 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
-                    onClick={() => handleNavigate("/belajar/turtlemotion/rangkuman", progresBelajar >= 9)}
-                    style={{ pointerEvents: progresBelajar < 9 ? "auto" : "auto", opacity: progresBelajar < 9 ? 0.5 : 1 }}
+                    onClick={() => handleNavigate("/belajar/turtlemotion/rangkuman", progresBelajar >= 10)}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  10 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Rangkuman
-                    {progresBelajar < 10 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 10 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/turtlemotion/kuis", progresBelajar >= 10)}
-                    style={{ pointerEvents: progresBelajar < 10 ? "auto" : "auto", opacity: progresBelajar < 10 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  10 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     📋 Kuis: Pergerakan
-                    {progresBelajar < 10 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 10 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
                   
 
@@ -716,55 +804,103 @@ const runit2 = (code, forceReset = false) => {
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/tellstate/position", progresBelajar >= 11)}
-                    style={{ pointerEvents: progresBelajar < 11 ? "auto" : "auto", opacity: progresBelajar < 11 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  11 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Position
-                    {progresBelajar < 11 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 11 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/tellstate/xcorycor", progresBelajar >= 12)}
-                    style={{ pointerEvents: progresBelajar < 12 ? "auto" : "auto", opacity: progresBelajar < 12 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  12 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Xcor & Ycor
-                    {progresBelajar < 12 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 12 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/tellstate/heading", progresBelajar >= 13)}
-                    style={{ pointerEvents: progresBelajar < 13 ? "auto" : "auto", opacity: progresBelajar < 13 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  13 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Heading
-                    {progresBelajar < 13 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 13 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/tellstate/distance", progresBelajar >= 14)}
-                    style={{ pointerEvents: progresBelajar < 14 ? "auto" : "auto", opacity: progresBelajar < 14 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  14 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Distance
-                    {progresBelajar < 14 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 14 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/tellstate/rangkuman", progresBelajar >= 15)}
-                    style={{ pointerEvents: progresBelajar < 15 ? "auto" : "auto", opacity: progresBelajar < 15 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  15 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Rangkuman
-                    {progresBelajar < 15 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 15 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/tellstate/kuis", progresBelajar >= 15)}
-                    style={{ pointerEvents: progresBelajar < 1 ? "auto" : "auto", opacity: progresBelajar < 15 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  15 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     📋 Kuis: Mengetahui Status
-                    {progresBelajar < 15 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 15 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
                 </div>
               </Accordion.Body>
@@ -777,64 +913,120 @@ const runit2 = (code, forceReset = false) => {
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/pencontrol/penuppendown", progresBelajar >= 16)}
-                    style={{ pointerEvents: progresBelajar < 16 ? "auto" : "auto", opacity: progresBelajar < 16 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  16 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Pendown & Penup
-                    {progresBelajar < 16 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 16 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/pencontrol/pensize", progresBelajar >= 17)}
-                    style={{ pointerEvents: progresBelajar < 17 ? "auto" : "auto", opacity: progresBelajar < 17 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  17 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Pensize
-                    {progresBelajar < 17 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 17 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/pencontrol/isdown", progresBelajar >= 18)}
-                    style={{ pointerEvents: progresBelajar < 18 ? "auto" : "auto", opacity: progresBelajar < 18 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  18 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Isdown
-                    {progresBelajar < 18 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 18 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/colorcontrol/pencolor", progresBelajar >= 19)}
-                    style={{ pointerEvents: progresBelajar < 19 ? "auto" : "auto", opacity: progresBelajar < 19 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  19 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Pencolor
-                    {progresBelajar < 19 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 19 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/colorcontrol/fillcolor", progresBelajar >= 20)}
-                    style={{ pointerEvents: progresBelajar < 20 ? "auto" : "auto", opacity: progresBelajar < 20 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  20 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Pengisian Warna (Fillcolor, Begin_fill, dan End_fill)
-                    {progresBelajar < 20 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 20 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/pencolorcontrol/rangkuman", progresBelajar >= 21)}
-                    style={{ pointerEvents: progresBelajar < 21 ? "auto" : "auto", opacity: progresBelajar < 21 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  21 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Rangkuman
-                    {progresBelajar < 21 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 21 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/pencolorcontrol/kuis", progresBelajar >= 21)}
-                    style={{ pointerEvents: progresBelajar < 21 ? "auto" : "auto", opacity: progresBelajar < 21 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  21 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     📋 Kuis: Kontrol Pena dan Warna
-                    {progresBelajar < 21 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 21 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
                 </div>
               </Accordion.Body>
@@ -847,55 +1039,103 @@ const runit2 = (code, forceReset = false) => {
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/moredrawingcontrol/reset", progresBelajar >= 22)}
-                    style={{ pointerEvents: progresBelajar < 22 ? "auto" : "auto", opacity: progresBelajar < 22 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  22 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Reset
-                    {progresBelajar < 22 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 22 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/moredrawingcontrol/clear", progresBelajar >= 23)}
-                    style={{ pointerEvents: progresBelajar < 23 ? "auto" : "auto", opacity: progresBelajar < 23 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  23 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Clear
-                    {progresBelajar < 23 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 23 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/moredrawingcontrol/write", progresBelajar >= 24)}
-                    style={{ pointerEvents: progresBelajar < 24 ? "auto" : "auto", opacity: progresBelajar < 24 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  24 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Write
-                    {progresBelajar < 24 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 24 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/perulangan/forloop", progresBelajar >= 25)}
-                    style={{ pointerEvents: progresBelajar < 25 ? "auto" : "auto", opacity: progresBelajar < 25 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  25 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     For Loops
-                    {progresBelajar < 25 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 25 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/moredrawingcontrol/rangkuman", progresBelajar >= 26)}
-                    style={{ pointerEvents: progresBelajar < 26 ? "auto" : "auto", opacity: progresBelajar < 26 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  26 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Rangkuman
-                    {progresBelajar < 26 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 26 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
 
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/moredrawingcontrol/kuis", progresBelajar >= 26)}
-                    style={{ pointerEvents: progresBelajar < 26 ? "auto" : "auto", opacity: progresBelajar < 26 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  26 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     📋 Kuis: Kontrol Gambar Lanjutan
-                    {progresBelajar < 26 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 26 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>
                   
                 </div>
@@ -909,10 +1149,18 @@ const runit2 = (code, forceReset = false) => {
                   <button
                     className="btn text-start mb-2 btn-outline-success d-flex justify-content-between align-items-center"
                     onClick={() => handleNavigate("/belajar/evaluasi", progresBelajar >= 27)}
-                    style={{ pointerEvents: progresBelajar < 27 ? "auto" : "auto", opacity: progresBelajar < 27 ? 0.5 : 1 }}
+                    disabled={loadingProgres}
+                    style={{
+                      opacity: progresBelajar <  27 ? 0.5 : 1,
+                      pointerEvents: loadingProgres ? 'none' : 'auto'
+                    }}
                   >
                     Evaluasi
-                    {progresBelajar < 27 && <span className="ms-2">🔒</span>}
+                    {loadingProgres ? (
+                      <span className="spinner-border spinner-border-sm ms-2" role="status" />
+                    ) : progresBelajar < 27 ? (
+                      <span className="ms-2">🔒</span>
+                    ) : null}
                   </button>                  
                 </div>
               </Accordion.Body>
