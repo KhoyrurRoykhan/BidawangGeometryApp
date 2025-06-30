@@ -84,7 +84,7 @@ const Perihal = () => {
           }}
         />
 
-        <div style={{ textAlign: 'left', color: '#444', lineHeight: '1.7' }}>
+        <div style={{ textAlign: 'justify', color: '#444', lineHeight: '1.7' }}>
           <h5>1. Pendahuluan</h5>
           <p>Mengenalkan canvas sebagai area kerja serta editor Turtle sebagai alat utama untuk menggambar dan menjalankan kode. Siswa diperkenalkan dengan antarmuka dasar aplikasi.</p>
 
