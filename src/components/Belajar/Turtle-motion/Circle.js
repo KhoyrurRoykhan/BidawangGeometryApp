@@ -1393,8 +1393,9 @@ const runit = (code, forceReset = false) => {
             </p>
             <ul style={{ color: '#444', lineHeight: '1.8', paddingLeft: '20px' }}>
               <li>Tuliskan kode pada text editor sesuai instruksi di bawah ini.</li>
-              <li>Klik <b>Run Code</b> atau tekan <b>Enter</b> untuk menjalankan perintah.</li>
-              <li>Jika perintah yang dijalankan salah, klik <b>Undo</b> terlebih dahulu sebelum mencoba lagi.</li>
+                <li>Klik <b>Run Code</b> atau tekan <b>Enter</b> untuk menjalankan perintah.</li>
+                <li>Jika perintah yang dijalankan benar, maka langkah selanjutnya akan terbuka.</li>
+                <li>Jika perintah yang dijalankan salah, klik <b>Undo</b> terlebih dahulu sebelum mencoba lagi.</li>
             </ul>
             <Row>
                 {/* Kolom untuk Accordion */}
