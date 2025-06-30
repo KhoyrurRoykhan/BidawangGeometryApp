@@ -693,7 +693,7 @@ for i in range(100):
         </Accordion.Item>
 
         <Accordion.Item eventKey="1">
-          <Accordion.Header>Turtle Motion</Accordion.Header>
+          <Accordion.Header>Pergerakan</Accordion.Header>
           <Accordion.Body>
             <div className="d-flex flex-column">
               <button
@@ -791,7 +791,7 @@ for i in range(100):
         </Accordion.Item>
 
         <Accordion.Item eventKey="2">
-          <Accordion.Header>Tell State</Accordion.Header>
+          <Accordion.Header>Mengetahui Status</Accordion.Header>
           <Accordion.Body>
             <div className="d-flex flex-column">
               <button
@@ -852,7 +852,7 @@ for i in range(100):
         </Accordion.Item>
 
         <Accordion.Item eventKey="3">
-          <Accordion.Header>Pen & Color Control</Accordion.Header>
+          <Accordion.Header>Kontrol Pena dan Warna</Accordion.Header>
           <Accordion.Body>
             <div className="d-flex flex-column">
               <button
@@ -923,7 +923,7 @@ for i in range(100):
 
       
         <Accordion.Item eventKey="4">
-          <Accordion.Header>More Drawing Control</Accordion.Header>
+          <Accordion.Header>Kontrol Gambar Lanjutan</Accordion.Header>
           <Accordion.Body>
             <div className="d-flex flex-column">
               <button

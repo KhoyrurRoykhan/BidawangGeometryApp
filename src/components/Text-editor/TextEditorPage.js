@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
+
+
 import './assets/tutor.css';
 import './asset_skulpt/SkulptTurtleRunner.css';
 import { Button, Modal, Form } from 'react-bootstrap';
@@ -94,7 +96,8 @@ const TextEditorPage = () => {
       const parts = trimmed.split(/\s+/);
       const cmd = parts[0];
       const args = parts.slice(1);
-      const noArgCommands = ['clear', 'home', 'reset', 'penup', 'pendown', 'showturtle', 'hideturtle', 'begin_fill', 'end_fill'];
+      const noArgCommands = ['clear', 'home', 'reset', 'penup', 
+      'pendown', 'showturtle', 'hideturtle', 'begin_fill', 'end_fill'];
       const isAllArgsNumeric = args.every(arg => !isNaN(parseFloat(arg)));
       const isStringArg = args.length === 1 && /^["'].*["']$/.test(args[0]);
       const isMixedNumericStringArgs =
