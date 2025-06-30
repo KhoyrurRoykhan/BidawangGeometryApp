@@ -1400,7 +1400,7 @@ const resetCodeChallanges = () => {
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Bidawang akan bergerak sejauh 100 ke arah yang dihadapnya.</p>
+            <p><b>Hasil:</b> Bidawang akan bergerak sejauh 100 piksel ke arah yang dihadapnya.</p>
             
             <br></br>
 
@@ -1431,7 +1431,7 @@ const resetCodeChallanges = () => {
               </Col>
             </Row>
             <br></br>
-            <p><b>Hasil:</b> Bidawang akan mundur sejauh 100 dari arah yang dihadapnya.</p>
+            <p><b>Hasil:</b> Bidawang akan mundur sejauh 100 piksel dari arah yang dihadapnya.</p>
 
             <br />
             <hr />
@@ -1781,7 +1781,7 @@ const resetCodeChallanges = () => {
     <Form.Group controlId="question1">
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
-        <p>Perintah yang digunakan untuk menggerakan bidawang maju 100 pixel adalah ...</p>
+        <p>Perintah yang digunakan untuk menggerakan bidawang maju 100 piksel adalah ...</p>
       </Form.Label>
 
       {[

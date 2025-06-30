@@ -1343,7 +1343,7 @@ const runit2 = (code, forceReset = false) => {
                   </div>
 
                   <p style={{ textAlign: 'center', marginTop: 10 }}>
-                    (Bidawang bergerak di atas gambar canvas)
+                    (Contoh pergerakan objek Bidawang pada canvas)
                   </p>
                 </Col>
 
