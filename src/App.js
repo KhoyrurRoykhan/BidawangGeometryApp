@@ -92,12 +92,14 @@ import RangkumanTurtleMotion from "./components/Belajar/Turtle-motion/RangkumanT
 import RangkumanTellState from "./components/Belajar/Tell-state/RangkumanTellState";
 import RangkumanPenColorControl from "./components/Belajar/Pen-control/RangkumanPenColorControl";
 import RangkumanMoreDrawingControl from "./components/Belajar/More-drawing-control/RangkumanMoreDrawingControl";
+import Perihal from "./components/Landing-page/Perihal";
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
       <Route path="/login" element={<><Navigasibar/><Login/></>}/>
+      <Route path="/perihal" element={<><Navigasibar/><Perihal/></>}/>
       <Route exact path="/register" element={<><Navigasibar/><Register/></>}/>
       <Route path="/" element={<><Navigasibar/><LandingPage/><Footer/></>}/>
       {/* <Route path="/kat" element={<><KategoriGrid/></>}/> */}

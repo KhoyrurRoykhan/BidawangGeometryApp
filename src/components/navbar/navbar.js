@@ -7,7 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
-import { FaGamepad, FaCode, FaBookReader, FaUserCircle } from 'react-icons/fa';
+import { FaGamepad, FaCode, FaBookReader, FaUserCircle, FaInfo } from 'react-icons/fa';
 import './assets/navbar.css';
 import { useLocation } from 'react-router-dom';
 
@@ -59,6 +59,7 @@ const Navigasibar = () => {
         <Nav.Link style={{ color: 'white', marginRight:10}} href="/belajar/pendahuluan"><FaBookReader /> Belajar Turtle</Nav.Link>
         <Nav.Link style={{ color: 'white', marginRight:10 }} href="/challanges"><FaGamepad /> Tantangan</Nav.Link>
         <Nav.Link style={{ color: 'white' }} href="/texteditor"><FaCode/> Editor</Nav.Link>
+        <Nav.Link style={{ color: 'white' }} href="/perihal"><FaInfo/> Informasi</Nav.Link>
       </Nav>
 
       <Nav className="ms-auto align-items-center">
