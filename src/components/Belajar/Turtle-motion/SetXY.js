@@ -693,7 +693,8 @@ const resetCodeChallanges = () => {
       flexDirection: "row",
       overflow: "hidden", // agar tidak scroll di container utama
       position: "fixed",
-      width:'100%'
+      width:'100%',
+      backgroundColor:'black',
     }}>
       
       <div className='mt-5'
@@ -1335,7 +1336,7 @@ const resetCodeChallanges = () => {
                 <CodeMirror
                   value={`setx 100`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1366,7 +1367,7 @@ const resetCodeChallanges = () => {
                 <CodeMirror
                   value={`sety 150`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1379,6 +1380,7 @@ const resetCodeChallanges = () => {
                   width: '100%',
                   maxWidth: '400px',
                   maxHeight: 400,
+                  // backgroundColor:"grey",
                   alignSelf: isMobile ? 'center' : 'flex-start',
                   overflowX: isMobile ? 'auto' : 'visible',}}>
                   <div style={{textAlign:'center', width: '100%'}} id="mycanvas-contoh2"></div>
@@ -1485,7 +1487,7 @@ const resetCodeChallanges = () => {
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}

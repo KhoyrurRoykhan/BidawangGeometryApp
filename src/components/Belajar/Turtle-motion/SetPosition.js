@@ -1322,7 +1322,7 @@ const resetCodeChallanges = () => {
                 <CodeMirror
                   value={`setposition 100 100`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1442,7 +1442,7 @@ const resetCodeChallanges = () => {
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}

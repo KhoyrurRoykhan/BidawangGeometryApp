@@ -33,18 +33,15 @@
     
     background: #f4f4f4;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
     /* height: 50px; */
     overflow: auto;
+    border-radius: 5px;
   }
   
   .canvas-section {
     flex: 1;
-    border: 1px solid #ddd;
-    /* padding: 10px; */
+    border: 1px solid #000000;
     background: #fafafa;
     display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
   }
-  

@@ -96,7 +96,7 @@ const Pendahuluan = () => {
         console.log(error);
         navigate('/login'); // atau ke halaman login siswa
       } finally {
-        setLoadingProgres(false); // ⬅️ ini penting
+        setLoadingProgres(false); 
       }
     };
 
@@ -173,9 +173,6 @@ const Pendahuluan = () => {
       }, 1000); // delay 2000 ms = 2 detik
     }
   };
-  
-
-  
   
 
   //Kuis

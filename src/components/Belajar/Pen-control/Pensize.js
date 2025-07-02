@@ -1123,7 +1123,7 @@ for i in range(100):
 
 circle 50`}
                   height="340px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1245,7 +1245,7 @@ circle 50`}
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}

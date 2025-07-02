@@ -29,7 +29,7 @@
     background-color: #0056b3;
   } */
   
-  .output {
+  .output-ch {
     
     background: #f4f4f4;
     padding: 10px;
@@ -38,7 +38,7 @@
     overflow: auto;
   }
   
-  .canvas-section {
+  .canvas-section-ch {
     flex: 1;
     border: 1px solid #ddd;
     /* padding: 10px; */

@@ -93,6 +93,7 @@ import RangkumanTellState from "./components/Belajar/Tell-state/RangkumanTellSta
 import RangkumanPenColorControl from "./components/Belajar/Pen-control/RangkumanPenColorControl";
 import RangkumanMoreDrawingControl from "./components/Belajar/More-drawing-control/RangkumanMoreDrawingControl";
 import Perihal from "./components/Landing-page/Perihal";
+import CobaCoding from "./components/Belajar/Pengenalan/CobaCoding";
 
 function App() {
   return (
@@ -204,6 +205,8 @@ function App() {
 
 
       <Route path="/sidebarpro" element={<><CobaSidebar/></>}/>
+
+      <Route path="/cobakodingg" element={<><CobaCoding/></>}/>
 
 
 

@@ -1395,7 +1395,7 @@ const runit = (code, forceReset = false) => {
               <CodeMirror
                 value={`print position`}
                 height="340px"
-                theme="light"
+                theme="dark"
                 extensions={[python()]}
                 editable={false}
                 options={{ readOnly: 'nocursor' }}
@@ -1429,7 +1429,7 @@ const runit = (code, forceReset = false) => {
 forward 100 
 print position`}
                 height="300px"
-                theme="light"
+                theme="dark"
                 extensions={[python()]}
                 editable={false}
                 options={{ readOnly: 'nocursor' }}
@@ -1553,7 +1553,7 @@ print position`}
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}

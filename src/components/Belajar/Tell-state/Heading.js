@@ -1206,7 +1206,7 @@ left 90
 
 print heading`}
                   height="280px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1328,7 +1328,7 @@ print heading`}
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}

@@ -50,24 +50,26 @@ const LandingPage = () => {
   return (
     <Container fluid style={{ padding: 0, fontFamily: 'Verdana, sans-serif' }}>
       {/* Hero Section */}
-      <Container fluid style={{ background: 'linear-gradient(to right, #2DAA9E, #FBF8EF)', minHeight: '100vh' }}>
+      <Container fluid style={{ 
+        // background: 'linear-gradient(to right, #2DAA9E, #FBF8EF)',
+        backgroundColor:'#FBF8EF',
+         minHeight: '100vh' }}>
         <Row className="justify-content-center align-items-center flex-column-reverse flex-md-row" style={{ minHeight: '100vh', padding: '2rem 1rem' }}>
           <Col xs={12} md={8} className="text-center text-md-start">
             <p style={{
               fontSize: isMobile ? '2rem' : '2.5rem',
-              color: 'white',
               fontWeight: 'bold',
               marginBottom: '1rem'
-            }}>
+            }} className='text-success'>
               Bidawang Geometry
             </p>
-            <h3 style={{ fontSize: isMobile ? '1.5rem' : '2rem', color: 'white', marginBottom: '0.5rem' }}>
+            <h3 className='text-success' style={{ fontSize: isMobile ? '1.5rem' : '2rem', color: 'black', marginBottom: '0.5rem' }}>
               Media Pembelajaran Interaktif
             </h3>
-            <h3 style={{ fontSize: isMobile ? '1.5rem' : '2rem', color: 'white', marginBottom: '1rem' }}>
+            <h3 className='text-success' style={{ fontSize: isMobile ? '1.5rem' : '2rem', color: 'black', marginBottom: '1rem' }}>
               Pemrograman Turtle
             </h3>
-            <p style={{ fontSize: isMobile ? '1rem' : '1.1rem', color: 'white', marginBottom: '1.5rem' }}>
+            <p style={{ fontSize: isMobile ? '1rem' : '1.1rem', color: 'black', marginBottom: '1.5rem' }}>
   Bidawang Geometry adalah perangkat gratis yang membantu siswa memahami lebih dalam konsep-konsep pemrograman,
   dengan tutorial interaktif dan tantangan-tantangan yang menarik. Karakter Turtle dalam aplikasi ini dinamai "Bidawang"
   agar lebih akrab dengan budaya lokal. Selain itu, sintaks pemrogramannya telah disederhanakan menyerupai bahasa Logo,

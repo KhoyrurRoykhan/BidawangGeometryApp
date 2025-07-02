@@ -1255,7 +1255,7 @@ begin_fill
 circle 50  
 end_fill `}
               height="340px"
-              theme="light"
+              theme="dark"
               extensions={[python()]}
               editable={false}
               options={{ readOnly: 'nocursor' }}
@@ -1377,7 +1377,7 @@ end_fill `}
                           value={pythonCode}
                           placeholder={'//Ketikan kode disini!'}
                           height="150px"
-                          theme="light"
+                          theme="dark"
                           extensions={[closeBrackets({ brackets: '' })]}
                           onChange={(value) => setPythonCode(value)}
                           onKeyDown={handleKeyDown}

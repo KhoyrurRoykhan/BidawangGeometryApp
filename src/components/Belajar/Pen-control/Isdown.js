@@ -1106,7 +1106,7 @@ penup
 
 print isdown`}
                   height="280px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1228,7 +1228,7 @@ print isdown`}
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}

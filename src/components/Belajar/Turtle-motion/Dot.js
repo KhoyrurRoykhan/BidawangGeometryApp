@@ -1235,7 +1235,7 @@ const runit = (code, forceReset = false) => {
                   value={`dot 10
 forward 200`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1272,7 +1272,7 @@ dot 15 "blue"
 
 setposition 200 200`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1393,7 +1393,7 @@ setposition 200 200`}
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}

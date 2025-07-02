@@ -1380,7 +1380,7 @@ const resetCodeChallanges = () => {
                 <CodeMirror
                   value={`forward 100 `}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1411,7 +1411,7 @@ const resetCodeChallanges = () => {
                 <CodeMirror
                   value={`backward 150`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1532,7 +1532,7 @@ const resetCodeChallanges = () => {
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}
@@ -1577,6 +1577,7 @@ const resetCodeChallanges = () => {
                     fontFamily: 'monospace',
                     fontSize: '14px',
                     marginTop: '10px',
+                    border: '1px solid black'
                   }}
                 >
                   <b>History Commands:</b>

@@ -1102,7 +1102,7 @@ for i in range(100):
             <CodeMirror
                   value={`4`}
                   height="50px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1115,7 +1115,7 @@ for i in range(100):
                   value={`for 4:
   # perintah yang diulang`}
                   height="70px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1141,7 +1141,7 @@ for i in range(100):
   forward 100
   left 120`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1174,7 +1174,7 @@ for i in range(100):
   forward 100
   left 90`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1279,7 +1279,7 @@ for i in range(100):
                   value={pythonCode}
                   placeholder={'//Ketikan kode disini!'}
                   height="290px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   onChange={(value) => setPythonCode(value)}
                   style={{ width: '100%' }}

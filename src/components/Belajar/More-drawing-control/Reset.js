@@ -1081,7 +1081,7 @@ forward 100
 reset
 forward 50 `}
                   height="340px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1205,7 +1205,7 @@ forward 50 `}
                           value={pythonCode}
                           placeholder={'//Ketikan kode disini!'}
                           height="150px"
-                          theme="light"
+                          theme="dark"
                           extensions={[closeBrackets({ brackets: '' })]}
                           onChange={(value) => setPythonCode(value)}
                           onKeyDown={handleKeyDown}

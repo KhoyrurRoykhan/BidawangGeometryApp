@@ -1312,7 +1312,7 @@ const runit = (code, forceReset = false) => {
                 <CodeMirror
                   value={`circle 50`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1344,7 +1344,7 @@ const runit = (code, forceReset = false) => {
                 <CodeMirror
                   value={`circle 50 180`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1465,7 +1465,7 @@ const runit = (code, forceReset = false) => {
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}

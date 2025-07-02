@@ -252,12 +252,12 @@ const TextEditorPage = () => {
             </a>
           </div>
 
-          <pre className="output mt-3" style={{ height: 60, overflow: 'auto' }}>{output}</pre>
+          <pre className="output-te mt-3" style={{ height: 60, overflow: 'auto' }}>{output}</pre>
         </div>
 
         {/* Canvas */}
         <div
-          className="canvas-section"
+          className="canvas-section-te"
           style={{
             flex: isMobile ? 'none' : '0 0 400px',
             width: '100%',

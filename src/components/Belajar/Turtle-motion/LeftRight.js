@@ -1378,7 +1378,6 @@ const resetCodeChallanges = () => {
               </li>
             </ol>
 
-
             <hr />
 
             <p>
@@ -1393,7 +1392,7 @@ const resetCodeChallanges = () => {
                 <CodeMirror
                   value={`left 120 `}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1402,6 +1401,7 @@ const resetCodeChallanges = () => {
               <Col md={6} className="text-center">
                 <div className="canvas-section" 
                 style={{
+                  // border:'2px',
                   flex: isMobile ? 'none' : '0 0 400px',
                   width: '100%',
                   maxWidth: '400px',
@@ -1425,7 +1425,7 @@ const resetCodeChallanges = () => {
                 <CodeMirror
                   value={`right 90`}
                   height="400px"
-                  theme="light"
+                  theme="dark"
                   extensions={[python()]}
                   editable={false}
                   options={{ readOnly: 'nocursor' }}
@@ -1499,7 +1499,9 @@ const resetCodeChallanges = () => {
                       <AccordionItem
                         eventKey={step.step}
                         key={index}
-                        style={{ opacity: isDisabled ? 0.5 : 1, pointerEvents: isDisabled ? 'none' : 'auto' }}
+                        style={{ opacity: isDisabled ? 0.5 : 1, 
+                          pointerEvents: isDisabled ? 'none' : 'auto',
+                         }}
                       >
                         <AccordionHeader>
                           <b>{step.title}</b>
@@ -1509,7 +1511,14 @@ const resetCodeChallanges = () => {
                         </AccordionHeader>
                         <AccordionBody>
                           <p>{step.description}</p>
-                          <pre style={{ userSelect: 'none', pointerEvents: 'none' }}>
+                          <pre style={{
+                            userSelect: 'none',
+                            pointerEvents: 'none',
+                            border: '1px solid black', // border hitam untuk pre
+                            padding: '10px', // biar lebih rapi tampilannya
+                            borderRadius: '4px', // opsional
+                            backgroundColor: '#f8f9fa' // opsional untuk kontras
+                          }}>
                             <code draggable={false}>{step.code}</code>
                           </pre>
 
@@ -1524,7 +1533,7 @@ const resetCodeChallanges = () => {
                 {/* Kolom untuk Editor dan Canvas */}
                 <Col xs={12} md={9}>
                   <div className="skulpt-container" 
-                    style={{ border: '2px solid #ccc',
+                    style={{ border: '2px solid #000000',
                     borderRadius: '8px',
                     padding: '15px',
                     display: 'flex',
@@ -1534,21 +1543,21 @@ const resetCodeChallanges = () => {
                     width: '100%',
                     boxSizing: 'border-box', }}>
                     {/* Editor Section */}
-              <div
-                className="editor-section"
-                style={{
-                  flex: 1,
-                  minWidth: 0,
-                  width: '100%',
-                  boxSizing: 'border-box',
-                }}
-              >
+                  <div
+                    className="editor-section"
+                    style={{
+                      flex: 1,
+                      minWidth: 0,
+                      width: '100%',
+                      boxSizing: 'border-box',
+                    }}
+                  >
                 <div style={{ width: '100%', maxWidth: '100%' }}>
                   <CodeMirror
                     value={pythonCode}
                     placeholder={'//Ketikan kode disini!'}
                     height="150px"
-                    theme="light"
+                    theme="dark"
                     extensions={[closeBrackets({ brackets: '' })]}
                     onChange={(value) => setPythonCode(value)}
                     onKeyDown={handleKeyDown}
@@ -1587,7 +1596,7 @@ const resetCodeChallanges = () => {
                     height: '150px',
                     overflowY: 'auto',
                     backgroundColor: '#f8f9fa',
-                    border: '1px solid #ccc',
+                    border: '1px solid black',
                     borderRadius: '4px',
                     padding: '10px',
                     fontFamily: 'monospace',
@@ -1765,7 +1774,7 @@ const resetCodeChallanges = () => {
       <Form.Label className="p-3 mb-3" style={{ backgroundColor: "#f8f9fa", fontSize: "18px", borderRadius: "5px", width: '100%' }}>
         <b>Soal 1 dari 2:</b>
         <p>Perhatikan kode perintah dibawah ini:</p>
-        <pre><code>{`left 90
+        <pre style={{border: '1px solid #000000', borderRadius: '8px'}}><code>{`left 90
 left 180
 right 90`}</code></pre>
         <p>Jika Bidawang awalnya menghadap ke kanan, arah bidawang setelah kode perintah dijalankan adalah ...</p>
