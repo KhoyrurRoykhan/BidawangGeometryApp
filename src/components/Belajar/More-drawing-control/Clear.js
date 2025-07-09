@@ -78,8 +78,57 @@ const Clear = () => {
 
         // Cek apakah progres cukup untuk akses halaman ini
         if (progresBelajar < 1) {
-          // Redirect ke halaman materi sebelumnya
           navigate('/belajar/pendahuluan');
+        } else if (progresBelajar === 1) {
+          navigate('/belajar/pendahuluan/kuis');
+        } else if (progresBelajar === 2) {
+          navigate('/belajar/turtlemotion/leftright');
+        } else if (progresBelajar === 3) {
+          navigate('/belajar/turtlemotion/forwardbackward');
+        } else if (progresBelajar === 4) {
+          navigate('/belajar/turtlemotion/setposition');
+        } else if (progresBelajar === 5) {
+          navigate('/belajar/turtlemotion/setxy');
+        } else if (progresBelajar === 6) {
+          navigate('/belajar/turtlemotion/setheading');
+        } else if (progresBelajar === 7) {
+          navigate('/belajar/turtlemotion/circle');
+        } else if (progresBelajar === 8) {
+          navigate('/belajar/turtlemotion/dot');
+        } else if (progresBelajar === 9) {
+          navigate('/belajar/turtlemotion/kuis');
+        } else if (progresBelajar === 10) {
+          navigate('/belajar/tellstate/position');
+        } else if (progresBelajar === 11) {
+          navigate('/belajar/tellstate/xcorycor');
+        } else if (progresBelajar === 12) {
+          navigate('/belajar/tellstate/heading');
+        } else if (progresBelajar === 13) {
+          navigate('/belajar/tellstate/distance');
+        } else if (progresBelajar === 14) {
+          navigate('/belajar/tellstate/kuis');
+        } else if (progresBelajar === 15) {
+          navigate('/belajar/pencontrol/penuppendown');
+        } else if (progresBelajar === 16) {
+          navigate('/belajar/pencontrol/pensize');
+        } else if (progresBelajar === 17) {
+          navigate('/belajar/pencontrol/isdown');
+        } else if (progresBelajar === 18) {
+          navigate('/belajar/colorcontrol/pencolor');
+        } else if (progresBelajar === 19) {
+          navigate('/belajar/colorcontrol/fillcolor');
+        } else if (progresBelajar === 20) {
+          navigate('/belajar/pencolorcontrol/kuis');
+        } else if (progresBelajar === 21) {
+          navigate('/belajar/moredrawingcontrol/reset');
+        } else if (progresBelajar === 22) {
+          navigate('/belajar/moredrawingcontrol/clear');
+        } else if (progresBelajar === 23) {
+          navigate('/belajar/moredrawingcontrol/write');
+        } else if (progresBelajar === 24) {
+          navigate('/belajar/perulangan/forloop');
+        } else if (progresBelajar === 25) {
+          navigate('/belajar/moredrawingcontrol/kuis');
         }
 
       } catch (error) {
